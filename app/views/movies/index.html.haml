@@ -5,15 +5,11 @@
     %th Title
     %th Imdb url
     %th
-    %th
-    %th
 
   - @movies.each do |movie|
     %tr
-      %td= movie.title
+      %td= link_to movie.title, movie
       %td= movie.imdb_url
-      %td= link_to 'Show', movie
-      %td= link_to 'Edit', edit_movie_path(movie)
       %td= link_to 'Destroy', movie, :confirm => 'Are you sure?', :method => :delete
 
 %br

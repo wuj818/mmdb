@@ -3,9 +3,13 @@
 = form_for @movie do |f|
   .field
     = f.label :title
-    = f.text_field :title
+    %br
+    = f.text_field :title, :class => 'title'
+
   .field
-    = f.label :imdb_url, 'IMDB Url'
+    = f.label :imdb_url, 'IMDB'
+    %br
     = f.text_field :imdb_url
+
   .actions
     = f.submit 'Submit'

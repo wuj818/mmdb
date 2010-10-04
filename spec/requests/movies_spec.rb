@@ -8,7 +8,7 @@ describe "Movies" do
       visit root_path
 
       movies.each do |movie|
-        should_see movie.title
+        should_see_link movie.title
       end
     end
   end
@@ -18,7 +18,7 @@ describe "Movies" do
       visit new_movie_path
 
       fill_in 'Title', :with => 'Boogie Nights'
-      fill_in 'IMDB Url', :with => 'http://www.imdb.com/title/tt0118749/'
+      fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
       click_button 'Submit'
 
       should_be_on movies_path
@@ -43,11 +43,12 @@ describe "Movies" do
 
       visit edit_movie_path movie
 
+      should_see %(Editing "#{movie.title}")
       field('Title').value.should == movie.title
-      field('IMDB Url').value.should == movie.imdb_url
+      field('IMDB').value.should == movie.imdb_url
 
       fill_in 'Title', :with => 'Boogie Nights'
-      fill_in 'IMDB Url', :with => 'http://www.imdb.com/title/tt0118749/'
+      fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
       click_button 'Submit'
 
       movie.reload
@@ -64,6 +65,7 @@ describe "Movies" do
       movie = Movie.make!
       title = movie.title
 
+      visit movies_path
       visit movie_path movie
 
       click_link 'Delete'
