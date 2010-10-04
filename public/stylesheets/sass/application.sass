@@ -1,15 +1,8 @@
 body
   background-color: #fff
   color: #333
-  font-size: 13px
-  line-height: 18px
+  font-size: 1em
   padding: 40px
-
-.field_with_errors
-  label
-    color: #c00
-  input
-    border: 1px solid #c00
 
 #error_explanation
   width: 100%
@@ -21,14 +14,36 @@ body
   h2
     text-align: left
     font-weight: bold
-    padding: 8px 8px 8px 12px
+    padding: 4px 4px 4px 8px
     margin-bottom: 0
-    font-size: 12px
+    font-size: 0.8em
     background-color: #c00
     color: #fff
   ul
-    margin: 8px 0
-    padding-left: 40px
+    margin: 4px 0
+    padding-left: 28px
     list-style: square
   ul li
-    font-size: 12px
+    font-size: 0.8em
+    font-style: italic
+
+.field_with_errors
+  label
+    color: #c00
+  input, input:focus
+    border: 1px solid #c00
+
+input
+  -webkit-border-radius: 4px
+  font-family: 'Monaco', monospace
+  font-size: 1.25em
+
+input[type=submit]
+  font-size: 1em
+  border: 1px solid #bbb
+  background-color: #eee
+  margin: 12px 0
+  font-family: verdana, arial, helvetica, sans-serif
+
+  &:hover
+    border-color: #888

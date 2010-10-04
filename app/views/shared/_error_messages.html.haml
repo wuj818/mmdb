@@ -5,7 +5,6 @@
       prohibited this
       = object.class.to_s.underscore.humanize.downcase
       from being saved:
-    %p There were problems with the following fields:
     %ul
       - object.errors.full_messages.each do |msg|
         %li= msg
