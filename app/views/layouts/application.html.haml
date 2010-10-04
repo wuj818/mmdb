@@ -1,0 +1,12 @@
+!!! 5
+%html
+  %head
+    %title Application Layout
+    = stylesheet_link_tag 'blueprint', 'application'
+    = javascript_include_tag :defaults
+    = csrf_meta_tag
+  %body
+    .container
+      - flash.each do |kind, msg|
+        = content_tag :div, msg, :class => "flash #{kind}"
+      = yield
