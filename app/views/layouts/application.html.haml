@@ -10,4 +10,7 @@
       %h1 MMDB
       - flash.each do |kind, msg|
         = content_tag :div, msg, :class => "flash #{kind}"
+      #session_links
+        = link_to('Login', login_path) unless admin?
+        = link_to('Logout', logout_path) if admin?
       = yield

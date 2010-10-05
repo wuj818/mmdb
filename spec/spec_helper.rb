@@ -30,6 +30,7 @@ Spork.prefork do
         Capybara.current_driver = :selenium
         DatabaseCleaner.strategy = :truncation
       end
+      Capybara.reset_sessions!
       DatabaseCleaner.start
     end
 
@@ -39,6 +40,10 @@ Spork.prefork do
         DatabaseCleaner.strategy = :transaction
       end
       DatabaseCleaner.clean
+    end
+
+    def test_login
+      controller.login_admin
     end
   end
 end

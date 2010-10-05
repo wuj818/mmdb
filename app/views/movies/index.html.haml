@@ -1,14 +1,12 @@
 %table
   %tr
     %th Title
-    %th Imdb url
-    %th
+    %th IMDB
 
   - @movies.each do |movie|
     %tr
       %td= link_to movie.title, movie
-      %td= movie.imdb_url
-      %td= link_to 'Destroy', movie, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to movie.imdb_url, movie.imdb_url
 
 %br
 
