@@ -47,6 +47,7 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    escape_utils (0.1.8)
     faker (0.3.1)
     ffi (0.6.3)
       rake (>= 0.8.7)
@@ -128,6 +129,7 @@ DEPENDENCIES
   annotate-models
   capybara
   database_cleaner
+  escape_utils
   faker
   haml
   haml-rails

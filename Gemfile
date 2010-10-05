@@ -11,6 +11,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 
 gem 'faker'
+gem 'escape_utils'
 
 group :development do
   gem 'annotate-models'
