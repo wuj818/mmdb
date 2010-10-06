@@ -6,11 +6,16 @@
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
+    #admin_bar
+      = link_to('Login', login_path, :class => 'button') unless admin?
+      = link_to('Logout', logout_path, :class => 'button') if admin?
     .container
-      %h1 MMDB
-      - flash.each do |kind, msg|
-        = content_tag :div, msg, :class => "flash #{kind}"
-      #session_links
-        = link_to('Login', login_path) unless admin?
-        = link_to('Logout', logout_path) if admin?
-      = yield
+      .span-24
+        %header
+          %h1= link_to 'MMDB', root_path
+      .span-24
+        - flash.each do |kind, msg|
+          = content_tag :div, :class => "flash #{kind}" do
+            = msg
+            %span.close X
+        = yield

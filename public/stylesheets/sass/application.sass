@@ -1,23 +1,69 @@
 body
-  background-color: #fff
+  background: #fff
   color: #333
-  font-size: 0.8em
-  padding: 40px
+  font-size: 80%
+  padding: 0
+
+#admin_bar
+  border-bottom: 1px solid black
+  text-align: center
+  font-size: 1.16em
+  margin-bottom: 40px
+  padding: 10px
+
+a.button
+  border: 1px solid #d3d3d3
+  -webkit-border-radius: 4px
+  padding: 4px 8px
+  text-decoration: none
+  display: inline-block
+  background: #efefef
+  line-height: 1em
+  color: #606060
+  font-family: 'Helvetica Neue'
+  &:hover
+    border-color: #b3b3b3
+    background: #e3e3e3
+
+header
+  border-bottom: 1px solid #eee
+  padding: 0
+  margin: 0 0 10px 0
+  font-family: 'Bank Gothic'
+  h1
+    margin: 0
+    font-size: 4em
+    text-shadow: #000 1px 1px 2px
+    a
+      text-decoration: none
+      &:hover
+        color: #000
+
+.flash
+  padding: 3px 8px
+  -webkit-border-radius: 4px
+
+.close
+  color: #000
+  cursor: pointer
+  float: right
+  font-family: verdana
 
 #error_explanation
   width: 100%
   border: 1px solid #c00
   padding-bottom: 0
   margin-bottom: 20px
-  background-color: #f0f0f0
+  background: #f0f0f0
   font-family: verdana, arial, helvetica, sans-serif
+  font-size: 1.25em
   h2
     text-align: left
     font-weight: bold
     padding: 4px 4px 4px 8px
     margin-bottom: 0
     font-size: 0.8em
-    background-color: #c00
+    background: #c00
     color: #fff
   ul
     margin: 4px 0
@@ -33,6 +79,9 @@ body
   input, input:focus
     border: 1px solid #c00
 
+label
+  font-size: 1.25em
+
 input
   -webkit-border-radius: 4px
   font-family: 'Monaco', monospace
@@ -40,10 +89,11 @@ input
 
 input[type=submit]
   font-size: 1em
-  border: 1px solid #bbb
-  background-color: #eee
+  border: 1px solid #d3d3d3
+  background: #efefef
   margin: 12px 0
-  font-family: verdana, arial, helvetica, sans-serif
+  font-family: 'Helvetica Neue'
 
   &:hover
-    border-color: #888
+    border-color: #b3b3b3
+    background: #e3e3e3
