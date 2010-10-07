@@ -16,6 +16,7 @@ describe 'Movies' do
       it 'adds a movie and redirects to the index' do
         fill_in 'Title', :with => 'Boogie Nights'
         fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
+        fill_in 'Year', :with => '1997'
         click_button 'Submit'
 
         should_be_on movies_path
@@ -37,6 +38,7 @@ describe 'Movies' do
       movie = Movie.make!
       visit movie_path movie
       should_see movie.title
+      should_see movie.year.to_s
       link('IMDB')[:href].should == movie.imdb_url
     end
   end
@@ -55,6 +57,7 @@ describe 'Movies' do
 
         fill_in 'Title', :with => 'Boogie Nights'
         fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
+        fill_in 'Year', :with => '1997'
         click_button 'Submit'
 
         @movie.reload

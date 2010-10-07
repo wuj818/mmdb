@@ -5,4 +5,10 @@ class Movie < ActiveRecord::Base
   validates :imdb_url,
     :presence => true,
     :uniqueness => true
+
+  validates :year,
+    :presence => true,
+    :numericality => {
+      :greater_than_or_equal_to => 1890,
+      :less_than_or_equal_to => 3000 }
 end
