@@ -5,22 +5,17 @@ describe 'Sessions' do
     context 'when logged in' do
       it 'redirects to the home page' do
         integration_login
-
         visit login_path
-
         should_be_on root_path
         should_see 'You are already logged in.'
       end
     end
 
     context 'when logged out' do
+      before { visit login_path }
+
       context 'with valid password' do
         it 'logs in the admin and redirect to the home page' do
-          visit root_path
-
-          should_not_see_link 'Logout'
-          click_link 'Login'
-
           fill_in 'Password', :with => PASSWORD
           click_button 'Submit'
 
@@ -34,8 +29,6 @@ describe 'Sessions' do
 
       context 'with invalid password' do
         it 're-renders the login form' do
-          visit login_path
-
           click_button 'Submit'
 
           should_see 'Incorrect password.'
@@ -67,7 +60,6 @@ describe 'Sessions' do
     context 'when logged out' do
       it 'redirects to the home page' do
         visit logout_path
-
         should_be_on root_path
         should_see 'You are not logged in.'
       end

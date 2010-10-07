@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe Movie do
   describe 'Validations' do
-    before(:all) do
-      @movie = Movie.new
-      @movie.save
-    end
+    before { @movie = Movie.create }
 
     it 'has required attributes' do
       [:title, :imdb_url].each do |attribute|
