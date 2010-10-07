@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "Movies" do
-  describe "index" do
-    it "should list all movies" do
+describe 'Movies' do
+  describe 'Show all movies' do
+    it 'lists all movies' do
       movies = Movie.make! 3
 
       visit root_path
@@ -13,8 +13,8 @@ describe "Movies" do
     end
   end
 
-  describe "new" do
-    it "should create a movie and redirect to the index" do
+  describe 'Add new movie' do
+    it 'adds a movie and redirects to the index' do
       visit new_movie_path
 
       fill_in 'Title', :with => 'Boogie Nights'
@@ -26,8 +26,8 @@ describe "Movies" do
     end
   end
 
-  describe "show" do
-    it "should show the details for a movie" do
+  describe 'Show movie details' do
+    it 'shows the details for a movie' do
       movie = Movie.make!
 
       visit movie_path movie
@@ -37,8 +37,8 @@ describe "Movies" do
     end
   end
 
-  describe "edit" do
-    it "should edit a movie and redirect to its page" do
+  describe 'Edit movie' do
+    it 'edits a movie and redirects to its page' do
       movie = Movie.make!
 
       visit edit_movie_path movie
@@ -60,8 +60,8 @@ describe "Movies" do
     end
   end
 
-  describe "destroy" do
-    it "should delete the movie and redirect to the index" do
+  describe 'Delete movie' do
+    it 'deletes the movie and redirects to the index page' do
       movie = Movie.make!
       title = movie.title
 

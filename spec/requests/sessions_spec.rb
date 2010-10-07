@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe "Sessions" do
-  describe "login" do
-    context "logged in" do
-      it "should redirect to the home page" do
+describe 'Sessions' do
+  describe 'Login' do
+    context 'when logged in' do
+      it 'redirects to the home page' do
         integration_login
 
         visit login_path
@@ -13,9 +13,9 @@ describe "Sessions" do
       end
     end
 
-    context "logged out" do
-      context "success" do
-        it "should login the admin and redirect to the home page" do
+    context 'when logged out' do
+      context 'with valid password' do
+        it 'logs in the admin and redirect to the home page' do
           visit root_path
 
           should_not_see_link 'Logout'
@@ -32,8 +32,8 @@ describe "Sessions" do
         end
       end
 
-      context "failure" do
-        it "should inform the user and re-render the login form" do
+      context 'with invalid password' do
+        it 're-renders the login form' do
           visit login_path
 
           click_button 'Submit'
@@ -48,9 +48,9 @@ describe "Sessions" do
     end
   end
 
-  describe "logout" do
-    context "logged in" do
-      it "should logout the admin" do
+  describe 'Logout' do
+    context 'when logged in' do
+      it 'logs out the admin' do
         integration_login
 
         should_not_see_link 'Login'
@@ -64,8 +64,8 @@ describe "Sessions" do
       end
     end
 
-    context "logged out" do
-      it "should redirect to the home page" do
+    context 'when logged out' do
+      it 'redirects to the home page' do
         visit logout_path
 
         should_be_on root_path
