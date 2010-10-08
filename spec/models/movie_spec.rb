@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe Movie do
+  describe 'Defaults' do
+    before { @movie = Movie.new }
+
+    it 'has a default rating of 0' do
+      @movie.rating.should == 0
+    end
+  end
   describe 'Validations' do
     before { @movie = Movie.create }
 
@@ -26,6 +33,18 @@ describe Movie do
       end
 
       movie.year = 2000
+      movie.should be_valid
+    end
+
+    it 'has a valid rating (0..10)' do
+      movie = Movie.make!
+
+      [-1, 11, 9000].each do |rating|
+        movie.rating = rating
+        movie.should_not be_valid
+      end
+
+      movie.rating = 10
       movie.should be_valid
     end
   end

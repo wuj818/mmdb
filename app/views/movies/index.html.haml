@@ -3,11 +3,13 @@
     %th Title
     %th IMDB
     %th Year
+    %th Rating
 
   - @movies.each do |movie|
     %tr
       %td= link_to movie.title, movie
       %td= link_to movie.imdb_url, movie.imdb_url
       %td= movie.year
+      %td= movie.rating
 
 = link_to 'New Movie', new_movie_path

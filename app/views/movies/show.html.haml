@@ -1,7 +1,7 @@
 %h2= @movie.title
 %p= link_to 'IMDB', @movie.imdb_url
 %p= @movie.year
-
+%p #{@movie.rating}/10
 %hr
 
 = link_to 'Edit', edit_movie_path(@movie)

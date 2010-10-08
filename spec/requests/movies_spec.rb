@@ -17,6 +17,7 @@ describe 'Movies' do
         fill_in 'Title', :with => 'Boogie Nights'
         fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
         fill_in 'Year', :with => '1997'
+        select '10', :from => 'Rating'
         click_button 'Submit'
 
         should_be_on movies_path
@@ -39,6 +40,7 @@ describe 'Movies' do
       visit movie_path movie
       should_see movie.title
       should_see movie.year.to_s
+      should_see "#{movie.rating}/10"
       link('IMDB')[:href].should == movie.imdb_url
     end
   end
@@ -58,6 +60,7 @@ describe 'Movies' do
         fill_in 'Title', :with => 'Boogie Nights'
         fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
         fill_in 'Year', :with => '1997'
+        select '10', :from => 'Rating'
         click_button 'Submit'
 
         @movie.reload

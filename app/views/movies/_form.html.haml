@@ -16,5 +16,10 @@
     %br
     = f.text_field :year
 
+  .field
+    = f.label :rating
+    %br
+    = f.select :rating, 0..10
+
   .actions
     = f.submit 'Submit'
