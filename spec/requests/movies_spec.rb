@@ -17,6 +17,7 @@ describe 'Movies' do
         fill_in 'Title', :with => 'Boogie Nights'
         fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
         fill_in 'Year', :with => '1997'
+        fill_in 'Runtime', :with => '155'
         select '10', :from => 'Rating'
         click_button 'Submit'
 
@@ -41,6 +42,7 @@ describe 'Movies' do
       should_see movie.title
       should_see movie.year.to_s
       should_see "#{movie.rating}/10"
+      should_see "#{movie.runtime} min"
       link('IMDB')[:href].should == movie.imdb_url
     end
   end
@@ -60,6 +62,7 @@ describe 'Movies' do
         fill_in 'Title', :with => 'Boogie Nights'
         fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
         fill_in 'Year', :with => '1997'
+        fill_in 'Runtime', :with => '155'
         select '10', :from => 'Rating'
         click_button 'Submit'
 

@@ -1,11 +1,10 @@
 %h2= @movie.title
 %p= link_to 'IMDB', @movie.imdb_url
 %p= @movie.year
+%p #{@movie.runtime} min
 %p #{@movie.rating}/10
 %hr
 
 = link_to 'Edit', edit_movie_path(@movie)
-\|
-= link_to 'Back', movies_path
 \|
 = link_to 'Delete', @movie, :confirm => 'Are you sure?', :method => :delete

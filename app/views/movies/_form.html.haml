@@ -17,6 +17,11 @@
     = f.text_field :year
 
   .field
+    = f.label :runtime
+    %br
+    = f.text_field :runtime
+
+  .field
     = f.label :rating
     %br
     = f.select :rating, 0..10

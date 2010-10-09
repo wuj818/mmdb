@@ -14,4 +14,10 @@ class Movie < ActiveRecord::Base
 
   validates :rating,
     :inclusion => { :in => 0..10, :message => 'is invalid' }
+
+  validates :runtime,
+    :presence => true,
+    :numericality => {
+      :greater_than_or_equal_to => 0,
+      :less_than_or_equal_to => 300 }
 end
