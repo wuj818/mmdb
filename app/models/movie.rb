@@ -1,6 +1,9 @@
 class Movie < ActiveRecord::Base
   validates :title,
-    :presence => true
+    :presence => true,
+    :uniqueness => {
+      :scope => :year,
+      :message => 'or Title/Year combination has already been taken' }
 
   validates :imdb_url,
     :presence => true,

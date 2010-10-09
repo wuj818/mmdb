@@ -25,6 +25,13 @@ describe Movie do
       end
     end
 
+    it 'has a unique title/year combination' do
+      @duplicate_movie = Movie.make
+      @duplicate_movie.title = @movie.title
+      @duplicate_movie.year = @movie.year
+      @duplicate_movie.should_not be_valid
+    end
+
     it 'has a unique IMDB url' do
       @empty_movie.imdb_url = @movie.imdb_url
       @empty_movie.save
