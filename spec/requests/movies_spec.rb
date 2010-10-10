@@ -14,6 +14,7 @@ describe 'Movies' do
 
     context 'with valid info' do
       it 'adds a movie and redirects to the index' do
+        should_not_see_field 'Permalink'
         fill_in 'Title', :with => 'Boogie Nights'
         fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
         fill_in 'Year', :with => '1997'
@@ -56,6 +57,7 @@ describe 'Movies' do
     context 'with valid info' do
       it 'edits a movie and redirects to its page' do
         should_see %(Editing "#{@movie.title}")
+        should_see_field 'Permalink'
         field('Title').value.should == @movie.title
         field('IMDB').value.should == @movie.imdb_url
 

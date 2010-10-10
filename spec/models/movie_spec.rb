@@ -31,6 +31,12 @@ describe Movie do
       @empty_movie.errors[:imdb_url].should include 'has already been taken'
     end
 
+    it 'has a unique permalink' do
+      @empty_movie.permalink = @movie.permalink
+      @empty_movie.save
+      @empty_movie.errors[:permalink].should include 'has already been taken'
+    end
+
     it 'has a valid year (1890..3000)' do
       [1889, 3001, 'foo'].each do |year|
         @movie.year = year
@@ -59,6 +65,25 @@ describe Movie do
 
       @movie.runtime = 120
       @movie.should be_valid
+    end
+  end
+
+  describe 'Callbacks' do
+    describe 'Permalink creation' do
+      it 'automatically creates a permalink from the title' do
+        @movie = Movie.make(:title => 'Boogie Nights')
+        @movie.permalink.should be_blank
+        @movie.save
+        @movie.permalink.should == 'boogie-nights'
+      end
+
+      it 'resolves duplicates by appending the year to the permalink and the title' do
+        @movie1 = Movie.make!(:title => 'The Fly', :year => 1958)
+        @movie1.permalink.should == 'the-fly'
+        @movie2 = Movie.make!(:title => 'The Fly', :year => 1986)
+        @movie2.title.should == 'The Fly (1986)'
+        @movie2.permalink.should == 'the-fly-1986'
+      end
     end
   end
 end

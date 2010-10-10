@@ -15,7 +15,7 @@ describe MoviesController do
 
   describe 'GET show' do
     it 'assigns the requested movie as @movie' do
-      Movie.stub(:find).with('37') { mock_movie }
+      Movie.stub(:find_by_permalink).with('37') { mock_movie }
       get :show, :id => '37'
       assigns(:movie).should be(mock_movie)
     end
@@ -31,7 +31,7 @@ describe MoviesController do
 
   describe 'GET edit' do
     it 'assigns the requested movie as @movie' do
-      Movie.stub(:find).with('37') { mock_movie }
+      Movie.stub(:find_by_permalink).with('37') { mock_movie }
       get :edit, :id => '37'
       assigns(:movie).should be(mock_movie)
     end
@@ -70,19 +70,19 @@ describe MoviesController do
   describe 'PUT update' do
     describe 'with valid params' do
       it 'updates the requested movie' do
-        Movie.should_receive(:find).with('37') { mock_movie }
+        Movie.should_receive(:find_by_permalink).with('37') { mock_movie }
         mock_movie.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => '37', :movie => {'these' => 'params'}
       end
 
       it 'assigns the requested movie as @movie' do
-        Movie.stub(:find) { mock_movie(:update_attributes => true) }
+        Movie.stub(:find_by_permalink) { mock_movie(:update_attributes => true) }
         put :update, :id => '1'
         assigns(:movie).should be(mock_movie)
       end
 
       it 'redirects to the movie' do
-        Movie.stub(:find) { mock_movie(:update_attributes => true) }
+        Movie.stub(:find_by_permalink) { mock_movie(:update_attributes => true) }
         put :update, :id => '1'
         response.should redirect_to(movie_url(mock_movie))
       end
@@ -90,13 +90,13 @@ describe MoviesController do
 
     describe 'with invalid params' do
       it 'assigns the movie as @movie' do
-        Movie.stub(:find) { mock_movie(:update_attributes => false) }
+        Movie.stub(:find_by_permalink) { mock_movie(:update_attributes => false) }
         put :update, :id => '1'
         assigns(:movie).should be(mock_movie)
       end
 
       it 're-renders the "edit" template' do
-        Movie.stub(:find) { mock_movie(:update_attributes => false) }
+        Movie.stub(:find_by_permalink) { mock_movie(:update_attributes => false) }
         put :update, :id => '1'
         response.should render_template('edit')
       end
@@ -105,13 +105,13 @@ describe MoviesController do
 
   describe 'DELETE destroy' do
     it 'destroys the requested movie' do
-      Movie.should_receive(:find).with('37') { mock_movie }
+      Movie.should_receive(:find_by_permalink).with('37') { mock_movie }
       mock_movie.should_receive(:destroy)
       delete :destroy, :id => '37'
     end
 
     it 'redirects to the movies list' do
-      Movie.stub(:find) { mock_movie }
+      Movie.stub(:find_by_permalink) { mock_movie }
       delete :destroy, :id => '1'
       response.should redirect_to(movies_url)
     end
