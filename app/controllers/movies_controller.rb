@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.xml
   def index
-    @movies = Movie.all
+    @movies = Movie.order(order)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -89,5 +89,15 @@ class MoviesController < ApplicationController
       end
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def order
+    params[:sort] ||= 'title'
+    params[:order] ||= 'asc'
+    result = "#{params[:sort]} #{params[:order]}"
+    result << ', title asc' unless params[:sort] == 'title'
+    result
   end
 end

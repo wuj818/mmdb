@@ -1,11 +1,11 @@
 %h2= pluralize Movie.count, 'movie'
-%table
+%table#movies
   %tr
-    %th Title
+    %th= sort_link :title
     %th IMDB
-    %th Year
-    %th Runtime
-    %th Rating
+    %th= sort_link :year
+    %th= sort_link :runtime
+    %th= sort_link :rating
 
   - @movies.each do |movie|
     %tr

@@ -7,6 +7,55 @@ describe 'Movies' do
       visit root_path
       movies.each { |movie| should_see_link movie.title }
     end
+
+    it 'has customizable sorting options' do
+      Movie.make! :title => 'Boogie Nights',
+        :year => 1997, :runtime => 155, :rating => 2
+      Movie.make! :title => 'Robocop',
+        :year => 1987, :runtime => 102, :rating => 3
+      Movie.make! :title => 'Dumb and Dumber',
+        :year => 1994, :runtime => 107, :rating => 1
+
+      # ascending title by default
+      visit root_path
+      movies = all('td:first-child a').map(&:text)
+      movies.should == ['Boogie Nights', 'Dumb and Dumber', 'Robocop']
+
+      # descending title
+      click_link 'Title'
+      movies = all('td:first-child a').map(&:text)
+      movies.should == ['Robocop', 'Dumb and Dumber', 'Boogie Nights']
+
+      # ascending year
+      click_link 'Year'
+      movies = all('td:first-child a').map(&:text)
+      movies.should == ['Robocop', 'Dumb and Dumber', 'Boogie Nights']
+
+      # descending year
+      click_link 'Year'
+      movies = all('td:first-child a').map(&:text)
+      movies.should == ['Boogie Nights', 'Dumb and Dumber', 'Robocop']
+
+      # ascending runtime
+      click_link 'Runtime'
+      movies = all('td:first-child a').map(&:text)
+      movies.should == ['Robocop', 'Dumb and Dumber', 'Boogie Nights']
+
+      # descending runtime
+      click_link 'Runtime'
+      movies = all('td:first-child a').map(&:text)
+      movies.should == ['Boogie Nights', 'Dumb and Dumber', 'Robocop']
+
+      # ascending rating
+      click_link 'Rating'
+      movies = all('td:first-child a').map(&:text)
+      movies.should == ['Dumb and Dumber', 'Boogie Nights', 'Robocop']
+
+      # descending rating
+      click_link 'Rating'
+      movies = all('td:first-child a').map(&:text)
+      movies.should == ['Robocop', 'Boogie Nights', 'Dumb and Dumber']
+    end
   end
 
   describe 'Add new movie' do

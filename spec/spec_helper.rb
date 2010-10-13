@@ -11,6 +11,7 @@ Spork.prefork do
 
   RSpec.configure do |config|
     Capybara.save_and_open_page_path = "#{Rails.root}/tmp/capybara"
+    Capybara.default_selector = :css
     ActiveSupport::Dependencies.clear
 
     Machinist.configure do |config|

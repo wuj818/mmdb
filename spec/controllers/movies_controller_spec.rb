@@ -7,7 +7,7 @@ describe MoviesController do
 
   describe 'GET index' do
     it 'assigns all movies as @movies' do
-      Movie.stub(:all) { [mock_movie] }
+      Movie.stub(:order) { [mock_movie] }
       get :index
       assigns(:movies).should eq([mock_movie])
     end
