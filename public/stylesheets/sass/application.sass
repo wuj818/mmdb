@@ -14,6 +14,7 @@ body
 a.button
   border: 1px solid #d3d3d3
   -webkit-border-radius: 4px
+  -moz-border-radius: 4px
   padding: 4px 8px
   text-decoration: none
   display: inline-block
@@ -42,6 +43,7 @@ header
 .flash
   padding: 3px 8px
   -webkit-border-radius: 4px
+  -moz-border-radius: 4px
 
 .close
   color: #000
@@ -84,6 +86,7 @@ label
 
 input
   -webkit-border-radius: 4px
+  -moz-border-radius: 4px
   font-family: 'Monaco', monospace
   font-size: 1.25em
 
@@ -97,6 +100,28 @@ input[type=submit]
   &:hover
     border-color: #b3b3b3
     background: #e3e3e3
+
+a.button, input[type=submit]
+  display: inline-block
+  color: #606060
+  background: #efefef
+  padding: 5px 10px
+  line-height: 1.0em
+  font-weight: bold
+  border: 1px solid #d3d3d3
+  vertical-align: middle
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgb(239,239,239)), color-stop(0.5, rgb(227,227,227)))
+  background: -moz-linear-gradient(center top, rgb(239,239,239) 50%, rgb(227,227,227) 50%)
+
+  &:hover
+    background: #e3e3e3
+    border-color: #b3b3b3
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgb(227,227,227)), color-stop(0.5, rgb(239,239,239)))
+    background: -moz-linear-gradient(center top, rgb(227,227,227) 50%, rgb(239,239,239) 50%)
+
+  &:active
+    padding: 6px 10px 4px 10px
+    background: #d7d7d7
 
 #movies
   th
