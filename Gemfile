@@ -12,6 +12,7 @@ gem 'jquery-rails'
 
 gem 'faker'
 gem 'escape_utils'
+gem 'will_paginate', '~> 3.0.beta'
 
 group :development do
   gem 'annotate-models'

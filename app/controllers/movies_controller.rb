@@ -1,44 +1,35 @@
 class MoviesController < ApplicationController
-  # GET /movies
-  # GET /movies.xml
   def index
-    @movies = Movie.order(order)
+    @movies = Movie.order(order).paginate(:page => page, :per_page => per_page)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @movies }
     end
   end
 
-  # GET /movies/1
-  # GET /movies/1.xml
   def show
     @movie = Movie.find_by_permalink(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.xml  { render :xml => @movie }
     end
   end
 
-  # GET /movies/new
-  # GET /movies/new.xml
   def new
     @movie = Movie.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @movie }
     end
   end
 
-  # GET /movies/1/edit
   def edit
     @movie = Movie.find_by_permalink(params[:id])
   end
 
-  # POST /movies
-  # POST /movies.xml
   def create
     @movie = Movie.new(params[:movie])
 
@@ -56,8 +47,6 @@ class MoviesController < ApplicationController
     end
   end
 
-  # PUT /movies/1
-  # PUT /movies/1.xml
   def update
     @movie = Movie.find_by_permalink(params[:id])
 
@@ -75,8 +64,6 @@ class MoviesController < ApplicationController
     end
   end
 
-  # DELETE /movies/1
-  # DELETE /movies/1.xml
   def destroy
     @movie = Movie.find_by_permalink(params[:id])
     title = @movie.title
@@ -99,5 +86,13 @@ class MoviesController < ApplicationController
     result = "#{params[:sort]} #{params[:order]}"
     result << ', title asc' unless params[:sort] == 'title'
     result
+  end
+
+  def page
+    params[:page]
+  end
+
+  def per_page
+    params[:per_page] || 50
   end
 end

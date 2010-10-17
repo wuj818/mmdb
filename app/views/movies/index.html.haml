@@ -1,17 +1,20 @@
-%h2= pluralize Movie.count, 'movie'
-%table#movies
-  %tr
-    %th= sort_link :title
-    %th IMDB
-    %th= sort_link :year
-    %th= sort_link :runtime
-    %th= sort_link :rating
+= page_entries_info @movies
 
-  - @movies.each do |movie|
+- unless @movies.empty?
+  = will_paginate @movies
+
+  %table#movies
     %tr
-      %td= link_to movie.title, movie
-      %td= link_to movie.imdb_url, movie.imdb_url
-      %td= movie.year
-      %td= movie.runtime
-      %td= movie.rating
+      %th= sort_link :title
+      %th= sort_link :year
+      %th= sort_link :runtime
+      %th= sort_link :rating
 
+    - @movies.each do |movie|
+      %tr
+        %td= link_to movie.title, movie
+        %td= movie.year
+        %td= movie.runtime
+        %td= movie.rating
+
+  = will_paginate @movies

@@ -56,6 +56,23 @@ describe 'Movies' do
       movies = all('td:first-child a').map(&:text)
       movies.should == ['Robocop', 'Boogie Nights', 'Dumb and Dumber']
     end
+
+    it 'has pagination info and links' do
+      visit root_path
+      should_see 'No entries found'
+
+      @movies = Movie.make! 2
+      visit root_path :per_page => 1
+
+      should_see 'Displaying movies'
+      should_see '2 in total'
+      should_see_link '2'
+      should_not_see_link @movies.last.title
+
+      click_link '2'
+      should_not_see_link @movies.first.title
+      should_see_link @movies.last.title
+    end
   end
 
   describe 'Add new movie' do
