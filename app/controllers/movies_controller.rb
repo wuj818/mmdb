@@ -84,9 +84,10 @@ class MoviesController < ApplicationController
 
   def order
     params[:sort] ||= 'title'
+    column = params[:sort] == 'title' ? 'sort_title' : params[:sort]
     params[:order] ||= 'asc'
-    result = "#{params[:sort]} #{params[:order]}"
-    result << ', title asc' unless params[:sort] == 'title'
+    result = "#{column} #{params[:order]}"
+    result << ', sort_title asc' unless params[:sort] == 'title'
     result
   end
 

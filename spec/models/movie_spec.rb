@@ -92,5 +92,14 @@ describe Movie do
         @movie2.permalink.should == 'the-fly-1986'
       end
     end
+
+    describe 'Sort title creation' do
+      it 'copies a lowercase version of the title if the sort title is blank' do
+        @movie = Movie.make
+        @movie.sort_title.should be_blank
+        @movie.save
+        @movie.sort_title.should == @movie.title.downcase
+      end
+    end
   end
 end

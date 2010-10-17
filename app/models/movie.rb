@@ -28,6 +28,7 @@ class Movie < ActiveRecord::Base
     :uniqueness => true
 
   before_save :create_permalink
+  before_save :create_sort_title
 
   def to_param
     self.permalink
@@ -43,5 +44,10 @@ class Movie < ActiveRecord::Base
       self.title << " (#{self.year})"
     end
     self.permalink = result
+  end
+
+  def create_sort_title
+    return unless self.sort_title.blank?
+    self.sort_title = self.title.downcase
   end
 end

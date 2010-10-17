@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Movies' do
-  describe 'Show all movies' do
+  describe 'All movies page' do
     it 'lists all movies' do
       movies = Movie.make! 3
       visit root_path
@@ -9,52 +9,52 @@ describe 'Movies' do
     end
 
     it 'has customizable sorting options' do
+      Movie.make! :title => 'The Big Lebowski',
+        :year => 1998, :runtime => 117, :rating => 3, :sort_title => 'Big Lebowski, The'
       Movie.make! :title => 'Boogie Nights',
         :year => 1997, :runtime => 155, :rating => 2
-      Movie.make! :title => 'Robocop',
-        :year => 1987, :runtime => 102, :rating => 3
       Movie.make! :title => 'Dumb and Dumber',
         :year => 1994, :runtime => 107, :rating => 1
 
       # ascending title by default
       visit root_path
       movies = all('td:first-child a').map(&:text)
-      movies.should == ['Boogie Nights', 'Dumb and Dumber', 'Robocop']
+      movies.should == ['The Big Lebowski', 'Boogie Nights', 'Dumb and Dumber']
 
       # descending title
       click_link 'Title'
       movies = all('td:first-child a').map(&:text)
-      movies.should == ['Robocop', 'Dumb and Dumber', 'Boogie Nights']
+      movies.should == ['Dumb and Dumber', 'Boogie Nights', 'The Big Lebowski']
 
       # ascending year
       click_link 'Year'
       movies = all('td:first-child a').map(&:text)
-      movies.should == ['Robocop', 'Dumb and Dumber', 'Boogie Nights']
+      movies.should == ['Dumb and Dumber', 'Boogie Nights', 'The Big Lebowski']
 
       # descending year
       click_link 'Year'
       movies = all('td:first-child a').map(&:text)
-      movies.should == ['Boogie Nights', 'Dumb and Dumber', 'Robocop']
+      movies.should == ['The Big Lebowski', 'Boogie Nights', 'Dumb and Dumber']
 
       # ascending runtime
       click_link 'Runtime'
       movies = all('td:first-child a').map(&:text)
-      movies.should == ['Robocop', 'Dumb and Dumber', 'Boogie Nights']
+      movies.should == ['Dumb and Dumber', 'The Big Lebowski', 'Boogie Nights']
 
       # descending runtime
       click_link 'Runtime'
       movies = all('td:first-child a').map(&:text)
-      movies.should == ['Boogie Nights', 'Dumb and Dumber', 'Robocop']
+      movies.should == ['Boogie Nights', 'The Big Lebowski', 'Dumb and Dumber']
 
       # ascending rating
       click_link 'Rating'
       movies = all('td:first-child a').map(&:text)
-      movies.should == ['Dumb and Dumber', 'Boogie Nights', 'Robocop']
+      movies.should == ['Dumb and Dumber', 'Boogie Nights', 'The Big Lebowski']
 
       # descending rating
       click_link 'Rating'
       movies = all('td:first-child a').map(&:text)
-      movies.should == ['Robocop', 'Boogie Nights', 'Dumb and Dumber']
+      movies.should == ['The Big Lebowski', 'Boogie Nights', 'Dumb and Dumber']
     end
 
     it 'has pagination info and links' do
@@ -86,6 +86,8 @@ describe 'Movies' do
       context 'with valid info' do
         it 'adds a movie and redirects to the index' do
           should_not_see_field 'Permalink'
+          should_not_see_field 'Sort Title'
+
           fill_in 'Title', :with => 'Boogie Nights'
           fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
           fill_in 'Year', :with => '1997'
@@ -148,6 +150,7 @@ describe 'Movies' do
         it 'edits a movie and redirects to its page' do
           should_see %(Editing "#{@movie.title}")
           should_see_field 'Permalink'
+          should_see_field 'Sort Title'
           field('Title').value.should == @movie.title
           field('IMDB').value.should == @movie.imdb_url
 
