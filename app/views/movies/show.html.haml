@@ -5,6 +5,7 @@
 %p #{@movie.rating}/10
 %hr
 
-= link_to 'Edit', edit_movie_path(@movie)
-\|
-= link_to 'Delete', @movie, :confirm => 'Are you sure?', :method => :delete
+- if admin?
+  = link_to 'Edit', edit_movie_path(@movie)
+  \|
+  = link_to 'Delete', @movie, :confirm => 'Are you sure?', :method => :delete

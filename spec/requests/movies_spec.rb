@@ -76,28 +76,48 @@ describe 'Movies' do
   end
 
   describe 'Add new movie' do
-    before { visit new_movie_path }
+    context 'when logged in' do
+      before do
+        integration_login
+        visit movies_path
+        click_link 'Add Movie'
+      end
 
-    context 'with valid info' do
-      it 'adds a movie and redirects to the index' do
-        should_not_see_field 'Permalink'
-        fill_in 'Title', :with => 'Boogie Nights'
-        fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
-        fill_in 'Year', :with => '1997'
-        fill_in 'Runtime', :with => '155'
-        select '10', :from => 'Rating'
-        click_button 'Submit'
+      context 'with valid info' do
+        it 'adds a movie and redirects to the index' do
+          should_not_see_field 'Permalink'
+          fill_in 'Title', :with => 'Boogie Nights'
+          fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
+          fill_in 'Year', :with => '1997'
+          fill_in 'Runtime', :with => '155'
+          select '10', :from => 'Rating'
+          click_button 'Submit'
 
-        should_be_on movies_path
-        should_not_have_css '#error_explanation'
-        should_see '"Boogie Nights" was successfully added.'
+          should_be_on movies_path
+          should_not_have_css '#error_explanation'
+          should_see '"Boogie Nights" was successfully added.'
+        end
+      end
+
+      context 'with invalid info' do
+        it 'shows an error message' do
+          click_button 'Submit'
+          should_have_css '#error_explanation'
+        end
       end
     end
 
-    context 'with invalid info' do
-      it 'shows an error message' do
-        click_button 'Submit'
-        should_have_css '#error_explanation'
+    context 'when not logged in' do
+      it 'redirects to the login page' do
+        visit new_movie_path
+        should_not_be_on new_movie_path
+        should_be_on login_path
+        should_see 'You must be logged in to access this page.'
+      end
+
+      it 'is not shown on the movies page as a link' do
+        visit movies_path
+        should_not_see_link 'Add Movie'
       end
     end
   end
@@ -115,55 +135,82 @@ describe 'Movies' do
   end
 
   describe 'Edit movie' do
-    before do
-      @movie = Movie.make!
-      visit edit_movie_path @movie
-    end
+    before { @movie = Movie.make! }
 
-    context 'with valid info' do
-      it 'edits a movie and redirects to its page' do
-        should_see %(Editing "#{@movie.title}")
-        should_see_field 'Permalink'
-        field('Title').value.should == @movie.title
-        field('IMDB').value.should == @movie.imdb_url
+    context 'when logged in' do
+      before do
+        integration_login
+        visit movie_path @movie
+        click_link 'Edit'
+      end
 
-        fill_in 'Title', :with => 'Boogie Nights'
-        fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
-        fill_in 'Year', :with => '1997'
-        fill_in 'Runtime', :with => '155'
-        select '10', :from => 'Rating'
-        click_button 'Submit'
+      context 'with valid info' do
+        it 'edits a movie and redirects to its page' do
+          should_see %(Editing "#{@movie.title}")
+          should_see_field 'Permalink'
+          field('Title').value.should == @movie.title
+          field('IMDB').value.should == @movie.imdb_url
 
-        @movie.reload
+          fill_in 'Title', :with => 'Boogie Nights'
+          fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
+          fill_in 'Year', :with => '1997'
+          fill_in 'Runtime', :with => '155'
+          select '10', :from => 'Rating'
+          click_button 'Submit'
 
-        should_be_on movie_path @movie
-        should_see %("#{@movie.title}" was successfully edited.)
-        should_see @movie.title
-        link('IMDB')[:href].should == @movie.imdb_url
+          @movie.reload
+
+          should_be_on movie_path @movie
+          should_see %("#{@movie.title}" was successfully edited.)
+          should_see @movie.title
+          link('IMDB')[:href].should == @movie.imdb_url
+        end
+      end
+
+      context 'with invalid info' do
+        it 'shows an error message' do
+          fill_in 'Title', :with => ''
+          click_button 'Submit'
+          should_have_css '#error_explanation'
+        end
       end
     end
 
-    context 'with invalid info' do
-      it 'shows an error message' do
-        fill_in 'Title', :with => ''
-        click_button 'Submit'
-        should_have_css '#error_explanation'
+    context 'when not logged in' do
+      it 'redirects to the login page' do
+        visit edit_movie_path @movie
+        should_not_be_on new_movie_path
+        should_be_on login_path
+        should_see 'You must be logged in to access this page.'
+      end
+
+      it 'is not shown on the movie page as a link' do
+        visit movie_path @movie
+        should_not_see_link 'Edit'
       end
     end
   end
 
   describe 'Delete movie' do
-    it 'deletes the movie and redirects to the index page' do
-      movie = Movie.make!
-      title = movie.title
+    before { @movie = Movie.make! }
 
-      visit movies_path
-      visit movie_path movie
+    context 'when logged in' do
+      before { integration_login }
 
-      click_link 'Delete'
+      it 'deletes the movie and redirects to the index page' do
+        title = @movie.title
+        visit movie_path @movie
+        click_link 'Delete'
+        should_be_on movies_path
+        should_see %("#{title}" was successfully deleted.)
+      end
+    end
 
-      should_be_on movies_path
-      should_see %("#{title}" was successfully deleted.)
+    context 'when not logged in' do
+      it 'is not shown on the movie page as a link' do
+        visit movie_path @movie
+        should_not_see_link 'Delete'
+      end
     end
   end
 end

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if params[:session][:password] == PASSWORD
       login_admin
       flash[:success] = 'Logged in successfully.'
-      redirect_to root_path
+      redirect_back_or_to root_path
     else
       flash.now[:error] = 'Incorrect password.'
       render :new

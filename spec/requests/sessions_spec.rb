@@ -12,14 +12,14 @@ describe 'Sessions' do
     end
 
     context 'when logged out' do
-      before { visit login_path }
+      before { visit new_movie_path }
 
       context 'with valid password' do
-        it 'logs in the admin and redirect to the home page' do
+        it 'logs in the admin and redirects to the previous page' do
           fill_in 'Password', :with => PASSWORD
           click_button 'Submit'
 
-          should_be_on root_path
+          should_be_on new_movie_path
           should_see 'Logged in successfully.'
 
           should_not_see_link 'Login'
