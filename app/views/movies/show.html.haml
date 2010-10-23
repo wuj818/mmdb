@@ -3,6 +3,35 @@
 %p= @movie.year
 %p #{@movie.runtime} min
 %p #{@movie.rating}/10
+
+#synopsis
+  = @movie.synopsis
+%br
+
+%h3 Genres
+
+%ul
+  - @movie.genres.each.map(&:name).sort.each do |genre|
+    %li= genre
+
+%h3 Languages
+
+%ul
+  - @movie.languages.each.map(&:name).sort.each do |language|
+    %li= language
+
+%h3 Countries
+
+%ul
+  - @movie.countries.each.map(&:name).sort.each do |country|
+    %li= country
+
+%h3 Keywords
+
+%ul
+  - @movie.keywords.each.map(&:name).sort.each do |keyword|
+    %li= keyword
+
 %hr
 
 - if admin?

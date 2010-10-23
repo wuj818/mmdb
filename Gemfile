@@ -13,11 +13,15 @@ gem 'jquery-rails'
 gem 'faker'
 gem 'escape_utils'
 gem 'will_paginate', '~> 3.0.beta'
+gem 'acts-as-taggable-on'
+gem 'mechanize'
+gem 'rainbow'
 
 group :development do
   gem 'annotate-models'
   gem 'wirble'
   gem 'hirb'
+  gem 'rainbow'
 end
 
 group :test, :development do

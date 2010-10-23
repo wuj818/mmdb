@@ -18,6 +18,7 @@ module Mmdb
     end
 
     config.active_record.timestamped_migrations = false
+    config.autoload_paths += %W(#{config.root}/lib)
     config.time_zone = 'Eastern Time (US & Canada)'
     config.filter_parameters += [:password]
     config.encoding = "utf-8"

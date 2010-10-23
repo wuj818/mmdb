@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe MoviesController do
   def mock_movie(stubs={})
-    @mock_movie ||= mock_model(Movie, stubs).as_null_object
+    @mock_movie ||= mock_model(Movie, stubs.merge({:blank? => false})).as_null_object
   end
 
   describe 'GET index' do

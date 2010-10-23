@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_filter :authorize, :except => [:index, :show]
+  before_filter :get_movie, :only => [:show, :edit, :update, :destroy]
 
   def index
     @movies = Movie.order(order).paginate(:page => page, :per_page => per_page)
@@ -11,8 +12,6 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find_by_permalink(params[:id])
-
     respond_to do |format|
       format.html
       format.xml  { render :xml => @movie }
@@ -29,7 +28,6 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find_by_permalink(params[:id])
   end
 
   def create
@@ -50,8 +48,6 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie = Movie.find_by_permalink(params[:id])
-
     respond_to do |format|
       if @movie.update_attributes(params[:movie])
         format.html do
@@ -67,7 +63,6 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find_by_permalink(params[:id])
     title = @movie.title
     @movie.destroy
 
@@ -97,5 +92,10 @@ class MoviesController < ApplicationController
 
   def per_page
     params[:per_page] || 50
+  end
+
+  def get_movie
+    @movie = Movie.find_by_permalink(params[:id])
+    raise ActiveRecord::RecordNotFound if @movie.blank?
   end
 end

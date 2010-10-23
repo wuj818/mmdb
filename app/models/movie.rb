@@ -1,4 +1,6 @@
 class Movie < ActiveRecord::Base
+  acts_as_taggable_on :genres, :keywords, :languages, :countries
+
   validates :title,
     :presence => true,
     :uniqueness => {
