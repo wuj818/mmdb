@@ -93,6 +93,7 @@ describe 'Movies' do
           fill_in 'Year', :with => '1997'
           fill_in 'Runtime', :with => '155'
           select '10', :from => 'Rating'
+          check 'movie_genre_drama'
           click_button 'Submit'
 
           should_be_on movies_path
@@ -159,6 +160,7 @@ describe 'Movies' do
           fill_in 'Year', :with => '1997'
           fill_in 'Runtime', :with => '155'
           select '10', :from => 'Rating'
+          check 'movie_genre_drama'
           click_button 'Submit'
 
           @movie.reload
@@ -167,6 +169,7 @@ describe 'Movies' do
           should_see %("#{@movie.title}" was successfully edited.)
           should_see @movie.title
           link('IMDB')[:href].should == @movie.imdb_url
+          should_see 'Drama'
         end
       end
 

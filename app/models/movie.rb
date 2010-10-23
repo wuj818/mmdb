@@ -32,6 +32,12 @@ class Movie < ActiveRecord::Base
   before_save :create_permalink
   before_save :create_sort_title
 
+  GENRES = %w(
+    Action       Adventure  Animation  Biography  Comedy     Crime
+    Documentary  Drama      Family     Fantasy    Film-Noir  History
+    Horror       Music      Musical    Mystery    Romance    Sci-Fi
+    Short Sport  Thriller   War        Western )
+
   def to_param
     self.permalink
   end
