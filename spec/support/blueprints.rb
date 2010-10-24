@@ -12,3 +12,9 @@ Person.blueprint do
   name     { "Person #{sn}" }
   imdb_url { "http://www.imdb.com/name/#{sn}/" }
 end
+
+Credit.blueprint do
+  job      { 'Director' }
+  person
+  movie
+end

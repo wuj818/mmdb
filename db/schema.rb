@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 9) do
+ActiveRecord::Schema.define(:version => 10) do
+
+  create_table "credits", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "movie_id"
+    t.string   "job"
+    t.string   "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "credits", ["movie_id"], :name => "index_credits_on_movie_id"
+  add_index "credits", ["person_id"], :name => "index_credits_on_person_id"
 
   create_table "movies", :force => true do |t|
     t.string   "title"

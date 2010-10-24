@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Movie do
+  it_behaves_like 'a creditable object' do
+    let(:object) { Movie.new }
+  end
+
   describe 'Defaults' do
     before { @movie = Movie.new }
 

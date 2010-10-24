@@ -1,4 +1,6 @@
 class Movie < ActiveRecord::Base
+  include CreditScopes
+
   acts_as_taggable_on :genres, :keywords, :languages, :countries
 
   validates :title,
@@ -26,11 +28,13 @@ class Movie < ActiveRecord::Base
       :greater_than_or_equal_to => 0,
       :less_than_or_equal_to => 300 }
 
-  validates :permalink,
-    :uniqueness => true
+  validates :permalink, :uniqueness => true
 
   before_save :create_permalink
+
   before_save :create_sort_title
+
+  has_many :credits, :include => :person, :dependent => :destroy
 
   GENRES = %w(
     Action       Adventure  Animation  Biography  Comedy     Crime

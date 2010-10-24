@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Person do
+  it_behaves_like 'a creditable object' do
+    let(:object) { Person.new }
+  end
+
   describe 'Validations' do
     before do
       @empty_person = Person.create

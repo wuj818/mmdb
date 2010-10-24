@@ -1,4 +1,6 @@
 class Person < ActiveRecord::Base
+  include CreditScopes
+
   validates :name,
     :presence => true
 
@@ -10,6 +12,8 @@ class Person < ActiveRecord::Base
     :uniqueness => true
 
   before_save :create_permalink
+
+  has_many :credits, :include => :movie, :dependent => :destroy
 
   def to_param
     self.permalink
