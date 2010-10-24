@@ -1,0 +1,8 @@
+= form_tag scrape_info_movies_path do
+  .field
+    = label_tag :imdb_url, 'IMDB'
+    %br
+    = text_field_tag :imdb_url, nil, :class => 'title', :autofocus => true
+
+  .actions
+    = submit_tag 'Submit'

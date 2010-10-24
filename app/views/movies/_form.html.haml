@@ -6,6 +6,11 @@
     %br
     = f.text_field :title, :class => 'title', :autofocus => true
 
+  .field
+    = f.label :aka, 'Also Known As'
+    %br
+    = f.text_field :aka
+
   - unless @movie.new_record?
     .field
       = f.label :permalink
@@ -23,6 +28,11 @@
     = f.text_field :imdb_url
 
   .field
+    = f.label :rotten_tomatoes_url, 'Rotten Tomatoes'
+    %br
+    = f.text_field :rotten_tomatoes_url
+
+  .field
     = f.label :year
     %br
     = f.text_field :year
@@ -36,6 +46,11 @@
     = f.label :rating
     %br
     = f.select :rating, 0..10
+
+  .field
+    = f.label :synopsis
+    %br
+    = f.text_area :synopsis
 
   .field
     = render 'genre_checkboxes', :movie => @movie

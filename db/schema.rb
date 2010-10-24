@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 7) do
+ActiveRecord::Schema.define(:version => 8) do
 
   create_table "movies", :force => true do |t|
     t.string   "title"
@@ -18,10 +18,13 @@ ActiveRecord::Schema.define(:version => 7) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "year"
-    t.integer  "rating",     :default => 0
-    t.integer  "runtime",    :default => 0
+    t.integer  "rating",              :default => 0
+    t.integer  "runtime",             :default => 0
     t.string   "permalink"
     t.string   "sort_title"
+    t.string   "aka"
+    t.string   "rotten_tomatoes_url"
+    t.text     "synopsis"
   end
 
   create_table "taggings", :force => true do |t|

@@ -176,4 +176,40 @@ describe MoviesController do
       end
     end
   end
+
+  describe 'POST scrape_info' do
+    context 'when logged in' do
+      before { test_login }
+
+      describe 'with valid params' do
+        before do
+          Movie.stub(:new) { mock_movie }
+          post :scrape_info, :imdb_url => 'http://www.imdb.com/title/tt0118749/'
+        end
+
+        it 'assigns a newly created but unsaved movie as @movie' do
+          assigns(:movie).should be(mock_movie)
+        end
+
+        it 'renders the "new" template' do
+          response.should render_template('new')
+        end
+      end
+
+      describe 'with invalid params' do
+        before { post :scrape_info }
+
+        it 'redirects to the new movie from IMDB url page' do
+          response.should redirect_to new_movie_path(:from_imdb => true)
+        end
+      end
+    end
+
+    context 'when not logged in' do
+      it 'redirects to the login page' do
+        post :scrape_info
+        response.should redirect_to login_path
+      end
+    end
+  end
 end

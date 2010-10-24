@@ -66,7 +66,7 @@ class DirkDiggler
     if url.nil?
       form.q = "rotten tomatoes #{title}"
       search_results = form.submit
-      url = search_results.link_with(:href => %r(http://www.rottentomatoes.com/m/[\w-]+))
+      url = search_results.link_with(:href => %r(http://www.rottentomatoes.com/m/[\w-]+/\z))
     end
 
     @rotten_tomatoes_url = url.href rescue nil
@@ -103,7 +103,7 @@ class DirkDiggler
       url = "#{IMDB}#{link[:href]}"
       @directors[url] = {}
       @directors[url][:name] = link.text
-      @directors[url][:detail] = link.parent.parent.search('td')[2].text.strip
+      @directors[url][:details] = link.parent.parent.search('td')[2].text.strip
     end
   end
 
@@ -115,7 +115,7 @@ class DirkDiggler
       url = "#{IMDB}#{link[:href]}"
       @writers[url] = {}
       @writers[url][:name] = link.text
-      @writers[url][:detail] = link.parent.parent.search('td')[2].text.strip
+      @writers[url][:details] = link.parent.parent.search('td')[2].text.strip
     end
   end
 
@@ -127,7 +127,7 @@ class DirkDiggler
       url = "#{IMDB}#{link[:href]}"
       @composers[url] = {}
       @composers[url][:name] = link.text
-      @composers[url][:detail] = link.parent.parent.search('td')[2].text.strip
+      @composers[url][:details] = link.parent.parent.search('td')[2].text.strip
     end
   end
 
@@ -139,7 +139,7 @@ class DirkDiggler
       url = "#{IMDB}#{link[:href]}"
       @editors[url] = {}
       @editors[url][:name] = link.text
-      @editors[url][:detail] = link.parent.parent.search('td')[2].text.strip
+      @editors[url][:details] = link.parent.parent.search('td')[2].text.strip
     end
   end
 
@@ -151,7 +151,7 @@ class DirkDiggler
       url = "#{IMDB}#{link[:href]}"
       @cinematographers[url] = {}
       @cinematographers[url][:name] = link.text
-      @cinematographers[url][:detail] = link.parent.parent.search('td')[2].text.strip
+      @cinematographers[url][:details] = link.parent.parent.search('td')[2].text.strip
     end
   end
 
@@ -164,7 +164,7 @@ class DirkDiggler
       url = "#{IMDB}#{link[:href]}"
       @actors[url] = {}
       @actors[url][:name] = link.text
-      @actors[url][:detail] = link.parent.parent.search('td.char').text.strip
+      @actors[url][:details] = link.parent.parent.search('td.char').text.strip
     end
   end
 

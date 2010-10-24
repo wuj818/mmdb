@@ -1,7 +1,11 @@
 %h2= @movie.title
-
-%h3 Main Details
+- unless @movie.aka.blank?
+  %em aka #{@movie.aka}
+  %br
+%br
 %p= link_to 'IMDB', @movie.imdb_url
+- unless @movie.rotten_tomatoes_url.blank?
+  %p= link_to 'Rotten Tomatoes', @movie.rotten_tomatoes_url
 %p= @movie.year
 %p #{@movie.runtime} min
 %p #{@movie.rating}/10

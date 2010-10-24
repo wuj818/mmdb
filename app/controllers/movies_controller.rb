@@ -4,26 +4,15 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.order(order).paginate(:page => page, :per_page => per_page)
-
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @movies }
-    end
   end
 
   def show
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @movie }
-    end
   end
 
   def new
     @movie = Movie.new
-
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @movie }
+    if params[:from_imdb]
+      render :from_imdb
     end
   end
 
@@ -33,32 +22,20 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(params[:movie])
 
-    respond_to do |format|
-      if @movie.save
-        format.html do
-          flash[:success] = %("#{@movie.title}" was successfully added.)
-          redirect_to movies_path
-        end
-        format.xml  { render :xml => @movie, :status => :created, :location => @movie }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @movie.errors, :status => :unprocessable_entity }
-      end
+    if @movie.save
+      flash[:success] = %("#{@movie.title}" was successfully added.)
+      redirect_to movies_path
+    else
+      render :action => "new"
     end
   end
 
   def update
-    respond_to do |format|
-      if @movie.update_attributes(params[:movie])
-        format.html do
-          flash[:success] = %("#{@movie.title}" was successfully edited.)
-          redirect_to @movie
-        end
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @movie.errors, :status => :unprocessable_entity }
-      end
+    if @movie.update_attributes(params[:movie])
+      flash[:success] = %("#{@movie.title}" was successfully edited.)
+      redirect_to @movie
+    else
+      render :action => "edit"
     end
   end
 
@@ -66,12 +43,19 @@ class MoviesController < ApplicationController
     title = @movie.title
     @movie.destroy
 
-    respond_to do |format|
-      format.html do
-        flash[:success] = %("#{title}" was successfully deleted.)
-        redirect_to movies_path
-      end
-      format.xml  { head :ok }
+    flash[:success] = %("#{title}" was successfully deleted.)
+    redirect_to movies_path
+  end
+
+  def scrape_info
+    if params[:imdb_url].blank?
+      flash[:error] = 'You must supply an IMDB url.'
+      redirect_to new_movie_path(:from_imdb => true)
+    else
+      @movie = Movie.new :imdb_url => params[:imdb_url]
+      @movie.get_preliminary_info
+      flash.now[:info] = "Scrape results for '#{params[:imdb_url]}'"
+      render :new
     end
   end
 

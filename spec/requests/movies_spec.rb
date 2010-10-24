@@ -219,4 +219,43 @@ describe 'Movies' do
       end
     end
   end
+
+  describe 'Add new movie from IMDB url' do
+    context 'when logged in' do
+      before do
+        DirkDiggler.stub :new => mock('DirkDiggler', :get => true,
+          :data => {
+            :imdb_url => 'http://www.imdb.com/title/tt0118749/',
+            :title => 'Boogie Nights' },
+          :genres => ['Drama'])
+
+        integration_login
+        click_link 'Add Movie From IMDB'
+      end
+
+      it 'renders the new movie form with info scraped from IMDB' do
+        fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
+        click_button 'Submit'
+
+        should_see "Scrape results for 'http://www.imdb.com/title/tt0118749/'"
+        field('Title').value.should == 'Boogie Nights'
+        field('IMDB').value.should == 'http://www.imdb.com/title/tt0118749/'
+        find('#movie_genre_drama')[:checked].should be_true
+      end
+    end
+
+    context 'when not logged in' do
+      it 'redirects to the login page' do
+        visit new_movie_path(:imdb_url => true)
+        should_not_be_on new_movie_path(:imdb_url => true)
+        should_be_on login_path
+        should_see 'You must be logged in to access this page.'
+      end
+
+      it 'is not shown on the movies page as a link' do
+        visit movies_path
+        should_not_see_link 'Add Movie From IMDB'
+      end
+    end
+  end
 end

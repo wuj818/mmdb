@@ -102,4 +102,29 @@ describe Movie do
       end
     end
   end
+
+  describe 'Scraping methods' do
+    before { @movie = Movie.new }
+
+    describe '#get_preliminary_info' do
+      it 'scrapes IMDB for general information about the movie (title, year, etc)' do
+        DirkDiggler.stub :new => mock('DirkDiggler', :get => true,
+          :data => {
+            :imdb_url => 'http://www.imdb.com/title/tt0118749/',
+            :title => 'Boogie Nights' },
+          :genres => ['Drama'])
+
+        @movie.get_preliminary_info
+        @movie.save
+        @movie.imdb_url.should == 'http://www.imdb.com/title/tt0118749/'
+        @movie.title.should == 'Boogie Nights'
+        @movie.genre_list.should == ['Drama']
+      end
+
+      it 'can only be called on new records' do
+        @movie = Movie.make!
+        @movie.get_preliminary_info.should == false
+      end
+    end
+  end
 end

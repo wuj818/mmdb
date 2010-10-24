@@ -42,6 +42,15 @@ class Movie < ActiveRecord::Base
     self.permalink
   end
 
+  def get_preliminary_info
+    return false unless new_record?
+    diggler = DirkDiggler.new self.imdb_url
+    diggler.get :info
+    self.attributes = diggler.data
+    diggler.get :genres
+    self.genre_list = diggler.genres.join ', '
+  end
+
   private
 
   def create_permalink
