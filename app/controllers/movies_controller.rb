@@ -11,9 +11,7 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
-    if params[:from_imdb]
-      render :from_imdb
-    end
+    render :from_imdb if params[:from_imdb]
   end
 
   def edit
@@ -26,7 +24,7 @@ class MoviesController < ApplicationController
       flash[:success] = %("#{@movie.title}" was successfully added.)
       redirect_to movies_path
     else
-      render :action => "new"
+      render :new
     end
   end
 
@@ -35,7 +33,7 @@ class MoviesController < ApplicationController
       flash[:success] = %("#{@movie.title}" was successfully edited.)
       redirect_to @movie
     else
-      render :action => "edit"
+      render :edit
     end
   end
 

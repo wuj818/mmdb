@@ -7,3 +7,8 @@ Movie.blueprint do
   rating   { 8 }
   runtime  { 155 }
 end
+
+Person.blueprint do
+  name     { "Person #{sn}" }
+  imdb_url { "http://www.imdb.com/name/#{sn}/" }
+end

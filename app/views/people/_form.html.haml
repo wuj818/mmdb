@@ -1,0 +1,21 @@
+= render 'shared/error_messages', :object => @person
+
+= form_for @person do |f|
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name, :class => 'title', :autofocus => true
+
+  - unless @person.new_record?
+    .field
+      = f.label :permalink
+      %br
+      = f.text_field :permalink
+
+  .field
+    = f.label :imdb_url, 'IMDB'
+    %br
+    = f.text_field :imdb_url
+
+  .actions
+    = f.submit 'Submit'

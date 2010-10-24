@@ -1,0 +1,8 @@
+%h2= @person.name
+
+%p= link_to 'IMDB', @person.imdb_url
+
+- if admin?
+  = link_to 'Edit', edit_person_path(@person)
+  \|
+  = link_to 'Delete', @person, :confirm => 'Are you sure?', :method => :delete

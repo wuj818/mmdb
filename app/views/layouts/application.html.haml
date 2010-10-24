@@ -7,15 +7,23 @@
     = csrf_meta_tag
   %body
     #admin_bar
-      = link_to('Add Movie', new_movie_path, :class => 'button') if admin?
-      = link_to('Add Movie From IMDB', new_movie_path(:from_imdb => true), :class => 'button') if admin?
-      = link_to('Login', login_path, :class => 'button') unless admin?
-      = link_to('Logout', logout_path, :class => 'button') if admin?
+      - if admin?
+        = link_to 'Add Movie', new_movie_path, :class => 'button'
+        = link_to 'Add Movie From IMDB', new_movie_path(:from_imdb => true), :class => 'button'
+        = link_to 'Add Person', new_person_path, :class => 'button'
+        = link_to 'Logout', logout_path, :class => 'button'
+      - else
+        = link_to 'Login', login_path, :class => 'button'
 
     .container
       .span-24
         %header
           %h1= link_to 'MMDB', root_path
+      .span-24
+        %nav
+          = link_to 'Movies', movies_path
+          |
+          = link_to 'People', people_path
       .span-24
         - flash.each do |kind, msg|
           = content_tag :div, :class => "flash #{kind}" do

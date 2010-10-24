@@ -1,0 +1,14 @@
+= page_entries_info @people
+
+- unless @people.empty?
+  = will_paginate @people
+
+  %table#people
+    %tr
+      %th= sort_link :name
+
+    - @people.each do |person|
+      %tr
+        %td= link_to person.name, person
+
+  = will_paginate @people

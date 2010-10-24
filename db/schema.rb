@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "movies", :force => true do |t|
     t.string   "title"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(:version => 8) do
     t.string   "aka"
     t.string   "rotten_tomatoes_url"
     t.text     "synopsis"
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "name"
+    t.string   "imdb_url"
+    t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggings", :force => true do |t|

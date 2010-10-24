@@ -1,10 +1,13 @@
 Mmdb::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
+
   resources :movies do
     collection do
       post :scrape_info
     end
   end
+
+  resources :people
 
   match '/login', :to => 'sessions#new'
   match '/logout', :to => 'sessions#destroy'

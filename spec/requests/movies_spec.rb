@@ -67,6 +67,7 @@ describe 'Movies' do
       should_see 'Displaying movies'
       should_see '2 in total'
       should_see_link '2'
+      should_see_link @movies.first.title
       should_not_see_link @movies.last.title
 
       click_link '2'
@@ -84,7 +85,7 @@ describe 'Movies' do
       end
 
       context 'with valid info' do
-        it 'adds a movie and redirects to the index' do
+        it 'adds a movie and redirects to the movies page' do
           should_not_see_field 'Permalink'
           should_not_see_field 'Sort Title'
 
@@ -118,8 +119,8 @@ describe 'Movies' do
         should_see 'You must be logged in to access this page.'
       end
 
-      it 'is not shown on the movies page as a link' do
-        visit movies_path
+      it 'is not shown in the admin header as a link' do
+        visit root_path
         should_not_see_link 'Add Movie'
       end
     end
@@ -203,7 +204,7 @@ describe 'Movies' do
     context 'when logged in' do
       before { integration_login }
 
-      it 'deletes the movie and redirects to the index page' do
+      it 'deletes the movie and redirects to the movies page' do
         title = @movie.title
         visit movie_path @movie
         click_link 'Delete'

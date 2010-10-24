@@ -2,14 +2,16 @@ require 'spec_helper'
 
 describe MoviesController do
   def mock_movie(stubs={})
-    @mock_movie ||= mock_model(Movie, stubs.merge({:blank? => false})).as_null_object
+    (@mock_movie ||= mock_model(Movie).as_null_object).tap do |movie|
+      movie.stub(stubs.merge({:blank? => false}))
+    end
   end
 
   describe 'GET index' do
     it 'assigns all movies as @movies' do
       Movie.stub(:order) { [mock_movie] }
       get :index
-      assigns(:movies).should eq([mock_movie])
+      assigns(:movies).should eq [mock_movie]
     end
   end
 
@@ -17,7 +19,7 @@ describe MoviesController do
     it 'assigns the requested movie as @movie' do
       Movie.stub(:find_by_permalink).with('1') { mock_movie }
       get :show, :id => '1'
-      assigns(:movie).should be(mock_movie)
+      assigns(:movie).should be mock_movie
     end
   end
 
@@ -28,7 +30,12 @@ describe MoviesController do
       it 'assigns a new movie as @movie' do
         Movie.stub(:new) { mock_movie }
         get :new
-        assigns(:movie).should be(mock_movie)
+        assigns(:movie).should be mock_movie
+      end
+
+      it 'renders the "from_imdb" template is the param is present' do
+        get :new, :from_imdb => true
+        response.should render_template :from_imdb
       end
     end
 
@@ -47,7 +54,7 @@ describe MoviesController do
       it 'assigns the requested movie as @movie' do
         Movie.stub(:find_by_permalink).with('1') { mock_movie }
         get :edit, :id => '1'
-        assigns(:movie).should be(mock_movie)
+        assigns(:movie).should be mock_movie
       end
     end
 
@@ -70,11 +77,11 @@ describe MoviesController do
         end
 
         it 'assigns a newly created movie as @movie' do
-          assigns(:movie).should be(mock_movie)
+          assigns(:movie).should be mock_movie
         end
 
         it 'redirects to the index page' do
-          response.should redirect_to(movies_url)
+          response.should redirect_to movies_path
         end
       end
 
@@ -85,11 +92,11 @@ describe MoviesController do
         end
 
         it 'assigns a newly created but unsaved movie as @movie' do
-          assigns(:movie).should be(mock_movie)
+          assigns(:movie).should be mock_movie
         end
 
         it 're-renders the "new" template' do
-          response.should render_template('new')
+          response.should render_template :new
         end
       end
     end
@@ -118,12 +125,12 @@ describe MoviesController do
 
         it 'assigns the requested movie as @movie' do
           put :update, :id => '1', :movie => {'these' => 'params'}
-          assigns(:movie).should be(mock_movie)
+          assigns(:movie).should be mock_movie
         end
 
         it 'redirects to the movie' do
           put :update, :id => '1', :movie => {'these' => 'params'}
-          response.should redirect_to(movie_url(mock_movie))
+          response.should redirect_to movie_path(mock_movie)
         end
       end
 
@@ -134,11 +141,11 @@ describe MoviesController do
         end
 
         it 'assigns the movie as @movie' do
-          assigns(:movie).should be(mock_movie)
+          assigns(:movie).should be mock_movie
         end
 
         it 're-renders the "edit" template' do
-          response.should render_template('edit')
+          response.should render_template :edit
         end
       end
     end
@@ -159,13 +166,13 @@ describe MoviesController do
       end
 
       it 'destroys the requested movie' do
-        mock_movie.should_receive(:destroy)
+        mock_movie.should_receive :destroy
         delete :destroy, :id => '1'
       end
 
       it 'redirects to the movies list' do
         delete :destroy, :id => '1'
-        response.should redirect_to(movies_url)
+        response.should redirect_to movies_path
       end
     end
 
@@ -188,11 +195,11 @@ describe MoviesController do
         end
 
         it 'assigns a newly created but unsaved movie as @movie' do
-          assigns(:movie).should be(mock_movie)
+          assigns(:movie).should be mock_movie
         end
 
         it 'renders the "new" template' do
-          response.should render_template('new')
+          response.should render_template :new
         end
       end
 
