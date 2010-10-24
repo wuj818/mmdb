@@ -8,6 +8,18 @@ describe 'Movies' do
       movies.each { |movie| should_see_link movie.title }
     end
 
+    it 'filters results based on the search parameter' do
+      Movie.make! :title => 'Boogie Nights'
+      Movie.make! :title => 'Oldboy'
+
+      visit movies_path
+      fill_in 'q', :with => 'boogie'
+      click_button 'Search'
+
+      should_see_link 'Boogie Nights'
+      should_not_see_link 'Oldboy'
+    end
+
     it 'has customizable sorting options' do
       Movie.make! :title => 'The Big Lebowski',
         :year => 1998, :runtime => 117, :rating => 3, :sort_title => 'Big Lebowski, The'

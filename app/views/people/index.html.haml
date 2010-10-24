@@ -1,4 +1,6 @@
-= page_entries_info @people
+= render 'shared/search_form', :target => people_path
+
+= render 'shared/page_entries_info', :results => @people
 
 - unless @people.empty?
   = will_paginate @people

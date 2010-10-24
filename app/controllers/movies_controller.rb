@@ -3,7 +3,9 @@ class MoviesController < ApplicationController
   before_filter :get_movie, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.order(order).paginate(:page => page, :per_page => per_page)
+    @movies = Movie.order(order)
+    @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
+    @movies = @movies.paginate(:page => page, :per_page => per_page)
   end
 
   def show

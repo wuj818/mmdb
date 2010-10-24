@@ -8,6 +8,18 @@ describe 'People' do
       people.each { |person| should_see_link person.name }
     end
 
+    it 'filters results based on the search parameter' do
+      Person.make! :name => 'Paul Thomas Anderson'
+      Person.make! :name => 'David Fincher'
+
+      visit people_path
+      fill_in 'q', :with => 'paul'
+      click_button 'Search'
+
+      should_see_link 'Paul Thomas Anderson'
+      should_not_see_link 'David Fincher'
+    end
+
     it 'has customizable sorting options' do
       Person.make! :name => 'David Fincher'
       Person.make! :name => 'David Lynch'

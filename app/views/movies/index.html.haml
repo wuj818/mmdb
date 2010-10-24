@@ -1,4 +1,6 @@
-= page_entries_info @movies
+= render 'shared/search_form', :target => movies_path
+
+= render 'shared/page_entries_info', :results => @movies
 
 - unless @movies.empty?
   = will_paginate @movies

@@ -1,0 +1,4 @@
+= page_entries_info results
+- unless params[:q].blank?
+  for query:
+  %em.highlight= params[:q]

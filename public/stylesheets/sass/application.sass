@@ -52,6 +52,10 @@ nav
     &:hover
       color: #000
 
+#search_form
+  input:not([type=submit])
+    font-family: 'Helvetica Neue'
+
 .flash
   padding: 3px 8px
   -webkit-border-radius: 4px
@@ -114,7 +118,6 @@ input[type=submit]
     background: #e3e3e3
 
 a.button, input[type=submit]
-  display: inline-block
   color: #606060
   background: #efefef
   padding: 5px 10px
@@ -189,3 +192,6 @@ a.button, input[type=submit]
     font-weight: normal
     font-size: 1em
     cursor: pointer
+
+.hidden
+  display: none

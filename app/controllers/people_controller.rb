@@ -3,7 +3,9 @@ class PeopleController < ApplicationController
   before_filter :get_person, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @people = Person.order(order).paginate(:page => page, :per_page => per_page)
+    @people = Person.order(order)
+    @people = @people.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
+    @people = @people.paginate(:page => page, :per_page => per_page)
   end
 
   def show
