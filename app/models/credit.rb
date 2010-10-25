@@ -5,11 +5,17 @@ class Credit < ActiveRecord::Base
   validates :person, :presence => true
   validates :movie, :presence => true
 
-  JOBS = %w(Director Writer Composer Editor Cinematographer Actor)
+  JOBS = {
+    'Director' => 'directing',
+    'Writer' => 'writing',
+    'Composer' => 'composing',
+    'Editor' => 'editing',
+    'Cinematographer' => 'cinematography',
+    'Actor' => 'acting' }
 
   validates :job,
     :presence => true,
-    :inclusion => { :in => JOBS, :message => 'is invalid' },
+    :inclusion => { :in => JOBS.keys, :message => 'is invalid' },
     :uniqueness => {
       :scope => [:person_id, :movie_id],
       :message => 'type credit already exists for this person/movie combination.'

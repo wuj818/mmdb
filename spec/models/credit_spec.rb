@@ -36,7 +36,7 @@ describe Credit do
     it 'has a valid type' do
       @credit.job = 'not valid'
       @credit.should_not be_valid
-      @credit.job = Credit::JOBS.first
+      @credit.job = Credit::JOBS.keys.first
       @credit.should be_valid
     end
   end

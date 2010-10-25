@@ -1,0 +1,18 @@
+%h3
+  #{job}:
+  = @person.send("#{credit_type}_credits").count
+
+%ul
+  - @person.send("#{credit_type}_credits").joins(:movie).order('year DESC').each do |credit|
+    %li
+      = link_to credit.movie.title, credit.movie
+      (#{credit.movie.year})
+      - unless credit.details.blank?
+        = '...'
+        = credit.details
+      - if action_name == 'edit'
+        |
+        = link_to 'Edit', [:edit, @person, credit]
+        |
+        = link_to 'Delete', [@person, credit], :confirm => 'Are you sure?', :method => :delete
+%hr

@@ -2,6 +2,16 @@
 
 = render 'form'
 
+%hr
+
+= render 'credits'
+
+= link_to 'Add Credit', new_person_credit_path(@person), :class => 'button'
+
+%br
+%br
+%hr
+
 = link_to 'Show', @person
 \|
 = link_to 'Back', people_path

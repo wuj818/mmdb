@@ -10,6 +10,16 @@
 - unless @movie.rotten_tomatoes_url.blank?
   %p= link_to 'Rotten Tomatoes', @movie.rotten_tomatoes_url
 
+%h3 Directed by:
+
+%ul
+  - @movie.directing_credits.joins(:person).order(:name).each do |credit|
+    %li
+      = link_to credit.person.name, credit.person
+      - unless credit.details.blank?
+        = '...'
+        = credit.details
+
 %p= @movie.year
 
 %p #{@movie.runtime} min

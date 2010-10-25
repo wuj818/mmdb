@@ -7,7 +7,9 @@ Mmdb::Application.routes.draw do
     end
   end
 
-  resources :people
+  resources :people do
+    resources :credits, :only => [:new, :create, :destroy]
+  end
 
   match '/login', :to => 'sessions#new'
   match '/logout', :to => 'sessions#destroy'

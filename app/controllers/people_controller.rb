@@ -19,7 +19,7 @@ class PeopleController < ApplicationController
   end
 
   def create
-    @person = Person.new(params[:person])
+    @person = Person.new params[:person]
 
     if @person.save
       flash[:success] = %("#{@person.name}" was successfully added.)
@@ -30,7 +30,7 @@ class PeopleController < ApplicationController
   end
 
   def update
-    if @person.update_attributes(params[:person])
+    if @person.update_attributes params[:person]
       flash[:success] = %("#{@person.name}" was successfully edited.)
       redirect_to @person
     else
@@ -63,7 +63,7 @@ class PeopleController < ApplicationController
   end
 
   def get_person
-    @person = Person.find_by_permalink(params[:id])
+    @person = Person.find_by_permalink params[:id]
     raise ActiveRecord::RecordNotFound if @person.blank?
   end
 end
