@@ -1,9 +1,8 @@
 %h3
-  #{job}:
-  = @person.send("#{credit_type}_credits").count
+  #{job}: #{count}
 
 %ul
-  - @person.send("#{credit_type}_credits").joins(:movie).order('year DESC').each do |credit|
+  - @person.send("sorted_#{credit_type}_credits").each do |credit|
     %li
       = link_to credit.movie.title, credit.movie
       (#{credit.movie.year})

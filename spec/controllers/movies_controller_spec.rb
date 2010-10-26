@@ -130,7 +130,7 @@ describe MoviesController do
 
         it 'redirects to the movie' do
           put :update, :id => '1', :movie => {'these' => 'params'}
-          response.should redirect_to movie_path(mock_movie)
+          response.should redirect_to mock_movie
         end
       end
 

@@ -19,6 +19,12 @@ class Person < ActiveRecord::Base
     self.permalink
   end
 
+  Credit::JOBS.values.each do |credit_type|
+    define_method "sorted_#{credit_type}_credits" do
+      self.send("#{credit_type}_credits").joins(:movie).order('year DESC')
+    end
+  end
+
   private
 
   def create_permalink

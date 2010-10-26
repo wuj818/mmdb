@@ -125,7 +125,7 @@ describe PeopleController do
 
         it 'redirects to the person' do
           put :update, :id => '1', :person => {'these' => 'params'}
-          response.should redirect_to person_path(mock_person)
+          response.should redirect_to mock_person
         end
       end
 
