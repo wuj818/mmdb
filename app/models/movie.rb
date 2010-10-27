@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  include CreditScopes
+  include CreditScopesAndCounts
 
   acts_as_taggable_on :genres, :keywords, :languages, :countries
 
@@ -35,6 +35,8 @@ class Movie < ActiveRecord::Base
   before_save :create_sort_title
 
   has_many :credits, :include => :person, :dependent => :destroy
+
+  has_one :counter, :as => :countable, :dependent => :destroy
 
   GENRES = %w(
     Action       Adventure  Animation  Biography  Comedy     Crime

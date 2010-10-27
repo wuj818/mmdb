@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  include CreditScopes
+  include CreditScopesAndCounts
 
   validates :name,
     :presence => true
@@ -14,6 +14,8 @@ class Person < ActiveRecord::Base
   before_save :create_permalink
 
   has_many :credits, :include => :movie, :dependent => :destroy
+
+  has_one :counter, :as => :countable, :dependent => :destroy
 
   def to_param
     self.permalink
@@ -31,7 +33,7 @@ class Person < ActiveRecord::Base
     return unless self.permalink.blank?
     result = self.name.to_permalink
     dup_count = Person.where(:name => self.name).count
-    result << "-#{dup_count+1}" unless dup_count == 0
+    result << "-#{dup_count+1}" unless dup_count.zero?
     self.permalink = result
   end
 end

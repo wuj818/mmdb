@@ -17,6 +17,7 @@ module Mmdb
         :integration_tool => false
     end
 
+    config.active_record.observers = :countable_observer, :credit_observer
     config.active_record.timestamped_migrations = false
     config.autoload_paths += %W(#{config.root}/lib)
     config.time_zone = 'Eastern Time (US & Canada)'

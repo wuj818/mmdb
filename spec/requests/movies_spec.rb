@@ -47,26 +47,6 @@ describe 'Movies' do
       click_link 'Year'
       movies = all('td:first-child a').map(&:text)
       movies.should == ['The Big Lebowski', 'Boogie Nights', 'Dumb and Dumber']
-
-      # ascending runtime
-      click_link 'Runtime'
-      movies = all('td:first-child a').map(&:text)
-      movies.should == ['Dumb and Dumber', 'The Big Lebowski', 'Boogie Nights']
-
-      # descending runtime
-      click_link 'Runtime'
-      movies = all('td:first-child a').map(&:text)
-      movies.should == ['Boogie Nights', 'The Big Lebowski', 'Dumb and Dumber']
-
-      # ascending rating
-      click_link 'Rating'
-      movies = all('td:first-child a').map(&:text)
-      movies.should == ['Dumb and Dumber', 'Boogie Nights', 'The Big Lebowski']
-
-      # descending rating
-      click_link 'Rating'
-      movies = all('td:first-child a').map(&:text)
-      movies.should == ['The Big Lebowski', 'Boogie Nights', 'Dumb and Dumber']
     end
 
     it 'has pagination info and links' do

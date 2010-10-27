@@ -1,4 +1,3 @@
 - Credit::JOBS.each do |job, credit_type|
-  - count = @person.send("#{credit_type}_credits").count
-  - unless count.zero?
-    = render 'credit_listing', :job => job, :credit_type => credit_type, :count => count
+  - unless @person.send("#{credit_type}_credits_count").zero?
+    = render 'credit_listing', :job => job, :credit_type => credit_type

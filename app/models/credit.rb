@@ -1,6 +1,6 @@
 class Credit < ActiveRecord::Base
-  belongs_to :person
-  belongs_to :movie
+  belongs_to :person, :counter_cache => true
+  belongs_to :movie, :counter_cache => true
 
   validates :person, :presence => true
   validates :movie, :presence => true

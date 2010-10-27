@@ -15,6 +15,10 @@ describe Movie do
     it 'has a default runtime of 0' do
       @movie.runtime.should == 0
     end
+
+    it 'has a default credits count of 0' do
+      @movie.credits_count.should == 0
+    end
   end
 
   describe 'Validations' do

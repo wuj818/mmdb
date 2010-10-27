@@ -5,6 +5,14 @@ describe Person do
     let(:object) { Person.new }
   end
 
+  describe 'Defaults' do
+    before { @person = Person.new }
+
+    it 'has a default credits count of 0' do
+      @person.credits_count.should == 0
+    end
+  end
+
   describe 'Validations' do
     before do
       @empty_person = Person.create

@@ -1,5 +1,5 @@
 %h3
-  #{job}: #{count}
+  #{job}: #{@person.counter.send("#{credit_type}_credits")}
 
 %ul
   - @person.send("sorted_#{credit_type}_credits").each do |credit|

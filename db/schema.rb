@@ -10,7 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 10) do
+ActiveRecord::Schema.define(:version => 12) do
+
+  create_table "counters", :force => true do |t|
+    t.integer  "countable_id"
+    t.string   "countable_type"
+    t.integer  "directing_credits",      :default => 0
+    t.integer  "writing_credits",        :default => 0
+    t.integer  "composing_credits",      :default => 0
+    t.integer  "editing_credits",        :default => 0
+    t.integer  "cinematography_credits", :default => 0
+    t.integer  "acting_credits",         :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "credits", :force => true do |t|
     t.integer  "person_id"
@@ -37,6 +50,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "aka"
     t.string   "rotten_tomatoes_url"
     t.text     "synopsis"
+    t.integer  "credits_count",       :default => 0
   end
 
   create_table "people", :force => true do |t|
@@ -45,6 +59,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "credits_count", :default => 0
   end
 
   create_table "taggings", :force => true do |t|
