@@ -78,7 +78,7 @@ namespace :scrape do
   desc 'Grabs directors for movies without directors'
   task :directors => :environment do
     Movie.find_each do |movie|
-      next unless movie.directing_credits.empty?
+      next unless movie.directing_credits_count.zero?
 
       diggler = DirkDiggler.new movie.imdb_url
       diggler.get :directors
@@ -93,6 +93,121 @@ namespace :scrape do
           person = Person.find_or_create_by_imdb_url imdb_url
           person.update_attribute(:name, info[:name]) if person.name.blank?
           person.directing_credits.create :movie => movie, :job => 'Director', :details => info[:details]
+        end
+      end
+    end
+  end
+
+  desc 'Grabs writers for movies without writers'
+  task :writers => :environment do
+    Movie.find_each do |movie|
+      next unless movie.writing_credits_count.zero?
+
+      diggler = DirkDiggler.new movie.imdb_url
+      diggler.get :writers
+      writers = diggler.writers
+
+      if writers.empty?
+        puts "Could not find writers for '#{movie.title}'".color(:red)
+      else
+        puts "Adding #{diggler.writers.count} writer(s) to '#{movie.title}'".color(:green)
+
+        writers.each do |imdb_url, info|
+          person = Person.find_or_create_by_imdb_url imdb_url
+          person.update_attribute(:name, info[:name]) if person.name.blank?
+          person.writing_credits.create :movie => movie, :job => 'Writer', :details => info[:details]
+        end
+      end
+    end
+  end
+
+  desc 'Grabs composers for movies without composers'
+  task :composers => :environment do
+    Movie.find_each do |movie|
+      next unless movie.composing_credits_count.zero?
+
+      diggler = DirkDiggler.new movie.imdb_url
+      diggler.get :composers
+      composers = diggler.composers
+
+      if composers.empty?
+        puts "Could not find composers for '#{movie.title}'".color(:red)
+      else
+        puts "Adding #{diggler.composers.count} composer(s) to '#{movie.title}'".color(:green)
+
+        composers.each do |imdb_url, info|
+          person = Person.find_or_create_by_imdb_url imdb_url
+          person.update_attribute(:name, info[:name]) if person.name.blank?
+          person.composing_credits.create :movie => movie, :job => 'Composer', :details => info[:details]
+        end
+      end
+    end
+  end
+
+  desc 'Grabs editors for movies without editors'
+  task :editors => :environment do
+    Movie.find_each do |movie|
+      next unless movie.editing_credits_count.zero?
+
+      diggler = DirkDiggler.new movie.imdb_url
+      diggler.get :editors
+      editors = diggler.editors
+
+      if editors.empty?
+        puts "Could not find editors for '#{movie.title}'".color(:red)
+      else
+        puts "Adding #{diggler.editors.count} editor(s) to '#{movie.title}'".color(:green)
+
+        editors.each do |imdb_url, info|
+          person = Person.find_or_create_by_imdb_url imdb_url
+          person.update_attribute(:name, info[:name]) if person.name.blank?
+          person.editing_credits.create :movie => movie, :job => 'Editor', :details => info[:details]
+        end
+      end
+    end
+  end
+
+  desc 'Grabs cinematographers for movies without cinematographers'
+  task :cinematographers => :environment do
+    Movie.find_each do |movie|
+      next unless movie.cinematography_credits_count.zero?
+
+      diggler = DirkDiggler.new movie.imdb_url
+      diggler.get :cinematographers
+      cinematographers = diggler.cinematographers
+
+      if cinematographers.empty?
+        puts "Could not find cinematographers for '#{movie.title}'".color(:red)
+      else
+        puts "Adding #{diggler.cinematographers.count} cinematographer(s) to '#{movie.title}'".color(:green)
+
+        cinematographers.each do |imdb_url, info|
+          person = Person.find_or_create_by_imdb_url imdb_url
+          person.update_attribute(:name, info[:name]) if person.name.blank?
+          person.cinematography_credits.create :movie => movie, :job => 'Cinematographer', :details => info[:details]
+        end
+      end
+    end
+  end
+
+  desc 'Grabs actors for movies without actors'
+  task :actors => :environment do
+    Movie.find_each do |movie|
+      next unless movie.acting_credits_count.zero?
+
+      diggler = DirkDiggler.new movie.imdb_url
+      diggler.get :actors
+      actors = diggler.actors
+
+      if actors.empty?
+        puts "Could not find actors for '#{movie.title}'".color(:red)
+      else
+        puts "Adding #{diggler.actors.count} actor(s) to '#{movie.title}'".color(:green)
+
+        actors.each do |imdb_url, info|
+          person = Person.find_or_create_by_imdb_url imdb_url
+          person.update_attribute(:name, info[:name]) if person.name.blank?
+          person.acting_credits.create :movie => movie, :job => 'Actor', :details => info[:details]
         end
       end
     end
