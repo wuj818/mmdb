@@ -72,8 +72,7 @@ describe 'Movies' do
     context 'when logged in' do
       before do
         integration_login
-        visit movies_path
-        click_link 'Add Movie'
+        visit new_movie_path
       end
 
       context 'with valid info' do
@@ -109,11 +108,6 @@ describe 'Movies' do
         should_not_be_on new_movie_path
         should_be_on login_path
         should_see 'You must be logged in to access this page.'
-      end
-
-      it 'is not shown in the admin header as a link' do
-        visit root_path
-        should_not_see_link 'Add Movie'
       end
     end
   end

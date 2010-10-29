@@ -1,5 +1,13 @@
 Mmdb::Application.routes.draw do
+  match '/login' => 'sessions#new'
+  match '/logout' => 'sessions#destroy'
+  match '/integration-login' => 'sessions#integration_login',
+    :as => :integration_login if Rails.env.test?
+
   resources :sessions, :only => [:new, :create, :destroy]
+
+  match '/movies/new-from-imdb' => 'movies#new',
+    :from_imdb => true, :as => :new_movie_from_imdb
 
   resources :movies do
     collection do
@@ -10,11 +18,6 @@ Mmdb::Application.routes.draw do
   resources :people do
     resources :credits, :only => [:new, :create, :destroy]
   end
-
-  match '/login', :to => 'sessions#new'
-  match '/logout', :to => 'sessions#destroy'
-  match '/integration-login', :to => 'sessions#integration_login',
-    :as => :integration_login if Rails.env.test?
 
   root :to => 'movies#index'
 end
