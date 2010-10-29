@@ -27,27 +27,27 @@ module CreditScopesAndCounts
 
   # counts
 
-  def directing_credits_count
-    self.counter.directing_credits
+  def number_of_directing_credits
+    self.counter.directing_credits_count
   end
 
-  def writing_credits_count
-    self.counter.writing_credits
+  def number_of_writing_credits
+    self.counter.writing_credits_count
   end
 
-  def composing_credits_count
-    self.counter.composing_credits
+  def number_of_composing_credits
+    self.counter.composing_credits_count
   end
 
-  def editing_credits_count
-    self.counter.editing_credits
+  def number_of_editing_credits
+    self.counter.editing_credits_count
   end
 
-  def cinematography_credits_count
-    self.counter.cinematography_credits
+  def number_of_cinematography_credits
+    self.counter.cinematography_credits_count
   end
 
-  def acting_credits_count
-    self.counter.acting_credits
+  def number_of_acting_credits
+    self.counter.acting_credits_count
   end
 end

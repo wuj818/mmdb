@@ -5,6 +5,10 @@ describe Movie do
     let(:object) { Movie.new }
   end
 
+  it_behaves_like 'a countable object' do
+    let(:object) { Movie.make! }
+  end
+
   describe 'Defaults' do
     before { @movie = Movie.new }
 

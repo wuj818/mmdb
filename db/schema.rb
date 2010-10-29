@@ -10,17 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 12) do
+ActiveRecord::Schema.define(:version => 13) do
 
   create_table "counters", :force => true do |t|
     t.integer  "countable_id"
     t.string   "countable_type"
-    t.integer  "directing_credits",      :default => 0
-    t.integer  "writing_credits",        :default => 0
-    t.integer  "composing_credits",      :default => 0
-    t.integer  "editing_credits",        :default => 0
-    t.integer  "cinematography_credits", :default => 0
-    t.integer  "acting_credits",         :default => 0
+    t.integer  "directing_credits_count",      :default => 0
+    t.integer  "writing_credits_count",        :default => 0
+    t.integer  "composing_credits_count",      :default => 0
+    t.integer  "editing_credits_count",        :default => 0
+    t.integer  "cinematography_credits_count", :default => 0
+    t.integer  "acting_credits_count",         :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

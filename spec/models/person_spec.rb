@@ -5,6 +5,10 @@ describe Person do
     let(:object) { Person.new }
   end
 
+  it_behaves_like 'a countable object' do
+    let(:object) { Person.make! }
+  end
+
   describe 'Defaults' do
     before { @person = Person.new }
 
