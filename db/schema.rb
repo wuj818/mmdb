@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 13) do
+ActiveRecord::Schema.define(:version => 14) do
 
   create_table "counters", :force => true do |t|
     t.integer  "countable_id"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 13) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "counters", ["countable_id", "countable_type"], :name => "index_counters_on_countable_id_and_countable_type"
 
   create_table "credits", :force => true do |t|
     t.integer  "person_id"
