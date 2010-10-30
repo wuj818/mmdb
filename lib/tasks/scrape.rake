@@ -78,7 +78,7 @@ namespace :scrape do
   desc 'Grabs directors for movies without directors'
   task :directors => :environment do
     Movie.find_each do |movie|
-      next unless movie.directing_credits_count == 0
+      next unless movie.number_of_directing_credits == 0
 
       diggler = DirkDiggler.new movie.imdb_url
       diggler.get :directors
@@ -101,7 +101,7 @@ namespace :scrape do
   desc 'Grabs writers for movies without writers'
   task :writers => :environment do
     Movie.find_each do |movie|
-      next unless movie.writing_credits_count == 0
+      next unless movie.number_of_writing_credits == 0
 
       diggler = DirkDiggler.new movie.imdb_url
       diggler.get :writers
@@ -124,7 +124,7 @@ namespace :scrape do
   desc 'Grabs composers for movies without composers'
   task :composers => :environment do
     Movie.find_each do |movie|
-      next unless movie.composing_credits_count == 0
+      next unless movie.number_of_composing_credits == 0
 
       diggler = DirkDiggler.new movie.imdb_url
       diggler.get :composers
@@ -147,7 +147,7 @@ namespace :scrape do
   desc 'Grabs editors for movies without editors'
   task :editors => :environment do
     Movie.find_each do |movie|
-      next unless movie.editing_credits_count == 0
+      next unless movie.number_of_editing_credits == 0
 
       diggler = DirkDiggler.new movie.imdb_url
       diggler.get :editors
@@ -170,7 +170,7 @@ namespace :scrape do
   desc 'Grabs cinematographers for movies without cinematographers'
   task :cinematographers => :environment do
     Movie.find_each do |movie|
-      next unless movie.cinematography_credits_count == 0
+      next unless movie.number_of_cinematography_credits == 0
 
       diggler = DirkDiggler.new movie.imdb_url
       diggler.get :cinematographers
@@ -193,7 +193,7 @@ namespace :scrape do
   desc 'Grabs actors for movies without actors'
   task :actors => :environment do
     Movie.find_each do |movie|
-      next unless movie.acting_credits_count == 0
+      next unless movie.number_of_acting_credits == 0
 
       diggler = DirkDiggler.new movie.imdb_url
       diggler.get :actors
