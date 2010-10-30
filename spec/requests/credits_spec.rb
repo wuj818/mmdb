@@ -22,9 +22,8 @@ describe 'Credits' do
   end
 
   describe 'Delete credit' do
-    before { Credit.make! :job => 'Director', :person => @person, :movie => @movie }
-
     it 'removes a credit for the specified person/movie combination' do
+      Credit.make! :job => 'Director', :person => @person, :movie => @movie
       visit edit_person_path @person
 
       within '#directing_credits' do

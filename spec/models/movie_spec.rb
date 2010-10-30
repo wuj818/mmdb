@@ -57,7 +57,7 @@ describe Movie do
     end
 
     it 'has a valid year (1890..3000)' do
-      [1889, 3001, 'foo'].each do |year|
+      [1889, 3001].each do |year|
         @movie.year = year
         @movie.should_not be_valid
       end
@@ -67,7 +67,7 @@ describe Movie do
     end
 
     it 'has a valid rating (0..10)' do
-      [-1, 11, 9000].each do |rating|
+      [-1, 11].each do |rating|
         @movie.rating = rating
         @movie.should_not be_valid
       end
@@ -77,7 +77,7 @@ describe Movie do
     end
 
     it 'has a valid runtime (0..300)' do
-      [-1, -8, 301].each do |runtime|
+      [-8, 301].each do |runtime|
         @movie.runtime = runtime
         @movie.should_not be_valid
       end
