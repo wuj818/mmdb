@@ -61,6 +61,22 @@ class Movie < ActiveRecord::Base
     update_attribute :rating, rating
   end
 
+  %w(genre keyword language country).each do |tag_type|
+    define_method "add_#{tag_type}" do |*tags|
+      return if tags.empty?
+      self.send("#{tag_type}_list") << tags
+      self.send("#{tag_type}_list").flatten!
+      save
+    end
+
+    define_method "remove_#{tag_type}" do |*tags|
+      return if tags.empty?
+      original_tags = self.send "#{tag_type}_list"
+      self.send("#{tag_type}_list=", original_tags - tags)
+      save
+    end
+  end
+
   private
 
   def create_permalink

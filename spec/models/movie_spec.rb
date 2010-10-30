@@ -150,5 +150,40 @@ describe Movie do
         @movie.rating.should == 10
       end
     end
+
+    describe 'add_genre(*genres)' do
+      before do
+        %w(genre keyword language country).each do |tag_type|
+          @movie.should respond_to "add_#{tag_type}"
+        end
+      end
+
+      it "adds the specified genre(s) to a movie's genre list" do
+        @movie.add_genre 'Drama'
+        @movie.genre_list.should include 'Drama'
+        @movie.add_genre 'Comedy', 'Comedy', 'Thriller'
+        %w(Drama Comedy Thriller).each do |genre|
+          @movie.genre_list.should include genre
+        end
+      end
+    end
+
+    describe 'remove_genre(*genres)' do
+      before do
+        %w(genre keyword language country).each do |tag_type|
+          @movie.should respond_to "remove_#{tag_type}"
+        end
+      end
+
+      it "removes the specified genre(s) from a movie's genre list" do
+        @movie.add_genre 'Drama', 'Comedy', 'Thriller', 'Sci-Fi'
+        @movie.remove_genre 'Sci-Fi'
+        @movie.genre_list.should_not include 'Sci-Fi'
+        @movie.remove_genre 'Drama', 'Comedy'
+        %w(Drama Comedy).each do |genre|
+          @movie.genre_list.should_not include genre
+        end
+      end
+    end
   end
 end
