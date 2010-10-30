@@ -77,6 +77,34 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  def get_tags
+    return if new_record?
+    diggler = DirkDiggler.new self.imdb_url
+    diggler.get :keywords, :languages, :countries
+
+    self.keyword_list = diggler.keywords.join ', '
+    self.language_list = diggler.languages.join ', '
+    self.country_list = diggler.countries.join ', '
+    save
+  end
+
+  # options => :exclude, :any, :match_all
+  def self.with_genres(genres, option = nil)
+    tagged_with(genres, :on => :genres, option => true)
+  end
+
+  def self.with_keywords(keywords, option = nil)
+    tagged_with(keywords, :on => :keywords, option => true)
+  end
+
+  def self.with_languages(languages, option = nil)
+    tagged_with(languages, :on => :languages, option => true)
+  end
+
+  def self.with_countries(countries, option = nil)
+    tagged_with(countries, :on => :countries, option => true)
+  end
+
   private
 
   def create_permalink
