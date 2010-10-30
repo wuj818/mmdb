@@ -139,4 +139,16 @@ describe Movie do
       end
     end
   end
+
+  describe 'Instance methods' do
+    before { @movie = Movie.make! }
+
+    describe '#rate(rating)' do
+      it 'updates the rating for a movie' do
+        @movie.rate 10
+        @movie.reload
+        @movie.rating.should == 10
+      end
+    end
+  end
 end

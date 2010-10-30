@@ -57,6 +57,10 @@ class Movie < ActiveRecord::Base
     self.genre_list = diggler.genres.join ', '
   end
 
+  def rate(rating)
+    update_attribute :rating, rating
+  end
+
   private
 
   def create_permalink
