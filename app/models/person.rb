@@ -13,6 +13,8 @@ class Person < ActiveRecord::Base
 
   before_save :create_permalink
 
+  before_save :create_sort_name
+
   has_many :credits, :include => :movie, :dependent => :destroy
 
   has_one :counter, :as => :countable, :dependent => :destroy
@@ -36,5 +38,10 @@ class Person < ActiveRecord::Base
     dup_count = Person.where(:name => self.name).count
     result << "-#{dup_count+1}" unless dup_count == 0
     self.permalink = result
+  end
+
+  def create_sort_name
+    return unless self.sort_name.blank?
+    self.sort_name = ActiveSupport::Inflector.transliterate self.name.to_permalink.gsub('-', ' ')
   end
 end

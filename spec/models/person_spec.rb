@@ -57,5 +57,14 @@ describe Person do
         @person2.permalink.should == 'paul-thomas-anderson-2'
       end
     end
+
+    describe 'Sort name creation' do
+      it 'copies a lowercase transliterated version of the name if the sort name is blank' do
+        @movie = Movie.make
+        @movie.sort_title.should be_blank
+        @movie.save
+        @movie.sort_title.should == @movie.title.downcase
+      end
+    end
   end
 end

@@ -51,6 +51,7 @@ class PeopleController < ApplicationController
 
   def order
     params[:sort] ||= 'name'
+    column = params[:sort] == 'name' ? 'sort_name' : params[:sort]
     column = case params[:sort]
     when 'credits' then 'credits_count'
     when 'directing' then 'directing_credits_count'
@@ -59,12 +60,12 @@ class PeopleController < ApplicationController
     when 'editing' then 'editing_credits_count'
     when 'cinematography' then 'cinematography_credits_count'
     when 'acting' then 'acting_credits_count'
-    else 'name'
+    else 'sort_name'
     end
 
     params[:order] ||= 'asc'
     result = "#{column} #{params[:order]}"
-    result << ', name asc' unless params[:sort] == 'name'
+    result << ', sort_name asc' unless params[:sort] == 'name'
     result
   end
 

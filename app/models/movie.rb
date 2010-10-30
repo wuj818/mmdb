@@ -106,6 +106,6 @@ class Movie < ActiveRecord::Base
 
   def create_sort_title
     return unless self.sort_title.blank?
-    self.sort_title = self.title.downcase
+    self.sort_title = ActiveSupport::Inflector.transliterate self.title.to_permalink.gsub('-', ' ')
   end
 end

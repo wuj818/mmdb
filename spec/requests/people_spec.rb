@@ -61,6 +61,7 @@ describe 'People' do
       click_link 'Add Person'
 
       should_not_see_field 'Permalink'
+      should_not_see_field 'Sort Name'
 
       fill_in 'Name', :with => 'Paul Thomas Anderson'
       fill_in 'IMDB', :with => 'http://www.imdb.com/name/nm0000759/'
@@ -90,6 +91,7 @@ describe 'People' do
 
       should_see %(Editing "#{@person.name}")
       should_see_field 'Permalink'
+      should_see_field 'Sort Name'
       field('Name').value.should == @person.name
       field('IMDB').value.should == @person.imdb_url
 

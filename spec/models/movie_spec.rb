@@ -106,11 +106,11 @@ describe Movie do
     end
 
     describe 'Sort title creation' do
-      it 'copies a lowercase version of the title if the sort title is blank' do
-        @movie = Movie.make
-        @movie.sort_title.should be_blank
-        @movie.save
-        @movie.sort_title.should == @movie.title.downcase
+      it 'copies a lowercase transliterated version of the title if the sort title is blank' do
+        @person = Person.make
+        @person.sort_name.should be_blank
+        @person.save
+        @person.sort_name.should == @person.name.downcase
       end
     end
   end
