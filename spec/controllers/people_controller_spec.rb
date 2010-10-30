@@ -7,22 +7,6 @@ describe PeopleController do
     end
   end
 
-  describe 'GET index' do
-    it 'assigns all people as @people' do
-      Person.stub(:order) { [mock_person] }
-      get :index
-      assigns(:people).should eq [mock_person]
-    end
-  end
-
-  describe 'GET show' do
-    it 'assigns the requested person as @person' do
-      Person.stub(:find_by_permalink).with('1') { mock_person }
-      get :show, :id => '1'
-      assigns(:person).should be mock_person
-    end
-  end
-
   describe 'GET new' do
     context 'when logged in' do
       before { test_login }

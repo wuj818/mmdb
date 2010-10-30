@@ -5,6 +5,7 @@ class PeopleController < ApplicationController
   def index
     @people = Person.order(order)
     @people = @people.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
+    @people = @people.joins(:counter)
     @people = @people.paginate(:page => page, :per_page => per_page)
   end
 
@@ -50,8 +51,21 @@ class PeopleController < ApplicationController
 
   def order
     params[:sort] ||= 'name'
+    column = case params[:sort]
+    when 'credits' then 'credits_count'
+    when 'directing' then 'directing_credits_count'
+    when 'writing' then 'writing_credits_count'
+    when 'composing' then 'composing_credits_count'
+    when 'editing' then 'editing_credits_count'
+    when 'cinematography' then 'cinematography_credits_count'
+    when 'acting' then 'acting_credits_count'
+    else 'name'
+    end
+
     params[:order] ||= 'asc'
-    "#{params[:sort]} #{params[:order]}"
+    result = "#{column} #{params[:order]}"
+    result << ', name asc' unless params[:sort] == 'name'
+    result
   end
 
   def page
