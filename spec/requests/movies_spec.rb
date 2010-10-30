@@ -68,50 +68,6 @@ describe 'Movies' do
     end
   end
 
-  describe 'Add new movie' do
-    context 'when logged in' do
-      before do
-        integration_login
-        visit new_movie_path
-      end
-
-      context 'with valid info' do
-        it 'adds a movie and redirects to the movies page' do
-          should_not_see_field 'Permalink'
-          should_not_see_field 'Sort Title'
-
-          fill_in 'Title', :with => 'Boogie Nights'
-          fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
-          fill_in 'Year', :with => '1997'
-          fill_in 'Runtime', :with => '155'
-          select '10', :from => 'Rating'
-          check 'movie_genre_drama'
-          click_button 'Submit'
-
-          should_be_on movies_path
-          should_not_have_css '#error_explanation'
-          should_see '"Boogie Nights" was successfully added.'
-        end
-      end
-
-      context 'with invalid info' do
-        it 'shows an error message' do
-          click_button 'Submit'
-          should_have_css '#error_explanation'
-        end
-      end
-    end
-
-    context 'when not logged in' do
-      it 'redirects to the login page' do
-        visit new_movie_path
-        should_not_be_on new_movie_path
-        should_be_on login_path
-        should_see 'You must be logged in to access this page.'
-      end
-    end
-  end
-
   describe 'Show movie details' do
     it 'shows the details for a movie' do
       movie = Movie.make!
@@ -207,27 +163,46 @@ describe 'Movies' do
     end
   end
 
-  describe 'Add new movie from IMDB url' do
+  describe 'Add new movie' do
     context 'when logged in' do
       before do
         DirkDiggler.stub :new => mock('DirkDiggler', :get => true,
           :data => {
             :imdb_url => 'http://www.imdb.com/title/tt0118749/',
-            :title => 'Boogie Nights' },
+            :title => 'Boogie Nights',
+            :year => 1997 },
           :genres => ['Drama'])
 
         integration_login
-        click_link 'Add Movie From IMDB'
+        click_link 'Add Movie'
       end
 
-      it 'renders the new movie form with info scraped from IMDB' do
-        fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
-        click_button 'Submit'
+      context 'with valid info' do
+        it 'renders the new movie form with info scraped from IMDB' do
+          fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
+          click_button 'Submit'
 
-        should_see "Scrape results for 'http://www.imdb.com/title/tt0118749/'"
-        field('Title').value.should == 'Boogie Nights'
-        field('IMDB').value.should == 'http://www.imdb.com/title/tt0118749/'
-        find('#movie_genre_drama')[:checked].should be_true
+          should_see "Scrape results for 'http://www.imdb.com/title/tt0118749/'"
+          field('Title').value.should == 'Boogie Nights'
+          field('IMDB').value.should == 'http://www.imdb.com/title/tt0118749/'
+          find('#movie_genre_drama')[:checked].should be_true
+
+          should_not_see_field 'Permalink'
+          should_not_see_field 'Sort Title'
+
+          click_button 'Submit'
+
+          should_be_on movies_path
+          should_not_have_css '#error_explanation'
+          should_see '"Boogie Nights" was successfully added.'
+        end
+      end
+
+      context 'with invalid info' do
+        it 'shows an error message' do
+          click_button 'Submit'
+          should_see 'You must supply an IMDB url.'
+        end
       end
     end
 
@@ -241,7 +216,7 @@ describe 'Movies' do
 
       it 'is not shown on the movies page as a link' do
         visit movies_path
-        should_not_see_link 'Add Movie From IMDB'
+        should_not_see_link 'Add Movie'
       end
     end
   end

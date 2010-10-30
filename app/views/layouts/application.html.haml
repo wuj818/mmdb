@@ -8,7 +8,7 @@
   %body
     #admin_bar
       - if admin?
-        = link_to 'Add Movie From IMDB', new_movie_from_imdb_path, :class => 'button'
+        = link_to 'Add Movie', new_movie_from_imdb_path, :class => 'button'
         = link_to 'Add Person', new_person_path, :class => 'button'
         = link_to 'Logout', logout_path, :class => 'button'
       - else
