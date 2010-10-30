@@ -130,8 +130,7 @@ describe 'Movies' do
         :data => {
           :imdb_url => 'http://www.imdb.com/title/tt0118749/',
           :title => 'Boogie Nights',
-          :year => 1997 },
-        :genres => ['Drama'])
+          :year => 1997 })
 
       integration_login
       click_link 'Add Movie'
@@ -142,7 +141,6 @@ describe 'Movies' do
       should_see "Scrape results for 'http://www.imdb.com/title/tt0118749/'"
       field('Title').value.should == 'Boogie Nights'
       field('IMDB').value.should == 'http://www.imdb.com/title/tt0118749/'
-      find('#movie_genre_drama')[:checked].should be_true
 
       should_not_see_field 'Permalink'
       should_not_see_field 'Sort Title'

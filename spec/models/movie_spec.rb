@@ -123,14 +123,12 @@ describe Movie do
         DirkDiggler.stub :new => mock('DirkDiggler', :get => true,
           :data => {
             :imdb_url => 'http://www.imdb.com/title/tt0118749/',
-            :title => 'Boogie Nights' },
-          :genres => ['Drama'])
+            :title => 'Boogie Nights' })
 
         @movie.get_preliminary_info
         @movie.save
         @movie.imdb_url.should == 'http://www.imdb.com/title/tt0118749/'
         @movie.title.should == 'Boogie Nights'
-        @movie.genre_list.should == ['Drama']
       end
 
       it 'can only be called on new records' do

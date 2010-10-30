@@ -53,8 +53,6 @@ class Movie < ActiveRecord::Base
     diggler = DirkDiggler.new self.imdb_url
     diggler.get :info
     self.attributes = diggler.data
-    diggler.get :genres
-    self.genre_list = diggler.genres.join ', '
   end
 
   def rate(rating)
@@ -63,7 +61,6 @@ class Movie < ActiveRecord::Base
 
   %w(genre keyword language country).each do |tag_type|
     define_method "add_#{tag_type}" do |*tags|
-      return if tags.empty?
       self.send("#{tag_type}_list") << tags
       self.send("#{tag_type}_list").flatten!
       save
@@ -75,17 +72,6 @@ class Movie < ActiveRecord::Base
       self.send("#{tag_type}_list=", original_tags - tags)
       save
     end
-  end
-
-  def get_tags
-    return if new_record?
-    diggler = DirkDiggler.new self.imdb_url
-    diggler.get :keywords, :languages, :countries
-
-    self.keyword_list = diggler.keywords.join ', '
-    self.language_list = diggler.languages.join ', '
-    self.country_list = diggler.countries.join ', '
-    save
   end
 
   # options => :exclude, :any, :match_all
@@ -109,6 +95,7 @@ class Movie < ActiveRecord::Base
 
   def create_permalink
     return unless self.permalink.blank?
+    return if self.title.blank? || self.year.blank?
     result = self.title.to_permalink
     unless Movie.where(:title => self.title).empty?
       result << "-#{self.year}"

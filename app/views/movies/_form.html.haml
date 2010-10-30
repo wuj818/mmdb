@@ -52,8 +52,10 @@
     %br
     = f.text_area :synopsis
 
-  .field
-    = render 'genre_checkboxes', :movie => @movie
+  - unless @movie.new_record?
+    .field
+      = render 'genre_checkboxes', :movie => @movie
 
   .actions
-    = f.submit 'Submit'
+    = f.submit 'Submit', :id => @movie.new_record? ? 'new_from_imdb' : '', :disable_with => 'Submitting...'
+    %span#new_from_imdb_ajax.hidden= image_tag 'ajax.gif'

@@ -31,6 +31,7 @@ class Person < ActiveRecord::Base
 
   def create_permalink
     return unless self.permalink.blank?
+    return if self.name.blank?
     result = self.name.to_permalink
     dup_count = Person.where(:name => self.name).count
     result << "-#{dup_count+1}" unless dup_count == 0
