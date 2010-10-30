@@ -1,6 +1,6 @@
 Mmdb::Application.routes.draw do
   match '/login' => 'sessions#new'
-  match '/logout' => 'sessions#destroy'
+  match '/logout' => 'sessions#destroy', :via => :delete
   match '/integration-login' => 'sessions#integration_login',
     :as => :integration_login if Rails.env.test?
 
