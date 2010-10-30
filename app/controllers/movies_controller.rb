@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
 
     if @movie.save
       flash[:success] = %("#{@movie.title}" was successfully added.)
-      redirect_to movies_path
+      redirect_to @movie
     else
       render :new
     end

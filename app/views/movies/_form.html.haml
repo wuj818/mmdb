@@ -57,5 +57,5 @@
       = render 'genre_checkboxes', :movie => @movie
 
   .actions
-    = f.submit 'Submit', :id => @movie.new_record? ? 'new_from_imdb' : '', :disable_with => 'Submitting...'
+    = f.submit 'Submit', :id => @movie.new_record? ? 'new_from_imdb' : '', :disable_with => 'Scraping...'
     %span#new_from_imdb_ajax.hidden= image_tag 'ajax.gif'

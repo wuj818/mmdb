@@ -147,7 +147,6 @@ describe 'Movies' do
 
       click_button 'Submit'
 
-      should_be_on movies_path
       should_not_have_css '#error_explanation'
       should_see '"Boogie Nights" was successfully added.'
     end
