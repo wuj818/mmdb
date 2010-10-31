@@ -8,9 +8,9 @@ namespace :scrape do
       diggler.get :genres
 
       if diggler.genres.empty?
-        puts "Could not find genres for '#{movie.title}'".color(:red)
+        puts %(Could not find genres for "#{movie.title}").color(:red)
       else
-        puts "Updating genre list for '#{movie.title}'".color(:green)
+        puts %(Updating genre list for "#{movie.title}").color(:green)
       end
 
       movie.genre_list = diggler.genres.join ', '
@@ -27,9 +27,9 @@ namespace :scrape do
       diggler.get :keywords
 
       if diggler.keywords.empty?
-        puts "Could not find keywords for '#{movie.title}'".color(:red)
+        puts %(Could not find keywords for "#{movie.title}").color(:red)
       else
-        puts "Updating keyword list for '#{movie.title}'".color(:green)
+        puts %(Updating keyword list for "#{movie.title}").color(:green)
       end
 
       movie.keyword_list = diggler.keywords.join ', '
@@ -46,9 +46,9 @@ namespace :scrape do
       diggler.get :languages
 
       if diggler.languages.empty?
-        puts "Could not find languages for '#{movie.title}'".color(:red)
+        puts %(Could not find languages for "#{movie.title}").color(:red)
       else
-        puts "Updating language list for '#{movie.title}'".color(:green)
+        puts %(Updating language list for "#{movie.title}").color(:green)
       end
 
       movie.language_list = diggler.languages.join ', '
@@ -65,9 +65,9 @@ namespace :scrape do
       diggler.get :countries
 
       if diggler.countries.empty?
-        puts "Could not find countries for '#{movie.title}'".color(:red)
+        puts %(Could not find countries for "#{movie.title}").color(:red)
       else
-        puts "Updating country list for '#{movie.title}'".color(:green)
+        puts %(Updating country list for "#{movie.title}").color(:green)
       end
 
       movie.country_list = diggler.countries.join ', '
@@ -85,9 +85,9 @@ namespace :scrape do
       directors = diggler.directors
 
       if directors.empty?
-        puts "Could not find directors for '#{movie.title}'".color(:red)
+        puts %(Could not find directors for "#{movie.title}").color(:red)
       else
-        puts "Adding #{diggler.directors.count} director(s) to '#{movie.title}'".color(:green)
+        puts %(Adding #{diggler.directors.count} director(s) to "#{movie.title}").color(:green)
 
         directors.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
@@ -108,9 +108,9 @@ namespace :scrape do
       writers = diggler.writers
 
       if writers.empty?
-        puts "Could not find writers for '#{movie.title}'".color(:red)
+        puts %(Could not find writers for "#{movie.title}").color(:red)
       else
-        puts "Adding #{diggler.writers.count} writer(s) to '#{movie.title}'".color(:green)
+        puts %(Adding #{diggler.writers.count} writer(s) to "#{movie.title}").color(:green)
 
         writers.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
@@ -131,9 +131,9 @@ namespace :scrape do
       composers = diggler.composers
 
       if composers.empty?
-        puts "Could not find composers for '#{movie.title}'".color(:red)
+        puts %(Could not find composers for "#{movie.title}").color(:red)
       else
-        puts "Adding #{diggler.composers.count} composer(s) to '#{movie.title}'".color(:green)
+        puts %(Adding #{diggler.composers.count} composer(s) to "#{movie.title}").color(:green)
 
         composers.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
@@ -154,9 +154,9 @@ namespace :scrape do
       editors = diggler.editors
 
       if editors.empty?
-        puts "Could not find editors for '#{movie.title}'".color(:red)
+        puts %(Could not find editors for "#{movie.title}").color(:red)
       else
-        puts "Adding #{diggler.editors.count} editor(s) to '#{movie.title}'".color(:green)
+        puts %(Adding #{diggler.editors.count} editor(s) to "#{movie.title}").color(:green)
 
         editors.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
@@ -177,9 +177,9 @@ namespace :scrape do
       cinematographers = diggler.cinematographers
 
       if cinematographers.empty?
-        puts "Could not find cinematographers for '#{movie.title}'".color(:red)
+        puts %(Could not find cinematographers for "#{movie.title}").color(:red)
       else
-        puts "Adding #{diggler.cinematographers.count} cinematographer(s) to '#{movie.title}'".color(:green)
+        puts %(Adding #{diggler.cinematographers.count} cinematographer(s) to "#{movie.title}").color(:green)
 
         cinematographers.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
@@ -200,9 +200,9 @@ namespace :scrape do
       actors = diggler.actors
 
       if actors.empty?
-        puts "Could not find actors for '#{movie.title}'".color(:red)
+        puts %(Could not find actors for "#{movie.title}").color(:red)
       else
-        puts "Adding #{diggler.actors.count} actor(s) to '#{movie.title}'".color(:green)
+        puts %(Adding #{diggler.actors.count} actor(s) to "#{movie.title}").color(:green)
 
         actors.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url

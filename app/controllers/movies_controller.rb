@@ -3,23 +3,28 @@ class MoviesController < ApplicationController
   before_filter :get_movie, :only => [:show, :edit, :update, :destroy]
 
   def index
+    @title = 'Movies'
     @movies = Movie.order(order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @movies = @movies.paginate(:page => page, :per_page => per_page)
   end
 
   def show
+    @title = movie_title
   end
 
   def new
+    @title = 'New Movie'
     @movie = Movie.new
     render :from_imdb if params[:from_imdb]
   end
 
   def edit
+    @title = %(Edit "#{movie_title}")
   end
 
   def create
+    @title = 'New Movie'
     @movie = Movie.new params[:movie]
 
     if @movie.save
@@ -31,6 +36,7 @@ class MoviesController < ApplicationController
   end
 
   def update
+    @title = %(Edit "#{movie_title}")
     if @movie.update_attributes params[:movie]
       flash[:success] = %("#{@movie.title}" was successfully edited.)
       redirect_to @movie
@@ -48,13 +54,14 @@ class MoviesController < ApplicationController
   end
 
   def scrape_info
+    @title = 'New Movie'
     if params[:imdb_url].blank?
       flash[:error] = 'You must supply an IMDB url.'
       redirect_to new_movie_path(:from_imdb => true)
     else
       @movie = Movie.new :imdb_url => params[:imdb_url]
       @movie.get_preliminary_info
-      flash.now[:info] = "Scrape results for '#{params[:imdb_url]}'"
+      flash.now[:info] = %(Scrape results for "#{params[:imdb_url]}".)
       render :new
     end
   end
@@ -81,5 +88,9 @@ class MoviesController < ApplicationController
   def get_movie
     @movie = Movie.find_by_permalink params[:id]
     raise ActiveRecord::RecordNotFound if @movie.blank?
+  end
+
+  def movie_title
+    @movie.title.match(/\(\d{4}\)\z/) ? @movie.title : "#{@movie.title} (#{@movie.year})"
   end
 end

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @title = 'Login'
     if admin?
       flash[:notice] = 'You are already logged in.'
       redirect_to root_path
@@ -7,6 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    @title = 'Login'
     if params[:session][:password] == PASSWORD
       login_admin
       flash[:success] = 'Logged in successfully.'

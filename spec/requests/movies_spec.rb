@@ -138,7 +138,7 @@ describe 'Movies' do
       fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
       click_button 'Submit'
 
-      should_see "Scrape results for 'http://www.imdb.com/title/tt0118749/'"
+      should_see 'Scrape results for "http://www.imdb.com/title/tt0118749/".'
       field('Title').value.should == 'Boogie Nights'
       field('IMDB').value.should == 'http://www.imdb.com/title/tt0118749/'
 

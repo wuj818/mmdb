@@ -3,10 +3,12 @@ class CreditsController < ApplicationController
   before_filter :get_person
 
   def new
+    @title = %(New Credit for "#{@person.name}")
     @credit = Credit.new
   end
 
   def create
+    @title = %(New Credit for "#{@person.name}")
     @credit = Credit.new params[:credit]
 
     if @credit.save

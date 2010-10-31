@@ -3,6 +3,7 @@ class PeopleController < ApplicationController
   before_filter :get_person, :only => [:show, :edit, :update, :destroy]
 
   def index
+    @title = 'People'
     @people = Person.order(order)
     @people = @people.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @people = @people.joins(:counter)
@@ -10,16 +11,20 @@ class PeopleController < ApplicationController
   end
 
   def show
+    @title = @person.name
   end
 
   def new
+    @title = 'New Person'
     @person = Person.new
   end
 
   def edit
+    @title = %(Edit "#{@person.name}")
   end
 
   def create
+    @title = 'New Person'
     @person = Person.new params[:person]
 
     if @person.save
@@ -31,6 +36,7 @@ class PeopleController < ApplicationController
   end
 
   def update
+    @title = %(Edit "#{@person.name}")
     if @person.update_attributes params[:person]
       flash[:success] = %("#{@person.name}" was successfully edited.)
       redirect_to @person
