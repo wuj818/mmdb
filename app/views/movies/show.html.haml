@@ -1,3 +1,7 @@
+- content_for :admin_controls do
+  = link_to 'Edit', [:edit, @movie], :class => 'button'
+  = link_to 'Delete', @movie, :confirm => 'Are you sure?', :method => :delete, :class => 'button'
+
 %h2= @movie.title
 
 - unless @movie.aka.blank?
@@ -53,10 +57,3 @@
 %ul
   - @movie.keywords.each.map(&:name).sort.each do |keyword|
     %li= keyword
-
-%hr
-
-- if admin?
-  = link_to 'Edit', edit_movie_path(@movie)
-  \|
-  = link_to 'Delete', @movie, :confirm => 'Are you sure?', :method => :delete

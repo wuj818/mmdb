@@ -6,13 +6,17 @@
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
-    #admin_bar
-      - if admin?
-        = link_to 'Add Movie', new_movie_from_imdb_path, :class => 'button'
-        = link_to 'Add Person', new_person_path, :class => 'button'
-        = link_to 'Logout', logout_path, :class => 'button', :method => :delete
-      - else
-        = link_to 'Login', login_path, :class => 'button'
+    #admin_wrapper
+      #admin_bar
+        - if admin?
+          = link_to 'Add Movie', new_movie_from_imdb_path, :class => 'button left'
+          = link_to 'Add Person', new_person_path, :class => 'button left'
+          #admin_controls
+            = yield :admin_controls
+          = link_to 'Logout', logout_path, :class => 'button right', :method => :delete
+        - else
+          = link_to 'Login', login_path, :class => 'button right'
+        .clear
 
     .container
       .span-24

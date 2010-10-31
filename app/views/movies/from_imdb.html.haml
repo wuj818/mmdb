@@ -7,3 +7,5 @@
   .actions
     = submit_tag 'Submit', :id => 'ajax_button', :disable_with => 'Scraping...'
     %span#ajax_button_indicator.hidden= image_tag 'ajax.gif'
+
+= link_to 'Back', movies_path

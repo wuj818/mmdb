@@ -9,7 +9,7 @@ describe 'Credits' do
 
   describe 'Add new credit' do
     it 'creates a credit for the specified person/movie combination' do
-      visit edit_person_path @person
+      visit person_path @person
       click_link 'Add Credit'
 
       select @movie.title, :from => 'Movie'

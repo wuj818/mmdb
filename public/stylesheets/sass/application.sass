@@ -7,32 +7,25 @@ body
 h2
   margin-bottom: 0
 
-#admin_bar
-  border-bottom: 1px solid #ccc
-  text-align: center
-  font-size: 1.16em
-  margin-bottom: 40px
-  padding: 10px
+#admin_wrapper
+  width: 100%
+  position: fixed
+  background: #000
 
-a.button
-  border: 1px solid #d3d3d3
-  -webkit-border-radius: 4px
-  -moz-border-radius: 4px
-  padding: 4px 8px
-  text-decoration: none
-  display: inline-block
-  background: #efefef
-  line-height: 1em
-  color: #606060
-  font-family: 'Helvetica Neue'
-  &:hover
-    border-color: #b3b3b3
-    background: #e3e3e3
+  #admin_bar
+    text-align: center
+    font-size: 1.16em
+    padding: 10px
+    width: 940px
+    margin: auto
+
+    a.button
+      font-family: 'Trebuchet MS'
 
 header
   border-bottom: 1px solid #eee
   padding: 0
-  margin: 0 0 10px 0
+  margin: 60px 0 10px 0
   font-family: 'Bank Gothic'
   h1
     margin: 0
@@ -127,6 +120,17 @@ a.button, input[type=submit]
   vertical-align: middle
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgb(239,239,239)), color-stop(0.5, rgb(227,227,227)))
   background: -moz-linear-gradient(center top, rgb(239,239,239) 50%, rgb(227,227,227) 50%)
+  text-decoration: none
+  -webkit-border-radius: 4px
+  -moz-border-radius: 4px
+  display: inline-block
+  line-height: 1em
+  font-family: 'Helvetica Neue'
+  cursor: pointer
+
+  &:hover
+    border-color: #b3b3b3
+    background: #e3e3e3
 
   &:hover
     background: #e3e3e3
@@ -177,7 +181,7 @@ a.button, input[type=submit]
     border-color: #000
 
   em
-    background-color: #ffc600
+    background-color: #fff200
     font-weight: bold
 
 #genre_checkboxes
@@ -201,3 +205,24 @@ a.button, input[type=submit]
 
   img
     vertical-align: middle
+
+.left
+  float: left
+  margin-right: 10px
+
+.right
+  float: right
+  margin-left: 10px
+
+#admin_controls
+  display: inline
+
+  a.button
+    margin: 0 6px 0 0
+
+.clear
+  clear: both
+
+#search_form
+  input[type=submit]
+    display: none

@@ -1,10 +1,10 @@
+- content_for :admin_controls do
+  = link_to 'Edit', [:edit,  @person], :class => 'button'
+  = link_to 'Add Credit', new_person_credit_path(@person), :class => 'button'
+  = link_to 'Delete', @person, :confirm => 'Are you sure?', :method => :delete, :class => 'button'
+
 %h2= @person.name
 
 %p= link_to 'IMDB', @person.imdb_url
 
 = render 'credits'
-
-- if admin?
-  = link_to 'Edit', [:edit, @person]
-  \|
-  = link_to 'Delete', @person, :confirm => 'Are you sure?', :method => :delete
