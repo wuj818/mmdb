@@ -4,7 +4,7 @@ describe 'Movies' do
   describe 'All movies page' do
     it 'lists all movies' do
       movies = Movie.make! 3
-      visit root_path
+      visit movies_path
       movies.each { |movie| should_see_link movie.title }
     end
 
@@ -29,7 +29,7 @@ describe 'Movies' do
         :year => 1994, :runtime => 107, :rating => 1
 
       # ascending title by default
-      visit root_path
+      visit movies_path
       movies = all('td:first-child a').map(&:text)
       movies.should == ['The Big Lebowski', 'Boogie Nights', 'Dumb and Dumber']
 
@@ -50,11 +50,11 @@ describe 'Movies' do
     end
 
     it 'has pagination info and links' do
-      visit root_path
+      visit movies_path
       should_see 'No entries found'
 
       @movies = Movie.make! 2
-      visit root_path :per_page => 1
+      visit movies_path :per_page => 1
 
       should_see 'Displaying movies'
       should_see '2 in total'

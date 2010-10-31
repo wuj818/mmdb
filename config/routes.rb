@@ -25,5 +25,7 @@ Mmdb::Application.routes.draw do
     resources :credits, :only => [:new, :create, :destroy]
   end
 
-  root :to => 'movies#index'
+  match '/stats' => 'pages#stats'
+
+  root :to => 'pages#stats'
 end
