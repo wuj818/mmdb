@@ -26,4 +26,16 @@ describe String do
       movies.each { |title, permalink| title.to_permalink.should == permalink }
     end
   end
+
+  describe '#to_sort_column' do
+    movies = {
+      'A Very Long Engagement' => 'very long engagement',
+      'An Andalusian Dog' => 'andalusian dog',
+      'The Game' => 'game'
+    }
+
+    it 'returns a nicely formatted sort value without unnecessary words' do
+      movies.each { |column, sort_column| column.to_sort_column.should == sort_column }
+    end
+  end
 end

@@ -42,6 +42,6 @@ class Person < ActiveRecord::Base
 
   def create_sort_name
     return unless self.sort_name.blank?
-    self.sort_name = ActiveSupport::Inflector.transliterate self.name.to_permalink.gsub('-', ' ')
+    self.sort_name = self.name.to_sort_column
   end
 end

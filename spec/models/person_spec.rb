@@ -63,7 +63,7 @@ describe Person do
         @movie = Movie.make
         @movie.sort_title.should be_blank
         @movie.save
-        @movie.sort_title.should == @movie.title.downcase
+        @movie.sort_title.should == @movie.title.to_sort_column
       end
     end
   end

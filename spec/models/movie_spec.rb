@@ -110,7 +110,7 @@ describe Movie do
         @person = Person.make
         @person.sort_name.should be_blank
         @person.save
-        @person.sort_name.should == @person.name.downcase
+        @person.sort_name.should == @person.name.to_sort_column
       end
     end
   end
