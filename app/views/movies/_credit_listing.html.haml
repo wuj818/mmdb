@@ -2,16 +2,15 @@
   %table
     %th
       #{credit_type.capitalize} Credits (#{count})
-    - @person.send("sorted_#{credit_type}_credits").each do |credit|
+    - @movie.send("sorted_#{credit_type}_credits").each do |credit|
       %tr
         %td.main_cell
-          = link_to credit.movie.title, credit.movie
-          (#{credit.movie.year})
+          = link_to credit.person.name, credit.person
         %td.ellipsis
           = '...' unless credit.details.blank?
         %td
           = credit.details
         - if action_name == 'edit'
           %td.delete
-            = link_to 'Delete', [@person, credit], :confirm => 'Are you sure?', :method => :delete
+            = link_to 'Delete', [credit.person, credit], :confirm => 'Are you sure?', :method => :delete
   %hr

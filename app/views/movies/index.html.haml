@@ -8,15 +8,15 @@
   %table#movies
     %tr
       %th= sort_link :title
-      %th= sort_link :year
-      %th= sort_link :runtime
-      %th= sort_link :rating
+      %th.numeric= sort_link :year
+      %th.numeric= sort_link :runtime
+      %th.numeric= sort_link :rating
 
     - @movies.each do |movie|
       %tr
         %td= link_to movie.title, movie
-        %td= movie.year
-        %td= movie.runtime
-        %td= movie.rating
+        %td.numeric= movie.year
+        %td.numeric= movie.runtime
+        %td.numeric= movie.rating
 
   = will_paginate @movies

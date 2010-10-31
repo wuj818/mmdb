@@ -1,5 +1,5 @@
 #credits
   - Credit::JOBS.each do |job, credit_type|
-    - count = @person.send "number_of_#{credit_type}_credits"
+    - count = @movie.send "number_of_#{credit_type}_credits"
     - unless count == 0
       = render 'credit_listing', :credit_type => credit_type, :count => count

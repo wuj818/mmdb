@@ -74,6 +74,12 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  Credit::JOBS.values.each do |credit_type|
+    define_method "sorted_#{credit_type}_credits" do
+      self.send("#{credit_type}_credits").joins(:person).order('sort_name')
+    end
+  end
+
   # options => :exclude, :any, :match_all
   def self.with_genres(genres, option = nil)
     tagged_with(genres, :on => :genres, option => true)
