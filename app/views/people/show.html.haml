@@ -1,7 +1,7 @@
 - content_for :admin_controls do
   = link_to 'Edit', [:edit,  @person], :class => 'button'
   = link_to 'Add Credit', new_person_credit_path(@person), :class => 'button'
-  = link_to 'Delete', @person, :confirm => 'Are you sure?', :method => :delete, :class => 'button'
+  = link_to 'Delete', @person, :confirm => CONFIRM, :method => :delete, :class => 'button'
 
 %h2= @person.name
 

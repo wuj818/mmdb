@@ -1,5 +1,5 @@
 - content_for :admin_controls do
-  = link_to 'Delete', @movie, :confirm => 'Are you sure?', :method => :delete, :class => 'button'
+  = link_to 'Delete', @movie, :confirm => CONFIRM, :method => :delete, :class => 'button'
 
 %h2 Editing "#{@movie.title}"
 
