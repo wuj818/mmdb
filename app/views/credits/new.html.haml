@@ -22,4 +22,5 @@
     = f.text_field :details
 
   .actions
-    = f.submit 'Submit'
+    = f.submit 'Submit', :id => 'ajax_button', :disable_with => 'Submitting...'
+    %span#ajax_button_indicator.hidden= image_tag 'ajax.gif'
