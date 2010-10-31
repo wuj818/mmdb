@@ -5,5 +5,5 @@
     = text_field_tag :imdb_url, nil, :class => 'title', :autofocus => true
 
   .actions
-    = submit_tag 'Submit', :id => 'new_from_imdb', :disable_with => 'Scraping...'
-    %span#new_from_imdb_ajax.hidden= image_tag 'ajax.gif'
+    = submit_tag 'Submit', :id => 'ajax_button', :disable_with => 'Scraping...'
+    %span#ajax_button_indicator.hidden= image_tag 'ajax.gif'
