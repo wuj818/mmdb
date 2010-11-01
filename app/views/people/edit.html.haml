@@ -1,4 +1,5 @@
 - content_for :admin_controls do
+  = link_to 'Back', @person, :class => 'button'
   = link_to 'Delete', @person, :confirm => CONFIRM, :method => :delete, :class => 'button'
 
 %h1 Editing "#{@person.name}"
@@ -9,5 +10,3 @@
 
 - smart_cache 'credits' do
   = render 'credits'
-
-= link_to 'Back', @person

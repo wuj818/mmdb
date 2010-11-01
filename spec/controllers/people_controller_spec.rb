@@ -7,28 +7,10 @@ describe PeopleController do
     end
   end
 
-  describe 'GET new' do
-    context 'when not logged in' do
-      it 'redirects to the login page' do
-        get :new
-        response.should redirect_to login_path
-      end
-    end
-  end
-
   describe 'GET edit' do
     context 'when not logged in' do
       it 'redirects to the login page' do
         get :edit, :id => '1'
-        response.should redirect_to login_path
-      end
-    end
-  end
-
-  describe 'POST create' do
-    context 'when not logged in' do
-      it 'redirects to the login page' do
-        post :create
         response.should redirect_to login_path
       end
     end

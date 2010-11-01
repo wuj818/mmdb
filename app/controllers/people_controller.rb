@@ -14,25 +14,8 @@ class PeopleController < ApplicationController
     @title = @person.name
   end
 
-  def new
-    @title = 'New Person'
-    @person = Person.new
-  end
-
   def edit
     @title = %(Edit "#{@person.name}")
-  end
-
-  def create
-    @title = 'New Person'
-    @person = Person.new params[:person]
-
-    if @person.save
-      flash[:success] = %("#{@person.name}" was successfully added.)
-      redirect_to people_path
-    else
-      render :new
-    end
   end
 
   def update

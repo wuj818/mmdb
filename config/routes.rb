@@ -22,7 +22,7 @@ Mmdb::Application.routes.draw do
   match 'people/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'people#index'
   match 'people/query/:q' => 'people#index', :as => :formatted_search_people
 
-  resources :people do
+  resources :people, :except => [:new, :create] do
     resources :credits, :only => [:new, :create, :destroy]
     collection do
       get :search

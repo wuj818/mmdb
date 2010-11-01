@@ -55,24 +55,6 @@ describe 'People' do
     end
   end
 
-  describe 'Add new person' do
-    it 'adds a person and redirects to the people page' do
-      integration_login
-      click_link 'Add Person'
-
-      should_not_see_field 'Permalink'
-      should_not_see_field 'Sort Name'
-
-      fill_in 'Name', :with => 'Paul Thomas Anderson'
-      fill_in 'IMDB', :with => 'http://www.imdb.com/name/nm0000759/'
-      click_button 'Submit'
-
-      should_be_on people_path
-      should_not_have_css '#error_explanation'
-      should_see '"Paul Thomas Anderson" was successfully added.'
-    end
-  end
-
   describe 'Show person details' do
     it 'shows the details for a person' do
       person = Person.make!
