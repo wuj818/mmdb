@@ -51,4 +51,11 @@ describe PeopleController do
       end
     end
   end
+
+  describe 'GET search' do
+    it 'filters the index page by the search parameter' do
+      get :search, :q => 'Paul Thomas Anderson'
+      response.should redirect_to formatted_search_people_path :q => 'Paul Thomas Anderson'
+    end
+  end
 end

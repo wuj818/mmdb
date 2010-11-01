@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_filter :authorize, :except => [:index, :show]
+  before_filter :authorize, :except => [:index, :show, :search]
   before_filter :get_movie, :only => [:show, :edit, :update, :destroy]
 
   def index

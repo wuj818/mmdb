@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_filter :authorize, :except => [:index, :show]
+  before_filter :authorize, :except => [:index, :show, :search]
   before_filter :get_person, :only => [:show, :edit, :update, :destroy]
 
   def index

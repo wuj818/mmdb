@@ -87,4 +87,11 @@ describe MoviesController do
       end
     end
   end
+
+  describe 'GET search' do
+    it 'filters the index page by the search parameter' do
+      get :search, :q => 'Boogie Nights'
+      response.should redirect_to formatted_search_movies_path :q => 'Boogie Nights'
+    end
+  end
 end
