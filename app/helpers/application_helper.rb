@@ -6,4 +6,10 @@ module ApplicationHelper
     order = (column == params[:sort] && params[:order] == 'asc') ? 'desc' : 'asc'
     link_to title, url_for(:sort => column, :order => order, :page => params[:page], :q => params[:q]), :class => css_class
   end
+
+  def smart_cache(key = '', &block)
+    str = request.path.slice 1..-1
+    str << "/#{key}" unless key.blank?
+    cache(str, :expires_in => 2.weeks, &block)
+  end
 end

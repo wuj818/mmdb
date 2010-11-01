@@ -66,6 +66,10 @@ class MoviesController < ApplicationController
     end
   end
 
+  def search
+    redirect_to formatted_search_movies_path :q => params[:q]
+  end
+
   private
 
   def order

@@ -7,6 +7,7 @@
 
 %hr
 
-= render 'credits'
+- smart_cache 'credits' do
+  = render 'credits'
 
 = link_to 'Back', @movie

@@ -2,15 +2,16 @@
 
 %br
 
-%h4 #{number_with_delimiter Movie.count} movies
-%h4 #{number_with_delimiter Tagging.select('distinct name').where(:context => :genres).joins(:tag).length} genres
-%h4 #{number_with_delimiter Tagging.select('distinct name').where(:context => :keywords).joins(:tag).length} keywords
-%h4 #{number_with_delimiter Tagging.select('distinct name').where(:context => :languages).joins(:tag).length} languages
-%h4 #{number_with_delimiter Tagging.select('distinct name').where(:context => :countries).joins(:tag).length} countries
-%h4 #{number_with_delimiter Person.count} people
-%h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Director').length} directors
-%h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Writer').length} writers
-%h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Composer').length} composers
-%h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Editor').length} editors
-%h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Cinematographer').length} cinematographers
-%h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Actor').length} actors
+- smart_cache do
+  %h4 #{number_with_delimiter Movie.count} movies
+  %h4 #{number_with_delimiter Tagging.select('distinct name').where(:context => :genres).joins(:tag).length} genres
+  %h4 #{number_with_delimiter Tagging.select('distinct name').where(:context => :keywords).joins(:tag).length} keywords
+  %h4 #{number_with_delimiter Tagging.select('distinct name').where(:context => :languages).joins(:tag).length} languages
+  %h4 #{number_with_delimiter Tagging.select('distinct name').where(:context => :countries).joins(:tag).length} countries
+  %h4 #{number_with_delimiter Person.count} people
+  %h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Director').length} directors
+  %h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Writer').length} writers
+  %h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Composer').length} composers
+  %h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Editor').length} editors
+  %h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Cinematographer').length} cinematographers
+  %h4 #{number_with_delimiter Credit.select('distinct person_id').where(:job => 'Actor').length} actors

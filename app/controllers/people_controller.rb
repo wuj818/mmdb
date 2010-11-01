@@ -53,6 +53,10 @@ class PeopleController < ApplicationController
     redirect_to people_path
   end
 
+  def search
+    redirect_to formatted_search_people_path :q => params[:q]
+  end
+
   private
 
   def order

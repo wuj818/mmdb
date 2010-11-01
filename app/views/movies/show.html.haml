@@ -2,50 +2,53 @@
   = link_to 'Edit', [:edit, @movie], :class => 'button'
   = link_to 'Delete', @movie, :confirm => CONFIRM, :method => :delete, :class => 'button'
 
-%h2= @movie.title
+- smart_cache 'details' do
+  %h2= @movie.title
 
-- unless @movie.aka.blank?
-  %em aka #{@movie.aka}
+  - unless @movie.aka.blank?
+    %em aka #{@movie.aka}
+    %br
   %br
-%br
 
-%p= link_to 'IMDB', @movie.imdb_url
+  %p= link_to 'IMDB', @movie.imdb_url
 
-- unless @movie.rotten_tomatoes_url.blank?
-  %p= link_to 'Rotten Tomatoes', @movie.rotten_tomatoes_url
+  - unless @movie.rotten_tomatoes_url.blank?
+    %p= link_to 'Rotten Tomatoes', @movie.rotten_tomatoes_url
 
-%p= @movie.year
+  %p= @movie.year
 
-%p #{@movie.runtime} min
+  %p #{@movie.runtime} min
 
-%p #{@movie.rating}/10
+  %p #{@movie.rating}/10
 
-#synopsis
-  = @movie.synopsis
-%br
+  #synopsis
+    = @movie.synopsis
+  %br
 
-= render 'credits'
+- smart_cache 'credits' do
+  = render 'credits'
 
-%h3 Genres
+- smart_cache 'tags' do
+  %h3 Genres
 
-%ul
-  - @movie.genres.each.map(&:name).sort.each do |genre|
-    %li= genre
+  %ul
+    - @movie.genres.each.map(&:name).sort.each do |genre|
+      %li= genre
 
-%h3 Languages
+  %h3 Languages
 
-%ul
-  - @movie.languages.each.map(&:name).sort.each do |language|
-    %li= language
+  %ul
+    - @movie.languages.each.map(&:name).sort.each do |language|
+      %li= language
 
-%h3 Countries
+  %h3 Countries
 
-%ul
-  - @movie.countries.each.map(&:name).sort.each do |country|
-    %li= country
+  %ul
+    - @movie.countries.each.map(&:name).sort.each do |country|
+      %li= country
 
-%h3 Keywords
+  %h3 Keywords
 
-%ul
-  - @movie.keywords.each.map(&:name).sort.each do |keyword|
-    %li= keyword
+  %ul
+    - @movie.keywords.each.map(&:name).sort.each do |keyword|
+      %li= keyword

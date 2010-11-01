@@ -3,8 +3,10 @@
   = link_to 'Add Credit', new_person_credit_path(@person), :class => 'button'
   = link_to 'Delete', @person, :confirm => CONFIRM, :method => :delete, :class => 'button'
 
-%h2= @person.name
+- smart_cache 'details' do
+  %h2= @person.name
 
-%p= link_to 'IMDB', @person.imdb_url
+  %p= link_to 'IMDB', @person.imdb_url
 
-= render 'credits'
+- smart_cache 'credits' do
+  = render 'credits'
