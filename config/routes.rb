@@ -29,6 +29,16 @@ Mmdb::Application.routes.draw do
     end
   end
 
+  match 'genres/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'genres#index'
+  match 'genres/query/:q' => 'genres#index', :as => :formatted_search_genres
+  match 'genres/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'genres#show'
+
+  resources :genres, :only => [:index, :show] do
+    collection do
+      get :search
+    end
+  end
+
   match '/stats' => 'pages#stats'
 
   root :to => 'pages#stats'

@@ -26,6 +26,8 @@
           = link_to 'Movies', movies_path
           |
           = link_to 'People', people_path
+          |
+          = link_to 'Genres', genres_path
       .span-24
         - flash.each do |kind, msg|
           = content_tag :div, :class => "flash #{kind}" do

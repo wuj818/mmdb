@@ -51,7 +51,7 @@ describe 'Movies' do
 
     it 'has pagination info and links' do
       visit movies_path
-      should_see 'No entries found'
+      should_see 'No movies found'
 
       @movies = Movie.make! 2
       visit movies_path :per_page => 1

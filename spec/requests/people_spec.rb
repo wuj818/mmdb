@@ -38,7 +38,7 @@ describe 'People' do
 
     it 'has pagination info and links' do
       visit people_path
-      should_see 'No entries found'
+      should_see 'No people found'
 
       @people = Person.make! 2
       visit people_path :per_page => 1

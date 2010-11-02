@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
 
   def index
     @title = 'Movies'
-    @movies = Movie.order(order)
+    @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @movies = @movies.paginate(:page => page, :per_page => per_page)
   end
@@ -71,15 +71,6 @@ class MoviesController < ApplicationController
   end
 
   private
-
-  def order
-    params[:sort] ||= 'title'
-    column = params[:sort] == 'title' ? 'sort_title' : params[:sort]
-    params[:order] ||= 'asc'
-    result = "#{column} #{params[:order]}"
-    result << ', sort_title asc' unless params[:sort] == 'title'
-    result
-  end
 
   def page
     params[:page]

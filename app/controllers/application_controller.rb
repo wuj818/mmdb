@@ -29,4 +29,13 @@ class ApplicationController < ActionController::Base
   def authorize
     deny_access unless admin?
   end
+
+  def movie_order
+    params[:sort] ||= 'title'
+    column = params[:sort] == 'title' ? 'sort_title' : params[:sort]
+    params[:order] ||= 'asc'
+    result = "#{column} #{params[:order]}"
+    result << ', sort_title asc' unless params[:sort] == 'title'
+    result
+  end
 end
