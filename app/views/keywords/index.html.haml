@@ -1,0 +1,21 @@
+- smart_cache do
+  = render 'shared/search_form', :target => search_keywords_path
+
+  = render 'shared/page_entries_info', :results => @keywords, :type => 'keyword'
+
+  - unless @keywords.empty?
+    = will_paginate @keywords
+
+    %table#keywords
+      %tr
+        %th= sort_link :name
+        %th.numeric= sort_link :total
+        %th.numeric= sort_link :average
+
+      - @keywords.each do |keyword|
+        %tr
+          %td= keyword_link keyword
+          %td.numeric= keyword.total
+          %td.numeric= format '%.2f', keyword.average
+
+    = will_paginate @keywords

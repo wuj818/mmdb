@@ -39,6 +39,36 @@ Mmdb::Application.routes.draw do
     end
   end
 
+  match 'keywords/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'keywords#index'
+  match 'keywords/query/:q' => 'keywords#index', :as => :formatted_search_keywords
+  match 'keywords/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'keywords#show'
+
+  resources :keywords, :only => [:index, :show] do
+    collection do
+      get :search
+    end
+  end
+
+  match 'languages/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'languages#index'
+  match 'languages/query/:q' => 'languages#index', :as => :formatted_search_languages
+  match 'languages/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'languages#show'
+
+  resources :languages, :only => [:index, :show] do
+    collection do
+      get :search
+    end
+  end
+
+  match 'countries/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'countries#index'
+  match 'countries/query/:q' => 'countries#index', :as => :formatted_search_countries
+  match 'countries/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'countries#show'
+
+  resources :countries, :only => [:index, :show] do
+    collection do
+      get :search
+    end
+  end
+
   match '/stats' => 'pages#stats'
 
   root :to => 'pages#stats'

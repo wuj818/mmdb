@@ -38,4 +38,18 @@ class ApplicationController < ActionController::Base
     result << ', sort_title asc' unless params[:sort] == 'title'
     result
   end
+
+  def tag_order
+    params[:sort] ||= 'name'
+    column = case params[:sort]
+    when 'total' then 'COUNT(*)'
+    when 'average' then 'AVG(rating)'
+    else 'name'
+    end
+
+    params[:order] ||= 'asc'
+    result = "#{column} #{params[:order]}"
+    result << ', COUNT(*) DESC' unless params[:sort] == 'total'
+    result
+  end
 end

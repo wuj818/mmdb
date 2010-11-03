@@ -3,7 +3,7 @@ class GenresController < ApplicationController
 
   def index
     @title = 'Genres'
-    @genres = Tag.order(order)
+    @genres = Tag.order(tag_order)
     @genres = @genres.select('name, COUNT(*) AS total, AVG(rating) AS average')
     @genres = @genres.joins(:taggings)
     @genres = @genres.joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
@@ -27,14 +27,6 @@ class GenresController < ApplicationController
 
   private
 
-  def order
-    params[:sort] ||= 'name'
-    params[:order] ||= 'asc'
-    result = "#{params[:sort]} #{params[:order]}"
-    result << ', COUNT(*) DESC' unless params[:sort] == 'total'
-    result
-  end
-
   def page
     params[:page]
   end
@@ -44,7 +36,7 @@ class GenresController < ApplicationController
   end
 
   def get_genre
-    @genre = params[:id].titleize.gsub(' ', '-')
+    @genre = params[:id]
     raise ActiveRecord::RecordNotFound if Tag.find_by_name(@genre).blank?
   end
 end
