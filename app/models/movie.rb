@@ -97,6 +97,10 @@ class Movie < ActiveRecord::Base
     tagged_with(countries, :on => :countries, option => true)
   end
 
+  def self.[](title)
+    self.find_by_title title
+  end
+
   private
 
   def create_permalink

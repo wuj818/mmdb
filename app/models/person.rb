@@ -29,6 +29,10 @@ class Person < ActiveRecord::Base
     end
   end
 
+  def self.[](name)
+    self.find_by_name name
+  end
+
   private
 
   def create_permalink
