@@ -14,7 +14,7 @@ class KeywordsController < ApplicationController
   end
 
   def show
-    @title = @keyword
+    @title = "Keyword - #{@keyword}"
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @movies = @movies.with_keywords @keyword

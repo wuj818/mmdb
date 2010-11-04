@@ -2,7 +2,7 @@ class CountriesController < ApplicationController
   before_filter :get_country, :only => :show
 
   def index
-    @title = 'countries'
+    @title = 'Countries'
     @countries = Tag.order(tag_order)
     @countries = @countries.select('name, COUNT(*) AS total, AVG(rating) AS average')
     @countries = @countries.joins(:taggings)
@@ -14,7 +14,7 @@ class CountriesController < ApplicationController
   end
 
   def show
-    @title = @country
+    @title = "Country - #{@country}"
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @movies = @movies.with_countries @country

@@ -2,7 +2,7 @@ class LanguagesController < ApplicationController
   before_filter :get_language, :only => :show
 
   def index
-    @title = 'languages'
+    @title = 'Languages'
     @languages = Tag.order(tag_order)
     @languages = @languages.select('name, COUNT(*) AS total, AVG(rating) AS average')
     @languages = @languages.joins(:taggings)
@@ -14,7 +14,7 @@ class LanguagesController < ApplicationController
   end
 
   def show
-    @title = @language
+    @title = "Language - #{@language}"
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @movies = @movies.with_languages @language

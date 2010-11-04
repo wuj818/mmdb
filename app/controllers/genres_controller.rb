@@ -14,7 +14,7 @@ class GenresController < ApplicationController
   end
 
   def show
-    @title = @genre
+    @title = "Genre - #{@genre}"
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @movies = @movies.with_genres @genre
