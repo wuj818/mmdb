@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title= @title.blank? ? 'MMDB' : "MMDB - #{@title}"
+    %title= @title.blank? ? 'MMDb' : "MMDb - #{@title}"
     = stylesheet_link_tag 'blueprint', 'application'
     = javascript_include_tag :defaults
     = csrf_meta_tag
@@ -20,7 +20,7 @@
     .container
       .span-24
         %header
-          %h1= link_to 'MMDB', stats_path
+          %h1= link_to 'MMDb', stats_path
       .span-24
         %nav
           = link_to 'Movies', movies_path
