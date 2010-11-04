@@ -6,7 +6,6 @@ class MoviesController < ApplicationController
     @title = 'Movies'
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
-    @movies = @movies.paginate(:page => page, :per_page => per_page)
   end
 
   def show
@@ -66,19 +65,7 @@ class MoviesController < ApplicationController
     end
   end
 
-  def search
-    redirect_to formatted_search_movies_path :q => params[:q]
-  end
-
   private
-
-  def page
-    params[:page]
-  end
-
-  def per_page
-    params[:per_page] || 50
-  end
 
   def get_movie
     @movie = Movie.find_by_permalink params[:id]

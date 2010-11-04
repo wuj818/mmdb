@@ -1,8 +1,9 @@
 - smart_cache do
+  - @movies = @movies.paginate(:page => page, :per_page => per_page)
   = render 'shared/page_entries_info', :results => @movies, :type => 'movie'
 
-  - unless movies.empty?
-    = will_paginate movies
+  - unless @movies.empty?
+    = will_paginate @movies
 
     %table#movies
       %tr
@@ -11,11 +12,11 @@
         %th.numeric= sort_link :runtime
         %th.numeric= sort_link :rating
 
-      - movies.each do |movie|
+      - @movies.each do |movie|
         %tr
           %td= link_to movie.title, movie
           %td.numeric= movie.year
           %td.numeric= movie.runtime
           %td.numeric= movie.rating
 
-    = will_paginate movies
+    = will_paginate @movies

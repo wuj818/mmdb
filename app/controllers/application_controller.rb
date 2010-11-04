@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :admin?
+  def search
+    params[:q] = URI.escape(' ') if params[:q].blank?
+    redirect_to send("formatted_search_#{controller_name}_path", :q => params[:q])
+  end
+
+  helper_method :admin?, :page, :per_page
 
   def admin?
     session[:admin]
@@ -51,5 +56,13 @@ class ApplicationController < ActionController::Base
     result = "#{column} #{params[:order]}"
     result << ', COUNT(*) DESC' unless params[:sort] == 'total'
     result
+  end
+
+  def page
+    params[:page]
+  end
+
+  def per_page
+    params[:per_page] || 100
   end
 end

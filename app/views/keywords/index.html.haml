@@ -1,4 +1,6 @@
 - smart_cache do
+  - @keywords = @keywords.paginate(:page => page, :per_page => per_page)
+
   = render 'shared/search_form', :target => search_keywords_path
 
   = render 'shared/page_entries_info', :results => @keywords, :type => 'keyword'

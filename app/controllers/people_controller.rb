@@ -7,7 +7,6 @@ class PeopleController < ApplicationController
     @people = Person.order(order)
     @people = @people.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @people = @people.joins(:counter)
-    @people = @people.paginate(:page => page, :per_page => per_page)
   end
 
   def show
@@ -36,10 +35,6 @@ class PeopleController < ApplicationController
     redirect_to people_path
   end
 
-  def search
-    redirect_to formatted_search_people_path :q => params[:q]
-  end
-
   private
 
   def order
@@ -60,14 +55,6 @@ class PeopleController < ApplicationController
     result = "#{column} #{params[:order]}"
     result << ', sort_name asc' unless params[:sort] == 'name'
     result
-  end
-
-  def page
-    params[:page]
-  end
-
-  def per_page
-    params[:per_page] || 50
   end
 
   def get_person
