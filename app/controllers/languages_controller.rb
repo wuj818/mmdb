@@ -9,6 +9,7 @@ class LanguagesController < ApplicationController
     @languages = @languages.joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
     @languages = @languages.where('context = ?', 'languages')
     @languages = @languages.group(:name)
+    @languages = @languages.having(tag_minimum)
     @languages = @languages.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
   end
 

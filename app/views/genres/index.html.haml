@@ -1,7 +1,7 @@
+= render 'shared/search_form', :target => search_genres_path
+
 - smart_cache do
   - @genres = @genres.paginate(:page => page, :per_page => per_page)
-
-  = render 'shared/search_form', :target => search_genres_path
 
   = render 'shared/page_entries_info', :results => @genres, :type => 'genre'
 

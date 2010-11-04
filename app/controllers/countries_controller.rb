@@ -9,6 +9,7 @@ class CountriesController < ApplicationController
     @countries = @countries.joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
     @countries = @countries.where('context = ?', 'countries')
     @countries = @countries.group(:name)
+    @countries = @countries.having(tag_minimum)
     @countries = @countries.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
   end
 

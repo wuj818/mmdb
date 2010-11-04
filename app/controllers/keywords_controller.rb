@@ -9,6 +9,7 @@ class KeywordsController < ApplicationController
     @keywords = @keywords.joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
     @keywords = @keywords.where('context = ?', 'keywords')
     @keywords = @keywords.group(:name)
+    @keywords = @keywords.having(tag_minimum)
     @keywords = @keywords.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
   end
 

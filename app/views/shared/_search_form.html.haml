@@ -1,3 +1,6 @@
 = form_tag target, :method => :get, :id => 'search_form' do
   = text_field_tag :q, params[:q].blank? ? '' : params[:q], :placeholder => "Search #{controller.controller_name}..."
+  - if controller_name != 'movies' && controller_name != 'people'
+    = label_tag :minimum, 'Total >='
+    = text_field_tag :minimum, params[:minimum], :placeholder => '0', :id => 'minimum_total'
   = submit_tag 'Search', :class => 'hidden'

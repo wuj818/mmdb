@@ -2,8 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def search
-    params[:q] = URI.escape(' ') if params[:q].blank?
-    redirect_to send("formatted_search_#{controller_name}_path", :q => params[:q])
+    params[:minimum] = params[:minimum].to_i
+    values = {:minimum => params[:minimum]}
+    values.merge!({:q => params[:q]}) unless params[:q].blank?
+    redirect_to send("formatted_search_#{controller_name}_path", values)
   end
 
   helper_method :admin?, :page, :per_page
@@ -56,6 +58,10 @@ class ApplicationController < ActionController::Base
     result = "#{column} #{params[:order]}"
     result << ', COUNT(*) DESC' unless params[:sort] == 'total'
     result
+  end
+
+  def tag_minimum
+    "COUNT(*) >= #{params[:minimum].to_i}"
   end
 
   def page

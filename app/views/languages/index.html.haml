@@ -1,7 +1,7 @@
+= render 'shared/search_form', :target => search_languages_path
+
 - smart_cache do
   - @languages = @languages.paginate(:page => page, :per_page => per_page)
-
-  = render 'shared/search_form', :target => search_languages_path
 
   = render 'shared/page_entries_info', :results => @languages, :type => 'language'
 

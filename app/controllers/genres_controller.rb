@@ -9,6 +9,7 @@ class GenresController < ApplicationController
     @genres = @genres.joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
     @genres = @genres.where('context = ?', 'genres')
     @genres = @genres.group(:name)
+    @genres = @genres.having(tag_minimum)
     @genres = @genres.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
   end
 
