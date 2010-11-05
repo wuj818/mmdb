@@ -25,6 +25,12 @@
     = @movie.synopsis
   %br
 
+- smart_cache 'related' do
+  %h2 Related Movies
+  - @movie.related_movies.shuffle.each do |movie|
+    = link_to movie.title, movie
+    %br
+
 - smart_cache 'credits' do
   = render 'credits'
 

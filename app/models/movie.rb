@@ -80,6 +80,10 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  def related_movies
+    self.find_related_genres.where('rating >= 7').with_keywords(self.keyword_list, :any).limit(20)
+  end
+
   # options => :exclude, :any, :match_all
   def self.with_genres(genres, option = nil)
     tagged_with(genres, :on => :genres, option => true)
