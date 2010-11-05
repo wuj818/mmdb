@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_filter :authorize, :except => [:index, :show, :search]
+  before_filter :authorize, :except => [:index, :show, :search, :stats]
   before_filter :get_movie, :only => [:show, :edit, :update, :destroy]
 
   def index
@@ -63,6 +63,10 @@ class MoviesController < ApplicationController
       flash.now[:info] = %(Scrape results for "#{params[:imdb_url]}".)
       render :new
     end
+  end
+
+  def stats
+    @title = 'Movies - Stats'
   end
 
   private

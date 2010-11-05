@@ -20,6 +20,10 @@ class CountriesController < ApplicationController
     @movies = @movies.with_countries @country
   end
 
+  def stats
+    @title = 'Countries - Stats'
+  end
+
   private
 
   def get_country

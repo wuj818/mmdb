@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_filter :authorize, :except => [:index, :show, :search]
+  before_filter :authorize, :except => [:index, :show, :search, :stats]
   before_filter :get_person, :only => [:show, :edit, :update, :destroy]
 
   def index
@@ -33,6 +33,10 @@ class PeopleController < ApplicationController
 
     flash[:success] = %("#{name}" was successfully deleted.)
     redirect_to people_path
+  end
+
+  def stats
+    @title = 'People - Stats'
   end
 
   private

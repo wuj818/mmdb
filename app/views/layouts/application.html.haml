@@ -20,20 +20,26 @@
     .container
       .span-24
         %header
-          %h1= link_to 'MMDb', stats_path
+          %h1= link_to 'MMDb', root_path
       .span-24
         %nav
           = link_to 'Movies', movies_path
-          |
+          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_movies_path
+          &nbsp;&nbsp;&nbsp;&nbsp;
           = link_to 'People', people_path
-          |
+          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_people_path
+          &nbsp;&nbsp;&nbsp;&nbsp;
           = link_to 'Genres', genres_path
-          |
+          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_genres_path
+          &nbsp;&nbsp;&nbsp;&nbsp;
           = link_to 'Keywords', keywords_path
-          |
+          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_keywords_path
+          &nbsp;&nbsp;&nbsp;&nbsp;
           = link_to 'Languages', languages_path
-          |
+          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_languages_path
+          &nbsp;&nbsp;&nbsp;&nbsp;
           = link_to 'Countries', countries_path
+          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_countries_path
       .span-24
         - flash.each do |kind, msg|
           = content_tag :div, :class => "flash #{kind}" do

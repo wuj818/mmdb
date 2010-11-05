@@ -16,6 +16,7 @@ Mmdb::Application.routes.draw do
     collection do
       post :scrape_info
       get :search
+      get :stats
     end
   end
 
@@ -24,8 +25,10 @@ Mmdb::Application.routes.draw do
 
   resources :people, :except => [:new, :create] do
     resources :credits, :only => [:new, :create, :destroy]
+
     collection do
       get :search
+      get :stats
     end
   end
 
@@ -36,6 +39,7 @@ Mmdb::Application.routes.draw do
   resources :genres, :only => [:index, :show] do
     collection do
       get :search
+      get :stats
     end
   end
 
@@ -46,6 +50,7 @@ Mmdb::Application.routes.draw do
   resources :keywords, :only => [:index, :show] do
     collection do
       get :search
+      get :stats
     end
   end
 
@@ -56,6 +61,7 @@ Mmdb::Application.routes.draw do
   resources :languages, :only => [:index, :show] do
     collection do
       get :search
+      get :stats
     end
   end
 
@@ -66,10 +72,11 @@ Mmdb::Application.routes.draw do
   resources :countries, :only => [:index, :show] do
     collection do
       get :search
+      get :stats
     end
   end
 
   match '/stats' => 'pages#stats'
 
-  root :to => 'pages#stats'
+  root :to => 'pages#main'
 end

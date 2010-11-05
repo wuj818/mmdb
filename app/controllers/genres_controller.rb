@@ -20,6 +20,10 @@ class GenresController < ApplicationController
     @movies = @movies.with_genres @genre
   end
 
+  def stats
+    @title = 'Genres - Stats'
+  end
+
   private
 
   def get_genre

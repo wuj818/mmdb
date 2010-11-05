@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  def stats
-    @title = 'Stats'
+  def main
   end
 end

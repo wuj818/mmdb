@@ -20,6 +20,10 @@ class LanguagesController < ApplicationController
     @movies = @movies.with_languages @language
   end
 
+  def stats
+    @title = 'Languages - Stats'
+  end
+
   private
 
   def get_language

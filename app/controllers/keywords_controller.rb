@@ -20,6 +20,10 @@ class KeywordsController < ApplicationController
     @movies = @movies.with_keywords @keyword
   end
 
+  def stats
+    @title = 'Keywords - Stats'
+  end
+
   private
 
   def get_keyword
