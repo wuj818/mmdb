@@ -1,0 +1,4 @@
+= render 'shared/search_form', :target => search_tags_path, :type => @type
+
+%div{:id => "#{@type}_container"}
+  = render 'list'

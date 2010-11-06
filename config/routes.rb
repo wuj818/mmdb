@@ -6,8 +6,7 @@ Mmdb::Application.routes.draw do
 
   resources :sessions, :only => [:new, :create, :destroy]
 
-  match '/movies/new-from-imdb' => 'movies#new',
-    :from_imdb => true, :as => :new_movie_from_imdb
+  match '/movies/new-from-imdb' => 'movies#new', :from_imdb => true, :as => :new_movie_from_imdb
 
   match 'movies/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'movies#index'
   match 'movies/query/:q' => 'movies#index', :as => :formatted_search_movies
@@ -32,46 +31,24 @@ Mmdb::Application.routes.draw do
     end
   end
 
-  match 'genres/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'genres#index'
-  match 'genres(/total-at-least/:minimum)(/query/:q)' => 'genres#index', :as => :formatted_search_genres
-  match 'genres/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'genres#show'
+  match 'tags/search' => 'tags#search'
+  match ':type/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'tags#index'
+  match ':type/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'tags#show'
+  match ':type/(/total-at-least/:minimum)(/query/:q)' => 'tags#index', :as => :formatted_search_tags
 
-  resources :genres, :only => [:index, :show] do
+  [:genres, :keywords, :languages, :countries].each do |type|
+    match ':type' => 'tags#index', :as => :"#{type}"
+    match ':type/stats' => 'tags#stats', :as => :"formatted_stats_#{type}", :type => type
+    match ':type/:id' => 'tags#show'
+  end
+
+  resources :tags, :only => [:index, :show] do
     collection do
       get :search
       get :stats
     end
-  end
 
-  match 'keywords/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'keywords#index'
-  match 'keywords(/total-at-least/:minimum)(/query/:q)' => 'keywords#index', :as => :formatted_search_keywords
-  match 'keywords/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'keywords#show'
-
-  resources :keywords, :only => [:index, :show] do
-    collection do
-      get :search
-      get :stats
-    end
-  end
-
-  match 'languages/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'languages#index'
-  match 'languages(/total-at-least/:minimum)(/query/:q)' => 'languages#index', :as => :formatted_search_languages
-  match 'languages/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'languages#show'
-
-  resources :languages, :only => [:index, :show] do
-    collection do
-      get :search
-      get :stats
-    end
-  end
-
-  match 'countries/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'countries#index'
-  match 'countries(/total-at-least/:minimum)(/query/:q)' => 'countries#index', :as => :formatted_search_countries
-  match 'countries/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'countries#show'
-
-  resources :countries, :only => [:index, :show] do
-    collection do
-      get :search
+    member do
       get :stats
     end
   end

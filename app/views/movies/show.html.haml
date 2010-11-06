@@ -39,22 +39,22 @@
 
   %ul
     - @movie.genres.order(:name).each do |genre|
-      %li= genre_link genre
+      %li= tag_link genre, :genre
 
   %h3 Languages
 
   %ul
     - @movie.languages.order(:name).each do |language|
-      %li= language_link language
+      %li= tag_link language, :language
 
   %h3 Countries
 
   %ul
     - @movie.countries.order(:name).each do |country|
-      %li= country_link country
+      %li= tag_link country, :country
 
   %h3 Keywords
 
   %ul
     - @movie.keywords.order(:name).each do |keyword|
-      %li= keyword_link keyword
+      %li= tag_link keyword, :keyword

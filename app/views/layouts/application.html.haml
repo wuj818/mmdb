@@ -29,17 +29,17 @@
           = link_to 'People', people_path
           = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_people_path
           &nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to 'Genres', genres_path
-          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_genres_path
+          = link_to 'Genres', url_for(:controller => :tags, :type => 'genres')
+          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), formatted_stats_genres_path
           &nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to 'Keywords', keywords_path
-          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_keywords_path
+          = link_to 'Keywords', url_for(:controller => :tags, :type => 'keywords')
+          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), formatted_stats_keywords_path
           &nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to 'Languages', languages_path
-          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_languages_path
+          = link_to 'Languages', url_for(:controller => :tags, :type => 'languages')
+          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), formatted_stats_languages_path
           &nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to 'Countries', countries_path
-          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), stats_countries_path
+          = link_to 'Countries', url_for(:controller => :tags, :type => 'countries')
+          = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), formatted_stats_countries_path
       .span-24
         - flash.each do |kind, msg|
           = content_tag :div, :class => "flash #{kind}" do

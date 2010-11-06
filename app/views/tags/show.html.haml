@@ -1,7 +1,7 @@
 %h2
-  = link_to 'Countries', countries_path
+  = link_to @type.capitalize, send("#{@type}_path")
   &raquo;
-  = @country
+  = @tag
 
 #movies_container
   = render 'movies/list', :movies => @movies
