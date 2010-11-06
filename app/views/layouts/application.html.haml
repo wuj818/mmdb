@@ -45,4 +45,6 @@
           = content_tag :div, :class => "flash #{kind}" do
             = msg
             %span.close X
+        #ajax_activity.hidden
+          = image_tag 'ajax-circle.gif'
         = yield

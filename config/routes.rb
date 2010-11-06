@@ -33,7 +33,7 @@ Mmdb::Application.routes.draw do
   end
 
   match 'genres/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'genres#index'
-  match 'genres/total-at-least/:minimum(/query/:q)' => 'genres#index', :as => :formatted_search_genres
+  match 'genres(/total-at-least/:minimum)(/query/:q)' => 'genres#index', :as => :formatted_search_genres
   match 'genres/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'genres#show'
 
   resources :genres, :only => [:index, :show] do
@@ -44,7 +44,7 @@ Mmdb::Application.routes.draw do
   end
 
   match 'keywords/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'keywords#index'
-  match 'keywords/total-at-least/:minimum(/query/:q)' => 'keywords#index', :as => :formatted_search_keywords
+  match 'keywords(/total-at-least/:minimum)(/query/:q)' => 'keywords#index', :as => :formatted_search_keywords
   match 'keywords/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'keywords#show'
 
   resources :keywords, :only => [:index, :show] do
@@ -55,7 +55,7 @@ Mmdb::Application.routes.draw do
   end
 
   match 'languages/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'languages#index'
-  match 'languages/total-at-least/:minimum(/query/:q)' => 'languages#index', :as => :formatted_search_languages
+  match 'languages(/total-at-least/:minimum)(/query/:q)' => 'languages#index', :as => :formatted_search_languages
   match 'languages/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'languages#show'
 
   resources :languages, :only => [:index, :show] do
@@ -66,7 +66,7 @@ Mmdb::Application.routes.draw do
   end
 
   match 'countries/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'countries#index'
-  match 'countries/total-at-least/:minimum(/query/:q)' => 'countries#index', :as => :formatted_search_countries
+  match 'countries(/total-at-least/:minimum)(/query/:q)' => 'countries#index', :as => :formatted_search_countries
   match 'countries/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'countries#show'
 
   resources :countries, :only => [:index, :show] do

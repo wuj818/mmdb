@@ -11,6 +11,11 @@ class CountriesController < ApplicationController
     @countries = @countries.group(:name)
     @countries = @countries.having(tag_minimum)
     @countries = @countries.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -18,6 +23,11 @@ class CountriesController < ApplicationController
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @movies = @movies.with_countries @country
+
+    respond_to do |format|
+      format.html
+      format.js { render 'movies/index' }
+    end
   end
 
   def stats

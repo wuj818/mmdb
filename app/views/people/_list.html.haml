@@ -1,0 +1,31 @@
+- smart_cache do
+  - @people = @people.paginate(:page => page, :per_page => per_page)
+
+  = render 'shared/page_entries_info', :results => @people, :type => 'person'
+
+  - unless @people.empty?
+    = will_paginate @people
+
+    %table#people
+      %tr
+        %th= sort_link :name
+        %th.numeric= sort_link :credits
+        %th.numeric= sort_link :directing
+        %th.numeric= sort_link :writing
+        %th.numeric= sort_link :composing
+        %th.numeric= sort_link :editing
+        %th.numeric= sort_link :cinematography
+        %th.numeric= sort_link :acting
+
+      - @people.each do |person|
+        %tr
+          %td.main_cell= link_to person.name, person
+          %td.numeric= person.credits_count
+          %td.numeric= person.number_of_directing_credits
+          %td.numeric= person.number_of_writing_credits
+          %td.numeric= person.number_of_composing_credits
+          %td.numeric= person.number_of_editing_credits
+          %td.numeric= person.number_of_cinematography_credits
+          %td.numeric= person.number_of_acting_credits
+
+    = will_paginate @people

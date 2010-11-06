@@ -8,4 +8,8 @@ $(function() {
   $('#ajax_button').live('click', function() {
     $('#ajax_button_indicator').fadeIn();
   });
+
+  $('#ajax_activity')
+    .ajaxStart(function() { $(this).show(); })
+    .ajaxStop(function() { $(this).hide(); });
 });

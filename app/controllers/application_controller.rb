@@ -2,8 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def search
-    params[:minimum] = params[:minimum].to_i
-    values = {:minimum => params[:minimum]}
+    values = {}
+    unless params[:minimum].blank?
+      params[:minimum] = params[:minimum].to_i
+      values = {:minimum => params[:minimum]}
+    end
     values.merge!({:q => params[:q]}) unless params[:q].blank?
     redirect_to send("formatted_search_#{controller_name}_path", values)
   end

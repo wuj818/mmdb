@@ -1,4 +1,4 @@
-= form_tag target, :method => :get, :id => 'search_form' do
+= form_tag target, :method => :get, :id => 'search_form', :remote => true do
   = text_field_tag :q, params[:q].blank? ? '' : params[:q], :placeholder => "Search #{controller.controller_name}..."
   - if controller_name != 'movies' && controller_name != 'people'
     = label_tag :minimum, 'Total >='

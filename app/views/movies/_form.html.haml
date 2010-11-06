@@ -58,4 +58,4 @@
 
   .actions
     = f.submit 'Submit', :id => 'ajax_button', :disable_with => @movie.new_record? ? 'Scraping...' : 'Submitting...'
-    %span#ajax_button_indicator.hidden= image_tag 'ajax.gif'
+    %span#ajax_button_indicator.hidden= image_tag 'ajax-bar.gif'

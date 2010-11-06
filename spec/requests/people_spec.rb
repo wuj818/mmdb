@@ -43,8 +43,7 @@ describe 'People' do
       @people = Person.make! 2
       visit people_path :per_page => 1
 
-      should_see 'Displaying people'
-      should_see '2 in total'
+      should_see 'Displaying'
       should_see_link '2'
       should_see_link @people.first.name
       should_not_see_link @people.last.name

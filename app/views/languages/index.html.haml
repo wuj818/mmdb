@@ -1,23 +1,4 @@
 = render 'shared/search_form', :target => search_languages_path
 
-- smart_cache do
-  - @languages = @languages.paginate(:page => page, :per_page => per_page)
-
-  = render 'shared/page_entries_info', :results => @languages, :type => 'language'
-
-  - unless @languages.empty?
-    = will_paginate @languages
-
-    %table#languages
-      %tr
-        %th= sort_link :name
-        %th.numeric= sort_link :total
-        %th.numeric= sort_link :average
-
-      - @languages.each do |language|
-        %tr
-          %td= language_link language
-          %td.numeric= language.total
-          %td.numeric= format '%.2f', language.average
-
-    = will_paginate @languages
+#languages_container
+  = render 'list'

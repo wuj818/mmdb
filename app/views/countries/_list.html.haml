@@ -1,0 +1,21 @@
+- smart_cache do
+  - @countries = @countries.paginate(:page => page, :per_page => per_page)
+
+  = render 'shared/page_entries_info', :results => @countries, :type => 'country'
+
+  - unless @countries.empty?
+    = will_paginate @countries
+
+    %table#countries
+      %tr
+        %th= sort_link :name
+        %th.numeric= sort_link :total
+        %th.numeric= sort_link :average
+
+      - @countries.each do |country|
+        %tr
+          %td= country_link country
+          %td.numeric= country.total
+          %td.numeric= colorized_average country
+
+    = will_paginate @countries

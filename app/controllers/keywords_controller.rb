@@ -11,6 +11,11 @@ class KeywordsController < ApplicationController
     @keywords = @keywords.group(:name)
     @keywords = @keywords.having(tag_minimum)
     @keywords = @keywords.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -18,6 +23,11 @@ class KeywordsController < ApplicationController
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @movies = @movies.with_keywords @keyword
+
+    respond_to do |format|
+      format.html
+      format.js { render 'movies/index' }
+    end
   end
 
   def stats

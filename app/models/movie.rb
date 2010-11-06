@@ -81,7 +81,7 @@ class Movie < ActiveRecord::Base
   end
 
   def related_movies
-    self.find_related_genres.where('rating >= 7').with_keywords(self.keyword_list, :any).limit(20)
+    self.find_related_genres.where('rating >= 7').with_keywords(self.keyword_list, :any).limit(20) rescue []
   end
 
   # options => :exclude, :any, :match_all

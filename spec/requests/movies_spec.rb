@@ -56,8 +56,7 @@ describe 'Movies' do
       @movies = Movie.make! 2
       visit movies_path :per_page => 1
 
-      should_see 'Displaying movies'
-      should_see '2 in total'
+      should_see 'Displaying'
       should_see_link '2'
       should_see_link @movies.first.title
       should_not_see_link @movies.last.title

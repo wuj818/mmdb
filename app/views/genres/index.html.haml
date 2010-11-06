@@ -1,23 +1,4 @@
 = render 'shared/search_form', :target => search_genres_path
 
-- smart_cache do
-  - @genres = @genres.paginate(:page => page, :per_page => per_page)
-
-  = render 'shared/page_entries_info', :results => @genres, :type => 'genre'
-
-  - unless @genres.empty?
-    = will_paginate @genres
-
-    %table#genres
-      %tr
-        %th= sort_link :name
-        %th.numeric= sort_link :total
-        %th.numeric= sort_link :average
-
-      - @genres.each do |genre|
-        %tr
-          %td= genre_link genre
-          %td.numeric= genre.total
-          %td.numeric= format '%.2f', genre.average
-
-    = will_paginate @genres
+#genres_container
+  = render 'list'

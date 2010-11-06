@@ -20,7 +20,8 @@ h2
     margin: auto
 
     a.button
-      font-family: 'Trebuchet MS'
+      font-family: 'Helvetica Neue'
+      font-size: 0.8em
 
 .container
   padding: 0 20px
@@ -116,9 +117,11 @@ input[type=submit]
 a.button, input[type=submit]
   color: #606060
   background: #efefef
-  padding: 5px 10px
+  padding: 4px 12px
   line-height: 1.0em
   font-weight: bold
+  letter-spacing: 1px
+  word-spacing: 4px
   border: 1px solid #d3d3d3
   vertical-align: middle
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgb(239,239,239)), color-stop(0.5, rgb(227,227,227)))
@@ -142,7 +145,7 @@ a.button, input[type=submit]
     background: -moz-linear-gradient(center top, rgb(227,227,227) 50%, rgb(239,239,239) 50%)
 
   &:active
-    padding: 6px 10px 4px 10px
+    padding: 5px 12px 3px 12px
     background: #d7d7d7
 
 #movies, #people, #genres, #keywords, #languages, #countries
@@ -209,6 +212,14 @@ a.button, input[type=submit]
   img
     vertical-align: middle
 
+#ajax_activity
+  position: fixed
+  top: 50%
+  left: 50%
+  margin-top: -12px
+  margin-left: -12px
+  z-index: 9000
+
 .left
   float: left
   margin-right: 10px
@@ -221,7 +232,7 @@ a.button, input[type=submit]
   display: inline
 
   a.button
-    margin: 0 6px 0 0
+    margin: -6px 6px 0 0
 
 .clear
   clear: both
@@ -257,3 +268,15 @@ td.delete
 
 .stats_icon
   vertical-align: top
+
+.green
+  color: green
+  font-weight: bold
+
+.orange
+  color: orange
+  font-weight: bold
+
+.red
+  color: red
+  font-weight: bold
