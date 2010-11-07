@@ -1,0 +1,11 @@
+= render 'shared/error_messages', :object => @movie
+
+= form_for @movie do |f|
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :imdb_url, 'IMDB Url'
+    = f.text_field :imdb_url
+  .actions
+    = f.submit 'Submit'

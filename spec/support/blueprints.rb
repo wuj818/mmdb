@@ -1,9 +1,6 @@
 require 'machinist/active_record'
 
-# Add your blueprints here.
-#
-# e.g.
-#   Post.blueprint do
-#     title { "Post #{sn}" }
-#     body  { "Lorem ipsum..." }
-#   end
+Movie.blueprint do
+  title    { "Movie #{sn}" }
+  imdb_url { "http://www.imdb.com/title/#{sn}/" }
+end

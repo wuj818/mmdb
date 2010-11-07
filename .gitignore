@@ -3,3 +3,5 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 .DS_STORE
+public/stylesheets/*.css
+config/password.yml

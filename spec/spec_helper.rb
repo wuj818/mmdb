@@ -13,6 +13,10 @@ Spork.prefork do
     Capybara.save_and_open_page_path = "#{Rails.root}/tmp/capybara"
     ActiveSupport::Dependencies.clear
 
+    Machinist.configure do |config|
+      config.cache_objects = false
+    end
+
     config.mock_with :rspec
     config.use_transactional_fixtures = false
 
