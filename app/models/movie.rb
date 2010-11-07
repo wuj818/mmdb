@@ -81,23 +81,13 @@ class Movie < ActiveRecord::Base
   end
 
   def related_movies
-    self.find_related_genres.with_keywords(self.keyword_list).limit(25) rescue []
-  end
-
-  def self.with_genres(genres)
-    tagged_with(genres, :on => :genres, :any => true)
-  end
-
-  def self.with_keywords(keywords)
-    tagged_with(keywords, :on => :keywords, :any => true)
-  end
-
-  def self.with_languages(languages)
-    tagged_with(languages, :on => :languages, :any => true)
-  end
-
-  def self.with_countries(countries)
-    tagged_with(countries, :on => :countries, :any => true)
+    begin
+      movies = self.find_related_genres
+      movies = movies.tagged_with(self.keyword_list, :on => :keywords, :any => true)
+      movies = movies.limit(25)
+    rescue
+      []
+    end
   end
 
   def self.[](title)

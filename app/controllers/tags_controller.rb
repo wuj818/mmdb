@@ -27,7 +27,7 @@ class TagsController < ApplicationController
 
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
-    @movies = @movies.send "with_#{@type}", @tag
+    @movies = @movies.send "tagged_with", @tag, :on => @type
 
     respond_to do |format|
       format.html
@@ -43,7 +43,10 @@ class TagsController < ApplicationController
 
   def get_type
     @type = params[:type]
-    raise ActiveRecord::RecordNotFound unless TYPES.include? @type
+    unless TYPES.include? @type
+      render 'public/404.html', :layout => false
+      return
+    end
   end
 
   def get_tag
