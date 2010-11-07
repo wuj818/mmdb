@@ -9,7 +9,7 @@ Mmdb::Application.routes.draw do
   match '/movies/new-from-imdb' => 'movies#new', :from_imdb => true, :as => :new_movie_from_imdb
 
   match 'movies/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'movies#index'
-  match 'movies/query/:q' => 'movies#index', :as => :formatted_search_movies
+  match 'movies(/query/:q)' => 'movies#index', :as => :formatted_search_movies
 
   resources :movies do
     collection do
@@ -20,7 +20,7 @@ Mmdb::Application.routes.draw do
   end
 
   match 'people/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'people#index'
-  match 'people/query/:q' => 'people#index', :as => :formatted_search_people
+  match 'people(/query/:q)' => 'people#index', :as => :formatted_search_people
 
   resources :people, :except => [:new, :create] do
     resources :credits, :only => [:new, :create, :destroy]

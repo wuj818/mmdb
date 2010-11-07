@@ -6,6 +6,9 @@
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
+    #ajax_activity.hidden
+      = image_tag 'ajax-circle.gif'
+
     #admin_wrapper
       #admin_bar
         - if admin?
@@ -40,11 +43,9 @@
           &nbsp;&nbsp;&nbsp;&nbsp;
           = link_to 'Countries', url_for(:controller => :tags, :type => 'countries')
           = link_to image_tag('icons/chart-bar.png', :class => 'stats_icon'), formatted_stats_countries_path
-      .span-24
+      .span-24.content
         - flash.each do |kind, msg|
           = content_tag :div, :class => "flash #{kind}" do
             = msg
             %span.close X
-        #ajax_activity.hidden
-          = image_tag 'ajax-circle.gif'
         = yield
