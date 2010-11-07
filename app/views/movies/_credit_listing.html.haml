@@ -1,7 +1,6 @@
-%div{:id => "#{credit_type}_credits"}
+%div.info_section{:id => "#{credit_type}_credits"}
+  %h3 #{job.pluralize.capitalize} (#{count})
   %table
-    %th
-      #{credit_type.capitalize} Credits (#{count})
     - @movie.send("sorted_#{credit_type}_credits").each do |credit|
       %tr
         %td.main_cell
@@ -13,4 +12,3 @@
         - if action_name == 'edit'
           %td.delete
             = link_to 'Delete', [credit.person, credit], :confirm => CONFIRM, :method => :delete
-  %hr

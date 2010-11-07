@@ -80,14 +80,18 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  def relevant_keywords(limit = 8)
+    keywords = Tagging.select('name, COUNT(*), AVG(rating)')
+    keywords = keywords.joins(:tag).joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
+    keywords = keywords.where('name IN (?)', self.keyword_list)
+    keywords = keywords.group(:name).having('COUNT(*) >= 5')
+    keywords = keywords.order('AVG(rating) DESC').limit(limit)
+  end
+
   def related_movies
-    begin
-      movies = self.find_related_genres
-      movies = movies.tagged_with(self.keyword_list, :on => :keywords, :any => true)
-      movies = movies.limit(25)
-    rescue
-      []
-    end
+    keywords = self.relevant_keywords(25).map(&:name)
+    movies = self.find_related_genres.where('rating >= 7')
+    movies = movies.tagged_with(keywords, :on => :keywords, :any => true).limit(25) rescue []
   end
 
   def self.[](title)

@@ -19,6 +19,10 @@ Mmdb::Application.routes.draw do
       get :search
       get :stats
     end
+
+    member do
+      get :keywords
+    end
   end
 
   match 'people/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'people#index', :via => :get

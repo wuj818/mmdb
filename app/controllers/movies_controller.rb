@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
-  before_filter :authorize, :except => [:index, :show, :search, :stats]
-  before_filter :get_movie, :only => [:show, :edit, :update, :destroy]
+  before_filter :authorize, :except => [:index, :show, :search, :stats, :keywords]
+  before_filter :get_movie, :only => [:show, :edit, :update, :destroy, :keywords]
 
   def index
     @title = 'Movies'
@@ -72,6 +72,10 @@ class MoviesController < ApplicationController
 
   def stats
     @title = 'Movies - Stats'
+  end
+
+  def keywords
+    @title = "#{movie_title} - Keywords"
   end
 
   private

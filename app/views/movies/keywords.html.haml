@@ -1,0 +1,9 @@
+%h2
+  = link_to @movie.title, @movie
+  &raquo; Keywords
+
+- smart_cache do
+  #full_keywords.info_section
+    %ul
+      - @movie.keywords.order(:name).each do |keyword|
+        %li= tag_link keyword, :keyword

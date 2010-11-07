@@ -8,7 +8,6 @@
   - unless @movie.aka.blank?
     %em aka #{@movie.aka}
     %br
-  %br
 
   %p= link_to 'IMDB', @movie.imdb_url
 
@@ -21,40 +20,35 @@
 
   %p #{@movie.rating}/10
 
-  #synopsis
-    = @movie.synopsis
-  %br
+#synopsis.info_section
+  %h3 Synopsis
+  %p= @movie.synopsis
+
+- smart_cache 'tags' do
+  #tags.info_section
+    %h3 Tags
+
+    %span{:class => 'tag_label'} Genres:
+    = raw @movie.genres.order(:name).map { |genre| tag_link genre, :genre }.join ' | '
+    %hr
+
+    %span{:class => 'tag_label'} Languages:
+    = raw @movie.languages.order(:name).map { |language| tag_link language, :language }.join ' | '
+    %hr
+
+    %span{:class => 'tag_label'} Countries:
+    = raw @movie.countries.order(:name).map { |country| tag_link country, :country }.join ' | '
+    %hr
+
+    %span{:class => 'tag_label'} Keywords:
+    = raw @movie.relevant_keywords.map { |keyword| tag_link keyword, :keyword }.join ' | '
+    = ' | '
+    = link_to 'More Keywords &raquo;'.html_safe, keywords_movie_path(@movie), :class => 'more'
 
 - smart_cache 'related' do
-  %h2 Related Movies
-  - @movie.related_movies.shuffle.each do |movie|
-    = link_to movie.title, movie
-    %br
+  #related_movies.info_section
+    %h3 Related Movies
+    = raw @movie.related_movies.shuffle.map { |movie| link_to movie.title, movie }.join ' | '
 
 - smart_cache 'credits' do
   = render 'credits'
-
-- smart_cache 'tags' do
-  %h3 Genres
-
-  %ul
-    - @movie.genres.order(:name).each do |genre|
-      %li= tag_link genre, :genre
-
-  %h3 Languages
-
-  %ul
-    - @movie.languages.order(:name).each do |language|
-      %li= tag_link language, :language
-
-  %h3 Countries
-
-  %ul
-    - @movie.countries.order(:name).each do |country|
-      %li= tag_link country, :country
-
-  %h3 Keywords
-
-  %ul
-    - @movie.keywords.order(:name).each do |keyword|
-      %li= tag_link keyword, :keyword
