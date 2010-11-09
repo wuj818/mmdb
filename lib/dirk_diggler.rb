@@ -23,6 +23,11 @@ class DirkDiggler
     @page = @agent.get @target rescue nil
   end
 
+  def refresh(target)
+    @target = target
+    @page = @agent.get @target rescue nil
+  end
+
   def get(*items)
     items = ITEMS if items.first == :all
     items.each { |item| self.send "get_#{item}" }

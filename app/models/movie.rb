@@ -63,14 +63,14 @@ class Movie < ActiveRecord::Base
     define_method "add_#{tag_type}" do |*tags|
       self.send("#{tag_type}_list") << tags
       self.send("#{tag_type}_list").flatten!
-      save
+      save :validate => false
     end
 
     define_method "remove_#{tag_type}" do |*tags|
       return if tags.empty?
       original_tags = self.send "#{tag_type}_list"
       self.send("#{tag_type}_list=", original_tags - tags)
-      save
+      save :validate => false
     end
   end
 
