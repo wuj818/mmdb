@@ -50,7 +50,7 @@ class TagsController < ApplicationController
   end
 
   def get_tag
-    @tag = params[:id]
+    @tag = CGI::unescape params[:id]
     raise ActiveRecord::RecordNotFound if Tag.find_by_name(@tag).blank?
   end
 end
