@@ -23,6 +23,7 @@
     .container
       .span-24
         %header
+          = random_quote
           %h1= link_to 'MMDb', root_path
       .span-24
         %nav
@@ -49,3 +50,6 @@
             = msg
             %span.close X
         = yield
+      .span-24
+        %footer
+          = random_quote

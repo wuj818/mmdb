@@ -12,4 +12,11 @@ module ApplicationHelper
     str << "/#{key}" unless key.blank?
     cache(str, :expires_in => 2.weeks, &block)
   end
+
+  def random_quote
+    quote = QUOTES.sample
+    source = quote.scan(/\A(.+?):/).flatten.first
+    quote.gsub! "#{source}: ", ''
+    content_tag :div, quote, :class => 'random_quote', :alt => source, :title => source
+  end
 end
