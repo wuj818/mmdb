@@ -42,10 +42,30 @@ Mmdb::Application.routes.draw do
     end
   end
 
+  [:decades, :years].each do |type|
+    match "#{type}/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)" => "#{type}#index", :via => :get
+    match "#{type}/:id/sort/:sort/order/:order(/page/:page)(/query/:q)" => "#{type}#show", :via => :get
+    match "#{type}(/total-at-least/:minimum)(/query/:q)" => "#{type}#index",
+      :as => :"formatted_search_#{type}", :via => :get
+
+    resources type, :only => [:index, :show] do
+      collection do
+        get :search
+        get :stats
+      end
+
+      member do
+        get :stats
+      end
+    end
+  end
+
+  match '/stats' => 'pages#main', :via => :get
+
   match 'tags/search' => 'tags#search', :via => :get
   match ':type/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'tags#index', :via => :get
   match ':type/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'tags#show', :via => :get
-  match ':type/(/total-at-least/:minimum)(/query/:q)' => 'tags#index',
+  match ':type(/total-at-least/:minimum)(/query/:q)' => 'tags#index',
     :as => :formatted_search_tags, :via => :get
 
   [:genres, :keywords, :languages, :countries].each do |type|
@@ -64,8 +84,6 @@ Mmdb::Application.routes.draw do
       get :stats
     end
   end
-
-  match '/stats' => 'pages#stats', :via => :get
 
   root :to => 'pages#main', :via => :get
 end

@@ -7,13 +7,13 @@ class TagsController < ApplicationController
   def index
     @title = @type.capitalize
 
-    @tags = Tag.order(tag_order)
+    @tags = Tag.order(order)
     @tags = @tags.select('name, COUNT(*) AS total, AVG(rating) AS average')
     @tags = @tags.joins(:taggings)
     @tags = @tags.joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
     @tags = @tags.where('context = ?', @type)
     @tags = @tags.group(:name)
-    @tags = @tags.having(tag_minimum)
+    @tags = @tags.having(minimum)
     @tags = @tags.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
 
     respond_to do |format|
@@ -52,5 +52,23 @@ class TagsController < ApplicationController
   def get_tag
     @tag = CGI::unescape params[:id]
     raise ActiveRecord::RecordNotFound if Tag.find_by_name(@tag).blank?
+  end
+
+  def order
+    params[:sort] ||= 'name'
+    column = case params[:sort]
+    when 'total' then 'COUNT(*)'
+    when 'average' then 'AVG(rating)'
+    else 'name'
+    end
+
+    params[:order] ||= 'asc'
+    result = "#{column} #{params[:order]}"
+    result << ', COUNT(*) DESC' unless params[:sort] == 'total'
+    result
+  end
+
+  def minimum
+    "COUNT(*) >= #{params[:minimum].to_i}"
   end
 end

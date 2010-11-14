@@ -1,0 +1,21 @@
+- smart_cache do
+  - @years = @years.paginate(:page => page, :per_page => per_page)
+
+  = render 'shared/page_entries_info', :results => @years, :type => 'year'
+
+  - unless @years.empty?
+    = will_paginate @years
+
+    %table#years
+      %tr
+        %th= sort_link :year
+        %th.numeric= sort_link :total
+        %th.numeric= sort_link :average
+
+      - @years.each do |year|
+        %tr
+          %td.main_cell= link_to year.year, year_path(year.year)
+          %td.numeric= year.total
+          %td.numeric= colorized_average year
+
+    = will_paginate @years

@@ -1,0 +1,7 @@
+%h2
+  = link_to 'Decades', decades_path
+  &raquo;
+  = @decade.to_s << 's'
+
+#movies_container
+  = render 'movies/list', :movies => @movies
