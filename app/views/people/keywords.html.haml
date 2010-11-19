@@ -1,0 +1,9 @@
+%h2
+  = link_to @person.name, @person
+  &raquo; Keywords
+
+- smart_cache do
+  #keyword_cloud.info_section
+    - tag_cloud @person.keywords, %w(css1 css2 css3 css4) do |keyword, css_class|
+      = tag_link keyword, :keyword, :class => css_class
+      &nbsp;

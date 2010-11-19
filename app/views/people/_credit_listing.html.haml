@@ -1,7 +1,7 @@
-%div{:id => "#{credit_type}_credits"}
+%div.info_section{:id => "#{credit_type}_credits"}
+  - average = format '%.2f', @person.send("#{credit_type}_credits").average(:rating)
+  %h3 #{job.capitalize} (#{count}) (#{average}/10)
   %table
-    %th
-      #{credit_type.capitalize} Credits (#{count})
     - @person.send("sorted_#{credit_type}_credits").each do |credit|
       %tr
         %td.main_cell
@@ -14,4 +14,3 @@
         - if action_name == 'edit'
           %td.delete
             = link_to 'Delete', [@person, credit], :confirm => CONFIRM, :method => :delete
-  %hr

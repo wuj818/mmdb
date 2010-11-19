@@ -80,7 +80,11 @@ class Movie < ActiveRecord::Base
     end
   end
 
-  def relevant_keywords(limit = 8)
+  def sorted_keywords
+    self.keywords.order(:name)
+  end
+
+  def relevant_keywords(limit = 10)
     keywords = Tagging.select('name, COUNT(*), AVG(rating)')
     keywords = keywords.joins(:tag).joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
     keywords = keywords.where('name IN (?)', self.keyword_list)

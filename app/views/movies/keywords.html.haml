@@ -5,5 +5,5 @@
 - smart_cache do
   #full_keywords.info_section
     %ul
-      - @movie.keywords.order(:name).each do |keyword|
+      - @movie.sorted_keywords.each do |keyword|
         %li= tag_link keyword, :keyword

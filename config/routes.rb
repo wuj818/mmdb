@@ -36,6 +36,10 @@ Mmdb::Application.routes.draw do
       get :search
       get :stats
     end
+
+    member do
+      get :keywords
+    end
   end
 
   match 'tags/search' => 'tags#search', :via => :get

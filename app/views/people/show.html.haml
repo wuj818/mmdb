@@ -8,5 +8,26 @@
 
   %p= link_to 'IMDB', @person.imdb_url
 
+- smart_cache 'tags' do
+  #tags.info_section
+    %h3 Tags
+
+    %span{:class => 'tag_label'} Genres:
+    = raw @person.relevant_genres.map { |genre| tag_link genre, :genre }.join ' | '
+    %hr
+
+    %span{:class => 'tag_label'} Languages:
+    = raw @person.relevant_languages.map { |language| tag_link language, :language }.join ' | '
+    %hr
+
+    %span{:class => 'tag_label'} Countries:
+    = raw @person.relevant_countries.map { |country| tag_link country, :country }.join ' | '
+    %hr
+
+    %span{:class => 'tag_label'} Keywords:
+    = raw @person.relevant_keywords.map { |keyword| tag_link keyword, :keyword }.join ' | '
+    = ' | '
+    = link_to 'More Keywords &raquo;'.html_safe, keywords_person_path(@person), :class => 'more'
+
 - smart_cache 'credits' do
   = render 'credits'

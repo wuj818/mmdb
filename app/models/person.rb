@@ -29,6 +29,30 @@ class Person < ActiveRecord::Base
     end
   end
 
+  def movies
+    Movie.joins(:credits).where('credits.person_id = ?', self.id).group('movie_id')
+  end
+
+  def relevant_genres
+    self.movies.genre_counts.order('count DESC').limit(3)
+  end
+
+  def relevant_languages
+    self.movies.language_counts.order('count DESC').limit(3)
+  end
+
+  def relevant_countries
+    self.movies.country_counts.order('count DESC').limit(3)
+  end
+
+  def keywords
+    self.movies.keyword_counts
+  end
+
+  def relevant_keywords(limit = 10)
+    self.keywords.order('count DESC').limit(limit)
+  end
+
   def self.[](name)
     self.find_by_name name
   end
