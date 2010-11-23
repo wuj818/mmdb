@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
     @title = 'People'
     @people = Person.order(order)
     @people = @people.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
-    @people = @people.joins(:counter)
+    @people = @people.joins(:counter).includes(:counter)
 
     respond_to do |format|
       format.html
