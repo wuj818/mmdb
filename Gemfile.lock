@@ -33,6 +33,8 @@ GEM
     annotate-models (1.0.4)
     arel (2.0.4)
     builder (2.1.2)
+    bullet (2.0.1)
+      uniform_notifier (~> 1.0.0)
     capybara (0.4.0)
       celerity (>= 0.7.9)
       culerity (>= 0.2.4)
@@ -130,6 +132,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    uniform_notifier (1.0.0)
     will_paginate (3.0.pre2)
     wirble (0.1.3)
     xpath (0.1.2)
@@ -141,6 +144,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   annotate-models
+  bullet
   capybara
   database_cleaner
   escape_utils

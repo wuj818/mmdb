@@ -15,13 +15,14 @@ gem 'escape_utils'
 gem 'will_paginate', '~> 3.0.beta'
 gem 'acts-as-taggable-on'
 gem 'mechanize'
-gem 'rainbow'
-gem 'progressbar'
 
 group :development do
   gem 'annotate-models'
   gem 'wirble'
   gem 'hirb'
+  gem 'rainbow'
+  gem 'progressbar'
+  gem 'bullet'
 end
 
 group :test, :development do
