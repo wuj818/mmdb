@@ -8,7 +8,7 @@
   .field
     = f.label :movie_id, 'Movie'
     %br
-    - @movies = Movie.select(:id, :title).order(:sort_title)
+    - @movies = Movie.select([:id, :title]).order(:sort_title)
     = collection_select :credit, :movie_id, @movies, :id, :title, :include_blank => true
 
   .field
