@@ -9,6 +9,7 @@ gem 'rails3-generators'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'smurf'
 
 gem 'faker'
 gem 'escape_utils'

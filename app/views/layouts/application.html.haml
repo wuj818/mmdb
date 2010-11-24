@@ -2,8 +2,8 @@
 %html
   %head
     %title= @title.blank? ? 'MMDb' : "MMDb - #{@title}"
-    = stylesheet_link_tag 'blueprint', 'application'
-    = javascript_include_tag :defaults
+    = stylesheet_link_tag 'blueprint', 'application', :cache => true
+    = javascript_include_tag :defaults, :cache => true
     = csrf_meta_tag
   %body
     #ajax_activity.hidden
