@@ -5,6 +5,7 @@
     = stylesheet_link_tag 'blueprint', 'application', :cache => true
     = javascript_include_tag :defaults, :cache => true
     = csrf_meta_tag
+    = render 'shared/google_analytics'
   %body
     #ajax_activity.hidden
       = image_tag 'ajax-circle.gif'
