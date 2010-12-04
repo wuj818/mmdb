@@ -172,15 +172,12 @@ a.button, input[type=submit]
   float: right
   display: inline
 
-  .disabled
-    display: none
-
-  .previous_page, .next_page
+  .previous_page:not(.disabled), .next_page:not(.disabled)
     &:hover
       color: #06C
       background-color: #fff
 
-  a, em
+  a, em, .disabled
     display: inline-block
     padding: 0 6px
     text-decoration: none
@@ -196,6 +193,9 @@ a.button, input[type=submit]
   em
     background-color: #fff200
     font-weight: bold
+
+  .disabled
+    color: #ccc
 
 #genre_checkboxes
   width: 35%
