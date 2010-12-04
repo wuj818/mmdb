@@ -1,4 +1,13 @@
 $(function() {
+  $('a:not([rel=external])').live('click', function() {
+    _gaq.push(['_trackPageview', $(this).attr('href')]);
+  });
+
+  $('#search_form').submit(function() {
+    path = $(this).attr('action').replace('search', 'query/') + $('#q').serialize().replace('q=', '');
+    _gaq.push(['_trackPageview', path]);
+  });
+
   $('.close').live('click', function() { $(this).parent().fadeOut(500); });
 
   $('#genre_checkboxes label').live('click', function() {

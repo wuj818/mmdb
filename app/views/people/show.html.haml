@@ -6,7 +6,7 @@
 - smart_cache 'details' do
   %h2= @person.name
 
-  %p= link_to 'IMDB', @person.imdb_url
+  %p= link_to 'IMDB', @person.imdb_url, :rel => :external
 
 - smart_cache 'tags' do
   #tags.info_section

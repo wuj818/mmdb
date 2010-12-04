@@ -9,10 +9,10 @@
     %em aka #{@movie.aka}
     %br
 
-  %p= link_to 'IMDB', @movie.imdb_url
+  %p= link_to 'IMDB', @movie.imdb_url, :rel => :external
 
   - unless @movie.rotten_tomatoes_url.blank?
-    %p= link_to 'Rotten Tomatoes', @movie.rotten_tomatoes_url
+    %p= link_to 'Rotten Tomatoes', @movie.rotten_tomatoes_url, :rel => :external
 
   %p= @movie.year
 
