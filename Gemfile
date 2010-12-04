@@ -3,9 +3,7 @@ source 'http://gemcutter.org'
 
 gem 'rails', '3.0.3'
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'mongrel', '>= 1.2.0.pre2'
 
-gem 'rails3-generators'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
@@ -18,6 +16,10 @@ gem 'acts-as-taggable-on'
 gem 'mechanize'
 
 group :development do
+  gem 'mongrel', '>= 1.2.0.pre2'
+  gem 'rails3-generators'
+  gem 'capistrano'
+
   gem 'annotate-models'
   gem 'wirble'
   gem 'hirb'
