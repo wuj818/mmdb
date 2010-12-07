@@ -75,7 +75,7 @@ describe 'Movies' do
       should_see movie.year.to_s
       should_see "#{movie.rating}/10"
       should_see "#{movie.runtime} min"
-      link('IMDB')[:href].should == movie.imdb_url
+      find('.imdb')[:href].should == movie.imdb_url
     end
   end
 
@@ -105,7 +105,7 @@ describe 'Movies' do
       should_be_on movie_path @movie
       should_see %("#{@movie.title}" was successfully edited.)
       should_see @movie.title
-      link('IMDB')[:href].should == @movie.imdb_url
+      find('.imdb')[:href].should == @movie.imdb_url
       should_see 'Drama'
     end
   end

@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @title = movie_title
+    @title = @movie.full_title
   end
 
   def new
@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @title = %(Edit "#{movie_title}")
+    @title = %(Edit "#{@movie.full_title}")
   end
 
   def create
@@ -40,7 +40,7 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @title = %(Edit "#{movie_title}")
+    @title = %(Edit "#{@movie.full_title}")
     if @movie.update_attributes params[:movie]
       flash[:success] = %("#{@movie.title}" was successfully edited.)
       redirect_to @movie
@@ -75,7 +75,7 @@ class MoviesController < ApplicationController
   end
 
   def keywords
-    @title = "#{movie_title} - Keywords"
+    @title = "#{@movie.full_title} - Keywords"
   end
 
   private
@@ -83,9 +83,5 @@ class MoviesController < ApplicationController
   def get_movie
     @movie = Movie.find_by_permalink params[:id]
     raise ActiveRecord::RecordNotFound if @movie.blank?
-  end
-
-  def movie_title
-    @movie.title.match(/\(\d{4}\)\z/) ? @movie.title : "#{@movie.title} (#{@movie.year})"
   end
 end

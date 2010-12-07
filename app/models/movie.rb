@@ -48,6 +48,10 @@ class Movie < ActiveRecord::Base
     self.permalink
   end
 
+  def full_title
+    self.title.match(/\(\d{4}\)\z/) ? self.title : "#{self.title} (#{self.year})"
+  end
+
   def get_preliminary_info
     return false unless new_record?
     diggler = DirkDiggler.new self.imdb_url
