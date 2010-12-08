@@ -7,3 +7,4 @@ public/stylesheets/*.css
 config/password.yml
 public/javascripts/all.js
 config/deploy.rb
+config/s3.yml

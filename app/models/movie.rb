@@ -30,13 +30,24 @@ class Movie < ActiveRecord::Base
 
   validates :permalink, :uniqueness => true
 
+  validates_presence_of :poster_url, :if => :poster_url_provided?, :message => 'is invalid or inaccessible'
+
   before_save :create_permalink
 
   before_save :create_sort_title
 
+  before_validation :save_downloaded_poster, :if => :poster_url_provided?
+
+  before_validation :clear_downloaded_poster, :unless => :poster_url_provided?
+
   has_many :credits, :include => :person, :dependent => :destroy
 
   has_one :counter, :as => :countable, :dependent => :destroy
+
+  has_attached_file :poster,
+    :storage => :s3,
+    :path => '/:style/:id/:filename',
+    :s3_credentials => Rails.env.production? ? '/home/mmdb/MMDb/config/s3.yml' : "#{Rails.root}/config/s3.yml"
 
   GENRES = %w(
     Action       Adventure  Animation  Biography  Comedy     Crime
@@ -122,5 +133,25 @@ class Movie < ActiveRecord::Base
   def create_sort_title
     return unless self.sort_title.blank?
     self.sort_title = self.title.to_sort_column
+  end
+
+  def poster_url_provided?
+    !self.poster_url.blank?
+  end
+
+  def save_downloaded_poster
+    return unless self.poster_url_changed?
+    self.poster = download_poster
+  end
+
+  def download_poster
+    io = open(URI.parse(self.poster_url))
+    def io.original_filename ; base_uri.path.split('/').last ; end
+    io.original_filename.blank? ? nil : io
+  rescue
+  end
+
+  def clear_downloaded_poster
+    self.poster = nil
   end
 end

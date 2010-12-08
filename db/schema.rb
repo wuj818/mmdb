@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 16) do
+ActiveRecord::Schema.define(:version => 17) do
 
   create_table "counters", :force => true do |t|
     t.integer  "countable_id"
@@ -53,6 +53,11 @@ ActiveRecord::Schema.define(:version => 16) do
     t.string   "rotten_tomatoes_url"
     t.text     "synopsis"
     t.integer  "credits_count",       :default => 0
+    t.string   "poster_file_name"
+    t.string   "poster_url"
+    t.string   "poster_content_type"
+    t.integer  "poster_file_size"
+    t.datetime "poster_updated_at"
   end
 
   add_index "movies", ["sort_title"], :name => "index_movies_on_sort_title"

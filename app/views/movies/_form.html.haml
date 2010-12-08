@@ -1,6 +1,6 @@
 = render 'shared/error_messages', :object => @movie
 
-= form_for @movie do |f|
+= form_for @movie, :html => {:multipart => true} do |f|
   .field
     = f.label :title
     %br
@@ -51,6 +51,18 @@
     = f.label :synopsis
     %br
     = f.text_area :synopsis
+
+  .field
+    = f.label :poster
+    %br
+    = f.file_field :poster
+    %br
+    = f.label :poster_url, 'Upload From URL:'
+    %br
+    = f.text_field :poster_url
+    - if @movie.poster.exists?
+      %br
+      = image_tag @movie.poster.url(:original), :width => 150, :height => 220
 
   - unless @movie.new_record?
     .field

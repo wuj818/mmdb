@@ -3,7 +3,8 @@
   = link_to 'Delete', @movie, :confirm => CONFIRM, :method => :delete, :class => 'button'
 
 .span-8
-  = image_tag 'blank-poster-full.gif', :id => 'full_poster'
+  - url = @movie.poster.exists? ? @movie.poster.url(:original) : 'blank-poster-full.gif'
+  = image_tag url, :id => 'full_poster'
 
 .span-16.last
   #movie_details
