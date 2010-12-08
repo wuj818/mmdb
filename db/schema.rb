@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 17) do
+ActiveRecord::Schema.define(:version => 18) do
 
   create_table "counters", :force => true do |t|
     t.integer  "countable_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 17) do
     t.string   "poster_content_type"
     t.integer  "poster_file_size"
     t.datetime "poster_updated_at"
+    t.string   "movie_poster_db_url"
   end
 
   add_index "movies", ["sort_title"], :name => "index_movies_on_sort_title"

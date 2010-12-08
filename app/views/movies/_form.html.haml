@@ -28,11 +28,6 @@
     = f.text_field :imdb_url
 
   .field
-    = f.label :rotten_tomatoes_url, 'Rotten Tomatoes'
-    %br
-    = f.text_field :rotten_tomatoes_url
-
-  .field
     = f.label :year
     %br
     = f.text_field :year
@@ -51,6 +46,16 @@
     = f.label :synopsis
     %br
     = f.text_area :synopsis
+
+  .field
+    = f.label :rotten_tomatoes_url, 'Rotten Tomatoes'
+    %br
+    = f.text_field :rotten_tomatoes_url
+
+  .field
+    = f.label :movie_poster_db_url, 'Movie Poster DB'
+    %br
+    = f.text_field :movie_poster_db_url
 
   .field
     = f.label :poster
