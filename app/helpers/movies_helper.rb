@@ -19,4 +19,12 @@ module MoviesHelper
     when 8..10 then 'green'
     end
   end
+
+  def original_movie_poster(movie)
+    image_tag movie.poster.url(:original), :class => 'original_poster'
+  end
+
+  def tiny_movie_poster(movie)
+    image_tag movie.poster.url(:tiny), :class => 'tiny_poster', :width => 20, :height => 30
+  end
 end

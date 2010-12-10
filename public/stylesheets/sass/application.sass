@@ -17,14 +17,12 @@ h2
 
   #admin_bar
     text-align: center
-    font-size: 1.16em
     padding: 10px
     width: 940px
     margin: auto
 
     a.button
-      font-family: 'Helvetica Neue'
-      font-size: 0.8em
+      margin-top: 0
 
 .container
   padding: 0 20px
@@ -62,8 +60,8 @@ footer
 
 .flash
   padding: 3px 8px
-  -webkit-border-radius: 4px
-  -moz-border-radius: 4px
+  -webkit-border-radius: 3px
+  -moz-border-radius: 3px
 
 .close
   color: #000
@@ -105,55 +103,36 @@ label
   font-size: 1.25em
 
 input
-  -webkit-border-radius: 4px
-  -moz-border-radius: 4px
+  -webkit-border-radius: 3px
+  -moz-border-radius: 3px
   font-family: 'Monaco', monospace
   font-size: 1.25em
 
-input[type=submit]
-  font-size: 1em
-  border: 1px solid #d3d3d3
-  background: #efefef
-  margin: 12px 0
-  font-family: 'Helvetica Neue'
-
-  &:hover
-    border-color: #b3b3b3
-    background: #e3e3e3
-
 a.button, input[type=submit]
-  color: #606060
+  color: #333
   background: #efefef
   padding: 4px 12px
   line-height: 1.0em
   font-weight: bold
+  font-size: 12px
   letter-spacing: 1px
   word-spacing: 4px
-  border: 1px solid #d3d3d3
+  border: 1px solid #d4d4d4
   vertical-align: middle
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgb(239,239,239)), color-stop(0.5, rgb(227,227,227)))
-  background: -moz-linear-gradient(center top, rgb(239,239,239) 50%, rgb(227,227,227) 50%)
   text-decoration: none
-  -webkit-border-radius: 4px
-  -moz-border-radius: 4px
+  -webkit-border-radius: 3px
+  -moz-border-radius: 3px
   display: inline-block
   line-height: 1em
   font-family: 'Helvetica Neue'
   cursor: pointer
 
   &:hover
+    background: #d4d4d4
     border-color: #b3b3b3
-    background: #e3e3e3
-
-  &:hover
-    background: #e3e3e3
-    border-color: #b3b3b3
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgb(227,227,227)), color-stop(0.5, rgb(239,239,239)))
-    background: -moz-linear-gradient(center top, rgb(227,227,227) 50%, rgb(239,239,239) 50%)
 
   &:active
     padding: 5px 12px 3px 12px
-    background: #d7d7d7
 
 #movies, #people, #genres, #keywords, #languages, #countries, #decades, #years
   margin: 10px 0
@@ -307,8 +286,8 @@ ul
 
 .info_section
   border: 1px solid #bbb
-  -webkit-border-radius: 4px
-  -moz-border-radius: 4px
+  -webkit-border-radius: 3px
+  -moz-border-radius: 3px
   padding: 10px
   margin-bottom: 20px
 
@@ -399,12 +378,17 @@ ul
     font-size: 1em
     margin-bottom: 5px
 
-#full_poster
+.original_poster
   border: 1px solid #bbb
-  -webkit-border-radius: 4px
-  -moz-border-radius: 4px
+  -webkit-border-radius: 3px
+  -moz-border-radius: 3px
   padding: 8px
   margin: 0 20px 20px 0
+
+.tiny_poster
+  vertical-align: middle
+  margin-right: 2px
+  border: 1px solid #b3b3b3
 
 .clear
   clear: both

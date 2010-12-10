@@ -14,7 +14,9 @@
 
       - @movies.each do |movie|
         %tr
-          %td= link_to movie.title, movie
+          %td
+            = link_to tiny_movie_poster(movie), movie
+            = link_to movie.title, movie
           %td.numeric= movie.year
           %td.numeric= movie.runtime
           %td.numeric= colorized_rating movie

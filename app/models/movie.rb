@@ -45,6 +45,8 @@ class Movie < ActiveRecord::Base
   has_one :counter, :as => :countable, :dependent => :destroy
 
   has_attached_file :poster,
+    :styles => { :tiny => '20x30!' },
+    :default_url => '/images/:style-poster.gif',
     :storage => :s3,
     :path => '/:style/:id/:filename',
     :s3_credentials => Rails.env.production? ? '/home/mmdb/MMDb/config/s3.yml' : "#{Rails.root}/config/s3.yml"
