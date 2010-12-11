@@ -6,7 +6,8 @@
 - smart_cache 'details' do
   %h2= @person.name
 
-  %p= link_to 'IMDB', @person.imdb_url, :rel => :external
+  %span.icons
+    = link_to image_tag('icons/imdb-icon.png', :title => 'IMDb'), @person.imdb_url, :rel => :external, :class => 'imdb'
 
 - smart_cache 'tags' do
   #tags.info_section
