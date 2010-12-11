@@ -30,22 +30,22 @@ describe 'Movies' do
 
       # ascending title by default
       visit movies_path
-      movies = all('td:first-child a').map(&:text)
+      movies = all('.movie_link').map(&:text)
       movies.should == ['The Big Lebowski', 'Boogie Nights', 'Dumb and Dumber']
 
       # descending title
       click_link 'Title'
-      movies = all('td:first-child a').map(&:text)
+      movies = all('.movie_link').map(&:text)
       movies.should == ['Dumb and Dumber', 'Boogie Nights', 'The Big Lebowski']
 
       # ascending year
       click_link 'Year'
-      movies = all('td:first-child a').map(&:text)
+      movies = all('.movie_link').map(&:text)
       movies.should == ['Dumb and Dumber', 'Boogie Nights', 'The Big Lebowski']
 
       # descending year
       click_link 'Year'
-      movies = all('td:first-child a').map(&:text)
+      movies = all('.movie_link').map(&:text)
       movies.should == ['The Big Lebowski', 'Boogie Nights', 'Dumb and Dumber']
     end
 

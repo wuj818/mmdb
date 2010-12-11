@@ -1,11 +1,11 @@
 %div.info_section{:id => "#{credit_type}_credits"}
   - average = format '%.2f', @person.send("#{credit_type}_credits").average(:rating)
-  %h3 #{job.capitalize} (#{count}) (#{average}/10)
+  %h3 #{job} (#{count}) (#{average}/10)
   %table
     - @person.send("sorted_#{credit_type}_credits").each do |credit|
       %tr
         %td.main_cell
-          = link_to tiny_movie_poster(credit.movie), credit.movie
+          = tiny_movie_poster_link credit.movie, job
           = link_to credit.movie.title, credit.movie
           (#{credit.movie.year})
         %td.ellipsis

@@ -15,8 +15,8 @@
       - @movies.each do |movie|
         %tr
           %td
-            = link_to tiny_movie_poster(movie), movie
-            = link_to movie.title, movie
+            = tiny_movie_poster_link movie
+            = link_to movie.title, movie, :class => 'movie_link'
           %td.numeric= movie.year
           %td.numeric= movie.runtime
           %td.numeric= colorized_rating movie

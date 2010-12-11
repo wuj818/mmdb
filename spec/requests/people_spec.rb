@@ -56,10 +56,10 @@ describe 'People' do
 
   describe 'Show person details' do
     it 'shows the details for a person' do
-      person = Person.make!
-      visit person_path person
-      should_see person.name
-      link('IMDB')[:href].should == person.imdb_url
+      @person = Person.make!
+      visit person_path @person
+      should_see @person.name
+      find('.imdb')[:href].should == @person.imdb_url
     end
   end
 
@@ -85,7 +85,7 @@ describe 'People' do
       should_be_on person_path @person
       should_see %("#{@person.name}" was successfully edited.)
       should_see @person.name
-      link('IMDB')[:href].should == @person.imdb_url;
+      find('.imdb')[:href].should == @person.imdb_url
     end
   end
 

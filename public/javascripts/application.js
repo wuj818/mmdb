@@ -1,3 +1,16 @@
+fancybox_settings = {
+  padding: 4,
+  cyclic: true,
+  centerOnScroll: true,
+  overlayOpacity: 0.9,
+  overlayColor: '#000',
+  titlePosition: 'over',
+  speedIn: 0,
+  speedOut: 0,
+  changeSpeed: 0,
+  showCloseButton: false
+}
+
 $(function() {
   if ($('#env').hasClass('production')) {
     $('a:not([rel=external])').live('click', function() {
@@ -26,6 +39,8 @@ $(function() {
     }
   });
 
+  $('.tiny_poster_link').fancybox(fancybox_settings);
+
   $('#ajax_button').live('click', function() {
     $('#ajax_button_indicator').fadeIn();
   });
@@ -38,5 +53,7 @@ $(function() {
     .ajaxStop(function() {
       $(this).hide();
       $('.content').animate({ opacity: 1.0 }, 200);
+
+      $('.tiny_poster_link').fancybox(fancybox_settings);
     });
 });
