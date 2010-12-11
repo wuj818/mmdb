@@ -13,7 +13,7 @@ fancybox_settings = {
 
 $(function() {
   if ($('#env').hasClass('production')) {
-    $('a:not([rel=external])').live('click', function() {
+    $('a[data-remote=true]').live('click', function() {
       _gaq.push(['_trackPageview', $(this).attr('href')]);
     });
 
