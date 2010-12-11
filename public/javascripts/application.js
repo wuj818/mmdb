@@ -45,6 +45,12 @@ $(function() {
     $('#ajax_button_indicator').fadeIn();
   });
 
+  $('#keyword_cloud a').tooltip({
+    delay: 0,
+    predelay: 100,
+    offset: [-10, 0]
+  });
+
   $('#ajax_activity')
     .ajaxStart(function() {
       $(this).show();
