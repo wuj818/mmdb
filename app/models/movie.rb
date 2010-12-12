@@ -48,7 +48,7 @@ class Movie < ActiveRecord::Base
     :styles => { :tiny => '20x30!' },
     :default_url => '/images/:style-poster.gif',
     :storage => :s3,
-    :path => '/:style/:id/:filename',
+    :path => '/posters/:style/:id/:filename',
     :s3_credentials => Rails.env.production? ? '/home/mmdb/MMDb/config/s3.yml' : "#{Rails.root}/config/s3.yml"
 
   GENRES = %w(

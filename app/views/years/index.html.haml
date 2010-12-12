@@ -1,4 +1,4 @@
-- all_years = (Movie.minimum(:year)..2010).to_a
+- all_years = (Movie.minimum(:year)..Movie.maximum(2010)).to_a
 - movie_years = @years.map &:year
 - missing_years = (all_years - movie_years).sort
 - unless missing_years.empty?
