@@ -5,7 +5,9 @@
 - smart_cache do
   #keyword_cloud.info_section
     - total = @person.movies.length
+    - top_keyword = @person.keywords.order('count DESC').first.name
     - tag_cloud @person.keywords, %w(css1 css2 css3 css4) do |keyword, css_class|
+      - css_class = "#{css_class} top_keyword" if keyword.name == top_keyword
       = tag_link keyword, :keyword, :class => css_class
       .keyword_stat
         - percentage = format('%.2f%', keyword.count / total.to_f * 100)

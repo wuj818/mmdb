@@ -45,7 +45,7 @@ $(function() {
     $('#ajax_button_indicator').fadeIn();
   });
 
-  $('#keyword_cloud a').tooltip({
+  $('#keyword_cloud a, #relevant_keywords a:not(.more)').tooltip({
     delay: 0,
     predelay: 100,
     offset: [-10, 0]

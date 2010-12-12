@@ -25,10 +25,17 @@
     = raw @person.relevant_countries.map { |country| tag_link country, :country }.join ' | '
     %hr
 
-    %span{:class => 'tag_label'} Keywords:
-    = raw @person.relevant_keywords.map { |keyword| tag_link keyword, :keyword }.join ' | '
-    = ' | '
-    = link_to 'More Keywords &raquo;'.html_safe, keywords_person_path(@person), :class => 'more'
+    #relevant_keywords
+      %span{:class => 'tag_label'} Keywords:
+      - total = @person.movies.length
+      - @person.relevant_keywords.each do |keyword|
+        = tag_link keyword, :keyword
+        .keyword_stat
+          - percentage = format('%.2f%', keyword.count / total.to_f * 100)
+          #{keyword.count}/#{total}
+          %span.percentage= percentage
+        |
+      = link_to 'More Keywords &raquo;'.html_safe, keywords_person_path(@person), :class => 'more'
 
 - smart_cache 'credits' do
   = render 'credits'
