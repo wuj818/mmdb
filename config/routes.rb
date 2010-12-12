@@ -6,6 +6,9 @@ Mmdb::Application.routes.draw do
 
   resources :sessions, :only => [:new, :create, :destroy]
 
+  match '/clear-cache' => 'pages#clear_cache',
+    :as => :clear_cache, :via => :delete
+
   match '/movies/new-from-imdb' => 'movies#new',
     :from_imdb => true, :as => :new_movie_from_imdb, :via => :get
 
