@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   def search
     values = {}
+    values.merge!(:format => :js) if request.xhr?
     unless params[:minimum].blank?
       params[:minimum] = params[:minimum].to_i
       values = {:minimum => params[:minimum]}
