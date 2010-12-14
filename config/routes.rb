@@ -72,7 +72,7 @@ Mmdb::Application.routes.draw do
     :as => :formatted_search_tags, :via => :get
 
   [:genres, :keywords, :languages, :countries].each do |type|
-    match ':type' => 'tags#index', :as => :"#{type}", :via => :get
+    match ':type' => 'tags#index', :as => :"#{type}", :type => type, :via => :get
     match ':type/stats' => 'tags#stats', :as => :"formatted_stats_#{type}", :type => type, :via => :get
     match ':type/:id' => 'tags#show', :via => :get
   end

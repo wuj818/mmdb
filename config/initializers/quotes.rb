@@ -38,6 +38,7 @@ QUOTES = [
   'Walter Sobchak: Am I wrong?',
   "The Dude: They're gonna kill that poor woman.",
   "The Dude: I hate the fuckin' Eagles man.",
+  "I didn't blame anyone for the loss of my legs... some Chinaman took them from me in Korea... but I went out and achieved anyway!",
 
   # Anchorman
   "Ron Burgundy: You're so wise. You're like a miniature Buddha, covered in hair.",
