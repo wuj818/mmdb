@@ -1,7 +1,7 @@
 - smart_cache 'stats' do
   #main_stats
     - movies_count = Movie.count
-    = image_tag 'psh.jpg', :id => 'psh', :alt => "I'm a fuckin' idiot...", :title => "I'm a fuckin' idiot..."
+    = image_tag 'psh.jpg', :id => 'psh', :alt => "I'm a fuckin' idiot...", :title => "I'm a fuckin' idiot...", :width => 330, :height => 600
 
     %h2= link_to "#{number_with_delimiter movies_count} <span class='black'>movies</span>".html_safe, movies_path
 
