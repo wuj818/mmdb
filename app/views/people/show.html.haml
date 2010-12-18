@@ -13,24 +13,49 @@
   #tags.info_section
     %h3 Tags
 
+    - total = @person.movies.length
+
     %span{:class => 'tag_label'} Genres:
-    = raw @person.relevant_genres.map { |genre| tag_link genre, :genre }.join ' | '
+    - last = @person.relevant_genres.length - 1
+    - @person.relevant_genres.each_with_index do |genre, i|
+      = tag_link genre, :genre
+      .percentage_stat
+        - percentage = format('%.2f%', genre.count / total.to_f * 100)
+        #{genre.count}/#{total}
+        %span.percentage= percentage
+      - unless i == last
+        |
     %hr
 
     %span{:class => 'tag_label'} Languages:
-    = raw @person.relevant_languages.map { |language| tag_link language, :language }.join ' | '
+    - last = @person.relevant_languages.length - 1
+    - @person.relevant_languages.each_with_index do |language, i|
+      = tag_link language, :language
+      .percentage_stat
+        - percentage = format('%.2f%', language.count / total.to_f * 100)
+        #{language.count}/#{total}
+        %span.percentage= percentage
+      - unless i == last
+        |
     %hr
 
     %span{:class => 'tag_label'} Countries:
-    = raw @person.relevant_countries.map { |country| tag_link country, :country }.join ' | '
+    - last = @person.relevant_countries.length - 1
+    - @person.relevant_countries.each_with_index do |country, i|
+      = tag_link country, :country
+      .percentage_stat
+        - percentage = format('%.2f%', country.count / total.to_f * 100)
+        #{country.count}/#{total}
+        %span.percentage= percentage
+      - unless i == last
+        |
     %hr
 
     #relevant_keywords
       %span{:class => 'tag_label'} Keywords:
-      - total = @person.movies.length
       - @person.relevant_keywords.each do |keyword|
         = tag_link keyword, :keyword
-        .keyword_stat
+        .percentage_stat
           - percentage = format('%.2f%', keyword.count / total.to_f * 100)
           #{keyword.count}/#{total}
           %span.percentage= percentage
@@ -39,3 +64,19 @@
 
 - smart_cache 'credits' do
   = render 'credits'
+
+- smart_cache 'frequent_collaborators' do
+  #frequent_collaborators.info_section
+    %h3 Frequent Collaborators
+
+    - total = @person.movies.length
+    - last = @person.frequent_collaborators.length - 1
+
+    - @person.frequent_collaborators.each_with_index do |person, i|
+      = link_to person.name, person
+      .percentage_stat
+        - percentage = format('%.2f%', person.count / total.to_f * 100)
+        #{person.count}/#{total}
+        %span.percentage= percentage
+      - unless i == last
+        |

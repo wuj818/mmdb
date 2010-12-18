@@ -33,16 +33,16 @@ class Person < ActiveRecord::Base
     Movie.joins(:credits).where('credits.person_id = ?', self.id).group('movie_id')
   end
 
-  def relevant_genres
-    self.movies.genre_counts.order('count DESC').limit(3)
+  def relevant_genres(limit = 5)
+    self.movies.genre_counts.order('count DESC').limit(limit)
   end
 
-  def relevant_languages
-    self.movies.language_counts.order('count DESC').limit(3)
+  def relevant_languages(limit = 5)
+    self.movies.language_counts.order('count DESC').limit(limit)
   end
 
-  def relevant_countries
-    self.movies.country_counts.order('count DESC').limit(3)
+  def relevant_countries(limit = 5)
+    self.movies.country_counts.order('count DESC').limit(limit)
   end
 
   def keywords
@@ -51,6 +51,15 @@ class Person < ActiveRecord::Base
 
   def relevant_keywords(limit = 10)
     self.keywords.order('count DESC').limit(limit)
+  end
+
+  def frequent_collaborators(limit = 25)
+    people = Person.select('people.id, name, permalink, COUNT(DISTINCT(movie_id)) AS count')
+    people = people.joins(:credits)
+    people = people.where('movie_id IN (?) AND person_id <> ?', self.movies.map(&:id), self.id)
+    people = people.group(:person_id)
+    people = people.order('COUNT(DISTINCT(movie_id)) DESC')
+    people = people.limit(limit)
   end
 
   def self.[](name)

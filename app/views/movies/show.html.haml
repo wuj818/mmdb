@@ -44,7 +44,7 @@
 
 .span-24
   - smart_cache 'top_keywords' do
-    #tags.info_section
+    #keywords.info_section
       %h3 Keywords
 
       = raw @movie.relevant_keywords.map { |keyword| tag_link keyword, :keyword }.join ' | '
