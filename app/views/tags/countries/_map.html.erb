@@ -1,0 +1,25 @@
+<script type='text/javascript'>
+  google.load('visualization', '1', {'packages': ['geomap']});
+  google.setOnLoadCallback(drawMap);
+
+  function drawMap() {
+    var data = new google.visualization.DataTable();
+    data.addRows(<%= @countries.length %>);
+    data.addColumn('string', 'Country');
+    data.addColumn('number', 'Average');
+    data.addColumn('string', 'extra');
+
+    <% @countries.each_with_index do |country, i| %>
+      <% name = country.name %>
+      <% name = 'United States' if name == 'USA' %>
+      <% name = 'United Kingdom' if name == 'UK' %>
+      data.setValue(<%= i %>, 0, '<%= name %>');
+      data.setValue(<%= i %>, 1, <%= format('%.2f', country.average) %>);
+      data.setValue(<%= i %>, 2, '<%= "#{name} - #{number_with_delimiter country.total} movie(s)" %>');
+    <% end %>
+
+    var container = document.getElementById('countries');
+    var geomap = new google.visualization.GeoMap(container);
+    geomap.draw(data, {'width': '960px', 'height': '640px', 'colors': [0xFF0000, 0xFFA500, 0x267114, 0x267114]});
+  };
+</script>
