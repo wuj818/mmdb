@@ -80,3 +80,8 @@
         %span.percentage= percentage
       - unless i == last
         |
+
+#movie_rating_history
+
+- smart_cache 'movie_rating_history' do
+  = render 'people/show/movie_rating_history'
