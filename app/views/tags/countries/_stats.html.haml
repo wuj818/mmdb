@@ -1,7 +1,6 @@
 - @countries = Tag.select('name, COUNT(*) AS total, AVG(rating) AS average')
 - @countries = @countries.joins(:taggings).joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
 - @countries = @countries.where('context = ?', @type).group(:name)
--# @countries = @countries.having('COUNT(*) >= 5')
 
 #countries
 

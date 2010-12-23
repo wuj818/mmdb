@@ -33,9 +33,16 @@ class Person < ActiveRecord::Base
     Movie.joins(:credits).where('credits.person_id = ?', self.id).group('movie_id')
   end
 
-  def movie_rating_history
-    result = Movie.select('DISTINCT(movie_id)').joins(:credits).where('credits.person_id = ?', self.id)
-    result = result.select('year, AVG(rating) AS average, COUNT(DISTINCT movie_id) AS total').group(:year).order(:year)
+  def movie_ids
+    self.movies.map(&:id)
+  end
+
+  def movie_history
+    Movie.where('id IN (?)', self.movie_ids).select('year, AVG(rating) AS average, COUNT(*) AS total').group(:year).order(:year)
+  end
+
+  def movie_ratings_history
+    Movie.where('id IN (?)', self.movie_ids).select('rating, COUNT(*) AS total').group(:rating)
   end
 
   def relevant_genres(limit = 5)

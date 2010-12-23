@@ -1,15 +1,13 @@
-<% if @person.movie_rating_history.length > 1 %>
-  <script src='http://www.google.com/jsapi' type='text/javascript'></script>
+<% if @person.movies.length > 1 %>
   <script type='text/javascript'>
-    google.load('visualization', '1', {'packages': ['corechart']});
     google.setOnLoadCallback(drawChart);
 
     function drawChart() {
       var data = new google.visualization.DataTable();
-      <% all_years = ((@person.movie_rating_history.first.year)..(@person.movie_rating_history.last.year)).to_a %>
+      <% all_years = ((@person.movie_history.first.year)..(@person.movie_history.last.year)).to_a %>
       <% year_data = {} %>
-      <% @person.movie_rating_history.each do |data| %>
-        <% year_data[data.year] = {:average => data.average, :total => data.total} %>
+      <% @person.movie_history.each do |data| %>
+        <% year_data[data.year] = {:average => format('%.2f', data.average), :total => data.total} %>
       <% end %>
       data.addRows(<%= all_years.length %>);
       data.addColumn('string', 'Year');
@@ -22,11 +20,12 @@
         data.setValue(<%= i %>, 2, <%= year_data[year].blank? ? 0 : year_data[year][:total] %>);
       <% end %>
 
-      var geomap = new google.visualization.LineChart(document.getElementById('movie_history_line_graph'));
-      geomap.draw(data, {
+      var lineChart = new google.visualization.LineChart(document.getElementById('movie_history_line_graph'));
+      lineChart.draw(data, {
         width: 960, height: 400, fontSize: 10,
-        title: '<%= "#{@person.name} - Movie History" %>', curveType: 'function',
-        chartArea: {width: 700, height: 320},
+        title: 'Movie History', curveType: 'function',
+        legend: 'top',
+        chartArea: {width: 900, height: 300},
         hAxis: {slantedText: true, slantedTextAngle: 90},
         vAxis: {maxValue: 10, minValue: 0},
         titleTextStyle: {fontSize: 18},

@@ -8,6 +8,7 @@
 
   %span.icons
     = link_to image_tag('icons/imdb-icon.png', :title => 'IMDb'), @person.imdb_url, :rel => :external, :class => 'imdb'
+    = link_to image_tag('icons/chart-curve.png', :title => 'Graphs'), graphs_person_path(@person)
 
 - smart_cache 'tags' do
   #tags.info_section
@@ -80,8 +81,3 @@
         %span.percentage= percentage
       - unless i == last
         |
-
-#movie_history_line_graph
-
-- smart_cache 'movie_history_line_graph' do
-  = render 'people/show/movie_history_line_graph'

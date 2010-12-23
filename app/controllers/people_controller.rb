@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
-  before_filter :authorize, :except => [:index, :show, :search, :stats, :keywords, :movie_rating_history]
-  before_filter :get_person, :only => [:show, :edit, :update, :destroy, :keywords, :movie_rating_history]
+  before_filter :authorize, :only => [:edit, :update, :destroy]
+  before_filter :get_person, :only => [:show, :edit, :update, :destroy, :keywords, :graphs]
 
   def index
     @title = 'People'
@@ -42,6 +42,10 @@ class PeopleController < ApplicationController
 
   def stats
     @title = 'People - Stats'
+  end
+
+  def graphs
+    @title = "#{@person.name} - Graphs"
   end
 
   def keywords

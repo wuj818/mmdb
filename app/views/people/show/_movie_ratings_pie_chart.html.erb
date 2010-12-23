@@ -1,0 +1,29 @@
+<% if @person.movies.length > 1 %>
+  <script type='text/javascript'>
+    google.setOnLoadCallback(drawPieChart);
+
+    function drawPieChart() {
+      var data = new google.visualization.DataTable();
+      data.addRows(<%= @person.movie_ratings_history.length %>);
+      data.addColumn('string', 'Rating');
+      data.addColumn('number', 'Total');
+
+      <% @person.movie_ratings_history.each_with_index do |data, i| %>
+        data.setValue(<%= i %>, 0, '<%= data.rating %>');
+        data.setValue(<%= i %>, 1, <%= data.total %>);
+      <% end %>
+
+      var pieChart = new google.visualization.PieChart(document.getElementById('movie_ratings_pie_chart'));
+      pieChart.draw(data, {
+        width: 600, height: 400, fontSize: 10,
+        legend: 'bottom',
+        title: 'Ratings History',
+        chartArea: {width: 600, height: 350},
+        titleTextStyle: {fontSize: 18},
+        legendTextStyle: {fontSize: 12},
+        tooltipTextStyle: {fontSize: 14},
+        pieSliceTextStyle: {fontSize: 14}
+      });
+    };
+  </script>
+<% end %>

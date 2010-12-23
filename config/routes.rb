@@ -42,6 +42,7 @@ Mmdb::Application.routes.draw do
 
     member do
       get :keywords
+      get :graphs
     end
   end
 
