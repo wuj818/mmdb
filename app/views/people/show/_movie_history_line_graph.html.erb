@@ -1,0 +1,40 @@
+<% if @person.movie_rating_history.length > 1 %>
+  <script src='http://www.google.com/jsapi' type='text/javascript'></script>
+  <script type='text/javascript'>
+    google.load('visualization', '1', {'packages': ['corechart']});
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = new google.visualization.DataTable();
+      <% all_years = ((@person.movie_rating_history.first.year)..(@person.movie_rating_history.last.year)).to_a %>
+      <% year_data = {} %>
+      <% @person.movie_rating_history.each do |data| %>
+        <% year_data[data.year] = {:average => data.average, :total => data.total} %>
+      <% end %>
+      data.addRows(<%= all_years.length %>);
+      data.addColumn('string', 'Year');
+      data.addColumn('number', 'Average Rating');
+      data.addColumn('number', 'Movies');
+
+      <% all_years.each_with_index do |year, i| %>
+        data.setValue(<%= i %>, 0, '<%= year %>');
+        data.setValue(<%= i %>, 1, <%= year_data[year].blank? ? 'null' : year_data[year][:average] %>);
+        data.setValue(<%= i %>, 2, <%= year_data[year].blank? ? 0 : year_data[year][:total] %>);
+      <% end %>
+
+      var geomap = new google.visualization.LineChart(document.getElementById('movie_history_line_graph'));
+      geomap.draw(data, {
+        width: 960, height: 400, fontSize: 10,
+        title: '<%= "#{@person.name} - Movie History" %>', curveType: 'function',
+        chartArea: {width: 700, height: 320},
+        hAxis: {slantedText: true, slantedTextAngle: 90},
+        vAxis: {maxValue: 10, minValue: 0},
+        titleTextStyle: {fontSize: 18},
+        tooltipTextStyle: {fontSize: 14},
+        legendTextStyle: {fontSize: 12},
+        interpolateNulls: true,
+        pointSize: 6
+      });
+    };
+  </script>
+<% end %>
