@@ -19,6 +19,20 @@ class Person < ActiveRecord::Base
 
   has_one :counter, :as => :countable, :dependent => :destroy
 
+  RATING_WEIGHTS = {
+    0 => 16,
+    1 => 16,
+    2 => 4,
+    3 => 4,
+    4 => 2,
+    5 => 2,
+    6 => 1,
+    7 => 1,
+    8 => 2,
+    9 => 4,
+    10 => 16
+  }
+
   def to_param
     self.permalink
   end
@@ -72,6 +86,17 @@ class Person < ActiveRecord::Base
     people = people.group(:person_id)
     people = people.order('COUNT(DISTINCT(movie_id)) DESC')
     people = people.limit(limit)
+  end
+
+  def score
+    ratings = self.movies.map(&:rating)
+    total = ratings.inject(0) { |sum, n| sum + (n * RATING_WEIGHTS[n]) }
+    count = ratings.inject(0) { |sum, n| sum + RATING_WEIGHTS[n] }
+    total / count.to_f
+  end
+
+  def approval_percentage
+    (self.movies.where('rating >= 6').length / self.movies.length.to_f * 100).ceil rescue 0
   end
 
   def self.[](name)

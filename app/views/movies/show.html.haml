@@ -12,7 +12,7 @@
     - unless @movie.aka.blank?
       %span.aka aka #{@movie.aka}
 
-    %span.icons
+    .icons
       = link_to image_tag('icons/imdb-icon.png', :title => 'IMDb'), @movie.imdb_url, :rel => :external, :class => 'imdb'
 
       - unless @movie.rotten_tomatoes_url.blank?
@@ -20,6 +20,7 @@
 
       - unless @movie.movie_poster_db_url.blank?
         = link_to image_tag('icons/movie-poster-db-icon.png', :title => 'Movie Poster DB'), @movie.movie_poster_db_url, :rel => :external, :class => 'movie_poster_db'
+
     .rating{:class => rating_class(@movie)}
       #{@movie.rating}/10
 
