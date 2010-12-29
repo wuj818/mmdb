@@ -15,14 +15,7 @@
 
     #admin_wrapper
       #admin_bar
-        - if admin?
-          = link_to 'Add Movie', new_movie_from_imdb_path, :class => 'button left'
-          #admin_controls
-            = yield :admin_controls
-          = link_to 'Logout', logout_path, :class => 'button right', :method => :delete
-          = link_to 'Clear Cache', clear_cache_path, :class => 'button right clear_cache', :method => :delete, :confirm => CONFIRM
-        - else
-          = link_to 'Login', login_path, :class => 'button right'
+        = render('layouts/admin_bar').squish
         .clear
 
     .container
@@ -32,13 +25,13 @@
           %h1= link_to 'MMDb', root_path
       .span-24
         %nav
-          = render 'layouts/navigation'
+          = render('layouts/navigation').squish
       .span-24.content
         - flash.each do |kind, msg|
           = content_tag :div, :class => "flash #{kind}" do
             = msg
             %span.close X
-        = yield
+        = (yield).squish
       .span-24
         %footer
           = random_quote
