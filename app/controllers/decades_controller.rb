@@ -4,7 +4,7 @@ class DecadesController < ApplicationController
   DECADES = (1890..2010).step(10)
 
   def index
-    @title = 'Deacades'
+    @title = 'Decades'
 
     @decades = Movie.order(order)
     @decades = @decades.select('(year / 10) || "0" AS decade, COUNT(*) AS total, AVG(rating) AS average')
