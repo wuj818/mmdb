@@ -31,6 +31,6 @@ module MoviesHelper
   def tiny_movie_poster_link(movie, job = nil)
     rel = job.blank? ? 'gallery' : "#{job.downcase}_gallery"
     title = job.blank? ? movie.full_title : "#{movie.full_title} - #{job}"
-    link_to tiny_movie_poster(movie), movie.poster.url(:original), :class => 'tiny_poster_link', :rel => rel, :title => title
+    link_to tiny_movie_poster(movie), movie.poster.url(:original), :class => 'tiny_poster_link', :rel => rel, :title => title, :'data-movie-url' => movie_path(movie)
   end
 end

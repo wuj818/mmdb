@@ -1,14 +1,25 @@
 fancybox_settings = {
   padding: 4,
   cyclic: true,
-  centerOnScroll: true,
   overlayOpacity: 0.9,
   overlayColor: '#000',
   titlePosition: 'over',
   speedIn: 0,
   speedOut: 0,
   changeSpeed: 0,
-  showCloseButton: false
+  showCloseButton: false,
+  titleFormat: function(title, currentArray, currentIndex, currentOpts) {
+    var url = $('a[title="' + title + '"]').attr('data-movie-url');
+    return '<div id="fancybox-title-over">' +
+           '<a href="' + url + '">' + title + '</a>' +
+           '</div>';
+  },
+  onComplete: function(links, index) {
+    if ($('#env').hasClass('production')) {
+      var title = $('a[href="' + links[index] + '"]').attr('title');
+      _gaq.push(['_trackEvent', 'Posters', 'Fancybox', title]);
+    }
+  }
 }
 
 $(function() {
