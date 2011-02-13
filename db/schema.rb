@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 18) do
+ActiveRecord::Schema.define(:version => 19) do
 
   create_table "counters", :force => true do |t|
     t.integer  "countable_id"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 18) do
     t.string   "movie_poster_db_url"
   end
 
+  add_index "movies", ["permalink"], :name => "index_movies_on_permalink"
   add_index "movies", ["sort_title"], :name => "index_movies_on_sort_title"
 
   create_table "people", :force => true do |t|
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(:version => 18) do
     t.string   "sort_name"
   end
 
+  add_index "people", ["permalink"], :name => "index_people_on_permalink"
   add_index "people", ["sort_name"], :name => "index_people_on_sort_name"
 
   create_table "taggings", :force => true do |t|
