@@ -62,6 +62,11 @@ $(function() {
     offset: [-10, 0]
   });
 
+  $('.icons a, .graph_link').hover(
+    function() { $(this).animate({opacity: 0.5}, 200); },
+    function() { $(this).animate({opacity: 1.0}, 200); }
+  );
+
   $('#ajax_activity')
     .ajaxStart(function() {
       $(this).show();

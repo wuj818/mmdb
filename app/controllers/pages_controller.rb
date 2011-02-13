@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   before_filter :authorize, :only => [:clear_cache]
 
   def main
+    @title = 'My Movie Database'
   end
 
   def clear_cache
