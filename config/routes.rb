@@ -1,20 +1,22 @@
 Mmdb::Application.routes.draw do
-  match '/login' => 'sessions#new', :via => :get
-  match '/logout' => 'sessions#destroy', :via => :delete
-  match '/integration-login' => 'sessions#integration_login',
-    :as => :integration_login, :via => :get if Rails.env.test?
+  get '/login' => 'sessions#new'
+  delete '/logout' => 'sessions#destroy'
+  get '/integration-login' => 'sessions#integration_login',
+    :as => :integration_login if Rails.env.test?
 
   resources :sessions, :only => [:new, :create, :destroy]
 
-  match '/clear-cache' => 'pages#clear_cache',
-    :as => :clear_cache, :via => :delete
+  delete '/clear-cache' => 'pages#clear_cache',
+    :as => :clear_cache
 
-  match '/movies/new-from-imdb' => 'movies#new',
-    :from_imdb => true, :as => :new_movie_from_imdb, :via => :get
+  get '/movies/new-from-imdb' => 'movies#new',
+    :from_imdb => true, :as => :new_movie_from_imdb
 
-  match 'movies/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'movies#index', :via => :get
-  match 'movies(/query/:q)' => 'movies#index',
-    :as => :formatted_search_movies, :via => :get
+  post '/movies/scrape-info' => 'movies#scrape_info', :as => :scrape_info
+
+  get 'movies/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'movies#index'
+  get 'movies(/query/:q)' => 'movies#index',
+    :as => :formatted_search_movies
 
   resources :movies do
     collection do
@@ -28,9 +30,9 @@ Mmdb::Application.routes.draw do
     end
   end
 
-  match 'people/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'people#index', :via => :get
-  match 'people(/query/:q)' => 'people#index',
-    :as => :formatted_search_people, :via => :get
+  get 'people/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'people#index'
+  get 'people(/query/:q)' => 'people#index',
+    :as => :formatted_search_people
 
   resources :people, :except => [:new, :create] do
     resources :credits, :only => [:new, :create, :destroy]
@@ -47,10 +49,10 @@ Mmdb::Application.routes.draw do
   end
 
   [:decades, :years].each do |type|
-    match "#{type}/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)" => "#{type}#index", :via => :get
-    match "#{type}/:id/sort/:sort/order/:order(/page/:page)(/query/:q)" => "#{type}#show", :via => :get
-    match "#{type}(/total-at-least/:minimum)(/query/:q)" => "#{type}#index",
-      :as => :"formatted_search_#{type}", :via => :get
+    get "#{type}/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)" => "#{type}#index"
+    get "#{type}/:id/sort/:sort/order/:order(/page/:page)(/query/:q)" => "#{type}#show"
+    get "#{type}(/total-at-least/:minimum)(/query/:q)" => "#{type}#index",
+      :as => :"formatted_search_#{type}"
 
     resources type, :only => [:index, :show] do
       collection do
@@ -64,18 +66,18 @@ Mmdb::Application.routes.draw do
     end
   end
 
-  match '/stats' => 'pages#main', :via => :get
+  get '/stats' => 'pages#main'
 
-  match 'tags/search' => 'tags#search', :via => :get
-  match ':type/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'tags#index', :via => :get
-  match ':type/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'tags#show', :via => :get
-  match ':type(/total-at-least/:minimum)(/query/:q)' => 'tags#index',
-    :as => :formatted_search_tags, :via => :get
+  get 'tags/search' => 'tags#search'
+  get ':type/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'tags#index'
+  get ':type/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'tags#show'
+  get ':type(/total-at-least/:minimum)(/query/:q)' => 'tags#index',
+    :as => :formatted_search_tags
 
   [:genres, :keywords, :languages, :countries].each do |type|
-    match ':type' => 'tags#index', :as => :"#{type}", :type => type, :via => :get
-    match ':type/stats' => 'tags#stats', :as => :"formatted_stats_#{type}", :type => type, :via => :get
-    match ':type/:id' => 'tags#show', :via => :get
+    get ':type' => 'tags#index', :as => :"#{type}", :type => type
+    get ':type/stats' => 'tags#stats', :as => :"formatted_stats_#{type}", :type => type
+    get ':type/:id' => 'tags#show'
   end
 
   resources :tags, :only => [:index, :show] do
@@ -89,5 +91,5 @@ Mmdb::Application.routes.draw do
     end
   end
 
-  root :to => 'pages#main', :via => :get
+  root :to => 'pages#main'
 end
