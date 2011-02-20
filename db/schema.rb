@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20) do
+ActiveRecord::Schema.define(:version => 21) do
 
   create_table "counters", :force => true do |t|
     t.integer  "countable_id"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "item_lists", ["permalink"], :name => "index_item_lists_on_permalink"
 
   create_table "movies", :force => true do |t|
     t.string   "title"
