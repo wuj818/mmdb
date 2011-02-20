@@ -1,5 +1,6 @@
 - if admin?
   = link_to 'Add Movie', new_movie_from_imdb_path, :class => 'button left'
+  = link_to 'Add List', new_item_list_path, :class => 'button left'
   #admin_controls
     = yield :admin_controls
   = link_to 'Logout', logout_path, :class => 'button right', :method => :delete

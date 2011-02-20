@@ -66,6 +66,8 @@ Mmdb::Application.routes.draw do
     end
   end
 
+  resources :item_lists, :path => :lists
+
   get '/stats' => 'pages#main'
 
   get 'tags/search' => 'tags#search'

@@ -18,3 +18,8 @@ Credit.blueprint do
   person
   movie
 end
+
+ItemList.blueprint do
+  name     { "Best Movies of #{sn}" }
+  position { 0 }
+end

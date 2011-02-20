@@ -1,0 +1,7 @@
+- content_for :admin_controls do
+  = link_to 'Back', @list, :class => 'button'
+  = link_to 'Delete', @list, :confirm => CONFIRM, :method => :delete, :class => 'button'
+
+%h2 Editing "#{@list.name}"
+
+= render 'form'
