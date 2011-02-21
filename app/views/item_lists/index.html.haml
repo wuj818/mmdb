@@ -3,5 +3,8 @@
 %br
 
 #lists_container
-  - @lists.each do |list|
-    %h4= link_to list.name, list
+  - if @lists.empty?
+    %p There are no lists.
+  - else
+    - @lists.each do |list|
+      %h4= link_to list.name, list

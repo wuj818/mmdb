@@ -1,12 +1,13 @@
 class ItemList < ActiveRecord::Base
-  validates :name, :presence => true
-  validates :position, :numericality => true
+  validates :name,
+    :presence => true,
+    :uniqueness => true
+  validates :position, :numericality => { :greater_than_or_equal_to => 0 }
 
   before_save :create_permalink
 
-  def self.to_s
-    'List'
-  end
+  has_many :listings, :include => :movie, :dependent => :destroy
+  has_many :movies, :through => :listings
 
   def to_param
     self.permalink

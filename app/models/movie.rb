@@ -44,6 +44,8 @@ class Movie < ActiveRecord::Base
 
   has_one :counter, :as => :countable, :dependent => :destroy
 
+  has_many :listings, :include => :item_list, :dependent => :destroy
+
   has_attached_file :poster,
     :styles => { :tiny => '20x30!' },
     :default_url => '/images/:style-poster.gif',

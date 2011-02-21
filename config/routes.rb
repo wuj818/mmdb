@@ -66,7 +66,13 @@ Mmdb::Application.routes.draw do
     end
   end
 
-  resources :item_lists, :path => :lists
+  resources :item_lists, :path => :lists do
+    member do
+      put :reorder
+    end
+
+    resources :listings, :only => [:new, :create, :destroy]
+  end
 
   get '/stats' => 'pages#main'
 

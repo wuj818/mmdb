@@ -1,6 +1,6 @@
 class ItemListsController < ApplicationController
-  before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy]
-  before_filter :get_list, :only => [:show, :edit, :update, :destroy]
+  before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy, :reorder]
+  before_filter :get_list, :only => [:show, :edit, :update, :destroy, :reorder]
 
   def index
     @title = 'Lists'
@@ -48,6 +48,10 @@ class ItemListsController < ApplicationController
 
     flash[:success] = %("#{title}" was successfully deleted.)
     redirect_to item_lists_path
+  end
+
+  def reorder
+    redirect_to @list
   end
 
   private

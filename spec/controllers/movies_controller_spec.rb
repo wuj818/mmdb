@@ -45,7 +45,7 @@ describe MoviesController do
   describe 'PUT update' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        put :edit, :id => '1'
+        put :update, :id => '1'
         response.should redirect_to login_path
       end
     end

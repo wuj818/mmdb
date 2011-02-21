@@ -23,3 +23,9 @@ ItemList.blueprint do
   name     { "Best Movies of #{sn}" }
   position { 0 }
 end
+
+Listing.blueprint do
+  position { 0 }
+  item_list
+  movie
+end

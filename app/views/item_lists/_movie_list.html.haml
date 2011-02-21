@@ -1,0 +1,11 @@
+- smart_cache do
+  - @listings = @list.listings
+
+  %ul#movies
+    - @listings.each do |listing|
+      %li
+        %span.rank ##{listing.position}
+        = tiny_movie_poster_link listing.movie
+        = link_to listing.movie.title, listing.movie, :class => 'movie_link'
+        - if action_name == 'edit'
+          = link_to 'Delete', [@list, listing], :confirm => CONFIRM, :method => :delete, :class => 'delete'

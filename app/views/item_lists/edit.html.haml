@@ -5,3 +5,8 @@
 %h2 Editing "#{@list.name}"
 
 = render 'form'
+
+%hr
+
+- smart_cache 'movie_list' do
+  = render 'movie_list'
