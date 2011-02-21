@@ -1,6 +1,6 @@
 class ItemListsController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy, :reorder]
-  before_filter :get_list, :only => [:show, :edit, :update, :destroy, :reorder]
+  before_filter :get_list, :only => [:show, :edit, :update, :destroy]
 
   def index
     @title = 'Lists'
@@ -51,7 +51,12 @@ class ItemListsController < ApplicationController
   end
 
   def reorder
-    redirect_to @list
+    params[:listing].each_with_index do |listing, i|
+      Listing.find(listing).update_attribute(:position, i+1)
+    end
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
