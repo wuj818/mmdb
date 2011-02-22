@@ -2,15 +2,16 @@
   = link_to @person.name, @person
   &raquo; Keywords
 
-- smart_cache do
-  #keyword_cloud.info_section
-    - total = @person.movies.length
-    - top_keyword = @person.keywords.order('count DESC').first.name
-    - tag_cloud @person.keywords, %w(css1 css2 css3 css4) do |keyword, css_class|
-      - css_class = "#{css_class} top_keyword" if keyword.name == top_keyword
-      = tag_link keyword, :keyword, :class => css_class
-      .percentage_stat
-        - percentage = format('%.2f%', keyword.count / total.to_f * 100)
-        #{keyword.count}/#{total}
-        %span.percentage= percentage
-      &nbsp;
+- unless @person.keywords.empty?
+  - smart_cache do
+    #keyword_cloud.info_section
+      - total = @person.movies.length
+      - top_keyword = @person.keywords.order('count DESC').first.name
+      - tag_cloud @person.keywords, %w(css1 css2 css3 css4) do |keyword, css_class|
+        - css_class = "#{css_class} top_keyword" if keyword.name == top_keyword
+        = tag_link keyword, :keyword, :class => css_class
+        .percentage_stat
+          - percentage = format('%.2f%', keyword.count / total.to_f * 100)
+          #{keyword.count}/#{total}
+          %span.percentage= percentage
+        &nbsp;

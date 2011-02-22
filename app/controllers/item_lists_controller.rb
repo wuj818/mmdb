@@ -8,7 +8,7 @@ class ItemListsController < ApplicationController
   end
 
   def show
-    @title = %(Edit "#{@list.name}")
+    @title = "Lists - #{@list.name}"
   end
 
   def new
