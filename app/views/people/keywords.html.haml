@@ -2,8 +2,8 @@
   = link_to @person.name, @person
   &raquo; Keywords
 
-- unless @person.keywords.empty?
-  - smart_cache do
+- smart_cache do
+  - unless @person.keywords.length.zero?
     #keyword_cloud.info_section
       - total = @person.movies.length
       - top_keyword = @person.keywords.order('count DESC').first.name
