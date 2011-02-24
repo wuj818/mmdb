@@ -1,5 +1,5 @@
 class Listing < ActiveRecord::Base
-  belongs_to :item_list
+  belongs_to :item_list, :touch => true
   belongs_to :movie
 
   validates :item_list, :presence => true
