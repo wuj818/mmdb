@@ -1,10 +1,8 @@
 - smart_cache do
-  - @years = @years.paginate(:page => page, :per_page => per_page)
-
   = render 'shared/page_entries_info', :results => @years, :type => 'year'
 
-  - unless @years.empty?
-    = will_paginate @years
+  - unless @years.total_count.zero?
+    = paginate @years, :remote => true
 
     %table#years
       %tr
@@ -18,4 +16,4 @@
           %td.numeric= year.total
           %td.numeric= colorized_average year
 
-    = will_paginate @years
+    = paginate @years, :remote => true

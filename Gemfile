@@ -13,7 +13,7 @@ gem 'newrelic_rpm'
 
 gem 'faker'
 gem 'escape_utils'
-gem 'will_paginate', '~> 3.0.beta'
+gem 'kaminari'
 gem 'acts-as-taggable-on'
 gem 'mechanize'
 gem 'paperclip'

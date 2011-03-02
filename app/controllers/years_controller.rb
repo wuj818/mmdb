@@ -9,6 +9,7 @@ class YearsController < ApplicationController
     @years = @years.group(:year)
     @years = @years.having(minimum)
     @years = @years.where('year LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
+    @years = @years.page(page).per(per_page)
 
     respond_to do |format|
       format.html
@@ -21,6 +22,7 @@ class YearsController < ApplicationController
 
     @movies = Movie.order(movie_order)
     @movies = @movies.where(:year => @year)
+    @movies = @movies.page(page).per(per_page)
   end
 
   def stats

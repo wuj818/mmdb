@@ -1,10 +1,8 @@
 - smart_cache do
-  - @people = @people.paginate(:page => page, :per_page => per_page)
-
   = render 'shared/page_entries_info', :results => @people, :type => 'person'
 
-  - unless @people.empty?
-    = will_paginate @people
+  - unless @people.total_count.zero?
+    = paginate @people, :remote => true
 
     %table#people
       %tr
@@ -28,4 +26,4 @@
           %td.numeric= person.number_of_cinematography_credits
           %td.numeric= person.number_of_acting_credits
 
-    = will_paginate @people
+    = paginate @people, :remote => true

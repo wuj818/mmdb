@@ -158,13 +158,11 @@ a.button, input[type=submit]
 .pagination
   float: right
   display: inline
+  border: 0
+  padding: 0
+  margin: 0
 
-  .previous_page:not(.disabled), .next_page:not(.disabled)
-    &:hover
-      color: #06C
-      background-color: #fff
-
-  a, em, .disabled
+  a, .disabled, .current
     display: inline-block
     padding: 0 6px
     text-decoration: none
@@ -177,7 +175,12 @@ a.button, input[type=submit]
     background: #06C
     border-color: #000
 
-  em
+  .prev, .next
+    a:hover
+      background: #fff
+      color: #06C
+
+  .current
     background-color: #fff200
     font-weight: bold
 

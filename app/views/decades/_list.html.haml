@@ -1,11 +1,7 @@
 - smart_cache do
-  - @decades = @decades.paginate(:page => page, :per_page => per_page)
-
   = render 'shared/page_entries_info', :results => @decades, :type => 'decade'
 
-  - unless @decades.empty?
-    = will_paginate @decades
-
+  - unless @decades.total_count.zero?
     %table#decades
       %tr
         %th= sort_link :decade
@@ -17,5 +13,3 @@
           %td.main_cell= link_to decade.decade << 's', decade_path(decade.decade)
           %td.numeric= decade.total
           %td.numeric= colorized_average decade
-
-    = will_paginate @decades

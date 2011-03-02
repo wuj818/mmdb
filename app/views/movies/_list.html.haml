@@ -1,9 +1,8 @@
 - smart_cache do
-  - @movies = @movies.paginate(:page => page, :per_page => per_page)
   = render 'shared/page_entries_info', :results => @movies, :type => 'movie'
 
-  - unless @movies.empty?
-    = will_paginate @movies
+  - unless @movies.total_count.zero?
+    = paginate @movies, :remote => true
 
     %table#movies
       %tr
@@ -21,4 +20,4 @@
           %td.numeric= movie.runtime
           %td.numeric= colorized_rating movie
 
-    = will_paginate @movies
+    = paginate @movies, :remote => true

@@ -1,10 +1,8 @@
 - smart_cache do
-  - @tags = @tags.paginate(:page => page, :per_page => per_page)
-
   = render 'shared/page_entries_info', :results => @tags, :type => @type
 
-  - unless @tags.empty?
-    = will_paginate @tags
+  - unless @tags.total_count.zero?
+    = paginate @tags, :remote => true
 
     %table{:id => @type}
       %tr
@@ -18,4 +16,4 @@
           %td.numeric= tag.total
           %td.numeric= colorized_average tag
 
-    = will_paginate @tags
+    = paginate @tags, :remote => true
