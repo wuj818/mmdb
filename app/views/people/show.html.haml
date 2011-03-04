@@ -6,10 +6,10 @@
 .span-24
   %h2
     = @person.name
-    = link_to image_tag('icons/chart-curve-32x32.png', :title => 'Graphs', :class => 'graph_link'), graphs_person_path(@person)
+    = link_to image_tag('icons/chart-curve-32x32.png', :title => 'Graphs', :class => 'graph_link', :width => 32, :height => 32), graphs_person_path(@person)
 
   %span.icons
-    = link_to image_tag('icons/imdb-icon.png', :title => 'IMDb'), @person.imdb_url, :rel => :external, :class => 'imdb'
+    = link_to image_tag('icons/imdb-icon.png', :title => 'IMDb', :width => 16, :height => 16), @person.imdb_url, :rel => :external, :class => 'imdb'
 
 .span-24
   - smart_cache 'details' do
@@ -17,7 +17,7 @@
       %h3 Details
 
       .icons
-        = image_tag('icons/calculator.png', :title => 'Weighted Score')
+        = image_tag 'icons/calculator.png', :title => 'Weighted Score', :width => 16, :height => 16
         #{colorized_score(@person)} weighted score
         %br
 
@@ -25,56 +25,56 @@
         #{colorized_approval_percentage(@person)} approval
         %br
 
-        = image_tag('icons/film.png', :title => 'Movies')
+        = image_tag 'icons/film.png', :title => 'Movies', :width => 16, :height => 16
         = pluralize(@person.movies.length, 'movie')
         %br
 
         - perfect_count = @person.movies.where(:rating => 10).length
         - if perfect_count > 0
-          = image_tag('icons/medal-gold.png', :title => 'Perfect Movies (Rated 10)')
+          = image_tag 'icons/medal-gold.png', :title => 'Perfect Movies (Rated 10)', :width => 16, :height => 16
           = pluralize(perfect_count, 'perfect movie')
           %br
 
         - excellent_count = @person.movies.where(:rating => 9).length
         - if excellent_count > 0
-          = image_tag('icons/medal-silver.png', :title => 'Excellent Movies (Rated 9)')
+          = image_tag 'icons/medal-silver.png', :title => 'Excellent Movies (Rated 9)', :width => 16, :height => 16
           = pluralize(excellent_count, 'excellent movie')
           %br
 
         - great_count = @person.movies.where(:rating => 8).length
         - if great_count > 0
-          = image_tag('icons/medal-bronze.png', :title => 'Perfect Movies (Rated 8)')
+          = image_tag 'icons/medal-bronze.png', :title => 'Perfect Movies (Rated 8)', :width => 16, :height => 16
           = pluralize(great_count, 'great movie')
           %br
 
         - terrible_count = @person.movies.where('rating < 5').length
         - if terrible_count > 0
-          = image_tag('icons/exclamation.png', :title => 'Terrible Movies (Rated 4 or lower)')
+          = image_tag 'icons/exclamation.png', :title => 'Terrible Movies (Rated 4 or lower)', :width => 16, :height => 16
           = pluralize(terrible_count, 'terrible movie')
           %br
 
         - if @person.number_of_directing_credits > 0
-          #{image_tag('icons/events.png', :title => 'Director')} Director
+          #{image_tag 'icons/events.png', :title => 'Director', :width => 16, :height => 16} Director
           %br
 
         - if @person.number_of_writing_credits > 0
-          #{image_tag('icons/document-prepare.png', :title => 'Writer')} Writer
+          #{image_tag 'icons/document-prepare.png', :title => 'Writer', :width => 16, :height => 16} Writer
           %br
 
         - if @person.number_of_composing_credits > 0
-          #{image_tag('icons/music.png', :title => 'Composer')} Composer
+          #{image_tag 'icons/music.png', :title => 'Composer', :width => 16, :height => 16} Composer
           %br
 
         - if @person.number_of_editing_credits > 0
-          #{image_tag('icons/edit-free.png', :title => 'Editor')} Editor
+          #{image_tag 'icons/edit-free.png', :title => 'Editor', :width => 16, :height => 16} Editor
           %br
 
         - if @person.number_of_cinematography_credits > 0
-          #{image_tag('icons/video.png', :title => 'Cinematographer')} Cinematographer
+          #{image_tag 'icons/video.png', :title => 'Cinematographer', :width => 16, :height => 16} Cinematographer
           %br
 
         - if @person.number_of_acting_credits > 0
-          #{image_tag('icons/user.png', :title => 'Actor')} Actor
+          #{image_tag 'icons/user.png', :title => 'Actor', :width => 16, :height => 16} Actor
           %br
 
 .span-24

@@ -13,7 +13,7 @@ module PeopleHelper
 
   def approval_icon(person)
     icon = person.approval_percentage >= 60 ? 'icons/thumb-up.png' : 'icons/thumb-down.png'
-    image_tag icon, :title => 'Approval Percentage'
+    image_tag icon, :title => 'Approval Percentage', :width => 16, :height => 16
   end
 
   def colorized_approval_percentage(person)
