@@ -80,7 +80,8 @@ class DirkDiggler
   def get_synopsis
     get_rotten_tomatoes_url if rotten_tomatoes_url.nil?
     page = @agent.get(rotten_tomatoes_url) rescue return
-    @synopsis = page.at('#movie_synopsis_all').text rescue nil
+    result = page.at('#movie_synopsis_all').text rescue nil
+    @synopsis = Iconv.conv('UTF-8//IGNORE', 'UTF-8', result)
   end
 
   def get_genres
