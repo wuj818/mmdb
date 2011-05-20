@@ -9,8 +9,6 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'smurf'
 
-gem 'newrelic_rpm'
-
 gem 'faker'
 gem 'escape_utils'
 gem 'kaminari'
