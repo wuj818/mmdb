@@ -42,3 +42,7 @@ group :test do
   gem 'machinist', '>= 2.0.0.beta1'
   gem 'capybara'
 end
+
+group :production do
+  gem 'unicorn'
+end
