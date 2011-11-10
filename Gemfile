@@ -22,7 +22,6 @@ group :development do
   gem 'rails3-generators'
   gem 'capistrano'
 
-  gem 'annotate-models'
   gem 'wirble'
   gem 'hirb'
   gem 'rainbow'
