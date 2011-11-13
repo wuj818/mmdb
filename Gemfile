@@ -16,6 +16,7 @@ gem 'acts-as-taggable-on'
 gem 'mechanize'
 gem 'paperclip'
 gem 'aws-s3'
+gem 'memcache-client'
 
 group :development do
   gem 'mongrel', '>= 1.2.0.pre2'

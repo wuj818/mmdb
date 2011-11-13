@@ -96,6 +96,7 @@ GEM
       treetop (~> 1.4.8)
     mechanize (1.0.0)
       nokogiri (>= 1.2.1)
+    memcache-client (1.8.5)
     mime-types (1.16)
     mongrel (1.2.0.pre2)
       daemons (~> 1.0.10)
@@ -194,6 +195,7 @@ DEPENDENCIES
   launchy
   machinist (>= 2.0.0.beta1)
   mechanize
+  memcache-client
   mongrel (>= 1.2.0.pre2)
   paperclip
   progressbar
