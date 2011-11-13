@@ -12,6 +12,8 @@
           = '...' unless credit.details.blank?
         %td
           = credit.details
+        %td.numeric
+          #{colorized_rating credit.movie}<strong>/10</strong>
         - if action_name == 'edit'
           %td.delete
             = link_to 'Delete', [@person, credit], :confirm => CONFIRM, :method => :delete
