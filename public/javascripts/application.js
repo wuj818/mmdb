@@ -23,32 +23,21 @@ fancybox_settings = {
 }
 
 $(function() {
-  if ($('#env').hasClass('production')) {
-    $('a[data-remote=true]').live('click', function() {
-      _gaq.push(['_trackPageview', $(this).attr('href')]);
-    });
-
-    $('#search_form').submit(function() {
-      path = $(this).attr('action').replace('search', 'query/') + $('#q').serialize().replace('q=', '');
-      _gaq.push(['_trackPageview', path]);
-    });
-  }
-
   $('.close').live('click', function() { $(this).parent().fadeOut(500); });
 
   $('#genre_checkboxes label').live('click', function() {
     $(this).prev().attr('checked', !$(this).prev().is(':checked'));
   });
 
-  var timer;
-  $('#search_form input').keyup(function(e) {
-    clearTimeout(timer);
-    if (e.keyCode >= 46 || e.keyCode == 8) {
-      timer = setTimeout(function() {
-        $('#search_form').submit();
-      }, 400);
-    }
-  });
+  // var timer;
+  // $('#search_form input').keyup(function(e) {
+  //   clearTimeout(timer);
+  //   if (e.keyCode >= 46 || e.keyCode == 8) {
+  //     timer = setTimeout(function() {
+  //       $('#search_form').submit();
+  //     }, 400);
+  //   }
+  // });
 
   $('.tiny_poster_link').fancybox(fancybox_settings);
 

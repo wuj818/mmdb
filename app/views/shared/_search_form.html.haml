@@ -1,4 +1,4 @@
-= form_tag target, :method => :get, :id => 'search_form', :remote => true do
+= form_tag target, :method => :get, :id => 'search_form' do
   = hidden_field_tag 'type', type.pluralize
   = text_field_tag :q, params[:q].blank? ? '' : params[:q], :placeholder => "Search #{type.pluralize}..."
   - if controller_name != 'movies' && controller_name != 'people'

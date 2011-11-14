@@ -2,7 +2,7 @@
   = render 'shared/page_entries_info', :results => @tags, :type => @type
 
   - unless @tags.total_count.zero?
-    = paginate @tags, :remote => true
+    = paginate @tags
 
     %table{:id => @type}
       %tr
@@ -16,4 +16,4 @@
           %td.numeric= tag.total
           %td.numeric= colorized_average tag
 
-    = paginate @tags, :remote => true
+    = paginate @tags
