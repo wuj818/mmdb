@@ -53,7 +53,7 @@ class Movie < ActiveRecord::Base
     :path => '/posters/:style/:id/:filename',
     :s3_credentials => Rails.env.production? ? '/home/mmdb/MMDb/config/s3.yml' : "#{Rails.root}/config/s3.yml",
     :s3_headers => { 'Expires' => 20.years.from_now.httpdate },
-    :s3_host_alias => 'd19pl5j9b8ih73.cloudfront.net',
+    :s3_host_alias => ':cdn.wuj818.com',
     :url => Rails.env.production? ? ':s3_alias_url' : ':s3_path_url'
 
   GENRES = %w(
