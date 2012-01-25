@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 source 'http://gemcutter.org'
 
 gem 'rails', '3.1.0'
-gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'sqlite3', '>= 1.3.4'
 
 gem 'haml'
 gem 'haml-rails'
