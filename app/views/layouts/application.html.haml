@@ -6,7 +6,7 @@
     = javascript_include_tag :defaults, 'jquery-ui', 'livequery', 'fancybox', 'tooltip', :cache => true
     = csrf_meta_tag
     - if Rails.env.production?
-      = render 'shared/google_analytics'
+      = render('shared/google_analytics').squish.html_safe
   %body
     #ajax_activity.hidden
       = image_tag 'ajax-circle.gif', :width => 25, :height => 25
@@ -15,7 +15,7 @@
 
     #admin_wrapper
       #admin_bar
-        = render('layouts/admin_bar').squish
+        = render('layouts/admin_bar').squish.html_safe
         .clear
 
     .container
@@ -25,13 +25,13 @@
           %h1= link_to 'MMDb', root_path
       .span-24
         %nav
-          = render('layouts/navigation').squish
+          = render('layouts/navigation').squish.html_safe
       .span-24.content
         - flash.each do |kind, msg|
           = content_tag :div, :class => "flash #{kind}" do
             = msg
             %span.close X
-        = (yield).squish
+        = (yield).squish.html_safe
       .span-24
         %footer
           = random_quote
