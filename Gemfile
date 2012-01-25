@@ -7,7 +7,6 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'smurf'
 
 gem 'faker'
 gem 'escape_utils'
@@ -27,7 +26,6 @@ group :development do
   gem 'hirb'
   gem 'rainbow'
   gem 'progressbar'
-  gem 'bullet'
 end
 
 group :test, :development do
