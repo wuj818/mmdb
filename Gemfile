@@ -10,7 +10,7 @@ gem 'jquery-rails'
 
 gem 'faker'
 gem 'escape_utils'
-gem 'kaminari'
+gem 'kaminari', '>= 0.13.0'
 gem 'acts-as-taggable-on'
 gem 'mechanize'
 gem 'paperclip'

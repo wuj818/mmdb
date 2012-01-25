@@ -84,8 +84,10 @@ GEM
       thor (~> 0.14.4)
     json (1.6.5)
     json_pure (1.5.1)
-    kaminari (0.10.4)
-      rails (>= 3.0.0)
+    kaminari (0.13.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      railties (>= 3.0.0)
     kgio (2.6.0)
     launchy (0.4.0)
       configuration (>= 0.0.5)
@@ -202,7 +204,7 @@ DEPENDENCIES
   haml-rails
   hirb
   jquery-rails
-  kaminari
+  kaminari (>= 0.13.0)
   launchy
   machinist (>= 2.0.0.beta1)
   mechanize
