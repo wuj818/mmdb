@@ -51,7 +51,7 @@ class Movie < ActiveRecord::Base
     :default_url => '/images/:style-poster.gif',
     :storage => :s3,
     :path => '/posters/:style/:id/:filename',
-    :s3_credentials => Rails.env.production? ? '/home/mmdb/MMDb/config/s3.yml' : "#{Rails.root}/config/s3.yml",
+    :s3_credentials => Rails.root.join('config', 's3.yml'),
     :s3_headers => { 'Expires' => 20.years.from_now.httpdate, 'Cache-Control' => 'max-age=315360000' },
     :s3_host_alias => ':cdn.wuj818.com',
     :url => Rails.env.production? ? ':s3_alias_url' : ':s3_path_url'

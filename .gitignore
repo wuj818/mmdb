@@ -4,6 +4,7 @@ log/*
 tmp/**/*
 .DS_STORE
 public/stylesheets/*.css
+config/database.yml
 config/password.yml
 public/javascripts/all.js
 config/deploy.rb
