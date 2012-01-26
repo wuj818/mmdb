@@ -1,11 +1,11 @@
 .bundle
 db/*.sqlite3
 log/*
-tmp/**/*
+tmp/*
 .DS_STORE
 config/database.yml
 config/password.yml
-public/javascripts/all.js
+public/assets/*
 config/deploy.rb
 config/s3.yml
 .sass-cache/

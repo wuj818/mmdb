@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source 'http://gemcutter.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.3'
 gem 'sqlite3', '>= 1.3.4'
 
 gem 'haml', '>= 3.1.4'
