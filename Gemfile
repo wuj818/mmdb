@@ -19,7 +19,7 @@ gem 'memcache-client'
 group :development do
   gem 'mongrel', '>= 1.2.0.pre2'
   gem 'rails3-generators'
-  gem 'capistrano'
+  gem 'capistrano', '>= 2.9.0'
 
   gem 'wirble'
   gem 'hirb'
@@ -42,6 +42,7 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'therubyracer', '>= 0.9.9'
 end
 
 group :assets do
