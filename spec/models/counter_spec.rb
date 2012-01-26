@@ -13,7 +13,7 @@ describe Counter do
       @movie = Movie.make!
       @counter = @movie.counter
       @movie.destroy
-      @counter.reload.should be_blank
+      lambda { @counter.reload }.should raise_error
     end
   end
 end

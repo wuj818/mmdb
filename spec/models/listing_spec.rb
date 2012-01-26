@@ -46,7 +46,7 @@ describe Listing do
       @list = @listing.item_list
       @listing.item_list.destroy
       lambda { @listing.reload }.should raise_error
-      lambda { @list.reload }.should_not raise_error
+      lambda { @list.reload }.should raise_error
     end
 
     it 'is deleted when the associated movie is deleted' do
@@ -54,7 +54,7 @@ describe Listing do
       @movie = @listing.movie
       @listing.movie.destroy
       lambda { @listing.reload }.should raise_error
-      lambda { @movie.reload }.should_not raise_error
+      lambda { @movie.reload }.should raise_error
     end
   end
 end

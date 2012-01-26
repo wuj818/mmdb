@@ -1,5 +1,5 @@
 %div.info_section{:id => "#{credit_type}_credits"}
-  - average = format '%.2f', @person.send("#{credit_type}_credits").average(:rating)
+  - average = format '%.2f', @person.send("#{credit_type}_credits").joins(:movie).average(:rating)
   %h3 #{job} (#{count}) (#{average}/10)
   %table
     - @person.send("sorted_#{credit_type}_credits").each do |credit|
