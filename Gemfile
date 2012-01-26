@@ -8,13 +8,12 @@ gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
 
-gem 'faker'
 gem 'escape_utils'
 gem 'kaminari', '>= 0.13.0'
 gem 'acts-as-taggable-on', '>= 2.2.2'
 gem 'mechanize'
-gem 'paperclip'
-gem 'aws-s3'
+gem 'paperclip', '>= 2.5.0'
+gem 'aws-sdk', '>= 1.3.2'
 gem 'memcache-client'
 
 group :development do
