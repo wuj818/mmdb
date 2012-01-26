@@ -29,16 +29,16 @@ group :development do
 end
 
 group :test, :development do
-  gem 'rspec-rails', '>= 2.0.0'
+  gem 'rspec-rails', '>= 2.8.1'
 end
 
 group :test do
-  gem 'database_cleaner'
-  gem 'rspec', '>= 2.0.0'
-  gem 'spork', '>= 0.9.0.rc2'
-  gem 'launchy'
-  gem 'machinist', '>= 2.0.0.beta1'
-  gem 'capybara'
+  gem 'rspec', '>= 2.8.0'
+  gem 'spork', '>= 1.0rc'
+  gem 'launchy', '>= 2.0.5'
+  gem 'machinist', '>= 2.0'
+  gem 'capybara', '>= 1.1.2'
+  gem 'database_cleaner', '>= 0.7.1'
 end
 
 group :production do

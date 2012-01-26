@@ -14,10 +14,6 @@ Spork.prefork do
     Capybara.default_selector = :css
     ActiveSupport::Dependencies.clear
 
-    Machinist.configure do |config|
-      config.cache_objects = false
-    end
-
     config.mock_with :rspec
     config.use_transactional_fixtures = false
 
