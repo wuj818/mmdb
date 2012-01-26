@@ -1,3 +1,9 @@
+//= require jquery
+//= require jquery-ui
+//= require jquery_ujs
+//= require plugins
+//= require_self
+
 $(function() {
   $('.close').live('click', function() {
     $(this).parent().fadeOut(500);

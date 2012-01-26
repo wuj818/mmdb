@@ -4,9 +4,9 @@ source 'http://gemcutter.org'
 gem 'rails', '3.1.0'
 gem 'sqlite3', '>= 1.3.4'
 
-gem 'haml'
-gem 'haml-rails'
-gem 'jquery-rails'
+gem 'haml', '>= 3.1.4'
+gem 'haml-rails', '>= 0.3.4'
+gem 'jquery-rails', '>= 1.0.19'
 
 gem 'escape_utils'
 gem 'kaminari', '>= 0.13.0'
@@ -42,4 +42,10 @@ end
 
 group :production do
   gem 'unicorn'
+end
+
+group :assets do
+  gem 'sass-rails', '>= 3.1.0'
+  gem 'coffee-rails', '>= 3.1.0'
+  gem 'uglifier'
 end
