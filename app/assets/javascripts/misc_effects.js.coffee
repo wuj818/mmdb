@@ -1,10 +1,3 @@
-#= require jquery
-#= require jquery-ui
-#= require jquery_ujs
-#= require plugins
-#= require_self
-#= require_tree .
-
 $ ->
   $('.close').live 'click', ->
     $(@).parent().fadeOut 500
