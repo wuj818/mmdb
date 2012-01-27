@@ -33,7 +33,7 @@ end
 
 group :test do
   gem 'rspec', '>= 2.8.0'
-  gem 'spork', '>= 1.0rc'
+  gem 'spork-rails', '>= 3.2.0'
   gem 'launchy', '>= 2.0.5'
   gem 'machinist', '>= 2.0'
   gem 'capybara', '>= 1.1.2'
