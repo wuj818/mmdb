@@ -6,7 +6,7 @@ gem 'sqlite3', '>= 1.3.4'
 
 gem 'haml', '>= 3.1.4'
 gem 'haml-rails', '>= 0.3.4'
-gem 'jquery-rails', '>= 1.0.19'
+gem 'jquery-rails', '>= 2.0.0'
 
 gem 'escape_utils'
 gem 'kaminari', '>= 0.13.0'
