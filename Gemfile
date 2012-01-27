@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source 'http://gemcutter.org'
 
-gem 'rails', '3.1.3'
+gem 'rails', '3.2.1'
 gem 'sqlite3', '>= 1.3.4'
 
 gem 'haml', '>= 3.1.4'
@@ -46,7 +46,7 @@ group :production do
 end
 
 group :assets do
-  gem 'sass-rails', '>= 3.1.0'
-  gem 'coffee-rails', '>= 3.1.0'
-  gem 'uglifier'
+  gem 'sass-rails', '>= 3.2.3'
+  gem 'coffee-rails', '>= 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
 end
