@@ -52,10 +52,11 @@
       = ' | '
       = link_to 'More Keywords &raquo;'.html_safe, keywords_movie_path(@movie), :class => 'more'
 
-  - smart_cache 'related' do
-    #related_movies.info_section
-      %h3 Related Movies
-      = raw @movie.related_movies.shuffle.map { |movie| link_to movie.title, movie }.join ' | '
+  - if false
+    - smart_cache 'related' do
+      #related_movies.info_section
+        %h3 Related Movies
+        = raw @movie.related_movies.shuffle.map { |movie| link_to movie.title, movie }.join ' | '
 
   - smart_cache 'credits' do
     = render 'credits'
