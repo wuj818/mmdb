@@ -20,6 +20,9 @@ Mmdb::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  require 'uglifier'
+  config.assets.js_compressor = Uglifier.new :copyright => false
+
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
