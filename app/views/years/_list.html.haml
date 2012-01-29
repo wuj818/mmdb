@@ -2,7 +2,7 @@
   = render 'shared/page_entries_info', :results => @years, :type => 'year'
 
   - unless @years.total_count.zero?
-    = paginate @years
+    = paginate @years, :remote => true
 
     %table#years
       %tr
@@ -16,4 +16,4 @@
           %td.numeric= year.total
           %td.numeric= colorized_average year
 
-    = paginate @years
+    = paginate @years, :remote => true

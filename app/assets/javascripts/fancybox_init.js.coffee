@@ -1,5 +1,6 @@
 $ ->
-  $('.tiny_poster_link').fancybox
+  $('.tiny_poster_link').live 'mouseenter', ->
+    $(@).fancybox
       padding: 4
       cyclic: true
       overlayOpacity: 0.9

@@ -2,7 +2,7 @@
   = render 'shared/page_entries_info', :results => @movies, :type => 'movie'
 
   - unless @movies.total_count.zero?
-    = paginate @movies
+    = paginate @movies, :remote => true
 
     %table#movies
       %tr
@@ -20,4 +20,4 @@
           %td.numeric= movie.runtime
           %td.numeric= colorized_rating movie
 
-    = paginate @movies
+    = paginate @movies, :remote => true

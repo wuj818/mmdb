@@ -2,7 +2,7 @@
   = render 'shared/page_entries_info', :results => @people, :type => 'person'
 
   - unless @people.total_count.zero?
-    = paginate @people
+    = paginate @people, :remote => true
 
     %table#people
       %tr
@@ -26,4 +26,4 @@
           %td.numeric= person.number_of_cinematography_credits
           %td.numeric= person.number_of_acting_credits
 
-    = paginate @people
+    = paginate @people, :remote => true
