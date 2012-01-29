@@ -3,9 +3,10 @@ db/*.sqlite3
 log/*
 tmp/*
 .DS_STORE
-config/database.yml
-config/password.yml
 public/assets/*
+config/database.yml
 config/deploy.rb
+config/newrelic.yml
+config/password.yml
 config/s3.yml
 .sass-cache/

@@ -118,6 +118,7 @@ GEM
     net-ssh (2.3.0)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
+    newrelic_rpm (3.3.0)
     nokogiri (1.5.0)
     paperclip (2.5.0)
       activerecord (>= 2.3.0)
@@ -229,6 +230,7 @@ DEPENDENCIES
   mechanize
   memcache-client
   mongrel (>= 1.2.0.pre2)
+  newrelic_rpm
   paperclip (>= 2.5.0)
   progressbar
   rails (= 3.2.1)

@@ -15,6 +15,7 @@ gem 'mechanize'
 gem 'paperclip', '>= 2.5.0'
 gem 'aws-sdk', '>= 1.3.2'
 gem 'memcache-client'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'mongrel', '>= 1.2.0.pre2'
