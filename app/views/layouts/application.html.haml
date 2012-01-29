@@ -5,6 +5,7 @@
     = stylesheet_link_tag :application
     = javascript_include_tag :application
     = csrf_meta_tag
+    = favicon_link_tag
     - if Rails.env.production?
       = render('shared/google_analytics').squish.html_safe
   %body
@@ -36,4 +37,4 @@
         %footer
           = random_quote
           .copyright
-            &copy; 2010 James Wu
+            &copy; 2010-2012 James Wu
