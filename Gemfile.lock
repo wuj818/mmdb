@@ -55,9 +55,9 @@ GEM
     childprocess (0.3.0)
       ffi (~> 1.0.6)
     cocaine (0.2.1)
-    coffee-rails (3.2.2)
+    coffee-rails (3.2.1)
       coffee-script (>= 2.2.0)
-      railties (~> 3.2.0)
+      railties (~> 3.2.0.beta)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -170,8 +170,8 @@ GEM
       rspec (~> 2.8.0)
     rubyzip (0.9.5)
     sass (3.1.12)
-    sass-rails (3.2.4)
-      railties (~> 3.2.0)
+    sass-rails (3.2.3)
+      railties (~> 3.2.0.beta)
       sass (>= 3.1.10)
       tilt (~> 1.3)
     selenium-webdriver (2.17.0)
@@ -194,7 +194,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.31)
-    uglifier (1.2.2)
+    uglifier (1.0.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
     unicorn (4.1.1)
@@ -210,34 +210,34 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on (>= 2.2.2)
-  aws-sdk (>= 1.3.2)
-  capistrano (>= 2.9.0)
-  capybara (>= 1.1.2)
-  coffee-rails (>= 3.2.1)
-  database_cleaner (>= 0.7.1)
+  acts-as-taggable-on (= 2.2.2)
+  aws-sdk (= 1.3.2)
+  capistrano (= 2.9.0)
+  capybara (= 1.1.2)
+  coffee-rails (= 3.2.1)
+  database_cleaner (= 0.7.1)
   escape_utils
-  haml (>= 3.1.4)
-  haml-rails (>= 0.3.4)
+  haml (= 3.1.4)
+  haml-rails (= 0.3.4)
   hirb
-  jquery-rails (>= 2.0.0)
-  kaminari (>= 0.13.0)
-  launchy (>= 2.0.5)
-  machinist (>= 2.0)
+  jquery-rails (= 2.0.0)
+  kaminari (= 0.13.0)
+  launchy (= 2.0.5)
+  machinist (= 2.0)
   mechanize
   memcache-client
-  mongrel (>= 1.2.0.pre2)
+  mongrel (= 1.2.0.pre2)
   newrelic_rpm
-  paperclip (>= 2.5.0)
+  paperclip (= 2.5.0)
   progressbar
   rails (= 3.2.1)
   rails3-generators
   rainbow
-  rspec (>= 2.8.0)
-  rspec-rails (>= 2.8.1)
-  sass-rails (>= 3.2.3)
-  spork-rails (>= 3.2.0)
-  sqlite3 (>= 1.3.4)
-  uglifier (>= 1.0.3)
+  rspec (= 2.8.0)
+  rspec-rails (= 2.8.1)
+  sass-rails (= 3.2.3)
+  spork-rails (= 3.2.0)
+  sqlite3 (= 1.3.5)
+  uglifier (= 1.0.3)
   unicorn
   wirble
