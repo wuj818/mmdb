@@ -43,7 +43,6 @@ end
 
 group :production do
   gem 'unicorn'
-  gem 'therubyracer', '>= 0.9.9'
 end
 
 group :assets do
