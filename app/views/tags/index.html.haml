@@ -1,4 +1,7 @@
-= render 'shared/search_form', :target => search_tags_path, :type => @type
+.page-header
+  %h1= @type.titleize
 
-%div{:id => "#{@type}_container"}
+=# render 'shared/search_form', :target => search_tags_path, :type => @type
+
+%div{:id => "#{@type}-container"}
   = render 'list'
