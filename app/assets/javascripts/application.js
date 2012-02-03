@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require plugins
-//= require_self
 //= require_tree .
