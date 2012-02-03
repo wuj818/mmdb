@@ -1,15 +1,19 @@
 - smart_cache do
-  = render 'shared/page_entries_info', :results => @decades, :type => 'decade'
+  =# render 'shared/page_entries_info', :results => @decades, :type => 'decade'
 
   - unless @decades.total_count.zero?
-    %table#decades
-      %tr
-        %th= sort_link :decade
-        %th.numeric= sort_link :total
-        %th.numeric= sort_link :average
-
-      - @decades.each do |decade|
+    %table#ajax-table.table.table-striped.table-bordered
+      %thead
         %tr
-          %td.main_cell= link_to decade.decade << 's', decade_path(decade.decade)
-          %td.numeric= decade.total
-          %td.numeric= colorized_average decade
+          %th{:style => 'width: 15px;'} #
+          %th= sort_link :decade
+          %th{:style => 'width: 50px;'}= sort_link :total
+          %th{:style => 'width: 70px;'}= sort_link :average
+
+      %tbody
+        - @decades.each_with_index do |decade, i|
+          %tr
+            %td= i + 1
+            %td= link_to decade.decade << 's', decade_path(decade.decade)
+            %td= decade.total
+            %td= colorized_average decade
