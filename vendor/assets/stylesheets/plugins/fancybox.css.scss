@@ -241,8 +241,9 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  color: white;
-  text-align: left; }
+  text-align: left;
+  a {
+    color: white; } }
 
 #fancybox-title-over {
   padding: 8px 14px;

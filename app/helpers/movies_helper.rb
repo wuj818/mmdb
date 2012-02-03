@@ -13,11 +13,12 @@ module MoviesHelper
   end
 
   def rating_class(movie)
-    case movie.rating
-    when 0..4 then 'red'
-    when 5..7 then 'orange'
-    when 8..10 then 'green'
+    color = case movie.rating
+      when 0..4 then 'red'
+      when 5..7 then 'orange'
+      when 8..10 then 'green'
     end
+    "colorized #{color}"
   end
 
   def original_movie_poster(movie)

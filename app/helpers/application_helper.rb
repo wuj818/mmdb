@@ -39,4 +39,16 @@ module ApplicationHelper
     active = TagsController::TYPES.include?(name) ? @type : controller_name
     name == active ? 'active' : nil
   end
+
+  def colorized_average(obj)
+    average = obj.average
+    color = if average <= 5
+      'red'
+    elsif average <= 6
+      'orange'
+    else
+      'green'
+    end
+    content_tag :span, format('%.2f', average), :class => "colorized #{color}"
+  end
 end

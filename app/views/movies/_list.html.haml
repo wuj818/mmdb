@@ -1,23 +1,27 @@
 - smart_cache do
-  = render 'shared/page_entries_info', :results => @movies, :type => 'movie'
+  =# render 'shared/page_entries_info', :results => @movies, :type => 'movie'
 
   - unless @movies.total_count.zero?
-    = paginate @movies, :remote => true
+    =# paginate @movies, :remote => true
 
-    %table#movies
-      %tr
-        %th= sort_link :title
-        %th.numeric= sort_link :year
-        %th.numeric= sort_link :runtime
-        %th.numeric= sort_link :rating
-
-      - @movies.each do |movie|
+    %table#ajax-table.table.table-striped.table-bordered
+      %thead
         %tr
-          %td
-            = tiny_movie_poster_link movie
-            = link_to movie.title, movie, :class => 'movie_link'
-          %td.numeric= movie.year
-          %td.numeric= movie.runtime
-          %td.numeric= colorized_rating movie
+          %th{:style => 'width: 15px;'} #
+          %th= sort_link :title
+          %th{:style => 'width: 50px;'}= sort_link :year
+          %th{:style => 'width: 70px;'}= sort_link :runtime
+          %th{:style => 'width: 70px;'}= sort_link :rating
 
-    = paginate @movies, :remote => true
+      %tbody
+        - @movies.each_with_index do |movie, i|
+          %tr
+            %td= i + 1
+            %td
+              = tiny_movie_poster_link movie
+              = link_to movie.title, movie
+            %td= movie.year
+            %td= movie.runtime
+            %td= colorized_rating movie
+
+    =# paginate @movies, :remote => true
