@@ -4,13 +4,13 @@
   - unless @years.total_count.zero?
     =# paginate @years, :remote => true
 
-    %table.table.table-striped.table-bordered
+    %table#ajax-table.table.table-striped.table-bordered
       %thead
         %tr
           %th{:style => 'width: 15px;'} #
           %th= sort_link :year
-          %th{:style => 'width: 35px;'}= sort_link :total
-          %th{:style => 'width: 50px;'}= sort_link :average
+          %th{:style => 'width: 50px;'}= sort_link :total
+          %th{:style => 'width: 70px;'}= sort_link :average
 
       %tbody
         - @years.each_with_index do |year, i|

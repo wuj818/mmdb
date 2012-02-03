@@ -8,3 +8,23 @@ body {
 
 .divider {
   color: #999999; }
+
+.hidden {
+  display: none; }
+
+#ajax_activity {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -12px;
+  z-index: 9000; }
+
+.colorized  {
+  font-weight: bold;
+  &.red {
+    color: #B94A48; }
+  &.orange {
+    color: #F89406; }
+  &.green {
+    color: #468847; } }

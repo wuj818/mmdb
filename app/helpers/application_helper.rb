@@ -1,10 +1,24 @@
 module ApplicationHelper
-  def sort_link(column, title = nil)
+  def sort_link(column)
     column = column.to_s
-    title ||= column.to_s.titleize
-    css_class = (column == params[:sort]) ? "current #{params[:order]}" : nil
-    order = (column == params[:sort] && params[:order] == 'asc') ? 'desc' : 'asc'
-    link_to title, url_for(:sort => column, :order => order, :minimum => params[:minimum], :page => params[:page], :q => params[:q]), :class => css_class, :remote => true
+    new_order = (column == params[:sort] && params[:order] == 'asc') ? 'desc' : 'asc'
+    url_options = {
+      :sort => column,
+      :order => new_order,
+      :minimum => params[:minimum],
+      :page => params[:page],
+      :q => params[:q]
+    }
+
+    link = link_to column.titleize, url_for(url_options), :remote => true
+
+    if column == params[:sort]
+      direction = params[:order] == 'asc' ? 'up' : 'down'
+      arrow = content_tag :i, nil, :class => "icon-arrow-#{direction}"
+      "#{link} #{arrow}".html_safe
+    else
+      link
+    end
   end
 
   def smart_cache(key = '', &block)

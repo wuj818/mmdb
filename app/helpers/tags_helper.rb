@@ -13,6 +13,6 @@ module TagsHelper
     else
       'green'
     end
-    content_tag :span, format('%.2f', average), :class => color
+    content_tag :span, format('%.2f', average), :class => "colorized #{color}"
   end
 end
