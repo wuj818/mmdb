@@ -10,31 +10,34 @@
       = render('shared/google_analytics').squish.html_safe
   %body
     #ajax_activity.hidden
-      = image_tag 'ajax-circle.gif', :width => 25, :height => 25
+      =# image_tag 'ajax-circle.gif', :width => 25, :height => 25
 
     #env{:class => Rails.env}
 
-    #admin_wrapper
-      #admin_bar
-        = render('layouts/admin_bar').squish.html_safe
-        .clear
+    = render('layouts/navigation').squish.html_safe
 
-    .container
-      .span-24
-        %header
-          = random_quote
-          %h1= link_to 'MMDb', root_path
-      .span-24
-        %nav
-          = render('layouts/navigation').squish.html_safe
-      .span-24.content
-        - flash.each do |kind, msg|
-          = content_tag :div, :class => "flash #{kind}" do
-            = msg
-            %span.close X
-        = (yield).squish.html_safe
-      .span-24
-        %footer
-          = random_quote
-          .copyright
-            &copy; 2010-2012 James Wu
+    - if false
+      #admin_wrapper
+        #admin_bar
+          = render('layouts/admin_bar').squish.html_safe
+          .clear
+
+      .container
+        .span-24
+          %header
+            =# random_quote
+            %h1= link_to 'MMDb', root_path
+        .span-24
+          %nav
+            = render('layouts/navigation').squish.html_safe
+        .span-24.content
+          - flash.each do |kind, msg|
+            = content_tag :div, :class => "flash #{kind}" do
+              = msg
+              %span.close X
+          = (yield).squish.html_safe
+        .span-24
+          %footer
+            =# random_quote
+            .copyright
+              &copy; 2010-2012 James Wu

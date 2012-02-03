@@ -19,4 +19,10 @@ module ApplicationHelper
     quote.gsub! "#{source}: ", ''
     content_tag :div, quote, :class => 'random_quote', :alt => source, :title => source
   end
+
+  def active_nav_link?(name)
+    name = name.to_s
+    active = TagsController::TYPES.include?(name) ? @type : controller_name
+    name == active ? 'active' : nil
+  end
 end
