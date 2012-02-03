@@ -1,5 +1,5 @@
 .page-header
-  %h1= @type.titleize
+  %h1= link_to @type.titleize, send("#{@type}_path")
 
 =# render 'shared/search_form', :target => search_tags_path, :type => @type
 
