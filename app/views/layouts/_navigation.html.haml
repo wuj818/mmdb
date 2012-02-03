@@ -42,3 +42,9 @@
 
         %li{:class => active_nav_link?(:item_lists)}
           = link_to 'Lists', item_lists_path
+
+      %p.navbar-text.pull-right
+        - if admin?
+          = link_to 'Logout', logout_path, :method => :delete
+        - else
+          = link_to 'Login', login_path

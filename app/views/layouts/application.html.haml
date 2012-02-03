@@ -17,6 +17,7 @@
     = render('layouts/navigation').squish.html_safe
 
     .container
+      = render('shared/flashes').squish.html_safe
       = (yield).squish.html_safe
 
       #footer

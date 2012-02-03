@@ -12,3 +12,6 @@ $ ->
     -> $(@).animate opacity: 0.5, 200
     -> $(@).animate opacity: 1.0, 200
   )
+
+  $('.btn.loading').click ->
+    $(@).button 'loading'
