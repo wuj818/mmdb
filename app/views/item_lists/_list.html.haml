@@ -17,9 +17,8 @@
   - cache(@list, :expires_in => 2.weeks) do
     - @listings = @list.listings
 
-    %ul#movies
+    %ol
       - @listings.each do |listing|
         %li{:id => dom_id(listing)}
-          %span.rank ##{listing.position}
-          = tiny_movie_poster_link listing.movie
+          =# tiny_movie_poster_link listing.movie
           = link_to listing.movie.title, listing.movie, :class => 'movie_link'

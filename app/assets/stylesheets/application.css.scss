@@ -1,3 +1,10 @@
 //= require twitter/bootstrap
 //= require plugins
+//= require_self
 //= require_tree .
+
+body {
+  padding-top: 40px; }
+
+.divider {
+  color: #999999; }

@@ -16,6 +16,9 @@
 
     = render('layouts/navigation').squish.html_safe
 
+    .container
+      = (yield).squish.html_safe
+
     - if false
       #admin_wrapper
         #admin_bar
