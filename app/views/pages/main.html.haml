@@ -1,34 +1,59 @@
-- smart_cache 'stats' do
-  #main_stats
-    - movies_count = Movie.count
-    = image_tag 'psh.jpg', :id => 'psh', :alt => "I'm a fuckin' idiot...", :title => "I'm a fuckin' idiot...", :width => 330, :height => 600
+#main-stats
+  = image_tag 'psh.jpg',
+    :id => 'psh',
+    :alt => "I'm a fuckin' idiot...",
+    :title => "I'm a fuckin' idiot...",
+    :height => 600,
+    :width => 330
 
-    %h2= link_to "#{number_with_delimiter movies_count} <span class='black'>movies</span>".html_safe, movies_path
+  - smart_cache 'stats' do
+    %h2
+      = link_to movies_path do
+        = number_with_delimiter Movie.count
+        %span.black movies
 
-    - total_runtime = (Movie.sum(:runtime) / 60.0).ceil
-    %h2= link_to "#{number_with_delimiter total_runtime} <span class='black'>hours</span>".html_safe, movies_path
+    %h2
+      = link_to movies_path do
+        = number_with_delimiter (Movie.sum(:runtime) / 60.0).ceil
+        %span.black hours
 
-    - people_count = Person.count
-    %h2= link_to "#{number_with_delimiter people_count} <span class='black'>people</span>".html_safe, people_path
-
-    %br
-
-    - genres_count = Tagging.select('DISTINCT tag_id').where(:context => :genres).count
-    %h2= link_to "#{number_with_delimiter genres_count} <span class='black'>genres</span>".html_safe, genres_path
-
-    - keywords_count = Tagging.select('DISTINCT tag_id').where(:context => :keywords).count
-    %h2= link_to "#{number_with_delimiter keywords_count} <span class='black'>keywords</span>".html_safe, keywords_path
-
-    - languages_count = Tagging.select('DISTINCT tag_id').where(:context => :languages).count
-    %h2= link_to "#{number_with_delimiter languages_count} <span class='black'>languages</span>".html_safe, languages_path
-
-    - countries_count = Tagging.select('DISTINCT tag_id').where(:context => :countries).count
-    %h2= link_to "#{number_with_delimiter countries_count} <span class='black'>countries</span>".html_safe, countries_path
+    %h2
+      = link_to people_path do
+        = number_with_delimiter Person.count
+        %span.black people
 
     %br
 
-    - decades_count = Movie.select('(year / 10) || "0" AS decade').group(:decade).length
-    %h2= link_to "#{number_with_delimiter decades_count} <span class='black'>decades</span>".html_safe, decades_path
+    %h2
+      = link_to genres_path do
+        = number_with_delimiter Tagging.select('DISTINCT tag_id').where(:context => :genres).count
+        %span.black genres
 
-    - years_count = Movie.select('DISTINCT year').count
-    %h2= link_to "#{number_with_delimiter years_count} <span class='black'>years</span>".html_safe, years_path
+    %h2
+      = link_to keywords_path do
+        = number_with_delimiter Tagging.select('DISTINCT tag_id').where(:context => :keywords).count
+        %span.black keywords
+
+    %h2
+      = link_to languages_path do
+        = number_with_delimiter Tagging.select('DISTINCT tag_id').where(:context => :languages).count
+        %span.black languages
+
+    %h2
+      = link_to countries_path do
+        = number_with_delimiter Tagging.select('DISTINCT tag_id').where(:context => :countries).count
+        %span.black countries
+
+    %br
+
+    %h2
+      = link_to decades_path do
+        = number_with_delimiter Movie.select('(year / 10) || "0" AS decade').group(:decade).length
+        %span.black decades
+
+    %h2
+      = link_to years_path do
+        = number_with_delimiter Movie.select('year').uniq.count
+        %span.black years
+
+.clear

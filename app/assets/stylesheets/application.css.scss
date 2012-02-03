@@ -28,3 +28,33 @@ body {
     color: #F89406; }
   &.green {
     color: #468847; } }
+
+#psh {
+  float: left;
+  margin-right: 18px; }
+
+#main-stats {
+  margin: auto;
+  margin-top: 12px;
+  width: 670px;
+  h2 {
+    font-size: 40px;
+    font-variant: small-caps;
+    font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 60px;
+    a {
+      text-decoration: none; }
+    .black {
+      color: black; } } }
+
+.clear {
+  clear: both; }
+
+#footer {
+  margin: 18px 0;
+  color: #888;
+  border-top: 1px solid #eee;
+  font-family: 'Verdana';
+  padding-top: 12px;
+  text-align: right; }
