@@ -71,10 +71,6 @@ class MoviesController < ApplicationController
     end
   end
 
-  def stats
-    @title = 'Movies - Stats'
-  end
-
   def keywords
     @title = "#{@movie.full_title} - Keywords"
   end

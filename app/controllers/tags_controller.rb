@@ -37,8 +37,10 @@ class TagsController < ApplicationController
     end
   end
 
-  def stats
-    @title = "#{@type.capitalize} - Stats"
+  def countries_map
+    @title = 'Countries - Map'
+
+    render 'tags/countries/map'
   end
 
   private

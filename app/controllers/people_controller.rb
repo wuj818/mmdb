@@ -41,10 +41,6 @@ class PeopleController < ApplicationController
     redirect_to people_path
   end
 
-  def stats
-    @title = 'People - Stats'
-  end
-
   def graphs
     @title = "#{@person.name} - Graphs"
   end

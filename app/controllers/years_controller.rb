@@ -25,10 +25,6 @@ class YearsController < ApplicationController
     @movies = @movies.page(page).per(per_page)
   end
 
-  def stats
-    @title = 'Years - Stats'
-  end
-
   private
 
   def get_year

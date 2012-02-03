@@ -1,3 +1,9 @@
+.page-header
+  %h1
+    = link_to 'Countries', countries_path
+    %span.divider /
+    Map
+
 - @countries = Tag.select('name, COUNT(*) AS total, AVG(rating) AS average')
 - @countries = @countries.joins(:taggings).joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
 - @countries = @countries.where('context = ?', @type).group(:name)
@@ -5,4 +11,4 @@
 #countries
 
 - smart_cache 'country_map' do
-  = render 'tags/countries/map'
+  = render 'tags/countries/map_graph'

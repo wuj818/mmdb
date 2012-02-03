@@ -32,10 +32,6 @@ class DecadesController < ApplicationController
     end
   end
 
-  def stats
-    @title = 'Decades - Stats'
-  end
-
   private
 
   def get_decade

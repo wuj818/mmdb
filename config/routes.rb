@@ -22,7 +22,6 @@ Mmdb::Application.routes.draw do
     collection do
       post :scrape_info
       get :search
-      get :stats
     end
 
     member do
@@ -39,7 +38,6 @@ Mmdb::Application.routes.draw do
 
     collection do
       get :search
-      get :stats
     end
 
     member do
@@ -57,11 +55,6 @@ Mmdb::Application.routes.draw do
     resources type, :only => [:index, :show] do
       collection do
         get :search
-        get :stats
-      end
-
-      member do
-        get :stats
       end
     end
   end
@@ -74,28 +67,22 @@ Mmdb::Application.routes.draw do
     resources :listings, :only => [:new, :create, :destroy]
   end
 
-  get '/stats' => 'pages#main'
-
   get 'tags/search' => 'tags#search'
   get ':type/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'tags#index'
   get ':type/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'tags#show'
   get ':type(/total-at-least/:minimum)(/query/:q)' => 'tags#index',
     :as => :formatted_search_tags
 
+  get '/countries/map' => 'tags#countries_map', :as => :countries_map, :type => 'countries'
+
   [:genres, :keywords, :languages, :countries].each do |type|
     get ':type' => 'tags#index', :as => :"#{type}", :type => type
-    get ':type/stats' => 'tags#stats', :as => :"formatted_stats_#{type}", :type => type
     get ':type/:id' => 'tags#show'
   end
 
   resources :tags, :only => [:index, :show] do
     collection do
       get :search
-      get :stats
-    end
-
-    member do
-      get :stats
     end
   end
 
