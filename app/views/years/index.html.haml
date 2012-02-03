@@ -1,12 +1,8 @@
-- all_years = (Movie.minimum(:year)..Movie.maximum(2010)).to_a
-- movie_years = @years.map &:year
-- missing_years = (all_years - movie_years).sort
-- unless missing_years.empty?
-  .flash.info
-    %strong Missing:
-    = missing_years.join ', '
+.page-header
+  %h1 Years
 
-= render 'shared/search_form', :target => search_years_path, :type => 'years'
+= render 'missing_years'
 
-#years_container
-  = render 'list'
+=# render 'shared/search_form', :target => search_years_path, :type => 'years'
+
+= render 'list'
