@@ -43,6 +43,11 @@
         %li{:class => active_nav_link?(:item_lists)}
           = link_to 'Lists', item_lists_path
 
+      - if content_for? :search
+        = yield :search
+      - else
+        = render 'shared/search_form', :target => search_movies_path, :type => 'movie'
+
       %p.navbar-text.pull-right
         - if admin?
           = link_to 'Logout', logout_path, :method => :delete

@@ -1,9 +1,12 @@
+- content_for :search do
+  = render 'shared/search_form', :target => search_years_path, :type => 'years'
+
 .page-header
   %h1= link_to 'Years', years_path
 
 = render 'missing_years'
 
-=# render 'shared/search_form', :target => search_years_path, :type => 'years'
+= render 'shared/search_filters', :target => search_years_path, :type => 'years'
 
 #years-container
   = render 'list'

@@ -1,7 +1,7 @@
-= form_tag target, :method => :get, :id => 'search_form' do
+= form_tag target, :method => :get,
+  :class => 'navbar-search' do
   = hidden_field_tag 'type', type.pluralize
-  = text_field_tag :q, params[:q].blank? ? '' : params[:q], :placeholder => "Search #{type.pluralize}..."
-  - if controller_name != 'movies' && controller_name != 'people'
-    = label_tag :minimum, 'Total >='
-    = text_field_tag :minimum, params[:minimum], :placeholder => '0', :id => 'minimum_total'
-  = submit_tag 'Search', :class => 'hidden'
+  = text_field_tag :q, params[:q].blank? ? nil : params[:q],
+    :placeholder => "Search #{type.pluralize}...",
+    :class => 'search-query span2'
+  = submit_tag 'Search', :class => 'hidden btn'

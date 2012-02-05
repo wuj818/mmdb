@@ -10,7 +10,7 @@ body {
   color: #999999; }
 
 .hidden {
-  display: none; }
+  display: none !important; }
 
 #ajax_activity {
   position: fixed;
@@ -70,3 +70,21 @@ body {
 
 #ajax-table {
   clear: both; }
+
+.navbar {
+  .nav {
+    & > li {
+      & > a {
+        padding: 10px 8px; } } } }
+
+.highlight {
+  background: yellow;
+  padding: 0 6px; }
+
+#filter-form {
+  margin-top: 28px;
+  label {
+    font-weight: bold;
+    margin-right: 4px; }
+  input[type='text'] {
+    margin-right: 8px; } }
