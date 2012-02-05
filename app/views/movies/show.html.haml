@@ -2,61 +2,17 @@
   = link_to 'Edit', [:edit, @movie], :class => 'button'
   = link_to 'Delete', @movie, :confirm => CONFIRM, :method => :delete, :class => 'button'
 
-.span-8
-  = original_movie_poster @movie
-
-.span-16.last
-  #movie_details
-    %h2= @movie.full_title
-
+.page-header
+  %h1
+    = link_to 'Movies', movies_path
+    %span.divider /
+    = @movie.full_title
     - unless @movie.aka.blank?
-      %span.aka aka #{@movie.aka}
+      %small.aka aka #{@movie.aka}
 
-    .icons
-      = link_to image_tag('icons/imdb-icon.png', :title => 'IMDb', :width => 16, :height => 16), @movie.imdb_url, :rel => :external, :class => 'imdb'
+- smart_cache do
+  = render 'movies/show/header'
 
-      - unless @movie.rotten_tomatoes_url.blank?
-        = link_to image_tag('icons/rotten-tomatoes-icon.png', :title => 'Rotten Tomatoes', :width => 16, :height => 16), @movie.rotten_tomatoes_url, :rel => :external, :class => 'rotten_tomatoes'
+  = render 'movies/show/keywords'
 
-      - unless @movie.movie_poster_db_url.blank?
-        = link_to image_tag('icons/movie-poster-db-icon.png', :title => 'Movie Poster DB', :width => 16, :height => 16), @movie.movie_poster_db_url, :rel => :external, :class => 'movie_poster_db'
-
-    .rating{:class => rating_class(@movie)}
-      #{@movie.rating}/10
-
-    .runtime
-      %strong Runtime:
-      #{@movie.runtime} min
-
-    - smart_cache 'tags' do
-      .tags
-        %strong Genres:
-        = raw @movie.genres.order(:name).map { |genre| tag_link genre, :genre }.join ' | '
-
-      .tags
-        %strong Languages:
-        = raw @movie.languages.order(:name).map { |language| tag_link language, :language }.join ' | '
-
-      .tags
-        %strong Countries:
-        = raw @movie.countries.order(:name).map { |country| tag_link country, :country }.join ' | '
-
-    .synopsis= @movie.synopsis
-
-.span-24
-  - smart_cache 'top_keywords' do
-    #keywords.info_section
-      %h3 Keywords
-
-      = raw @movie.relevant_keywords.map { |keyword| tag_link keyword, :keyword }.join ' | '
-      = ' | '
-      = link_to 'More Keywords &raquo;'.html_safe, keywords_movie_path(@movie), :class => 'more'
-
-  - if false
-    - smart_cache 'related' do
-      #related_movies.info_section
-        %h3 Related Movies
-        = raw @movie.related_movies.shuffle.map { |movie| link_to movie.title, movie }.join ' | '
-
-  - smart_cache 'credits' do
-    = render 'credits'
+  = render 'movies/show/credits'

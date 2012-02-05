@@ -1,0 +1,24 @@
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th
+        %h3 #{job.pluralize.capitalize} (#{count})
+  %tbody
+    - @movie.send("sorted_#{credit_type}_credits").each do |credit|
+      %tr
+        %td.wide-cell
+          = link_to credit.person.name, credit.person
+        - if credit.details.blank?
+          %td.no-border
+          %td.no-border
+        - else
+          %td.ellipsis-cell
+            = '...' unless credit.details.blank?
+          %td
+            = credit.details
+        - if action_name == 'edit'
+          %td.delete-cell
+            = link_to 'Delete', [credit.person, credit],
+              :class => 'btn btn-danger',
+              :confirm => CONFIRM,
+              :method => :delete

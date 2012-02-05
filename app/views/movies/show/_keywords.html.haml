@@ -1,0 +1,11 @@
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th
+        %h3 Keywords (#{number_with_delimiter @movie.keywords.count})
+  %tbody
+    %tr
+      %td
+        = raw @movie.relevant_keywords.map { |keyword| tag_link keyword, :keyword }.join ' | '
+        = ' | '
+        = link_to 'More Keywords &raquo;'.html_safe, keywords_movie_path(@movie), :class => 'more'

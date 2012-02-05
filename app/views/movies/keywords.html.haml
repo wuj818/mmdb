@@ -1,9 +1,13 @@
-%h2
-  = link_to @movie.title, @movie
-  &raquo; Keywords
+.page-header
+  %h1
+    = link_to 'Movies', movies_path
+    %span.divider /
+    = link_to @movie.full_title, @movie
+    %span.divider /
+    Keywords
 
 - smart_cache do
-  #full_keywords.info_section
+  #full-keywords
     %ul
       - @movie.sorted_keywords.each do |keyword|
         %li= tag_link keyword, :keyword

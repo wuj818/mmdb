@@ -22,16 +22,26 @@ module MoviesHelper
   end
 
   def original_movie_poster(movie)
-    image_tag movie.poster.url(:original), :class => 'original_poster'
+    link_to movie.poster.url(:original),
+      :class => 'thumbnail original-movie' do
+      image_tag movie.poster.url(:original)
+    end
   end
 
   def tiny_movie_poster(movie)
-    image_tag movie.poster.url(:tiny), :class => 'tiny_poster', :width => 20, :height => 30
+    image_tag movie.poster.url(:tiny),
+      :class => 'tiny-poster',
+      :width => 20,
+      :height => 30
   end
 
   def tiny_movie_poster_link(movie, job = nil)
-    rel = job.blank? ? 'gallery' : "#{job.downcase}_gallery"
+    rel = job.blank? ? 'gallery' : "#{job.downcase}-gallery"
     title = job.blank? ? movie.full_title : "#{movie.full_title} - #{job}"
-    link_to tiny_movie_poster(movie), movie.poster.url(:original), :class => 'tiny_poster_link', :rel => rel, :title => title, :'data-movie-url' => movie_path(movie)
+    link_to tiny_movie_poster(movie), movie.poster.url(:original),
+      :class => 'tiny-poster-link',
+      :rel => rel,
+      :title => title,
+      :'data-movie-url' => movie_path(movie)
   end
 end

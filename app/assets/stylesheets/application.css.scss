@@ -106,3 +106,22 @@ body {
 
 .login, .logout {
   color: #00b1ff !important; }
+
+.wide-cell {
+  width: 50%; }
+
+.ellipsis-cell {
+  width: 12px; }
+
+.no-border {
+  border-left: none !important;
+  border-right: none !important; }
+
+.delete-cell {
+  width: 60px; }
+
+.more {
+  color: #468847;
+  font-style: italic;
+  &:hover {
+    color: #468847; } }

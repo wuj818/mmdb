@@ -1,0 +1,23 @@
+%p.icons
+  = link_to @movie.imdb_url, :rel => :external do
+    = image_tag 'icons/imdb-icon.png',
+      :title => 'IMDb',
+        :alt => 'IMDb',
+        :width => 16,
+        :height => 16
+
+  - unless @movie.rotten_tomatoes_url.blank?
+    = link_to @movie.rotten_tomatoes_url, :rel => :external do
+      = image_tag 'icons/rotten-tomatoes-icon.png',
+        :title => 'Rotten Tomatoes',
+        :alt => 'Rotten Tomatoes',
+        :width => 16,
+        :height => 16
+
+  - unless @movie.movie_poster_db_url.blank?
+    = link_to @movie.movie_poster_db_url, :rel => :external do
+      = image_tag 'icons/movie-poster-db-icon.png',
+        :title => 'Movie Poster DB',
+        :alt => 'Movie Poster DB',
+        :width => 16,
+        :height => 16

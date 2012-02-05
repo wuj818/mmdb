@@ -1,5 +1,5 @@
 $ ->
-  $('.tiny_poster_link').livequery ->
+  $('.tiny-poster-link').livequery ->
     $(@).fancybox
       padding: 4
       cyclic: true

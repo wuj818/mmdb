@@ -1,0 +1,16 @@
+.movie-header
+  = original_movie_poster @movie
+
+  .rating.well{:class => rating_class(@movie)}
+    #{@movie.rating}/10
+
+  = render 'movies/show/icons'
+
+  = render 'movies/show/info'
+
+  %hr
+
+  .synopsis
+    = simple_format @movie.synopsis
+
+  .clear
