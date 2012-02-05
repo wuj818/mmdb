@@ -1,11 +1,19 @@
 $ ->
-  $('#ajax_activity')
+  show_loader = ->
+    $('#ajax-activity').removeClass 'hidden'
+    $('#ajax-table').animate opacity: 0.5, 200
+
+  hide_loader = ->
+    $('#ajax-activity').addClass 'hidden'
+
+  $('#ajax-activity')
     .ajaxStart ->
-      $(@).show()
-      $('#ajax-table').animate opacity: 0.5, 200
+      show_loader()
     .ajaxStop ->
-      $(@).hide()
-      $('#ajax-table').animate opacity: 1.0, 200
+      hide_loader()
+
+  $('form').on 'submit', ->
+    show_loader()
 
   if history and history.pushState
     $('a[data-remote="true"]').live 'click', ->

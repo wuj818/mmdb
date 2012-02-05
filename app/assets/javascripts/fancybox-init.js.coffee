@@ -1,5 +1,5 @@
 $ ->
-  $('.tiny_poster_link').live 'mouseenter', ->
+  $('.tiny_poster_link').livequery ->
     $(@).fancybox
       padding: 4
       cyclic: true
