@@ -1,8 +1,8 @@
 - smart_cache do
-  =# render 'shared/page_entries_info', :results => @tags, :type => @type
+  = render 'shared/page_entries_info', :results => @tags, :type => @type
 
   - unless @tags.total_count.zero?
-    =# paginate @tags, :remote => true
+    = paginate @tags, :remote => true
 
     %table#ajax-table.table.table-striped.table-bordered
       %thead
@@ -20,4 +20,4 @@
             %td= tag.total
             %td= colorized_average tag
 
-    =# paginate @tags, :remote => true
+    = paginate @tags, :remote => true

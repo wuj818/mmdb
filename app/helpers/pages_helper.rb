@@ -43,6 +43,6 @@ module PagesHelper
       ]
     end
 
-    content_tag :span, info.html_safe, :class => 'page_entries_info'
+    content_tag :span, info.html_safe, :class => 'page-entries-info'
   end
 end

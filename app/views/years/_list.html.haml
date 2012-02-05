@@ -1,8 +1,8 @@
 - smart_cache do
-  =# render 'shared/page_entries_info', :results => @years, :type => 'year'
+  = render 'shared/page_entries_info', :results => @years, :type => 'year'
 
   - unless @years.total_count.zero?
-    =# paginate @years, :remote => true
+    = paginate @years, :remote => true
 
     %table#ajax-table.table.table-striped.table-bordered
       %thead
@@ -20,4 +20,4 @@
             %td= year.total
             %td= colorized_average year
 
-    =# paginate @years, :remote => true
+    = paginate @years, :remote => true

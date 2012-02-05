@@ -1,8 +1,8 @@
 - smart_cache do
-  =# render 'shared/page_entries_info', :results => @people, :type => 'person'
+  = render 'shared/page_entries_info', :results => @people, :type => 'person'
 
   - unless @people.total_count.zero?
-    =# paginate @people, :remote => true
+    = paginate @people, :remote => true
 
     %table#ajax-table.table.table-striped.table-bordered
       %thead
@@ -30,4 +30,4 @@
             %td= person.number_of_cinematography_credits
             %td= person.number_of_acting_credits
 
-    =# paginate @people, :remote => true
+    = paginate @people, :remote => true
