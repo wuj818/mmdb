@@ -1,13 +1,9 @@
 = render 'shared/error_messages', :object => @list
 
-= form_for @list do |f|
-  .field
-    = f.label :name
-    %br
-    = f.text_field :name, :class => 'title', :autofocus => true
+= form_for @list, :html => { :class => 'form-inline' } do |f|
+  = f.label :name
+  = f.text_field :name, :autofocus => true
 
-  .actions
-    = f.submit 'Submit', :id => 'ajax_button', :disable_with => 'Submitting...'
-    %span#ajax_button_indicator.hidden= image_tag 'ajax-bar.gif', :width => 16, :height => 11
-
-%br
+  = f.submit 'Submit',
+    :class => 'btn loading',
+    :data => { :'loading-text' => 'Submitting...' }

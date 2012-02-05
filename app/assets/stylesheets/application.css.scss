@@ -88,3 +88,21 @@ body {
     margin-right: 4px; }
   input[type='text'] {
     margin-right: 8px; } }
+
+.admin-dropdown {
+  color: #00ff00 !important;
+  font-weight: bold; }
+
+.clear-cache {
+  color: red !important;
+  font-family: 'Trebuchet MS';
+  font-weight: bold !important;
+  letter-spacing: 1px; }
+
+.brand {
+  color: #00ff00 !important;
+  &:hover {
+    color: white !important; } }
+
+.login, .logout {
+  color: #00b1ff !important; }
