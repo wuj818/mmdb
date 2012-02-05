@@ -6,7 +6,7 @@
     :height => 600,
     :width => 330
 
-  - smart_cache 'stats' do
+  - cache 'main_stats', :expires_in => 2.weeks do
     %h2
       = link_to movies_path do
         = number_with_delimiter Movie.count

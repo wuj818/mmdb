@@ -10,5 +10,5 @@
 
 #countries
 
-- smart_cache 'country_map' do
+- cache 'countries_map', :expires_in => 2.weeks do
   = render 'tags/countries/map_graph'
