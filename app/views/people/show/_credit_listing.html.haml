@@ -19,7 +19,7 @@
             = '...'
           %td
             = credit.details
-        %td{:style => 'width: 35px;'}
+        %td.credit-rating
           #{colorized_rating credit.movie}<strong>/10</strong>
         - if action_name == 'edit'
           %td.delete-cell

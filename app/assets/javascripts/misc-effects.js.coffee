@@ -15,3 +15,8 @@ $ ->
 
   $('.btn.loading').click ->
     $(@).button 'loading'
+
+  $('.table-striped tr').hover(
+    -> $(@).addClass 'highlighted-row'
+    -> $(@).removeClass 'highlighted-row'
+  )
