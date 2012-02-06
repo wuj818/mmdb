@@ -1,5 +1,6 @@
 .movie-header
-  = original_movie_poster @movie
+  = link_to @movie.poster.url(:large), :class => 'thumbnail original-movie' do
+    = image_tag @movie.poster.url(:large), :width => 300, :height => 440
 
   .rating.well{:class => movie_rating_class(@movie)}
     #{@movie.rating}/10
