@@ -1,11 +1,15 @@
-- content_for :admin_controls do
-  = link_to 'Back', @list, :class => 'button'
-  = link_to 'Delete', @list, :confirm => CONFIRM, :method => :delete, :class => 'button'
+= render 'item_lists/edit/admin_controls'
 
-%h2 Editing "#{@list.name}"
+.page-header
+  %h1
+    = link_to 'Lists', item_lists_path
+    %span.divider /
+    = link_to @list.name, @list
+    %span.divider /
+    Edit
 
-= render 'form'
+= render 'item_lists/edit/form'
 
 %hr
 
-= render 'movie_list'
+= render 'list'

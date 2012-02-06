@@ -4,15 +4,18 @@
 - if action_name == 'edit'
   - @listings = @list.listings
 
-  %ul#movies
+  %ul#sortable-list
     - @listings.each do |listing|
       %li{:class => 'handle', :id => dom_id(listing)}
-        %span.rank ##{listing.position}
-        = tiny_movie_poster_link listing.movie
-        = link_to listing.movie.title, listing.movie, :class => 'movie_link'
-        = link_to 'Delete', [@list, listing], :confirm => CONFIRM, :method => :delete, :class => 'delete'
+        %strong.rank ##{listing.position}
+        &nbsp;
+        = link_to listing.movie.title, listing.movie
+        = link_to 'Delete', [@list, listing],
+          :confirm => CONFIRM,
+          :method => :delete,
+          :class => 'delete-link'
 
-  = link_to 'Reorder!', reorder_item_list_path, :id => 'reorder_link', :class => 'button'
+  = link_to 'Reorder!', reorder_item_list_path, :id => 'reorder-link', :class => 'btn btn-primary'
 - else
   - cache(@list, :expires_in => 2.weeks) do
     - @listings = @list.listings
@@ -20,5 +23,4 @@
     %ol
       - @listings.each do |listing|
         %li{:id => dom_id(listing)}
-          =# tiny_movie_poster_link listing.movie
-          = link_to listing.movie.title, listing.movie, :class => 'movie_link'
+          = link_to listing.movie.title, listing.movie

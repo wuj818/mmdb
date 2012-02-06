@@ -1,6 +1,6 @@
 <script type='text/javascript'>
   $(function() {
-    $('ul#movies').sortable({
+    $('#sortable-list').sortable({
       axis: 'y',
       update: function() {
         $(this).sortable('disable');
@@ -13,10 +13,10 @@
       }
     });
 
-    $('#reorder_link').click(function() {
+    $('#reorder-link').click(function() {
       $.ajax({
         type: 'put',
-        data: $('ul#movies').sortable('serialize'),
+        data: $('#sortable-list').sortable('serialize'),
         url: $(this).attr('href')
       });
       return false;
