@@ -1,9 +1,0 @@
-- if admin?
-  = link_to 'Add Movie', new_movie_from_imdb_path, :class => 'button left'
-  = link_to 'Add List', new_item_list_path, :class => 'button left'
-  #admin_controls
-    = yield :admin_controls
-  = link_to 'Logout', logout_path, :class => 'button right', :method => :delete
-  = link_to 'Clear Cache', clear_cache_path, :class => 'button right clear_cache', :method => :delete, :confirm => CONFIRM
-- else
-  = link_to 'Login', login_path, :class => 'button right'

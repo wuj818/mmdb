@@ -1,0 +1,81 @@
+= render 'shared/error_messages', :object => @movie
+
+= form_for @movie, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'span6', :autofocus => true
+
+  .control-group
+    = f.label :aka, 'Also Known As', :class => 'control-label'
+    .controls
+      = f.text_field :aka, :class => 'span6'
+
+  - unless @movie.new_record?
+    .control-group
+      = f.label :permalink, :class => 'control-label'
+      .controls
+        = f.text_field :permalink, :class => 'span6'
+
+    .control-group
+      = f.label :sort_title, 'Sort Title', :class => 'control-label'
+      .controls
+        = f.text_field :sort_title, :class => 'span6'
+
+  .control-group
+    = f.label :imdb_url, 'IMDb', :class => 'control-label'
+    .controls
+      = f.text_field :imdb_url, :class => 'span6'
+
+  .control-group
+    = f.label :year, :class => 'control-label'
+    .controls
+      = f.text_field :year, :class => 'span1'
+
+  .control-group
+    = f.label :runtime, :class => 'control-label'
+    .controls
+      = f.text_field :runtime, :class => 'span1'
+
+  .control-group
+    = f.label :rating, :class => 'control-label'
+    .controls
+      = f.select :rating, 0..10, {}, :class => 'span1'
+
+  .control-group
+    = f.label :synopsis, :class => 'control-label'
+    .controls
+      = f.text_area :synopsis, :class => 'span6'
+
+  .control-group
+    = f.label :rotten_tomatoes_url, 'Rotten Tomatoes', :class => 'control-label'
+    .controls
+      = f.text_field :rotten_tomatoes_url, :class => 'span6'
+
+  .control-group
+    = f.label :movie_poster_db_url, 'Movie Poster DB', :class => 'control-label'
+    .controls
+      = f.text_field :movie_poster_db_url, :class => 'span6'
+
+  .control-group
+    = f.label :poster, :class => 'control-label'
+    .controls
+      = f.file_field :poster
+
+  .control-group
+    = f.label :poster_url, 'Upload From URL', :class => 'control-label'
+    .controls
+      = f.text_field :poster_url
+
+      - if @movie.poster.exists?
+        %br
+        %br
+        = image_tag @movie.poster.url(:original), :width => 150, :height => 220
+
+  - unless @movie.new_record?
+    = render 'movies/edit/genre_checkboxes', :movie => @movie
+
+  .form-actions
+    = f.submit 'Submit',
+      :class => 'btn btn-primary loading',
+      :data => { :'loading-text' => 'Submitting...' }

@@ -32,3 +32,10 @@
   -moz-column-gap: 20px;
   ul {
     list-style-type: square; } }
+
+#genre-checkboxes {
+  td {
+    padding-right: 20px;
+    span {
+      cursor: pointer;
+      font-weight: normal; } } }

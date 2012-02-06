@@ -1,0 +1,14 @@
+.control-group
+  = hidden_field_tag 'movie[genre_list][]', nil, :id => 'movie_genre_list_blank'
+
+  = label_tag 'Genres', 'Genres', :class => 'control-label'
+  .controls
+    %table#genre-checkboxes
+      - Movie::GENRES.in_groups_of(5) do |genres|
+        %tr
+          - genres.each do |genre|
+            - next if genre.blank?
+            %td
+              = label_tag nil, :class => 'inline checkbox' do
+                = check_box_tag 'movie[genre_list][]', genre, movie.genre_list.include?(genre), :id => "movie_genre_#{genre.downcase.underscore}", :class => 'inline'
+                %span= genre

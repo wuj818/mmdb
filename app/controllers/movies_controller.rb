@@ -61,7 +61,7 @@ class MoviesController < ApplicationController
   def scrape_info
     @title = 'New Movie'
     if params[:imdb_url].blank?
-      flash[:error] = 'You must supply an IMDB url.'
+      flash[:error] = 'You must supply an IMDb url.'
       redirect_to new_movie_path(:from_imdb => true)
     else
       @movie = Movie.new :imdb_url => params[:imdb_url]

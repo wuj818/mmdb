@@ -1,0 +1,4 @@
+- if admin?
+  .admin-controls
+    = link_to 'Edit', [:edit, @movie], :class => 'btn btn-info'
+    = link_to 'Delete', @movie, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger'
