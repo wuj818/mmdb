@@ -125,3 +125,64 @@ body {
   font-style: italic;
   &:hover {
     color: #468847; } }
+
+td {
+  vertical-align: middle !important; }
+
+.popover-content {
+  p {
+    font-size: 16px; }
+  .percentage {
+    color: #08c;
+    float: right; } }
+
+#keyword-cloud {
+  font-family: 'Tekton Pro', 'Comic Sans MS';
+  letter-spacing: 1px;
+  a {
+    &:hover {
+      text-decoration: underline; } }
+  .cloud1 {
+    color: #999999;
+    font-size: 12px;
+    line-height: 18px; }
+  .cloud2 {
+    color: #111111;
+    font-size: 16px;
+    line-height: 24px; }
+  .cloud3 {
+    color: #3A87AD;
+    font-size: 22px;
+    line-height: 31px; }
+  .cloud4 {
+    color: #468847;
+    font-size: 30px;
+    line-height: 45px; }
+  .top-keyword {
+    color: #B94A48;
+    font-size: 40px;
+    line-height: 60px;
+    text-shadow: black 1px 1px 1px;
+    &:hover {
+      color: red;
+      text-decoration: none; } } }
+
+.rating {
+  font-size: 64px;
+  line-height: 46px;
+  float: right; }
+
+.movie-header, .person-header {
+  margin-bottom: 18px;
+  width: 940px;
+  p {
+    font-size: 16px; } }
+
+.icons {
+  font-size: 20px;
+  img {
+    vertical-align: middle;
+    margin: 0 4px 4px 0;
+  }
+  a {
+    text-decoration: none; } }

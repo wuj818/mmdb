@@ -2,9 +2,9 @@
   = link_to @movie.imdb_url, :rel => :external do
     = image_tag 'icons/imdb-icon.png',
       :title => 'IMDb',
-        :alt => 'IMDb',
-        :width => 16,
-        :height => 16
+      :alt => 'IMDb',
+      :width => 16,
+      :height => 16
 
   - unless @movie.rotten_tomatoes_url.blank?
     = link_to @movie.rotten_tomatoes_url, :rel => :external do

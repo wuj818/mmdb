@@ -13,16 +13,16 @@
         data.setValue(<%= i %>, 1, <%= data.total %>);
       <% end %>
 
-      var pieChart = new google.visualization.PieChart(document.getElementById('movie_ratings_pie_chart'));
+      var pieChart = new google.visualization.PieChart(document.getElementById('movie-ratings-pie-chart'));
       pieChart.draw(data, {
         width: 600, height: 400, fontSize: 10,
-        legend: 'bottom',
+        legend: 'right',
         title: 'Ratings History',
-        chartArea: {width: 600, height: 350},
-        titleTextStyle: {fontSize: 18},
-        legendTextStyle: {fontSize: 12},
-        tooltipTextStyle: {fontSize: 14},
-        pieSliceTextStyle: {fontSize: 14}
+        chartArea: { width: 600, height: 350 },
+        titleTextStyle: { fontSize: 18 },
+        legendTextStyle: { fontSize: 16 },
+        tooltipTextStyle: { fontSize: 14 },
+        pieSliceTextStyle: { fontSize: 14 }
       });
     };
   </script>

@@ -1,17 +1,25 @@
-%h2
-  = link_to @person.name, @person
-  &raquo; Keywords
+.page-header
+  %h1
+    = link_to 'People', people_path
+    %span.divider /
+    = link_to @person.name, @person
+    %span.divider /
+    Keywords
 
 - smart_cache do
   - unless @person.keywords.length.zero?
-    #keyword_cloud.info_section
+    #keyword-cloud
       - total = @person.movies.length
       - top_keyword = @person.keywords.order('count DESC').first.name
-      - tag_cloud @person.keywords, %w(css1 css2 css3 css4) do |keyword, css_class|
-        - css_class = "#{css_class} top_keyword" if keyword.name == top_keyword
-        = tag_link keyword, :keyword, :class => css_class
-        .percentage_stat
-          - percentage = format('%.2f%', keyword.count / total.to_f * 100)
-          #{keyword.count}/#{total}
-          %span.percentage= percentage
+
+      - tag_cloud @person.keywords, %w(cloud1 cloud2 cloud3 cloud4) do |keyword, css_class|
+        - css_class = 'top-keyword' if keyword.name == top_keyword
+        - css_class = "#{css_class} percentage-popover"
+        - fraction = "#{keyword.count}/#{total}"
+        - percentage = format('%.2f%', keyword.count / total.to_f * 100)
+
+        = tag_link keyword, :keyword,
+          :class => css_class,
+          :data => { :fraction => fraction, :percentage => percentage }
+
         &nbsp;

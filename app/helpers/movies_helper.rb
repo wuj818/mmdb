@@ -9,10 +9,10 @@ module MoviesHelper
   end
 
   def colorized_rating(movie)
-    content_tag :span, movie.rating, :class => rating_class(movie)
+    content_tag :span, movie.rating, :class => movie_rating_class(movie)
   end
 
-  def rating_class(movie)
+  def movie_rating_class(movie)
     color = case movie.rating
       when 0..4 then 'red'
       when 5..7 then 'orange'

@@ -20,17 +20,17 @@
         data.setValue(<%= i %>, 2, <%= year_data[year].blank? ? 0 : year_data[year][:total] %>);
       <% end %>
 
-      var lineChart = new google.visualization.LineChart(document.getElementById('movie_history_line_graph'));
+      var lineChart = new google.visualization.LineChart(document.getElementById('movie-history-line-graph'));
       lineChart.draw(data, {
-        width: 960, height: 400, fontSize: 10,
-        title: 'Movie History', curveType: 'function',
+        width: 940, height: 400, fontSize: 10,
+        title: 'Movie History',
         legend: 'top',
-        chartArea: {width: 900, height: 300},
-        hAxis: {slantedText: true, slantedTextAngle: 90},
-        vAxis: {maxValue: 10, minValue: 0},
-        titleTextStyle: {fontSize: 18},
-        tooltipTextStyle: {fontSize: 14},
-        legendTextStyle: {fontSize: 12},
+        chartArea: { width: 880, height: 300 },
+        hAxis: { slantedText: true, slantedTextAngle: 45 },
+        vAxis: { maxValue: 10, minValue: 0 },
+        titleTextStyle: { fontSize: 18 },
+        tooltipTextStyle: { fontSize: 14 },
+        legendTextStyle: { fontSize: 12 },
         interpolateNulls: true,
         pointSize: 6
       });

@@ -3,151 +3,17 @@
   = link_to 'Add Credit', new_person_credit_path(@person), :class => 'button'
   = link_to 'Delete', @person, :confirm => CONFIRM, :method => :delete, :class => 'button'
 
-.span-24
-  %h2
+.page-header
+  %h1
+    = link_to 'People', people_path
+    %span.divider /
     = @person.name
-    = link_to image_tag('icons/chart-curve-32x32.png', :title => 'Graphs', :class => 'graph_link', :width => 32, :height => 32), graphs_person_path(@person)
 
-  %span.icons
-    = link_to image_tag('icons/imdb-icon.png', :title => 'IMDb', :width => 16, :height => 16), @person.imdb_url, :rel => :external, :class => 'imdb'
+- smart_cache do
+  = render 'people/show/header'
 
-.span-24
-  - smart_cache 'details' do
-    #details.info_section
-      %h3 Details
+  = render 'people/show/tags'
 
-      .icons
-        = image_tag 'icons/calculator.png', :title => 'Weighted Score', :width => 16, :height => 16
-        #{colorized_score(@person)} weighted score
-        %br
+  = render 'people/show/credits'
 
-        = approval_icon(@person)
-        #{colorized_approval_percentage(@person)} approval
-        %br
-
-        = image_tag 'icons/film.png', :title => 'Movies', :width => 16, :height => 16
-        = pluralize(@person.movies.length, 'movie')
-        %br
-
-        - perfect_count = @person.movies.where(:rating => 10).length
-        - if perfect_count > 0
-          = image_tag 'icons/medal-gold.png', :title => 'Perfect Movies (Rated 10)', :width => 16, :height => 16
-          = pluralize(perfect_count, 'perfect movie')
-          %br
-
-        - excellent_count = @person.movies.where(:rating => 9).length
-        - if excellent_count > 0
-          = image_tag 'icons/medal-silver.png', :title => 'Excellent Movies (Rated 9)', :width => 16, :height => 16
-          = pluralize(excellent_count, 'excellent movie')
-          %br
-
-        - great_count = @person.movies.where(:rating => 8).length
-        - if great_count > 0
-          = image_tag 'icons/medal-bronze.png', :title => 'Perfect Movies (Rated 8)', :width => 16, :height => 16
-          = pluralize(great_count, 'great movie')
-          %br
-
-        - terrible_count = @person.movies.where('rating < 5').length
-        - if terrible_count > 0
-          = image_tag 'icons/exclamation.png', :title => 'Terrible Movies (Rated 4 or lower)', :width => 16, :height => 16
-          = pluralize(terrible_count, 'terrible movie')
-          %br
-
-        - if @person.number_of_directing_credits > 0
-          #{image_tag 'icons/events.png', :title => 'Director', :width => 16, :height => 16} Director
-          %br
-
-        - if @person.number_of_writing_credits > 0
-          #{image_tag 'icons/document-prepare.png', :title => 'Writer', :width => 16, :height => 16} Writer
-          %br
-
-        - if @person.number_of_composing_credits > 0
-          #{image_tag 'icons/music.png', :title => 'Composer', :width => 16, :height => 16} Composer
-          %br
-
-        - if @person.number_of_editing_credits > 0
-          #{image_tag 'icons/edit-free.png', :title => 'Editor', :width => 16, :height => 16} Editor
-          %br
-
-        - if @person.number_of_cinematography_credits > 0
-          #{image_tag 'icons/video.png', :title => 'Cinematographer', :width => 16, :height => 16} Cinematographer
-          %br
-
-        - if @person.number_of_acting_credits > 0
-          #{image_tag 'icons/user.png', :title => 'Actor', :width => 16, :height => 16} Actor
-          %br
-
-.span-24
-  - smart_cache 'tags' do
-    #tags.info_section
-      %h3 Tags
-
-      - total = @person.movies.length
-
-      %span{:class => 'tag_label'} Genres:
-      - last = @person.relevant_genres.length - 1
-      - @person.relevant_genres.each_with_index do |genre, i|
-        = tag_link genre, :genre
-        .percentage_stat
-          - percentage = format('%.2f%', genre.count / total.to_f * 100)
-          #{genre.count}/#{total}
-          %span.percentage= percentage
-        - unless i == last
-          |
-      %hr
-
-      %span{:class => 'tag_label'} Languages:
-      - last = @person.relevant_languages.length - 1
-      - @person.relevant_languages.each_with_index do |language, i|
-        = tag_link language, :language
-        .percentage_stat
-          - percentage = format('%.2f%', language.count / total.to_f * 100)
-          #{language.count}/#{total}
-          %span.percentage= percentage
-        - unless i == last
-          |
-      %hr
-
-      %span{:class => 'tag_label'} Countries:
-      - last = @person.relevant_countries.length - 1
-      - @person.relevant_countries.each_with_index do |country, i|
-        = tag_link country, :country
-        .percentage_stat
-          - percentage = format('%.2f%', country.count / total.to_f * 100)
-          #{country.count}/#{total}
-          %span.percentage= percentage
-        - unless i == last
-          |
-      %hr
-
-      #relevant_keywords
-        %span{:class => 'tag_label'} Keywords:
-        - @person.relevant_keywords.each do |keyword|
-          = tag_link keyword, :keyword
-          .percentage_stat
-            - percentage = format('%.2f%', keyword.count / total.to_f * 100)
-            #{keyword.count}/#{total}
-            %span.percentage= percentage
-          |
-        = link_to 'More Keywords &raquo;'.html_safe, keywords_person_path(@person), :class => 'more'
-
-.span-24
-  - smart_cache 'credits' do
-    = render 'credits'
-
-.span-24
-  - smart_cache 'frequent_collaborators' do
-    #frequent_collaborators.info_section
-      %h3 Frequent Collaborators
-
-      - total = @person.movies.length
-      - last = @person.frequent_collaborators.length - 1
-
-      - @person.frequent_collaborators.each_with_index do |person, i|
-        = link_to person.name, person
-        .percentage_stat
-          - percentage = format('%.2f%', person.count / total.to_f * 100)
-          #{person.count}/#{total}
-          %span.percentage= percentage
-        - unless i == last
-          |
+  = render 'people/show/frequent_collaborators'

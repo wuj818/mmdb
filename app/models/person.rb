@@ -92,11 +92,15 @@ class Person < ActiveRecord::Base
     ratings = self.movies.map(&:rating)
     total = ratings.inject(0) { |sum, n| sum + (n * RATING_WEIGHTS[n]) }
     count = ratings.inject(0) { |sum, n| sum + RATING_WEIGHTS[n] }
-    total / count.to_f
+    format('%.2f', total / count.to_f).to_f
   end
 
   def approval_percentage
     (self.movies.where('rating >= 6').length / self.movies.length.to_f * 100).ceil rescue 0
+  end
+
+  def top_movie
+    movies.order('rating DESC, year DESC').first
   end
 
   def self.[](name)

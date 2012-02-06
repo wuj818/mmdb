@@ -1,0 +1,29 @@
+%table.table.table-striped.table-bordered{:id => "#{credit_type}-credits"}
+  %thead
+    %tr
+      %th
+        - average = @person.send("#{credit_type}_credits").joins(:movie).average(:rating)
+        %h3 #{job} (#{count}) #{colorized_credit_average average}/10
+  %tbody
+    - @person.send("sorted_#{credit_type}_credits").each do |credit|
+      %tr
+        %td.wide-cell
+          = tiny_movie_poster_link credit.movie, job
+          = link_to credit.movie.title, credit.movie
+          (#{credit.movie.year})
+        - if credit.details.blank?
+          %td.no-border
+          %td.no-border
+        - else
+          %td.ellipsis-cell
+            = '...'
+          %td
+            = credit.details
+        %td{:style => 'width: 35px;'}
+          #{colorized_rating credit.movie}<strong>/10</strong>
+        - if action_name == 'edit'
+          %td.delete-cell
+            = link_to 'Delete', [@person, credit],
+              :class => 'btn btn-danger',
+              :confirm => CONFIRM,
+              :method => :delete

@@ -1,21 +1,21 @@
-%h2
-  = link_to @person.name, @person
-  &raquo; Graphs
-
-%br
+.page-header
+  %h1
+    = link_to 'People', people_path
+    %span.divider /
+    = link_to @person.name, @person
+    %span.divider /
+    Graphs
 
 %script{:src => 'http://www.google.com/jsapi', :type => 'text/javascript'}
 %script{:type => 'text/javascript'}
   google.load('visualization', '1', {'packages': ['corechart']});
 
-#movie_history_line_graph
+#movie-history-line-graph
 
-- smart_cache 'movie_history_line_graph' do
-  = render 'people/show/movie_history_line_graph'
+%hr
 
-%br
+#movie-ratings-pie-chart
 
-#movie_ratings_pie_chart
-
-- smart_cache 'movie_ratings_pie_chart' do
-  = render 'people/show/movie_ratings_pie_chart'
+- smart_cache  do
+  = render 'people/graphs/movie_history_line_graph'
+  = render 'people/graphs/movie_ratings_pie_chart'

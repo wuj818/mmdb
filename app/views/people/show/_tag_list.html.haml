@@ -1,0 +1,23 @@
+- plural = type.to_s.pluralize
+- tags = @person.send("relevant_#{plural}")
+- last = tags.length - 1
+
+%tr
+  %td{:style => 'width: 65px;'}
+    %strong
+      = plural.capitalize
+  %td
+    - tags.each_with_index do |tag, i|
+      - fraction = "#{tag.count}/#{@total}"
+      - percentage = format('%.2f%', tag.count / @total.to_f * 100)
+
+      = tag_link tag, type,
+        :class => 'percentage-popover',
+        :data => { :fraction => fraction, :percentage => percentage }
+
+      - unless i == last
+        |
+
+    - if type == :keyword
+      = ' | '
+      = link_to 'More Keywords &raquo;'.html_safe, keywords_person_path(@person), :class => 'more'

@@ -1,7 +1,7 @@
 .movie-header
   = original_movie_poster @movie
 
-  .rating.well{:class => rating_class(@movie)}
+  .rating.well{:class => movie_rating_class(@movie)}
     #{@movie.rating}/10
 
   = render 'movies/show/icons'

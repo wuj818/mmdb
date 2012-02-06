@@ -8,7 +8,7 @@ $ ->
   $('#ajax_button').live 'click', ->
     $('#ajax_button_indicator').fadeIn()
 
-  $('.icons a, .graph_link').hover(
+  $('.icons a, .graph-link').hover(
     -> $(@).animate opacity: 0.5, 200
     -> $(@).animate opacity: 1.0, 200
   )
