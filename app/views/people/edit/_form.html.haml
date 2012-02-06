@@ -1,0 +1,28 @@
+= render 'shared/error_messages', :object => @person
+
+= form_for @person, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'span6', :autofocus => true
+
+  - unless @person.new_record?
+    .control-group
+      = f.label :permalink, :class => 'control-label'
+      .controls
+        = f.text_field :permalink, :class => 'span6'
+
+    .control-group
+      = f.label :sort_name, 'Sort Name', :class => 'control-label'
+      .controls
+        = f.text_field :sort_name, :class => 'span6'
+
+  .control-group
+    = f.label :imdb_url, 'IMDb', :class => 'control-label'
+    .controls
+      = f.text_field :imdb_url, :class => 'span6'
+
+  .form-actions
+    = f.submit 'Submit',
+      :class => 'btn btn-primary loading',
+      :data => { :'loading-text' => 'Submitting...' }
