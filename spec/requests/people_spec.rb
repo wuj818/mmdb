@@ -27,12 +27,12 @@ describe 'People' do
 
       # ascending name by default
       visit people_path
-      people = all('td:first-child a').map(&:text)
+      people = all('.person-link').map(&:text)
       people.should == ['David Fincher', 'David Lynch', 'Paul Thomas Anderson']
 
       # descending name
       click_link 'Name'
-      people = all('td:first-child a').map(&:text)
+      people = all('.person-link').map(&:text)
       people.should == ['Paul Thomas Anderson', 'David Lynch', 'David Fincher']
     end
 
@@ -70,14 +70,14 @@ describe 'People' do
       visit person_path @person
       click_link 'Edit'
 
-      should_see %(Editing "#{@person.name}")
+      should_be_on edit_person_path @person
       should_see_field 'Permalink'
       should_see_field 'Sort Name'
       field('Name').value.should == @person.name
-      field('IMDB').value.should == @person.imdb_url
+      field('IMDb').value.should == @person.imdb_url
 
       fill_in 'Name', :with => 'Paul Thomas Anderson'
-      fill_in 'IMDB', :with => 'http://www.imdb.com/name/nm0000759/'
+      fill_in 'IMDb', :with => 'http://www.imdb.com/name/nm0000759/'
       click_button 'Submit'
 
       @person.reload

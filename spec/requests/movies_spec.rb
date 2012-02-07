@@ -30,22 +30,22 @@ describe 'Movies' do
 
       # ascending title by default
       visit movies_path
-      movies = all('.movie_link').map(&:text)
+      movies = all('.movie-link').map(&:text)
       movies.should == ['The Big Lebowski', 'Boogie Nights', 'Dumb and Dumber']
 
       # descending title
       click_link 'Title'
-      movies = all('.movie_link').map(&:text)
+      movies = all('.movie-link').map(&:text)
       movies.should == ['Dumb and Dumber', 'Boogie Nights', 'The Big Lebowski']
 
       # ascending year
       click_link 'Year'
-      movies = all('.movie_link').map(&:text)
+      movies = all('.movie-link').map(&:text)
       movies.should == ['Dumb and Dumber', 'Boogie Nights', 'The Big Lebowski']
 
       # descending year
       click_link 'Year'
-      movies = all('.movie_link').map(&:text)
+      movies = all('.movie-link').map(&:text)
       movies.should == ['The Big Lebowski', 'Boogie Nights', 'Dumb and Dumber']
     end
 
@@ -86,14 +86,14 @@ describe 'Movies' do
       visit movie_path @movie
       click_link 'Edit'
 
-      should_see %(Editing "#{@movie.title}")
+      should_be_on edit_movie_path @movie
       should_see_field 'Permalink'
       should_see_field 'Sort Title'
       field('Title').value.should == @movie.title
-      field('IMDB').value.should == @movie.imdb_url
+      field('IMDb').value.should == @movie.imdb_url
 
       fill_in 'Title', :with => 'Boogie Nights'
-      fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
+      fill_in 'IMDb', :with => 'http://www.imdb.com/title/tt0118749/'
       fill_in 'Year', :with => '1997'
       fill_in 'Runtime', :with => '155'
       select '10', :from => 'Rating'
@@ -134,12 +134,12 @@ describe 'Movies' do
       integration_login
       click_link 'Add Movie'
 
-      fill_in 'IMDB', :with => 'http://www.imdb.com/title/tt0118749/'
+      fill_in 'IMDb', :with => 'http://www.imdb.com/title/tt0118749/'
       click_button 'Submit'
 
       should_see 'Scrape results for "http://www.imdb.com/title/tt0118749/".'
       field('Title').value.should == 'Boogie Nights'
-      field('IMDB').value.should == 'http://www.imdb.com/title/tt0118749/'
+      field('IMDb').value.should == 'http://www.imdb.com/title/tt0118749/'
 
       should_not_see_field 'Permalink'
       should_not_see_field 'Sort Title'

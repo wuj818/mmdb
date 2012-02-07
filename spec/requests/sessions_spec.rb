@@ -7,7 +7,7 @@ describe 'Sessions' do
     context 'with valid password' do
       it 'logs in the admin and redirects to the previous page' do
         fill_in 'Password', :with => PASSWORD
-        click_button 'Submit'
+        click_button 'Login'
 
         should_be_on new_movie_path
         should_see 'Logged in successfully.'
@@ -19,7 +19,7 @@ describe 'Sessions' do
 
     context 'with invalid password' do
       it 're-renders the login form' do
-        click_button 'Submit'
+        click_button 'Login'
 
         should_see 'Incorrect password.'
         should_see_field 'Password'

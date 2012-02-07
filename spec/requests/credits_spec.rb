@@ -26,7 +26,7 @@ describe 'Credits' do
       Credit.make! :job => 'Director', :person => @person, :movie => @movie
       visit edit_person_path @person
 
-      within '#directing_credits' do
+      within '#directing-credits' do
         click_link 'Delete'
       end
 

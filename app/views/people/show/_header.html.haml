@@ -1,7 +1,8 @@
 .person-header
   - movie = @person.top_movie
-  = link_to movie.poster.url(:large), :class => 'thumbnail original-movie' do
-    = image_tag movie.poster.url(:large), :width => 300, :height => 440
+  - unless movie.blank?
+    = link_to movie.poster.url(:large), :class => 'thumbnail original-movie' do
+      = image_tag movie.poster.url(:large), :width => 300, :height => 440
 
   .rating.well{:class => person_rating_class(@person), :title => 'Weighted Score', :alt => 'Weighted Score'}
     #{@person.score}/10
@@ -126,7 +127,7 @@
     = link_to 'Graphs', graphs_person_path(@person)
     %br
 
-    = link_to @person.imdb_url, :rel => :external do
+    = link_to @person.imdb_url, :rel => :external, :class => 'imdb' do
       = image_tag 'icons/imdb-icon-32x32.png',
         :title => 'IMDb',
         :alt => 'IMDb',

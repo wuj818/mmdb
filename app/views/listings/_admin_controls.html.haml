@@ -1,0 +1,4 @@
+- if admin?
+  .admin-controls
+    = link_to 'Back', @list, :class => 'btn'
+    = link_to 'Delete', @list, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger'

@@ -1,18 +1,11 @@
-%h2 New movie for "#{@list.name}"
+= render 'admin_controls'
 
-= render 'shared/error_messages', :object => @listing
+.page-header
+  %h1
+    = link_to 'Lists', item_lists_path
+    %span.divider /
+    = link_to @list.name, @list
+    %span.divider /
+    Add Movie
 
-= form_for [@list, @listing] do |f|
-  = f.hidden_field :item_list_id, :value => @list.id
-
-  .field
-    = f.label :movie_id, 'Movie'
-    %br
-    - @movies = Movie.select([:id, :title]).order(:sort_title)
-    = collection_select :listing, :movie_id, @movies, :id, :title, :include_blank => true
-
-  .actions
-    = f.submit 'Submit', :id => 'ajax_button', :disable_with => 'Submitting...'
-    %span#ajax_button_indicator.hidden= image_tag 'ajax-bar.gif', :width => 16, :height => 11
-
-%br
+= render 'form'

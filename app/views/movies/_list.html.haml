@@ -19,7 +19,7 @@
             %td= i + 1
             %td
               = tiny_movie_poster_link movie
-              = link_to movie.title, movie
+              = link_to movie.title, movie, :class => 'movie-link'
             %td= movie.year
             %td= movie.runtime
             %td= colorized_rating movie

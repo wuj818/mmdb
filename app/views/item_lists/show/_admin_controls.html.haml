@@ -1,4 +1,5 @@
 - if admin?
   .admin-controls
+    = link_to 'Add Listing', new_item_list_listing_path(@list), :class => 'btn btn-success'
     = link_to 'Edit', [:edit, @list], :class => 'btn btn-info'
     = link_to 'Delete', @list, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger'

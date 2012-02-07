@@ -21,7 +21,7 @@
         - @people.each_with_index do |person, i|
           %tr
             %td= i + 1
-            %td= link_to person.name, person
+            %td= link_to person.name, person, :class => 'person-link'
             %td= person.credits_count
             %td= person.number_of_directing_credits
             %td= person.number_of_writing_credits

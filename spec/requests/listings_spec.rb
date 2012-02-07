@@ -24,7 +24,7 @@ describe 'Listings' do
       Listing.make! :item_list => @list, :movie => @movie
       visit edit_item_list_path @list
 
-      within '#movies' do
+      within '#sortable-list' do
         click_link 'Delete'
       end
 

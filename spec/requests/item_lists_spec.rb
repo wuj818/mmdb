@@ -24,7 +24,7 @@ describe 'Lists' do
       visit item_list_path @list
       click_link 'Edit'
 
-      should_see %(Editing "#{@list.name}")
+      should_be_on edit_item_list_path @list
       field('Name').value.should == @list.name
 
       fill_in 'Name', :with => 'Best Movies of 2010'

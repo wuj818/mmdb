@@ -1,5 +1,5 @@
 %p.icons
-  = link_to @movie.imdb_url, :rel => :external do
+  = link_to @movie.imdb_url, :class => 'imdb', :rel => :external do
     = image_tag 'icons/imdb-icon.png',
       :title => 'IMDb',
       :alt => 'IMDb',
