@@ -1,0 +1,19 @@
+- movies = @person.movies.order('year DESC, sort_title DESC')
+
+#person-carousel.carousel
+  .carousel-inner
+    - movies.each_with_index do |movie, i|
+      .item{:class => i == 0 ? 'active' : nil}
+        = image_tag movie.poster.url(:large), :width => 300, :height => 440
+        .carousel-caption
+          %h4
+            = link_to movie.full_title, movie
+            = colorized_rating movie
+
+  - if movies.length > 1
+    = link_to '&lsaquo;'.html_safe, '#person-carousel',
+      :class => 'carousel-control left',
+      :data => { :slide => 'prev' }
+    = link_to '&rsaquo;'.html_safe, '#person-carousel',
+      :class => 'carousel-control right',
+      :data => { :slide => 'next' }

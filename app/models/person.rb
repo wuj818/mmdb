@@ -99,10 +99,6 @@ class Person < ActiveRecord::Base
     (self.movies.where('rating >= 6').length / self.movies.length.to_f * 100).ceil rescue 0
   end
 
-  def top_movie
-    movies.order('rating DESC, year DESC').first
-  end
-
   def self.[](name)
     self.find_by_name name
   end

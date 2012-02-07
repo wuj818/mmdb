@@ -1,0 +1,20 @@
+#person-carousel {
+  border: 1px solid #ddd;
+  display: inline-block;
+  float: left;
+  margin: 0 20px 0 0;
+  width: 300px;
+  height: 440px;
+  .colorized {
+    float: right; }
+  &:hover {
+    .carousel-control {
+      display: block; } }
+  .carousel-control {
+    display: none; }
+  .carousel-caption {
+    padding: 8px 14px;
+    a {
+      font-weight: normal;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      color: white; } } }

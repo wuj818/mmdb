@@ -1,5 +1,8 @@
 $ ->
+  $('.carousel').carousel() if $('#person-carousel .item').length > 1
+
   $('.dropdown-toggle').dropdown()
+
   $('.percentage-popover').popover
     animation: false
     placement: 'top'
@@ -14,7 +17,6 @@ $ ->
 # $ ->
 #   $(".alert-message").alert()
 #   $(".tabs").button()
-#   $(".carousel").carousel()
 #   $(".collapse").collapse()
 #   $(".modal").modal
 #   $(".navbar").scrollspy()

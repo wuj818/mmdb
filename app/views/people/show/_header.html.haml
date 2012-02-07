@@ -1,8 +1,5 @@
 .person-header
-  - movie = @person.top_movie
-  - unless movie.blank?
-    = link_to movie.poster.url(:large), :class => 'thumbnail original-movie' do
-      = image_tag movie.poster.url(:large), :width => 300, :height => 440
+  = render 'people/show/carousel'
 
   .rating.well{:class => person_rating_class(@person), :title => 'Weighted Score', :alt => 'Weighted Score'}
     #{@person.score}/10
