@@ -54,63 +54,63 @@
       %br
 
     - if @person.number_of_directing_credits > 0
-      = link_to :anchor => 'directing-credits' do
+      %a.scroll{:href => '#directing-credits'}
         = image_tag 'icons/events-32x32.png',
           :title => 'Director',
           :alt => 'Director',
           :width => 32,
           :height => 32
-      = link_to 'Director', :anchor => 'directing-credits'
+      = link_to 'Director', { :anchor => 'directing-credits' }, :class => 'scroll'
       %br
 
     - if @person.number_of_writing_credits > 0
-      = link_to :anchor => 'writing-credits' do
+      %a.scroll{:href => '#writing-credits'}
         = image_tag 'icons/document-prepare-32x32.png',
           :title => 'Writer',
           :alt => 'Writer',
           :width => 32,
           :height => 32
-      = link_to 'Writer', :anchor => 'writing-credits'
+      = link_to 'Writer', { :anchor => 'writing-credits' }, :class => 'scroll'
       %br
 
     - if @person.number_of_composing_credits > 0
-      = link_to :anchor => 'composing-credots' do
+      %a.scroll{:href => '#composing-credits'}
         = image_tag 'icons/music-32x32.png',
           :title => 'Composer',
           :alt => 'Composer',
           :width => 32,
           :height => 32
-      = link_to 'Composer', :anchor => 'composing-credits'
+      = link_to 'Composer', { :anchor => 'composing-credits' }, :class => 'scroll'
       %br
 
     - if @person.number_of_editing_credits > 0
-      = link_to :anchor => 'editing-credits' do
+      %a.scroll{:href => '#editing-credits'}
         = image_tag 'icons/edit-free-32x32.png',
           :title => 'Editor',
           :alt => 'Editor',
           :width => 32,
           :height => 32
-      = link_to 'Editor', :anchor => 'editing-credits'
+      = link_to 'Editor', { :anchor => 'editing-credits' }, :class => 'scroll'
       %br
 
     - if @person.number_of_cinematography_credits > 0
-      = link_to :anchor => 'cinematography-credits' do
+      %a.scroll{:href => '#cinematography-credits'}
         = image_tag 'icons/video-32x32.png',
           :title => 'Cinematographer',
           :alt => 'Cinematographer',
           :width => 32,
           :height => 32
-      = link_to 'Cinematographer', :anchor => 'cinematography-credits'
+      = link_to 'Cinematographer', { :anchor => 'cinematography-credits' }, :class => 'scroll'
       %br
 
     - if @person.number_of_acting_credits > 0
-      = link_to :anchor => 'acting-credits' do
+      %a.scroll{:href => '#acting-credits'}
         = image_tag 'icons/user-32x32.png',
           :title => 'Actor',
           :alt => 'Actor',
           :width => 32,
           :height => 32
-      = link_to 'Actor', :anchor => 'acting-credits'
+      = link_to 'Actor', { :anchor => 'acting-credits' }, :class => 'scroll'
       %br
 
     %hr

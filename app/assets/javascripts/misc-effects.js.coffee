@@ -14,3 +14,7 @@ $ ->
     -> $(@).addClass 'highlighted-row'
     -> $(@).removeClass 'highlighted-row'
   )
+
+  $('.scroll').on 'click', (e) ->
+    anchor = $(@).attr 'href'
+    $.scrollTo anchor, 1000, offset: -50
