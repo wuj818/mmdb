@@ -49,14 +49,16 @@ class Movie < ActiveRecord::Base
   has_many :listings, :include => :item_list, :dependent => :destroy
 
   has_attached_file :poster,
-    :styles => { :large => '300x440!', :tiny => '20x30!' },
+    :styles => { :large => '300x420!', :tiny => '20x28!' },
     :default_url => '/assets/posters/:style-poster.gif',
     :storage => :s3,
     :path => '/posters/:style/:id/:filename',
-    :s3_credentials => Rails.root.join('config', 's3.yml'),
-    :s3_headers => { 'Expires' => 20.years.from_now.httpdate, 'Cache-Control' => 'max-age=315360000' },
-    :s3_host_alias => ':cdn.wuj818.com',
-    :url => Rails.env.production? ? ':s3_alias_url' : ':s3_path_url'
+    :s3_credentials => S3_CREDENTIALS,
+    :s3_headers => S3_HEADERS,
+    :s3_host_alias => S3_HOST_ALIAS,
+    :url => S3_URL
+
+  before_post_process :shorten_filename
 
   GENRES = %w(
     Action       Adventure  Animation  Biography  Comedy     Crime
@@ -162,5 +164,11 @@ class Movie < ActiveRecord::Base
 
   def clear_downloaded_poster
     self.poster = nil
+  end
+
+  def shorten_filename
+    short_filename = Digest::SHA2.file(poster.queued_for_write[:original]).hexdigest[0..2]
+    extension = File.extname(poster_file_name).downcase
+    self.poster.instance_write :file_name, "#{short_filename}#{extension}"
   end
 end
