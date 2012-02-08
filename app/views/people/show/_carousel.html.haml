@@ -4,7 +4,10 @@
   .carousel-inner
     - movies.each_with_index do |movie, i|
       .item{:class => i == 0 ? 'active' : nil}
-        = image_tag movie.poster.url(:large), :width => 300, :height => 440
+        = image_tag movie.poster.url(:large),
+          :class => 'large-poster',
+          :width => 300,
+          :height => 440
         .carousel-caption
           %h4
             = link_to movie.full_title, movie

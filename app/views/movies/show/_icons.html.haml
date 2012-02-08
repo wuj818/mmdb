@@ -1,6 +1,7 @@
 %p.icons
   = link_to @movie.imdb_url, :class => 'imdb', :rel => :external do
     = image_tag 'icons/imdb-icon.png',
+      :class => 'small-icon',
       :title => 'IMDb',
       :alt => 'IMDb',
       :width => 16,
@@ -9,6 +10,7 @@
   - unless @movie.rotten_tomatoes_url.blank?
     = link_to @movie.rotten_tomatoes_url, :rel => :external do
       = image_tag 'icons/rotten-tomatoes-icon.png',
+        :class => 'small-icon',
         :title => 'Rotten Tomatoes',
         :alt => 'Rotten Tomatoes',
         :width => 16,
@@ -17,6 +19,7 @@
   - unless @movie.movie_poster_db_url.blank?
     = link_to @movie.movie_poster_db_url, :rel => :external do
       = image_tag 'icons/movie-poster-db-icon.png',
+        :class => 'small-icon',
         :title => 'Movie Poster DB',
         :alt => 'Movie Poster DB',
         :width => 16,

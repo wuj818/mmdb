@@ -1,136 +1,154 @@
 .person-header
   = render 'people/show/carousel'
 
-  .rating.well{:class => person_rating_class(@person), :title => 'Weighted Score', :alt => 'Weighted Score'}
-    #{@person.score}/10
+  .person-info
+    .rating.well{:class => person_rating_class(@person), :title => 'Weighted Score', :alt => 'Weighted Score'}
+      #{@person.score}/10
 
-  .icons
-    = approval_icon(@person)
-    %span #{colorized_approval_percentage(@person)} approval
-    %br
+    .icons
+      = approval_icon(@person)
+      %span #{colorized_approval_percentage(@person)} approval
+      %br
 
-    = image_tag 'icons/film-32x32.png', :title => 'Movies', :width => 32, :height => 32
-    %span= pluralize(@person.movies.length, 'movie')
-    %br
-
-    - perfect_count = @person.movies.where(:rating => 10).length
-    - if perfect_count > 0
-      = image_tag 'icons/medal-gold-32x32.png',
-        :title => 'Perfect Movies (Rated 10)',
-        :alt => 'Perfect Movies (Rated 10)',
+      = image_tag 'icons/film-32x32.png',
+        :class => 'large-icon',
+        :title => 'Movies',
+        :alt => 'Movies',
         :width => 32,
         :height => 32
-      %span= pluralize(perfect_count, 'perfect movie')
+      %span= pluralize(@person.movies.length, 'movie')
       %br
 
-    - excellent_count = @person.movies.where(:rating => 9).length
-    - if excellent_count > 0
-      = image_tag 'icons/medal-silver-32x32.png',
-        :title => 'Excellent Movies (Rated 9)',
-        :alt => 'Excellent Movies (Rated 9)',
-        :width => 32,
-        :height => 32
-      %span= pluralize(excellent_count, 'excellent movie')
-      %br
-
-    - great_count = @person.movies.where(:rating => 8).length
-    - if great_count > 0
-      = image_tag 'icons/medal-bronze-32x32.png',
-        :title => 'Perfect Movies (Rated 8)',
-        :alt => 'Perfect Movies (Rated 8)',
-        :width => 32,
-        :height => 32
-      %span= pluralize(great_count, 'great movie')
-      %br
-
-    - terrible_count = @person.movies.where('rating < 5').length
-    - if terrible_count > 0
-      = image_tag 'icons/exclamation-32x32.png',
-        :title => 'Terrible Movies (Rated 4 or lower)',
-        :alt => 'Terrible Movies (Rated 4 or lower)',
-        :width => 32,
-        :height => 32
-      %span= pluralize(terrible_count, 'terrible movie')
-      %br
-
-    - if @person.number_of_directing_credits > 0
-      %a.scroll{:href => '#directing-credits'}
-        = image_tag 'icons/events-32x32.png',
-          :title => 'Director',
-          :alt => 'Director',
+      - perfect_count = @person.movies.where(:rating => 10).length
+      - if perfect_count > 0
+        = image_tag 'icons/medal-gold-32x32.png',
+          :class => 'large-icon',
+          :title => 'Perfect Movies (Rated 10)',
+          :alt => 'Perfect Movies (Rated 10)',
           :width => 32,
           :height => 32
-      = link_to 'Director', { :anchor => 'directing-credits' }, :class => 'scroll'
-      %br
+        %span= pluralize(perfect_count, 'perfect movie')
+        %br
 
-    - if @person.number_of_writing_credits > 0
-      %a.scroll{:href => '#writing-credits'}
-        = image_tag 'icons/document-prepare-32x32.png',
-          :title => 'Writer',
-          :alt => 'Writer',
+      - excellent_count = @person.movies.where(:rating => 9).length
+      - if excellent_count > 0
+        = image_tag 'icons/medal-silver-32x32.png',
+          :class => 'large-icon',
+          :title => 'Excellent Movies (Rated 9)',
+          :alt => 'Excellent Movies (Rated 9)',
           :width => 32,
           :height => 32
-      = link_to 'Writer', { :anchor => 'writing-credits' }, :class => 'scroll'
-      %br
+        %span= pluralize(excellent_count, 'excellent movie')
+        %br
 
-    - if @person.number_of_composing_credits > 0
-      %a.scroll{:href => '#composing-credits'}
-        = image_tag 'icons/music-32x32.png',
-          :title => 'Composer',
-          :alt => 'Composer',
+      - great_count = @person.movies.where(:rating => 8).length
+      - if great_count > 0
+        = image_tag 'icons/medal-bronze-32x32.png',
+          :class => 'large-icon',
+          :title => 'Perfect Movies (Rated 8)',
+          :alt => 'Perfect Movies (Rated 8)',
           :width => 32,
           :height => 32
-      = link_to 'Composer', { :anchor => 'composing-credits' }, :class => 'scroll'
-      %br
+        %span= pluralize(great_count, 'great movie')
+        %br
 
-    - if @person.number_of_editing_credits > 0
-      %a.scroll{:href => '#editing-credits'}
-        = image_tag 'icons/edit-free-32x32.png',
-          :title => 'Editor',
-          :alt => 'Editor',
+      - terrible_count = @person.movies.where('rating < 5').length
+      - if terrible_count > 0
+        = image_tag 'icons/exclamation-32x32.png',
+          :class => 'large-icon',
+          :title => 'Terrible Movies (Rated 4 or lower)',
+          :alt => 'Terrible Movies (Rated 4 or lower)',
           :width => 32,
           :height => 32
-      = link_to 'Editor', { :anchor => 'editing-credits' }, :class => 'scroll'
-      %br
+        %span= pluralize(terrible_count, 'terrible movie')
+        %br
 
-    - if @person.number_of_cinematography_credits > 0
-      %a.scroll{:href => '#cinematography-credits'}
-        = image_tag 'icons/video-32x32.png',
-          :title => 'Cinematographer',
-          :alt => 'Cinematographer',
+      - if @person.number_of_directing_credits > 0
+        %a.scroll{:href => '#directing-credits'}
+          = image_tag 'icons/events-32x32.png',
+            :class => 'large-icon',
+            :title => 'Director',
+            :alt => 'Director',
+            :width => 32,
+            :height => 32
+        = link_to 'Director', { :anchor => 'directing-credits' }, :class => 'scroll'
+        %br
+
+      - if @person.number_of_writing_credits > 0
+        %a.scroll{:href => '#writing-credits'}
+          = image_tag 'icons/document-prepare-32x32.png',
+            :class => 'large-icon',
+            :title => 'Writer',
+            :alt => 'Writer',
+            :width => 32,
+            :height => 32
+        = link_to 'Writer', { :anchor => 'writing-credits' }, :class => 'scroll'
+        %br
+
+      - if @person.number_of_composing_credits > 0
+        %a.scroll{:href => '#composing-credits'}
+          = image_tag 'icons/music-32x32.png',
+            :class => 'large-icon',
+            :title => 'Composer',
+            :alt => 'Composer',
+            :width => 32,
+            :height => 32
+        = link_to 'Composer', { :anchor => 'composing-credits' }, :class => 'scroll'
+        %br
+
+      - if @person.number_of_editing_credits > 0
+        %a.scroll{:href => '#editing-credits'}
+          = image_tag 'icons/edit-free-32x32.png',
+            :class => 'large-icon',
+            :title => 'Editor',
+            :alt => 'Editor',
+            :width => 32,
+            :height => 32
+        = link_to 'Editor', { :anchor => 'editing-credits' }, :class => 'scroll'
+        %br
+
+      - if @person.number_of_cinematography_credits > 0
+        %a.scroll{:href => '#cinematography-credits'}
+          = image_tag 'icons/video-32x32.png',
+            :class => 'large-icon',
+            :title => 'Cinematographer',
+            :alt => 'Cinematographer',
+            :width => 32,
+            :height => 32
+        = link_to 'Cinematographer', { :anchor => 'cinematography-credits' }, :class => 'scroll'
+        %br
+
+      - if @person.number_of_acting_credits > 0
+        %a.scroll{:href => '#acting-credits'}
+          = image_tag 'icons/user-32x32.png',
+            :class => 'large-icon',
+            :title => 'Actor',
+            :alt => 'Actor',
+            :width => 32,
+            :height => 32
+        = link_to 'Actor', { :anchor => 'acting-credits' }, :class => 'scroll'
+        %br
+
+      %hr
+
+      = link_to graphs_person_path(@person) do
+        = image_tag 'icons/chart-curve-32x32.png',
+          :class => 'large-icon',
+          :title => 'Graphs',
+          :alt => 'Graphs',
           :width => 32,
           :height => 32
-      = link_to 'Cinematographer', { :anchor => 'cinematography-credits' }, :class => 'scroll'
+      = link_to 'Graphs', graphs_person_path(@person)
       %br
 
-    - if @person.number_of_acting_credits > 0
-      %a.scroll{:href => '#acting-credits'}
-        = image_tag 'icons/user-32x32.png',
-          :title => 'Actor',
-          :alt => 'Actor',
+      = link_to @person.imdb_url, :rel => :external, :class => 'imdb' do
+        = image_tag 'icons/imdb-icon-32x32.png',
+          :class => 'large-icon',
+          :title => 'IMDb',
+          :alt => 'IMDb',
           :width => 32,
           :height => 32
-      = link_to 'Actor', { :anchor => 'acting-credits' }, :class => 'scroll'
+      = link_to 'IMDb', @person.imdb_url
       %br
-
-    %hr
-
-    = link_to graphs_person_path(@person) do
-      = image_tag 'icons/chart-curve-32x32.png',
-        :title => 'Graphs',
-        :alt => 'Graphs',
-        :width => 32,
-        :height => 32
-    = link_to 'Graphs', graphs_person_path(@person)
-    %br
-
-    = link_to @person.imdb_url, :rel => :external, :class => 'imdb' do
-      = image_tag 'icons/imdb-icon-32x32.png',
-        :title => 'IMDb',
-        :alt => 'IMDb',
-        :width => 32,
-        :height => 32
-    = link_to 'IMDb', @person.imdb_url
-    %br
 
   .clear

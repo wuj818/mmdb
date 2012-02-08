@@ -21,13 +21,6 @@ module MoviesHelper
     "colorized #{color}"
   end
 
-  def original_movie_poster(movie)
-    link_to movie.poster.url(:original),
-      :class => 'thumbnail original-movie' do
-      image_tag movie.poster.url(:original)
-    end
-  end
-
   def tiny_movie_poster(movie)
     image_tag movie.poster.url(:tiny),
       :class => 'tiny-poster',

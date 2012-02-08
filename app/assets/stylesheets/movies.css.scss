@@ -1,21 +1,31 @@
 .tiny-poster {
-  border: 1px solid #DDD;
+  border: 1px solid #ddd;
   margin-right: 2px;
   vertical-align: middle;
   cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in; }
+  cursor: -moz-zoom-in;
+  width: 20px;
+  height: 30px; }
+
+.large-poster {
+  width: 300px;
+  height: 440px; }
 
 .aka {
   font-style: italic; }
 
-.original-movie {
+.original-poster-link {
+  border: 1px solid #ddd;
   display: inline-block;
   float: left;
-  margin-right: 20px;
-  width: 300px;
-  height: 440px;
+  margin: 0;
   cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in; }
+  cursor: -moz-zoom-in;
+  width: 300px;
+  height: 440px; }
+
+.movie-info {
+  margin-left: 320px; }
 
 .synopsis {
   p {

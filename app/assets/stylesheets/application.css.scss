@@ -18,7 +18,10 @@ body {
   left: 50%;
   margin-top: -12px;
   margin-left: -12px;
-  z-index: 9000; }
+  z-index: 9000;
+  image {
+    width: 25px;
+    height: 25px; } }
 
 .colorized  {
   font-weight: bold;
@@ -31,7 +34,9 @@ body {
 
 #psh {
   float: left;
-  margin-right: 18px; }
+  margin-right: 18px;
+  width: 330px;
+  height: 600px; }
 
 #main-stats {
   margin: auto;
@@ -186,7 +191,13 @@ td {
     margin: 0 4px 4px 0;
   }
   a {
-    text-decoration: none; } }
+    text-decoration: none; }
+  .small-icon {
+    width: 16px;
+    height: 16px; }
+  .large-icon {
+    width: 32px;
+    height: 32px; } }
 
 .credit-rating {
   text-align: right !important;
