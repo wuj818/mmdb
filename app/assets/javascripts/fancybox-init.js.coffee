@@ -14,6 +14,6 @@ $ ->
         url = $("a[title='#{title}']").attr 'data-movie-url'
         "<div id='fancybox-title-over'><a href='#{url}'>#{title}</a></div>"
       onComplete: (links, index) ->
-        if $('#env').hasClass 'production'
+        if MMDb.production()
           title = $("a[href='#{links[index]}']").attr 'title'
           _gaq.push ['_trackEvent', 'Posters', 'Fancybox', title]

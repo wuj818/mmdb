@@ -18,7 +18,7 @@ $ ->
   if history and history.pushState
     $('a[data-remote="true"]').live 'click', ->
       history.pushState null, document.title, @.href
-      if $('#env').hasClass 'production'
+      if MMDb.production()
         _gaq.push ['_trackPageview', $(@).attr 'href']
 
     # pjax popstate on initial page load solution
@@ -30,5 +30,5 @@ $ ->
       return if initialPop
 
       $.getScript location.href
-      if $('#env').hasClass 'production'
+      if MMDb.production()
         _gaq.push ['_trackPageview', location.pathname + location.search]
