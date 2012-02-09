@@ -3,7 +3,7 @@
     %tr
       %th
         - average = @person.send("#{credit_type}_credits").joins(:movie).average(:rating)
-        %h3 #{job} (#{count}) #{colorized_credit_average average}/10
+        %h3 #{job} (#{count}) &nbsp; #{colorized_credit_average average}/10
   %tbody
     - @person.send("sorted_#{credit_type}_credits").each do |credit|
       %tr
