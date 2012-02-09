@@ -18,7 +18,10 @@
 
     .container
       = render('shared/flashes').squish.html_safe
+
       = (yield).squish.html_safe
+
+      = render('shared/admin_controls_loader').squish.html_safe
 
       #footer
         &copy; 2010-2012 James Wu

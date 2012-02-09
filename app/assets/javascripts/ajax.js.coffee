@@ -1,4 +1,6 @@
 $ ->
+  $.ajaxSetup cache: true
+
   show_loader = ->
     $('#ajax-activity').removeClass 'hidden'
     $('#ajax-table').animate opacity: 0.5, 200

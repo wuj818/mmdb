@@ -1,7 +1,9 @@
 $ ->
-  $('.carousel').carousel() if $('#person-carousel .item').length > 1
+  if $('#person-carousel .item').length > 1
+    $('.carousel').carousel()
 
-  $('.dropdown-toggle').dropdown()
+  $('.dropdown-toggle').livequery ->
+    $(@).dropdown()
 
   $('.percentage-popover').popover
     animation: false

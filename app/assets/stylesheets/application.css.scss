@@ -97,7 +97,8 @@ body {
 
 .admin-dropdown {
   color: #00ff00 !important;
-  font-weight: bold; }
+  font-weight: bold;
+  visibility: hidden; }
 
 .clear-cache {
   color: red !important;
@@ -208,6 +209,7 @@ td {
     background-color: #fff8bb !important; } }
 
 .admin-controls {
+  display: none;
   float: right; }
 
 .control-group {

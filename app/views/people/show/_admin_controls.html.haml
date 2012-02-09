@@ -1,5 +1,4 @@
-- if admin?
-  .admin-controls
-    = link_to 'Add Credit', new_person_credit_path(@person), :class => 'btn btn-success'
-    = link_to 'Edit', [:edit, @person], :class => 'btn btn-info'
-    = link_to 'Delete', @person, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger'
+.admin-controls
+  = link_to 'Add Credit', new_person_credit_path(@person), :class => 'btn btn-success'
+  = link_to 'Edit', [:edit, @person], :class => 'btn btn-info'
+  = link_to 'Delete', @person, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger'

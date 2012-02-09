@@ -6,6 +6,9 @@ Mmdb::Application.routes.draw do
 
   resources :sessions, :only => [:new, :create, :destroy]
 
+  get '/admin-controls' => 'pages#admin_controls',
+    :as => :admin_controls_path
+
   delete '/clear-cache' => 'pages#clear_cache',
     :as => :clear_cache
 
