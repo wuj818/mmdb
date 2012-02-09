@@ -1,6 +1,10 @@
 class ItemListsController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy, :reorder]
-  before_filter :get_list, :only => [:show, :edit, :update, :destroy]
+  before_filter :get_list, :only => [:edit, :update, :destroy]
+
+  caches_action :show,
+    :cache_path => Proc.new { |c| c.request.path },
+    :expires_in => 1.month
 
   def index
     @title = 'Lists'
@@ -8,6 +12,9 @@ class ItemListsController < ApplicationController
   end
 
   def show
+    @list = ItemList.find_by_permalink params[:id]
+    raise ActiveRecord::RecordNotFound if @list.blank?
+
     @title = "Lists - #{@list.name}"
   end
 

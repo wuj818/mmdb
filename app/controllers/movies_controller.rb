@@ -1,6 +1,10 @@
 class MoviesController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy, :scrape_info]
-  before_filter :get_movie, :only => [:show, :edit, :update, :destroy, :keywords]
+  before_filter :get_movie, :only => [:edit, :update, :destroy]
+
+  caches_action :show, :keywords,
+    :cache_path => Proc.new { |c| c.request.path },
+    :expires_in => 1.month
 
   def index
     @title = 'Movies'
@@ -15,6 +19,9 @@ class MoviesController < ApplicationController
   end
 
   def show
+    @movie = Movie.find_by_permalink params[:id]
+    raise ActiveRecord::RecordNotFound if @movie.blank?
+
     @title = @movie.full_title
   end
 
@@ -72,6 +79,9 @@ class MoviesController < ApplicationController
   end
 
   def keywords
+    @movie = Movie.find_by_permalink params[:id]
+    raise ActiveRecord::RecordNotFound if @movie.blank?
+
     @title = "#{@movie.full_title} - Keywords"
   end
 

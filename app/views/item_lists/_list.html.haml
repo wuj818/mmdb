@@ -1,7 +1,6 @@
-- if admin?
+- if action_name == 'edit'
   = render 'sortable'
 
-- if action_name == 'edit'
   - @listings = @list.listings
 
   %ul#sortable-list
@@ -17,10 +16,9 @@
 
   = link_to 'Reorder!', reorder_item_list_path, :id => 'reorder-link', :class => 'btn btn-primary'
 - else
-  - cache(@list, :expires_in => 2.weeks) do
-    - @listings = @list.listings
+  - @listings = @list.listings
 
-    %ol
-      - @listings.each do |listing|
-        %li{:id => dom_id(listing)}
-          = link_to listing.movie.title, listing.movie
+  %ol
+    - @listings.each do |listing|
+      %li{:id => dom_id(listing)}
+        = link_to listing.movie.title, listing.movie

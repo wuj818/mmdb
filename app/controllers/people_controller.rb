@@ -1,6 +1,10 @@
 class PeopleController < ApplicationController
   before_filter :authorize, :only => [:edit, :update, :destroy]
-  before_filter :get_person, :only => [:show, :edit, :update, :destroy, :keywords, :graphs]
+  before_filter :get_person, :only => [:edit, :update, :destroy]
+
+  caches_action :show, :graphs, :keywords,
+    :cache_path => Proc.new { |c| c.request.path },
+    :expires_in => 1.month
 
   def index
     @title = 'People'
@@ -16,6 +20,9 @@ class PeopleController < ApplicationController
   end
 
   def show
+    @person = Person.find_by_permalink params[:id]
+    raise ActiveRecord::RecordNotFound if @person.blank?
+
     @title = @person.name
   end
 
@@ -42,10 +49,16 @@ class PeopleController < ApplicationController
   end
 
   def graphs
+    @person = Person.find_by_permalink params[:id]
+    raise ActiveRecord::RecordNotFound if @person.blank?
+
     @title = "#{@person.name} - Graphs"
   end
 
   def keywords
+    @person = Person.find_by_permalink params[:id]
+    raise ActiveRecord::RecordNotFound if @person.blank?
+
     @title = "#{@person.name} - Keywords"
   end
 

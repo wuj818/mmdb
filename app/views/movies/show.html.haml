@@ -8,9 +8,8 @@
     - unless @movie.aka.blank?
       %small.aka aka #{@movie.aka}
 
-- smart_cache do
-  = render 'movies/show/header'
+= render 'movies/show/header'
 
-  = render 'movies/show/keywords'
+= render 'movies/show/keywords'
 
-  = render 'movies/show/credits'
+= render 'movies/show/credits'
