@@ -15,7 +15,7 @@
       %tbody
         - @years.each_with_index do |year, i|
           %tr
-            %td= i + 1
+            %td= row_number i
             %td= link_to year.year, year_path(year.year)
             %td= year.total
             %td= colorized_average year

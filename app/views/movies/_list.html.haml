@@ -16,7 +16,7 @@
       %tbody
         - @movies.each_with_index do |movie, i|
           %tr
-            %td= i + 1
+            %td= row_number i
             %td
               = tiny_movie_poster_link movie
               = link_to movie.title, movie, :class => 'movie-link'

@@ -15,7 +15,7 @@
       %tbody
         - @decades.each_with_index do |decade, i|
           %tr
-            %td= i + 1
+            %td= row_number i
             %td= link_to decade.decade << 's', decade_path(decade.decade)
             %td= decade.total
             %td= colorized_average decade

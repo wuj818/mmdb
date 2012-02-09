@@ -15,7 +15,7 @@
       %tbody
         - @tags.each_with_index do |tag, i|
           %tr
-            %td= i + 1
+            %td= row_number i
             %td= tag_link tag, @type
             %td= tag.total
             %td= colorized_average tag
