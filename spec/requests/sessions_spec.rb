@@ -1,19 +1,24 @@
 require 'spec_helper'
 
-describe 'Sessions' do
+describe 'Sessions', :js => true do
   describe 'Login' do
-    before { visit new_movie_path }
+    before do
+      visit new_movie_from_imdb_path
+
+      link('Login').should be_visible
+      link('Logout').should_not be_visible
+    end
 
     context 'with valid password' do
       it 'logs in the admin and redirects to the previous page' do
         fill_in 'Password', :with => PASSWORD
         click_button 'Login'
 
-        should_be_on new_movie_path
+        should_be_on new_movie_from_imdb_path
         should_see 'Logged in successfully.'
 
-        should_not_see_link 'Login'
-        should_see_link 'Logout'
+        link('Login').should_not be_visible
+        link('Logout').should be_visible
       end
     end
 
@@ -24,8 +29,8 @@ describe 'Sessions' do
         should_see 'Incorrect password.'
         should_see_field 'Password'
 
-        should_see_link 'Login'
-        should_not_see_link 'Logout'
+        link('Login').should be_visible
+        link('Logout').should_not be_visible
       end
     end
   end
@@ -34,14 +39,16 @@ describe 'Sessions' do
     it 'logs out the admin' do
       integration_login
 
-      should_not_see_link 'Login'
+      link('Login').should_not be_visible
+      link('Logout').should be_visible
+
       click_link 'Logout'
 
       should_be_on root_path
       should_see 'Logged out successfully.'
 
-      should_see_link 'Login'
-      should_not_see_link 'Logout'
+      link('Login').should be_visible
+      link('Logout').should_not be_visible
     end
   end
 end

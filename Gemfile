@@ -39,6 +39,7 @@ group :test do
   gem 'machinist', '2.0'
   gem 'capybara', '1.1.2'
   gem 'database_cleaner', '0.7.1'
+  gem 'capybara-webkit', '0.9.0'
 end
 
 group :production do

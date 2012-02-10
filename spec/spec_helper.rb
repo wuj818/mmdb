@@ -12,6 +12,7 @@ Spork.prefork do
   RSpec.configure do |config|
     Capybara.save_and_open_page_path = "#{Rails.root}/tmp/capybara"
     Capybara.default_selector = :css
+    Capybara.javascript_driver = :webkit
     ActiveSupport::Dependencies.clear
 
     config.mock_with :rspec
@@ -24,7 +25,6 @@ Spork.prefork do
 
     config.before(:each) do
       if example.metadata[:js]
-        Capybara.current_driver = :selenium
         DatabaseCleaner.strategy = :truncation
       end
       Capybara.reset_sessions!
@@ -33,7 +33,6 @@ Spork.prefork do
 
     config.after(:each) do
       if example.metadata[:js]
-        Capybara.use_default_driver
         DatabaseCleaner.strategy = :transaction
       end
       DatabaseCleaner.clean
