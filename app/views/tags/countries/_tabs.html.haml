@@ -1,0 +1,5 @@
+%ul.nav.nav-tabs
+  %li{:class => active_tab_link?(:index)}
+    = link_to 'All Countries', :countries
+  %li{:class => active_tab_link?(:countries_map)}
+    = link_to 'Map', :countries_map

@@ -40,6 +40,10 @@ module ApplicationHelper
     name == active ? 'active' : nil
   end
 
+  def active_tab_link?(action)
+    action.to_s == action_name ? 'active' : nil
+  end
+
   def colorized_average(obj)
     average = obj.average
     color = if average <= 5
