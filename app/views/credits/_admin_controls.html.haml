@@ -1,3 +1,8 @@
 .admin-controls
-  = link_to 'Back', @person, :class => 'btn'
-  = link_to 'Delete', @person, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger'
+  = link_to @person, :class => 'btn', do
+    %i.icon-arrow-left
+    Back
+
+  = link_to @person, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger' do
+    %i.icon-trash.icon-white
+    Delete

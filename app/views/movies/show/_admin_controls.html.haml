@@ -1,3 +1,8 @@
 .admin-controls
-  = link_to 'Edit', [:edit, @movie], :class => 'btn btn-info'
-  = link_to 'Delete', @movie, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger'
+  = link_to [:edit, @movie], :class => 'btn btn-info' do
+    %i.icon-edit.icon-white
+    Edit
+
+  = link_to @movie, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger' do
+    %i.icon-trash.icon-white
+    Delete

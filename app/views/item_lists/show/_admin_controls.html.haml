@@ -1,4 +1,12 @@
 .admin-controls
-  = link_to 'Add Listing', new_item_list_listing_path(@list), :class => 'btn btn-success'
-  = link_to 'Edit', [:edit, @list], :class => 'btn btn-info'
-  = link_to 'Delete', @list, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger'
+  = link_to new_item_list_listing_path(@list), :class => 'btn btn-success' do
+    %i.icon-plus-sign.icon-white
+    Add Listing
+
+  = link_to [:edit, @list], :class => 'btn btn-info' do
+    %i.icon-edit.icon-white
+    Edit
+
+  = link_to @list, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger' do
+    %i.icon-trash.icon-white
+    Delete
