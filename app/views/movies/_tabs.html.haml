@@ -1,0 +1,5 @@
+%ul.nav.nav-tabs
+  %li{:class => active_tab_link?(:index)}
+    = link_to 'All Movies', :movies
+  %li{:class => active_tab_link?(:perfect)}
+    = link_to 'Perfect Movies', :perfect_movies

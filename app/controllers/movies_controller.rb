@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy, :scrape_info]
   before_filter :get_movie, :only => [:edit, :update, :destroy]
 
-  caches_action :show, :keywords,
+  caches_action :show, :keywords, :perfect,
     :cache_path => Proc.new { |c| c.request.path },
     :expires_in => 1.month
 
@@ -83,6 +83,12 @@ class MoviesController < ApplicationController
     raise ActiveRecord::RecordNotFound if @movie.blank?
 
     @title = "#{@movie.full_title} - Keywords"
+  end
+
+  def perfect
+    @title = 'Perfect Movies'
+
+    @movies = Movie.where(:rating => 10).order('year DESC, sort_title DESC')
   end
 
   private

@@ -1,6 +1,8 @@
 - content_for :search do
   = render 'shared/search_form', :target => search_movies_path, :type => 'movie'
 
+= render 'tabs'
+
 .page-header
   %h1= link_to 'Movies', movies_path
 

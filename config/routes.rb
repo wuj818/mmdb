@@ -25,6 +25,7 @@ Mmdb::Application.routes.draw do
     collection do
       post :scrape_info
       get :search
+      get :perfect
     end
 
     member do
