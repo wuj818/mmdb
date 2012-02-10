@@ -51,20 +51,20 @@
       font-weight: normal; } } }
 
 #perfect-movies {
-  margin-left: 12px;
+  margin-left: 3px;
   .item {
     border: 1px solid #ddd;
     display: inline-block;
     position: relative;
-    width: 300px;
-    height: 420px;
+    width: 150px;
+    height: 210px;
     &:hover {
       border: 1px solid #333;
       .caption {
         display: block; } }
     .caption {
       display: none;
-      padding: 8px 14px;
+      padding: 4px 7px;
       position: absolute;
       left: 0;
       right: 0;

@@ -49,7 +49,7 @@ class Movie < ActiveRecord::Base
   has_many :listings, :include => :item_list, :dependent => :destroy
 
   has_attached_file :poster,
-    :styles => { :large => '300x420!', :tiny => '20x28!' },
+    :styles => { :large => '300x420!', :medium => '150x210!', :tiny => '20x28!' },
     :default_url => '/assets/posters/:style-poster.gif',
     :storage => :s3,
     :path => '/posters/:style/:id/:filename',

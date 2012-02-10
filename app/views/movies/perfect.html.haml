@@ -13,7 +13,7 @@
   - @movies.each do |movie|
     .item
       = link_to movie, :class => 'perfect-movie-link' do
-        = image_tag movie.poster.url(:large), :width => 300, :height => 420
+        = image_tag movie.poster.url(:medium), :width => 150, :height => 210
       .caption
         %h4
           = link_to movie.full_title, movie
