@@ -7,9 +7,6 @@ $ ->
     -> $(@).animate opacity: 1.0, 200
   )
 
-  $('.btn.loading').click ->
-    $(@).button 'loading'
-
   $('.table-striped tr').hover(
     -> $(@).addClass 'highlighted-row'
     -> $(@).removeClass 'highlighted-row'

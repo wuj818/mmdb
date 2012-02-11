@@ -1,4 +1,7 @@
 $ ->
+  $('.btn.loading').click ->
+    $(@).button 'loading'
+
   if $('#person-carousel .item').length > 1
     $('.carousel').carousel()
 
