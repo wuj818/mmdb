@@ -1,0 +1,9 @@
+#login-modal.modal.hide
+  .modal-header
+    = link_to '&times;'.html_safe, '#',
+      :class => 'close',
+      :data => { :dismiss => 'modal' }
+    %h3 Login
+
+  .modal-body
+    = render 'sessions/form', :remote => true

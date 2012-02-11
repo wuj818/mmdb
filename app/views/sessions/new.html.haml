@@ -1,11 +1,4 @@
 .page-header
   %h1 Login
 
-= form_for :session,
-  :url => sessions_path,
-  :html => { :class => 'form-inline' } do |f|
-  = f.password_field :password, :id => 'Password', :autofocus => true
-
-  = f.submit 'Login',
-    :class => 'btn loading',
-    :data => { :'loading-text' => 'Submitting...' }
+= render 'form'

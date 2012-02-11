@@ -9,7 +9,7 @@
     - if Rails.env.production?
       = render('shared/google_analytics').squish.html_safe
   %body
-    #ajax-activity.hidden
+    #ajax-activity.hide
       = image_tag 'ajax-circle.gif', :width => 25, :height => 25
 
     #env{:class => Rails.env}
@@ -24,3 +24,5 @@
       = render('shared/admin_controls_loader').squish.html_safe
 
       = render('layouts/footer').squish.html_safe
+
+      = render('shared/login_modal').squish.html_safe

@@ -9,9 +9,6 @@ body {
 .divider {
   color: #999999; }
 
-.hidden {
-  display: none !important; }
-
 #ajax-activity {
   position: fixed;
   top: 50%;
@@ -214,3 +211,13 @@ td {
 .control-group {
   label {
     font-weight: bold; } }
+
+#login-modal {
+  width: 350px;
+  #flashes {
+    margin: 0; }
+  form {
+    margin: 0; } }
+
+#countries {
+  height: 640px; }

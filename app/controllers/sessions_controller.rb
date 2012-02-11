@@ -12,10 +12,16 @@ class SessionsController < ApplicationController
     if params[:session][:password] == PASSWORD
       login_admin
       flash[:success] = 'Logged in successfully.'
-      redirect_back_or_to root_path
+      respond_to do |format|
+        format.html { redirect_back_or_to root_path }
+        format.js
+      end
     else
       flash.now[:error] = 'Incorrect password.'
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.js
+      end
     end
   end
 
@@ -26,7 +32,7 @@ class SessionsController < ApplicationController
     else
       flash[:notice] = 'You are not logged in.'
     end
-    redirect_to root_path
+    redirect_to :back
   end
 
   def integration_login

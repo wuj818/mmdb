@@ -2,19 +2,15 @@ require 'spec_helper'
 
 describe 'Sessions', :js => true do
   describe 'Login' do
-    before do
-      visit new_movie_from_imdb_path
-
-      link('Login').should be_visible
-      link('Logout').should_not be_visible
-    end
+    before { visit root_path }
 
     context 'with valid password' do
-      it 'logs in the admin and redirects to the previous page' do
+      it 'logs in the admin and loads the appropriate content with ajax' do
+        click_link 'Login'
         fill_in 'Password', :with => PASSWORD
         click_button 'Login'
 
-        should_be_on new_movie_from_imdb_path
+        should_be_on root_path
         should_see 'Logged in successfully.'
 
         link('Login').should_not be_visible
@@ -24,10 +20,11 @@ describe 'Sessions', :js => true do
 
     context 'with invalid password' do
       it 're-renders the login form' do
+        click_link 'Login'
         click_button 'Login'
 
+        should_be_on root_path
         should_see 'Incorrect password.'
-        should_see_field 'Password'
 
         link('Login').should be_visible
         link('Logout').should_not be_visible

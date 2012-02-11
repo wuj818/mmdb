@@ -2,11 +2,11 @@ $ ->
   $.ajaxSetup cache: true
 
   show_loader = ->
-    $('#ajax-activity').removeClass 'hidden'
+    $('#ajax-activity').show()
     $('#ajax-table').animate opacity: 0.5, 200
 
   hide_loader = ->
-    $('#ajax-activity').addClass 'hidden'
+    $('#ajax-activity').hide()
 
   $('#ajax-activity')
     .ajaxStart ->

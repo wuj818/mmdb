@@ -62,5 +62,6 @@
         = render 'shared/search_form', :target => search_movies_path, :type => 'movie'
 
       %p.navbar-text.pull-right
-        = link_to 'Login', login_path, :class => 'login'
-        = link_to 'Logout', logout_path, :method => :delete, :class => 'logout hidden'
+        = link_to 'Login', login_path,
+          :class => 'login'
+        = link_to 'Logout', logout_path, :method => :delete, :class => 'logout hide'
