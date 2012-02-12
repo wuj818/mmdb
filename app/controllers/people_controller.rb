@@ -3,8 +3,7 @@ class PeopleController < ApplicationController
   before_filter :get_person, :only => [:edit, :update, :destroy]
 
   caches_action :show, :graphs, :keywords,
-    :cache_path => Proc.new { |c| c.request.path },
-    :expires_in => 1.month
+    :expires_in => 2.weeks
 
   def index
     @title = 'People'
