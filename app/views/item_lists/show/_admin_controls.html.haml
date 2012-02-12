@@ -1,5 +1,5 @@
 .admin-controls
-  = link_to new_item_list_listing_path(@list), :class => 'btn btn-success' do
+  = link_to new_item_list_listing_path(@list), :class => 'btn btn-success', :rel => :nofollow do
     %i.icon-plus-sign.icon-white
     Add Listing
 
@@ -7,6 +7,7 @@
     %i.icon-edit.icon-white
     Edit
 
-  = link_to @list, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger' do
+  = link_to @list, :class => 'btn btn-danger', :rel => :nofollow,
+    :confirm => CONFIRM, :method => :delete do
     %i.icon-trash.icon-white
     Delete

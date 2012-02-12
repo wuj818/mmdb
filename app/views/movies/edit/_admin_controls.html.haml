@@ -1,8 +1,9 @@
 .admin-controls
-  = link_to @movie, :class => 'btn' do
+  = link_to @movie, :class => 'btn', :rel => :nofollow do
     %i.icon-arrow-left
     Back
 
-  = link_to @movie, :confirm => CONFIRM, :method => :delete, :class => 'btn btn-danger' do
+  = link_to @movie, :class => 'btn btn-danger', :rel => :nofollow,
+    :confirm => CONFIRM, :method => :delete do
     %i.icon-trash.icon-white
     Delete
