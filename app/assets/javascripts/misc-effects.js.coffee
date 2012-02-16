@@ -7,10 +7,8 @@ $ ->
     -> $(@).animate opacity: 1.0, 200
   )
 
-  $('.table-striped tr').hover(
-    -> $(@).addClass 'highlighted-row'
-    -> $(@).removeClass 'highlighted-row'
-  )
+  $('.table-striped tr').hover ->
+    $(@).toggleClass 'highlighted-row'
 
   if location.hash.length isnt 0
     $.scrollTo location.hash, 1000, offset: -50
