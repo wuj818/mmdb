@@ -55,7 +55,7 @@
 
     %h2
       = link_to years_path do
-        = number_with_delimiter Movie.select('year').uniq.count
+        = number_with_delimiter Movie.select('year').uniq.length
         %span.black years
 
 .clear
