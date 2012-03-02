@@ -66,15 +66,15 @@ class DirkDiggler
     form.q = "rotten tomatoes #{title} #{year}"
     search_results = form.submit
 
-    url = search_results.link_with(:href => %r(http://www.rottentomatoes.com/m/[\w-]+/\z));
+    url = search_results.link_with(:href => %r(http://www.rottentomatoes.com/m/[\w-]+/));
 
     if url.nil?
       form.q = "rotten tomatoes #{title}"
       search_results = form.submit
-      url = search_results.link_with(:href => %r(http://www.rottentomatoes.com/m/[\w-]+/\z))
+      url = search_results.link_with(:href => %r(http://www.rottentomatoes.com/m/[\w-]+/))
     end
 
-    @rotten_tomatoes_url = url.href rescue nil
+    @rotten_tomatoes_url = url.href.gsub!('/url?q=', '').gsub!(/&.+/, '') rescue nil
   end
 
   def get_synopsis
