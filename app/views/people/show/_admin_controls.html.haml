@@ -1,13 +1,13 @@
 .admin-controls
-  = link_to new_person_credit_path(@person), :class => 'btn btn-success', :rel => :nofollow do
+  = link_to new_person_credit_path(@person), class: 'btn btn-success', rel: :nofollow do
     %i.icon-plus-sign.icon-white
     Add Credit
 
-  = link_to [:edit, @person], :class => 'btn btn-info', :rel => :nofollow do
+  = link_to [:edit, @person], class: 'btn btn-info', rel: 'nofollow' do
     %i.icon-edit.icon-white
     Edit
 
-  = link_to @person, :class => 'btn btn-danger', :rel => :nofollow,
-    :confirm => CONFIRM, :method => :delete do
+  = link_to @person, class: 'btn btn-danger', rel: 'nofollow',
+    method: 'delete', data: { confirm: CONFIRM } do
     %i.icon-trash.icon-white
     Delete

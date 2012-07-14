@@ -1,9 +1,9 @@
 .admin-controls
-  = link_to @list, :class => 'btn', :rel => :nofollow do
+  = link_to @list, class: 'btn', rel: 'nofollow' do
     %i.icon-arrow-left
     Back
 
-  = link_to @list, :class => 'btn btn-danger', :rel => :nofollow,
-    :confirm => CONFIRM, :method => :delete do
+  = link_to @list, class: 'btn btn-danger', rel: 'nofollow',
+    method: :delete, data: { confirm: CONFIRM } do
     %i.icon-trash.icon-white
     Delete

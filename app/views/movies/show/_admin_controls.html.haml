@@ -1,9 +1,9 @@
 .admin-controls
-  = link_to [:edit, @movie], :class => 'btn btn-info', :rel => :nofollow do
+  = link_to [:edit, @movie], class: 'btn btn-info', rel: 'nofollow' do
     %i.icon-edit.icon-white
     Edit
 
-  = link_to @movie, :class => 'btn btn-danger', :rel => :nofollow,
-    :confirm => CONFIRM, :method => :delete do
+  = link_to @movie, class: 'btn btn-danger', rel: 'nofollow',
+    method: 'delete', data: { confirm: CONFIRM } do
     %i.icon-trash.icon-white
     Delete
