@@ -31,6 +31,10 @@ end
 
 group :test, :development do
   gem 'rspec-rails', '2.8.1'
+  gem 'guard-rspec', '0.5.2'
+  gem 'guard-spork', '0.5.2'
+  gem 'guard-livereload', '0.4.2'
+  gem 'rack-livereload', '0.3.6'
 end
 
 group :test do

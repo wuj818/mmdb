@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   before_filter :get_type
   before_filter :get_tag, :only => :show
 
-  TYPES = %(countries genres keywords languages)
+  TYPES = %w(countries genres keywords languages)
 
   def index
     @title = @type.capitalize
