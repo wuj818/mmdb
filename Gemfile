@@ -6,7 +6,7 @@ gem 'sqlite3', '1.3.5'
 
 gem 'haml', '3.1.4'
 gem 'haml-rails', '0.3.4'
-gem 'jquery-rails', '2.0.0'
+gem 'jquery-rails', '2.0.3'
 
 gem 'escape_utils'
 gem 'kaminari', '0.13.0'
@@ -44,7 +44,7 @@ group :test do
   gem 'machinist', '2.0'
   gem 'capybara', '1.1.2'
   gem 'database_cleaner', '0.7.1'
-  gem 'capybara-webkit', '0.9.0'
+  gem 'capybara-webkit', '0.13.0'
 end
 
 group :production do
