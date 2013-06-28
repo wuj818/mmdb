@@ -1,6 +1,6 @@
-//= require twitter/bootstrap
-//= require plugins
 //= require_self
+//= require bootstrap_and_overrides
+//= require plugins
 //= require_tree .
 
 body {
@@ -73,12 +73,6 @@ body {
 #ajax-table {
   clear: both; }
 
-.navbar {
-  .nav {
-    & > li {
-      & > a {
-        padding: 10px 8px; } } } }
-
 .highlight {
   background: yellow;
   padding: 0 6px; }
@@ -102,11 +96,6 @@ body {
   font-weight: bold !important;
   letter-spacing: 1px; }
 
-.brand {
-  color: #00ff00 !important;
-  &:hover {
-    color: white !important; } }
-
 .login, .logout {
   color: #00b1ff !important; }
 
@@ -128,16 +117,6 @@ body {
   font-style: italic;
   &:hover {
     color: #468847; } }
-
-td {
-  vertical-align: middle !important; }
-
-.popover-content {
-  p {
-    font-size: 16px; }
-  .percentage {
-    color: #08c;
-    float: right; } }
 
 #keyword-cloud {
   font-family: 'Tekton Pro', 'Comic Sans MS';

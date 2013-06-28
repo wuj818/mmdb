@@ -18,7 +18,7 @@ $ ->
     show_loader()
 
   if history and history.pushState
-    $('a[data-remote="true"]').live 'click', ->
+    $('a[data-remote="true"]').on 'click', ->
       history.pushState null, document.title, @.href
       if ENV is 'production'
         _gaq.push ['_trackPageview', $(@).attr 'href']

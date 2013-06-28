@@ -1,5 +1,5 @@
 $ ->
-  $('.close').live 'click', ->
+  $('.close').on 'click', ->
     $(@).parent().fadeOut 500
 
   $('.icons a, .graph-link').hover(

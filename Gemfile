@@ -1,21 +1,22 @@
 source 'http://rubygems.org'
 source 'http://gemcutter.org'
 
-gem 'rails', '3.2.6'
-gem 'sqlite3', '1.3.5'
+gem 'rails', '3.2.13'
+gem 'sqlite3', '1.3.7'
 
-gem 'haml', '3.1.4'
-gem 'haml-rails', '0.3.4'
-gem 'jquery-rails', '2.0.3'
+gem 'haml-rails', '0.4'
+gem 'jquery-rails', '3.0.1'
 
 gem 'escape_utils'
 gem 'kaminari', '0.13.0'
 gem 'acts-as-taggable-on', '2.2.2'
-gem 'mechanize'
+gem 'mechanize', '2.7.1'
 gem 'paperclip', '2.5.0'
 gem 'aws-sdk', '1.3.2'
 gem 'memcache-client'
 gem 'newrelic_rpm'
+gem 'quiet_assets', '1.0.2'
+gem 'therubyracer', '0.11.4'
 
 group :development do
   gem 'mongrel', '1.2.0.pre2'
@@ -23,14 +24,14 @@ group :development do
   gem 'capistrano', '2.9.0'
   gem 'rvm-capistrano', '1.2.2'
 
-  gem 'wirble'
-  gem 'hirb'
-  gem 'rainbow'
+  gem 'wirble', '0.1.3'
+  gem 'hirb', '0.7.1'
+  gem 'rainbow', '1.1.4'
   gem 'progressbar'
 end
 
 group :test, :development do
-  gem 'rspec-rails', '2.8.1'
+  gem 'rspec-rails', '2.13.2'
   gem 'guard-rspec', '0.5.2'
   gem 'guard-spork', '0.5.2'
   gem 'guard-livereload', '0.4.2'
@@ -38,7 +39,6 @@ group :test, :development do
 end
 
 group :test do
-  gem 'rspec', '2.8.0'
   gem 'spork-rails', '3.2.0'
   gem 'launchy', '2.0.5'
   gem 'machinist', '2.0'
@@ -52,8 +52,9 @@ group :production do
 end
 
 group :assets do
-  gem 'twitter-bootstrap-rails', '2.0rc0'
-  gem 'sass-rails', '3.2.3'
+  gem 'less-rails', '2.3.3'
+  gem 'twitter-bootstrap-rails', '2.2.7'
+  gem 'sass-rails', '3.2.6'
 end
 
 # for coffeescript views
