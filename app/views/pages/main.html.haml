@@ -23,7 +23,6 @@
         %span.black people
 
     %br
-    %br
 
     %h2
       = link_to genres_path do
@@ -45,7 +44,6 @@
         = number_with_delimiter Tagging.select('DISTINCT tag_id').where(:context => :countries).count
         %span.black countries
 
-    %br
     %br
 
     %h2

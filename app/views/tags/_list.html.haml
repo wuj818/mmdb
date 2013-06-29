@@ -4,7 +4,7 @@
   - unless @tags.total_count.zero?
     = paginate @tags, :remote => true
 
-    %table#ajax-table.table.table-striped.table-bordered
+    %table.table.table-striped.table-bordered
       %thead
         %tr
           %th{:style => 'width: 15px;'} #

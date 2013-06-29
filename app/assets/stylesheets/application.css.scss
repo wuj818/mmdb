@@ -9,17 +9,6 @@ body {
 .divider {
   color: #999999; }
 
-#ajax-activity {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -12px;
-  margin-left: -12px;
-  z-index: 9000;
-  image {
-    width: 25px;
-    height: 25px; } }
-
 .colorized  {
   font-weight: bold;
   &.red {
@@ -45,6 +34,7 @@ body {
     font-weight: normal;
     letter-spacing: 1px;
     line-height: 60px;
+    margin: 0;
     a {
       text-decoration: none; }
     .black {
@@ -69,9 +59,6 @@ body {
   font-size: 18px;
   line-height: 35px;
   margin-bottom: 18px; }
-
-#ajax-table {
-  clear: both; }
 
 .highlight {
   background: yellow;
@@ -159,21 +146,6 @@ body {
   width: 940px;
   p {
     font-size: 16px; } }
-
-.icons {
-  font-size: 20px;
-  img {
-    vertical-align: middle;
-    margin: 0 4px 4px 0;
-  }
-  a {
-    text-decoration: none; }
-  .small-icon {
-    width: 16px;
-    height: 16px; }
-  .large-icon {
-    width: 32px;
-    height: 32px; } }
 
 .credit-rating {
   text-align: right !important;

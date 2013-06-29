@@ -5,18 +5,17 @@ $ ->
   if $('#person-carousel .item').length > 1
     $('.carousel').carousel()
 
-  $('.dropdown-toggle').livequery ->
-    $(@).dropdown()
-
   $('.percentage-popover').popover
     animation: false
+    html: true
     placement: 'top'
     title: 'Details'
+    trigger: 'hover'
     content: ->
       fraction = $(@).data 'fraction'
       fraction = "#{fraction} Movies"
       percentage = $(@).data 'percentage'
-      percentage = "<span class='percentage'>#{percentage}</span>"
+      percentage = "<span class='percentage'>(#{percentage})</span>"
       "<strong>#{fraction} #{percentage}</strong>"
 
   $('.login').on 'click', ->
@@ -24,13 +23,3 @@ $ ->
       'margin-left': ->
         10 - ($(this).width() / 2)
     return false
-
-# $ ->
-#   $(".alert-message").alert()
-#   $(".tabs").button()
-#   $(".collapse").collapse()
-#   $(".modal").modal
-#   $(".navbar").scrollspy()
-#   $(".tab").tab "show"
-#   $(".tooltip").tooltip
-#   $(".typeahead").typeahead()

@@ -9,9 +9,6 @@
     - if Rails.env.production?
       = render('shared/google_analytics').squish.html_safe
   %body
-    #ajax-activity.hide
-      = image_tag 'ajax-circle.gif', :width => 25, :height => 25
-
     #env{:class => Rails.env}
 
     = render('layouts/navigation').squish.html_safe

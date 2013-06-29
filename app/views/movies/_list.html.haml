@@ -4,7 +4,7 @@
   - unless @movies.total_count.zero?
     = paginate @movies, :remote => true
 
-    %table#ajax-table.table.table-striped.table-bordered
+    %table.table.table-striped.table-bordered
       %thead
         %tr
           %th{:style => 'width: 15px;'} #

@@ -1,22 +1,6 @@
 $ ->
   $.ajaxSetup cache: true
 
-  show_loader = ->
-    $('#ajax-activity').show()
-    $('#ajax-table').animate opacity: 0.5, 200
-
-  hide_loader = ->
-    $('#ajax-activity').hide()
-
-  $('#ajax-activity')
-    .ajaxStart ->
-      show_loader()
-    .ajaxStop ->
-      hide_loader()
-
-  $('form').on 'submit', ->
-    show_loader()
-
   if history and history.pushState
     $('a[data-remote="true"]').on 'click', ->
       history.pushState null, document.title, @.href
