@@ -164,7 +164,6 @@ GEM
     net-ssh (2.3.0)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    newrelic_rpm (3.3.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     ntlm-http (0.1.1)
@@ -305,7 +304,6 @@ DEPENDENCIES
   machinist (= 2.0)
   mechanize (= 2.7.1)
   mongrel (= 1.2.0.pre2)
-  newrelic_rpm
   paperclip (= 2.5.0)
   progressbar
   quiet_assets (= 1.0.2)

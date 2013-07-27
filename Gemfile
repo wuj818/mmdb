@@ -15,7 +15,6 @@ gem 'mechanize', '2.7.1'
 gem 'paperclip', '2.5.0'
 gem 'aws-sdk', '1.3.2'
 gem 'dalli', '2.6.4'
-gem 'newrelic_rpm'
 gem 'quiet_assets', '1.0.2'
 gem 'therubyracer', '0.11.4'
 
