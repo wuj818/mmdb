@@ -2,7 +2,7 @@ $ ->
   $.ajaxSetup cache: true
 
   if history and history.pushState
-    $('a[data-remote="true"]').on 'click', ->
+    $('body').on 'click', 'a[data-remote="true"]', ->
       history.pushState null, document.title, @.href
       if ENV is 'production'
         _gaq.push ['_trackPageview', $(@).attr 'href']
