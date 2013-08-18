@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
   def create
     @title = 'Login'
-    if params[:session][:password] == PASSWORD
+    if params[:session][:password] == Figaro.env.password
       login_admin
       flash[:success] = 'Logged in successfully.'
       respond_to do |format|

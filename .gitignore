@@ -6,7 +6,7 @@ tmp/*
 public/assets/*
 config/database.yml
 config/deploy.rb
-config/password.yml
 config/s3.yml
 config/unicorn.rb
+config/application.yml
 .sass-cache/

@@ -7,7 +7,7 @@ describe 'Sessions', :js => true do
     context 'with valid password' do
       it 'logs in the admin and loads the appropriate content with ajax' do
         click_link 'Login'
-        fill_in 'Password', :with => PASSWORD
+        fill_in 'Password', :with => Figaro.env.password
         click_button 'Login'
 
         should_be_on root_path
