@@ -1,14 +1,14 @@
 module SessionsHelper
   def admin?
-    session[:admin]
+    cookies.signed[:admin] == Figaro.env.mmdb_password
   end
 
   def login_admin
-    session[:admin] = true
+    cookies.permanent.signed[:admin] = Figaro.env.mmdb_password
   end
 
   def logout_admin
-    session[:admin] = nil
+    cookies.delete :admin
   end
 
   def deny_access
