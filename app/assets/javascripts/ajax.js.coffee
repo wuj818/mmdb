@@ -5,7 +5,7 @@ $ ->
     $('body').on 'click', 'a[data-remote="true"]', ->
       history.pushState null, document.title, @.href
       if ENV is 'production'
-        _gaq.push ['_trackPageview', $(@).attr 'href']
+        ga 'send', 'pageview', $(@).attr 'href'
 
     # pjax popstate on initial page load solution
     popped = 'state' in window.history
@@ -17,4 +17,4 @@ $ ->
 
       $.getScript location.href
       if ENV is 'production'
-        _gaq.push ['_trackPageview', location.pathname + location.search]
+        ga 'send', 'pageview', location.pathname + location.search
