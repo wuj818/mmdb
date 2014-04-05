@@ -166,13 +166,18 @@ class DirkDiggler
   def get_actors
     @actors = {}
     page = @agent.get("#{@target}fullcredits") rescue return
-    rows = page.search('.cast').search('tr') rescue return
+    rows = page.search('.cast_list tr') rescue return
     rows.each do |row|
-      link = row.at('.nm').children.search('a[href^="/name/"]').first rescue next
-      url = "#{IMDB}#{link[:href]}"
+      begin
+        link = row.search('.itemprop a').first
+        url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+      rescue
+        next
+      end
+
       @actors[url] = {}
-      @actors[url][:name] = link.text
-      @actors[url][:details] = link.parent.parent.search('td.char').text.strip
+      @actors[url][:name] = link.text.strip.gsub /\s+/, ' '
+      @actors[url][:details] = row.search('.character').text.strip.gsub /\s+/, ' '
     end
   end
 
