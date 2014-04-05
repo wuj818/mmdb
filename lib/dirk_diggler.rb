@@ -43,19 +43,19 @@ class DirkDiggler
   private
 
   def get_title
-    @title = @page.at('title').text.gsub(/ \(\d{4}\) - IMDb/, '') rescue nil
+    @title = @page.search('title').text.gsub(/ \(\d{4}\) - IMDb/, '') rescue nil
   end
 
   def get_aka
-    @aka = @page.at('.title-extra').text.delete("\n").gsub(' (original title)', '') rescue nil
+    @aka = @page.search('.title-extra').text.gsub('(original title)', '').strip rescue nil
   end
 
   def get_year
-    @year = @page.at('h1 > span > a').text.to_i rescue nil
+    @year = @page.search('.header .nobr a').text.to_i rescue nil
   end
 
   def get_runtime
-    @runtime = @page.at('.infobar').text.scan(/\d+/).first.to_i rescue nil
+    @runtime = @page.search('time').first.text.strip.to_i rescue nil
   end
 
   def get_rotten_tomatoes_url
