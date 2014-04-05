@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap
 //= require plugins
-//= require bs2-group
+//= require bs3-group

@@ -1,174 +1,176 @@
 //= require_self
-//= require bootstrap_and_overrides
+//= require bootstrap-overrides
 //= require plugins
-//= require bs2-group
+//= require bs3-group
 
-body {
-  padding-top: 40px; }
+@import 'bootstrap';
 
-.divider {
-  color: #999999; }
-
-.colorized  {
-  font-weight: bold;
-  &.red {
-    color: #B94A48; }
-  &.orange {
-    color: #F89406; }
-  &.green {
-    color: #468847; } }
-
-#psh {
-  float: left;
-  margin-right: 18px;
-  width: 330px;
-  height: 600px; }
-
-#main-stats {
-  margin: auto;
-  margin-top: 12px;
-  width: 680px;
-  h2 {
-    font-size: 40px;
-    font-variant: small-caps;
-    font-weight: normal;
-    letter-spacing: 1px;
-    line-height: 60px;
-    margin: 0;
-    a {
-      text-decoration: none; }
-    .black {
-      color: black; } } }
-
-.clear {
-  clear: both; }
-
-#footer {
-  margin: 18px 0;
-  color: #888;
-  border-top: 1px solid #eee;
-  font-family: 'Verdana';
-  padding-top: 12px;
-  text-align: right; }
-
-#flashes {
-  margin-top: 18px; }
-
-.page-entries-info {
-  float: left;
-  font-size: 18px;
-  line-height: 35px;
-  margin-bottom: 18px; }
-
-.highlight {
-  background: yellow;
-  padding: 0 6px; }
-
-#filter-form {
-  margin-top: 28px;
-  label {
-    font-weight: bold;
-    margin-right: 4px; }
-  input[type='text'] {
-    margin-right: 8px; } }
-
-.admin-dropdown {
-  color: #00ff00 !important;
-  font-weight: bold;
-  visibility: hidden; }
-
-.clear-cache {
-  color: red !important;
-  font-family: 'Trebuchet MS';
-  font-weight: bold !important;
-  letter-spacing: 1px; }
-
-.login, .logout {
-  color: #00b1ff !important; }
-
-.wide-cell {
-  width: 50%; }
-
-.ellipsis-cell {
-  width: 12px; }
-
-.no-border {
-  border-left: none !important;
-  border-right: none !important; }
-
-.delete-cell {
-  width: 60px; }
-
-.more {
-  color: #468847;
-  font-style: italic;
-  &:hover {
-    color: #468847; } }
-
-#keyword-cloud {
-  font-family: 'Tekton Pro', 'Comic Sans MS';
-  letter-spacing: 1px;
-  a {
-    &:hover {
-      text-decoration: underline; } }
-  .cloud1 {
-    color: #999999;
-    font-size: 12px;
-    line-height: 18px; }
-  .cloud2 {
-    color: #111111;
-    font-size: 16px;
-    line-height: 24px; }
-  .cloud3 {
-    color: #3A87AD;
-    font-size: 22px;
-    line-height: 31px; }
-  .cloud4 {
-    color: #468847;
-    font-size: 30px;
-    line-height: 45px; }
-  .top-keyword {
-    color: #B94A48;
-    font-size: 40px;
-    line-height: 60px;
-    text-shadow: black 1px 1px 1px;
-    &:hover {
-      color: red;
-      text-decoration: none; } } }
-
-.rating {
-  font-size: 64px;
-  line-height: 46px;
-  float: right; }
-
-.movie-header, .person-header {
-  margin-bottom: 18px;
-  width: 940px;
-  p {
-    font-size: 16px; } }
-
-.credit-rating {
-  text-align: right !important;
-  width: 35px; }
-
-.highlighted-row {
-  td {
-    background-color: #fff8bb !important; } }
-
-.admin-controls {
-  display: none;
-  float: right; }
-
-.control-group {
-  label {
-    font-weight: bold; } }
-
-#login-modal {
-  width: 350px;
-  #flashes {
-    margin: 0; }
-  form {
-    margin: 0; } }
-
-#countries {
-  height: 640px; }
+//body {
+//  padding-top: 40px; }
+//
+//.divider {
+//  color: #999999; }
+//
+//.colorized  {
+//  font-weight: bold;
+//  &.red {
+//    color: #B94A48; }
+//  &.orange {
+//    color: #F89406; }
+//  &.green {
+//    color: #468847; } }
+//
+//#psh {
+//  float: left;
+//  margin-right: 18px;
+//  width: 330px;
+//  height: 600px; }
+//
+//#main-stats {
+//  margin: auto;
+//  margin-top: 12px;
+//  width: 680px;
+//  h2 {
+//    font-size: 40px;
+//    font-variant: small-caps;
+//    font-weight: normal;
+//    letter-spacing: 1px;
+//    line-height: 60px;
+//    margin: 0;
+//    a {
+//      text-decoration: none; }
+//    .black {
+//      color: black; } } }
+//
+//.clear {
+//  clear: both; }
+//
+//#footer {
+//  margin: 18px 0;
+//  color: #888;
+//  border-top: 1px solid #eee;
+//  font-family: 'Verdana';
+//  padding-top: 12px;
+//  text-align: right; }
+//
+//#flashes {
+//  margin-top: 18px; }
+//
+//.page-entries-info {
+//  float: left;
+//  font-size: 18px;
+//  line-height: 35px;
+//  margin-bottom: 18px; }
+//
+//.highlight {
+//  background: yellow;
+//  padding: 0 6px; }
+//
+//#filter-form {
+//  margin-top: 28px;
+//  label {
+//    font-weight: bold;
+//    margin-right: 4px; }
+//  input[type='text'] {
+//    margin-right: 8px; } }
+//
+//.admin-dropdown {
+//  color: #00ff00 !important;
+//  font-weight: bold;
+//  visibility: hidden; }
+//
+//.clear-cache {
+//  color: red !important;
+//  font-family: 'Trebuchet MS';
+//  font-weight: bold !important;
+//  letter-spacing: 1px; }
+//
+//.login, .logout {
+//  color: #00b1ff !important; }
+//
+//.wide-cell {
+//  width: 50%; }
+//
+//.ellipsis-cell {
+//  width: 12px; }
+//
+//.no-border {
+//  border-left: none !important;
+//  border-right: none !important; }
+//
+//.delete-cell {
+//  width: 60px; }
+//
+//.more {
+//  color: #468847;
+//  font-style: italic;
+//  &:hover {
+//    color: #468847; } }
+//
+//#keyword-cloud {
+//  font-family: 'Tekton Pro', 'Comic Sans MS';
+//  letter-spacing: 1px;
+//  a {
+//    &:hover {
+//      text-decoration: underline; } }
+//  .cloud1 {
+//    color: #999999;
+//    font-size: 12px;
+//    line-height: 18px; }
+//  .cloud2 {
+//    color: #111111;
+//    font-size: 16px;
+//    line-height: 24px; }
+//  .cloud3 {
+//    color: #3A87AD;
+//    font-size: 22px;
+//    line-height: 31px; }
+//  .cloud4 {
+//    color: #468847;
+//    font-size: 30px;
+//    line-height: 45px; }
+//  .top-keyword {
+//    color: #B94A48;
+//    font-size: 40px;
+//    line-height: 60px;
+//    text-shadow: black 1px 1px 1px;
+//    &:hover {
+//      color: red;
+//      text-decoration: none; } } }
+//
+//.rating {
+//  font-size: 64px;
+//  line-height: 46px;
+//  float: right; }
+//
+//.movie-header, .person-header {
+//  margin-bottom: 18px;
+//  width: 940px;
+//  p {
+//    font-size: 16px; } }
+//
+//.credit-rating {
+//  text-align: right !important;
+//  width: 35px; }
+//
+//.highlighted-row {
+//  td {
+//    background-color: #fff8bb !important; } }
+//
+//.admin-controls {
+//  display: none;
+//  float: right; }
+//
+//.control-group {
+//  label {
+//    font-weight: bold; } }
+//
+//#login-modal {
+//  width: 350px;
+//  #flashes {
+//    margin: 0; }
+//  form {
+//    margin: 0; } }
+//
+//#countries {
+//  height: 640px; }
