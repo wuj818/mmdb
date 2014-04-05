@@ -1,26 +1,64 @@
 !!! 5
-%html
+%html{lang: 'en'}
   %head
+    %meta{charset: 'utf-8'}
+    %meta{'http-equiv' => 'X-UA-Compatible', content: 'IE=Edge,chrome=1'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
+
     %meta{name: 'robots', content: 'noindex,nofollow'}
-    %title= @title.blank? ? 'MMDb' : "MMDb - #{@title}"
-    = stylesheet_link_tag :application
+
+    %title
+      = @title.blank? ? 'MMDb' : "MMDb - #{@title}"
+
+    = stylesheet_link_tag :application, media: 'all'
     = javascript_include_tag :application
-    = csrf_meta_tag
+
+    = csrf_meta_tags
     = favicon_link_tag
+
     - if Rails.env.production?
-      = render('shared/google_analytics').squish.html_safe
+      = render 'shared/google_analytics'
+
   %body
-    #env{:class => Rails.env}
+    #env{class: Rails.env}
 
-    = render('layouts/navigation').squish.html_safe
+    = render 'layouts/navigation'
 
-    .container
-      = render('shared/flashes').squish.html_safe
+    #content.container
+      = render 'shared/flashes'
 
-      = (yield).squish.html_safe
+      = yield
 
-      = render('shared/admin_controls_loader').squish.html_safe
+      = render 'shared/admin_controls_loader'
 
-      = render('layouts/footer').squish.html_safe
+      = render 'layouts/footer'
 
-      = render('shared/login_modal').squish.html_safe
+      = render 'shared/login_modal'
+
+- if false
+  !!! 5
+  %html
+    %head
+      %meta{name: 'robots', content: 'noindex,nofollow'}
+      %title= @title.blank? ? 'MMDb' : "MMDb - #{@title}"
+      = stylesheet_link_tag :application
+      = javascript_include_tag :application
+      = csrf_meta_tag
+      = favicon_link_tag
+      - if Rails.env.production?
+        = render('shared/google_analytics').squish.html_safe
+    %body
+      #env{:class => Rails.env}
+
+      = render('layouts/navigation').squish.html_safe
+
+      .container
+        = render('shared/flashes').squish.html_safe
+
+        = (yield).squish.html_safe
+
+        = render('shared/admin_controls_loader').squish.html_safe
+
+        = render('layouts/footer').squish.html_safe
+
+        = render('shared/login_modal').squish.html_safe
