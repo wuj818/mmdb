@@ -87,20 +87,20 @@ class DirkDiggler
   end
 
   def get_genres
-    @genres = @page.links_with(:href => %r(/genre/\w)).map(&:text).uniq.sort rescue []
+    @genres = @page.links_with(href: %r(/genre/\w)).map(&:text).map(&:strip).uniq.sort rescue []
   end
 
   def get_keywords
     page = @agent.get("#{@target}keywords") rescue return
-    @keywords = page.links_with(:href => %r(/keyword/\w)).map(&:text).uniq.sort rescue []
+    @keywords = page.links_with(href: %r(/keyword/\w)).map(&:text).map(&:strip).uniq.sort rescue []
   end
 
   def get_languages
-    @languages = @page.links_with(:href => %r(/language/\w)).map(&:text).uniq.sort rescue []
+    @languages = @page.links_with(href: %r(/language/\w)).map(&:text).map(&:strip).uniq.sort rescue []
   end
 
   def get_countries
-    @countries = @page.links_with(:href => %r(/country/\w)).map(&:text).sort rescue []
+    @countries = @page.links_with(href: %r(/country/\w)).map(&:text).map(&:strip).sort rescue []
   end
 
   def get_directors
