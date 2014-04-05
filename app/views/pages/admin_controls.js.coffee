@@ -1,6 +1,5 @@
 $('.admin-controls').show()
-$('.admin-dropdown').css 'visibility', 'visible'
-$('.admin-dropdown-link').removeClass 'hide'
+$('.admin-dropdown').removeClass 'hidden'
 
 $('.login').hide()
-$('.logout').removeClass 'hide'
+$('.logout').removeClass 'hidden'

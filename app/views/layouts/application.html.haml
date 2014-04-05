@@ -25,15 +25,20 @@
     = render 'layouts/navigation'
 
     #content.container
-      = render 'shared/flashes'
+      .row
+        .col-sm-3
+          = render 'layouts/sidebar_navigation'
 
-      = yield
+        .col-sm-9
+          = render 'shared/flashes'
 
-      = render 'shared/admin_controls_loader'
+          = yield
 
-      = render 'layouts/footer'
+    = render 'shared/admin_controls_loader'
 
-      = render 'shared/login_modal'
+    = render 'layouts/footer'
+
+    = render 'shared/login_modal'
 
 - if false
   !!! 5

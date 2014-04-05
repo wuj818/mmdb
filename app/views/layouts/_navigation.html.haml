@@ -1,42 +1,18 @@
 .navbar.navbar-inverse.navbar-fixed-top
-  .navbar-inner
-    .container
-      = link_to 'MMDb', root_path,
-        class: 'brand',
-        alt: 'My Movie Database',
-        title: 'My Movie Database'
+  .container
+    .navbar-header
+      %button.navbar-toggle{type: 'button', data: { toggle: 'collapse', target: '#navigation' }}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
 
-      %ul.nav
-        %li{class: active_nav_link?(:movies)}
-          = link_to 'Movies', movies_path
+      = link_to 'MMDb', root_path, class: 'navbar-brand'
 
-        %li{class: active_nav_link?(:people)}
-          = link_to 'People', people_path
-
-        %li{class: active_nav_link?(:genres)}
-          = link_to 'Genres', genres_path
-
-        %li{class: active_nav_link?(:keywords)}
-          = link_to 'Keywords', keywords_path
-
-        %li{class: active_nav_link?(:languages)}
-          = link_to 'Languages', languages_path
-
-        %li.dropdown{class: active_nav_link?(:countries)}
-          = link_to 'Countries', countries_path
-
-        %li{class: active_nav_link?(:decades)}
-          = link_to 'Decades', decades_path
-
-        %li{class: active_nav_link?(:years)}
-          = link_to 'Years', years_path
-
-        %li{class: active_nav_link?(:item_lists)}
-          = link_to 'Lists', item_lists_path
-
-        %li.dropdown.admin-dropdown
+    #navigation.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li.dropdown.admin-dropdown.hidden
           = link_to '#',
-            class: 'dropdown-toggle admin-dropdown',
+            class: 'dropdown-toggle admin-dropdown.hidden',
             data: { toggle: 'dropdown' } do
             Admin
             %b.caret
@@ -58,15 +34,17 @@
                 data: { confirm: CONFIRM }
 
       - if content_for? :search
-        = yield :search
+        =# yield :search
       - else
-        = render 'shared/search_form', target: search_movies_path, type: 'movie'
+        =# render 'shared/search_form', target: search_movies_path, type: 'movie'
 
-      %p.navbar-text.pull-right
-        = link_to 'Login', login_path,
-          class: 'login',
-          rel: 'nofollow'
-        = link_to 'Logout', logout_path,
-          method: 'delete',
-          class: 'logout hide',
-          rel: 'nofollow'
+      = form_tag search_movies_path, method: 'get', class: 'navbar-form navbar-left' do
+        .form-group
+          = hidden_field_tag 'type', 'movies'
+          = text_field_tag :q, params[:q].blank? ? nil : params[:q], placeholder: "Search movies...", class: 'form-control'
+
+        = submit_tag 'Search', class: 'btn btn-default hidden'
+
+      %p.navbar-text.navbar-right
+        = link_to 'Login', login_path, class: 'login', rel: 'nofollow'
+        = link_to 'Logout', logout_path, method: 'delete', class: 'logout hidden', rel: 'nofollow'
