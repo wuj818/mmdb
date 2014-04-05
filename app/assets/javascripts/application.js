@@ -3,4 +3,4 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require plugins
-//= require_tree .
+//= require bs2-group
