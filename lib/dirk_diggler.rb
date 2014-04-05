@@ -118,12 +118,18 @@ class DirkDiggler
   def get_writers
     @writers = {}
     page = @agent.get("#{@target}fullcredits") rescue return
-    links = page.at('a[name="writers"]').parent.parent.parent.parent.search('a[href^="/name/"]') rescue return
-    links.each do |link|
-      url = "#{IMDB}#{link[:href]}"
+    rows = page.search('h4:contains("Writing") + table tr') rescue return
+    rows.each do |row|
+      begin
+        link = row.search('a').first
+        url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+      rescue
+        next
+      end
+
       @writers[url] = {}
-      @writers[url][:name] = link.text
-      @writers[url][:details] = link.parent.parent.search('td')[2].text.strip
+      @writers[url][:name] = row.search('.name').text.strip
+      @writers[url][:details] = row.search('.credit').text.strip
     end
   end
 
