@@ -53,6 +53,7 @@ group :production do
 end
 
 group :assets do
+  gem 'bootstrap-sass', '3.0.3.0'
   gem 'less-rails', '2.3.3'
   gem 'twitter-bootstrap-rails', '2.2.7'
   gem 'sass-rails', '3.2.6'
