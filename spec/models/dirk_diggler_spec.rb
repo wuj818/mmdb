@@ -1,10 +1,15 @@
 require 'spec_helper'
 
 describe DirkDiggler do
-  before { Mechanize.stub :new => mock('Mechanize', :user_agent= => true, :get => true) }
+  before { Mechanize.stub new: mock('Mechanize', 'user_agent=' => true, get: true) }
 
   it 'requires an IMDB url' do
     lambda { DirkDiggler.new }.should raise_error ArgumentError
+  end
+
+  it 'automatically removes any url params' do
+    @diggler = DirkDiggler.new 'http://www.imdb.com/title/tt0118749/?ref_=nv_sr_1'
+    @diggler.target.should == 'http://www.imdb.com/title/tt0118749/'
   end
 
   it 'automatically appends a slash to the IMDB url if needed' do
@@ -48,13 +53,13 @@ describe DirkDiggler do
   end
 
   it 'returns the scraped data in a hash' do
-    @data = {:imdb_url => 'http://www.imdb.com/title/tt0118749/'}
+    @data = { imdb_url: 'http://www.imdb.com/title/tt0118749/' }
 
     @diggler = DirkDiggler.new 'http://www.imdb.com/title/tt0118749/'
     @diggler.data.should == @data
 
-    @new_data = {:title => 'Boogie Nights', :year => 1997, :runtime => 155}
-    @new_data.each { |k, v| @diggler.stub(k => v) }
+    @new_data = { title: 'Boogie Nights', year: 1997, runtime: 155 }
+    @new_data.each { |k, v| @diggler.stub k => v }
 
     @diggler.get :title, :year, :runtime
     @diggler.data.should == @data.merge(@new_data)

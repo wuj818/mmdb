@@ -17,6 +17,7 @@ class DirkDiggler
 
   def initialize(target)
     @target = target
+    @target.gsub! /\?.*/, ''
     @target << '/' unless @target[-1] == '/'
     @agent = Mechanize.new
     @agent.user_agent = 'Dirk Diggler'
