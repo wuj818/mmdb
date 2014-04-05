@@ -130,12 +130,18 @@ class DirkDiggler
   def get_composers
     @composers = {}
     page = @agent.get("#{@target}fullcredits") rescue return
-    links = page.at('a[name="music_original"]').parent.parent.parent.parent.search('a[href^="/name/"]') rescue return
-    links.each do |link|
-      url = "#{IMDB}#{link[:href]}"
+    rows = page.search('h4:contains("Music by") + table tr') rescue return
+    rows.each do |row|
+      begin
+        link = row.search('a').first
+        url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+      rescue
+        next
+      end
+
       @composers[url] = {}
-      @composers[url][:name] = link.text
-      @composers[url][:details] = link.parent.parent.search('td')[2].text.strip
+      @composers[url][:name] = row.search('.name').text.strip
+      @composers[url][:details] = row.search('.credit').text.strip
     end
   end
 
