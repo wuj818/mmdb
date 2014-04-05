@@ -154,12 +154,18 @@ class DirkDiggler
   def get_cinematographers
     @cinematographers = {}
     page = @agent.get("#{@target}fullcredits") rescue return
-    links = page.at('a[name="cinematographers"]').parent.parent.parent.parent.search('a[href^="/name/"]') rescue return
-    links.each do |link|
-      url = "#{IMDB}#{link[:href]}"
+    rows = page.search('h4:contains("Cinematography") + table tr') rescue return
+    rows.each do |row|
+      begin
+        link = row.search('a').first
+        url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+      rescue
+        next
+      end
+
       @cinematographers[url] = {}
-      @cinematographers[url][:name] = link.text
-      @cinematographers[url][:details] = link.parent.parent.search('td')[2].text.strip
+      @cinematographers[url][:name] = row.search('.name').text.strip
+      @cinematographers[url][:details] = row.search('.credit').text.strip
     end
   end
 
