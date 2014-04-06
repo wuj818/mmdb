@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new
     @title = 'Login'
     if admin?
-      flash[:notice] = 'You are already logged in.'
+      flash[:warning] = 'You are already logged in.'
       redirect_to root_path
     end
   end
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
         format.js
       end
     else
-      flash.now[:error] = 'Incorrect password.'
+      flash.now[:danger] = 'Incorrect password.'
       respond_to do |format|
         format.html { render :new }
         format.js
@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
       logout_admin
       flash[:success] = 'Logged out successfully.'
     else
-      flash[:notice] = 'You are not logged in.'
+      flash[:warning] = 'You are not logged in.'
     end
     redirect_to :back
   end

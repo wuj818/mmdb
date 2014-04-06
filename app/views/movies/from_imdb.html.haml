@@ -5,4 +5,4 @@
   .form-group{style: 'min-width: 300px;'}
     = text_field_tag :imdb_url, nil, id: 'IMDb', class: 'form-control', placeholder: 'IMDb url', autofocus: true
 
-  = submit_tag 'Submit', class: 'btn btn-primary loading', data: { 'loading-text' => 'Submitting...' }
+  = submit_tag 'Submit', class: 'btn btn-primary loading', disable_with: 'Submitting...'

@@ -1,12 +1,7 @@
 - remote ||= false
 
-= form_for :session,
-  :url => sessions_path,
-  :remote => remote,
-  :html => { :class => 'form-inline' } do |f|
-  = f.password_field :password, :id => 'Password', :autofocus => true
+= form_for :session, url: sessions_path, remote: remote, html: { class: 'form-inline' } do |f|
+  .form-group
+    = f.password_field :password, id: 'Password', class: 'form-control', autofocus: true
 
-  = f.submit 'Login',
-    :id => 'login-button',
-    :class => 'btn loading',
-    :data => { :'loading-text' => 'Submitting...' }
+  = f.submit 'Login', id: 'login-button', class: 'btn btn-primary', disable_with: 'Submitting...'
