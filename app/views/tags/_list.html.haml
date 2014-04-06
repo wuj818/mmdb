@@ -1,23 +1,40 @@
 - smart_cache do
-  = render 'shared/page_entries_info', :results => @tags, :type => @type
+  = render 'shared/page_entries_info', results: @tags, type: @type
 
   - unless @tags.total_count.zero?
-    = paginate @tags, :remote => true
+    %hr
 
-    %table.table.table-striped.table-bordered
-      %thead
-        %tr
-          %th{:style => 'width: 15px;'} #
-          %th= sort_link :name
-          %th{:style => 'width: 50px;'}= sort_link :total
-          %th{:style => 'width: 70px;'}= sort_link :average
+    = paginate @tags, remote: true
 
-      %tbody
-        - @tags.each_with_index do |tag, i|
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
           %tr
-            %td= row_number i
-            %td= tag_link tag, @type
-            %td= tag.total
-            %td= colorized_average tag
+            %th{style: 'width: 15px;'}
+              %strong #
 
-    = paginate @tags, :remote => true
+            %th
+              = sort_link :name
+
+            %th{style: 'width: 70px;'}
+              = sort_link :total
+
+            %th{style: 'width: 90px;'}
+              = sort_link :average
+
+        %tbody
+          - @tags.each_with_index do |tag, i|
+            %tr
+              %td
+                = row_number i
+
+              %td
+                = tag_link tag, @type
+
+              %td
+                = tag.total
+
+              %td
+                = colorized_average tag
+
+    = paginate @tags, remote: true
