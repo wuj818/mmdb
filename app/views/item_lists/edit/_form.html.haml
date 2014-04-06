@@ -1,9 +1,14 @@
-= render 'shared/error_messages', :object => @list
+= render 'shared/error_messages', obj: @list
 
-= form_for @list, :html => { :class => 'form-inline' } do |f|
-  = f.label :name
-  = f.text_field :name, :autofocus => true
+= form_for @list, html: { class: 'form-horizontal' } do |f|
+  .form-group
+    = f.label :name, class: 'control-label col-sm-2'
 
-  = f.submit 'Submit',
-    :class => 'btn loading',
-    :data => { :'loading-text' => 'Submitting...' }
+    .col-sm-10
+      = f.text_field :name, autofocus: true, class: 'form-control'
+
+  %hr
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit 'Submit', class: 'btn btn-primary btn-lg loading', disable_with: 'Submitting...'

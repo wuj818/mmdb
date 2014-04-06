@@ -3,18 +3,19 @@
 
   - @listings = @list.listings
 
-  %ul#sortable-list
+  %ul.list-unstyled#sortable-list
     - @listings.each do |listing|
       %li{class: 'handle', id: dom_id(listing)}
-        %strong.rank ##{listing.position}
-        &nbsp;
-        = link_to listing.movie.title, listing.movie
-        = link_to 'Delete', [@list, listing],
-          method: :delete,
-          class: 'delete-link',
-          data: { confirm: CONFIRM }
+        %strong.rank
+          \##{listing.position}
 
-  = link_to 'Reorder!', reorder_item_list_path, id: 'reorder-link', class: 'btn btn-primary'
+        &nbsp;
+
+        = link_to listing.movie.title, listing.movie
+
+        = link_to 'Delete', [@list, listing], method: 'delete', class: 'text-danger', data: { confirm: CONFIRM }
+
+  = link_to 'Reorder!', reorder_item_list_path, id: 'reorder-link', class: 'btn btn-success'
 - else
   - @listings = @list.listings
 

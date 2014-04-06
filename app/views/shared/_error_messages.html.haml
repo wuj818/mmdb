@@ -1,12 +1,12 @@
-- if object.errors.any?
-  #error-explanation.alert.alert-block.alert-error
-    %h2.alert-heading
-      = pluralize(object.errors.count, 'error')
+- if obj.errors.any?
+  .callout.callout-danger
+    %h4
+      = pluralize obj.errors.count, 'error'
       prohibited this
-      = object.class.to_s.underscore.humanize.downcase
+      = obj.class.name.titleize
       from being saved:
-    %br
+
     %ul
-      - object.errors.full_messages.each do |msg|
+      - obj.errors.full_messages.each do |msg|
         %li
-          %strong= msg
+          = msg
