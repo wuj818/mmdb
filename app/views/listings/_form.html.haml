@@ -1,17 +1,17 @@
-= render 'shared/error_messages', :object => @listing
+= render 'shared/error_messages', obj: @listing
 
-= form_for [@list, @listing], :html => { :class => 'form-horizontal' } do |f|
-  = f.hidden_field :item_list_id, :value => @list.id
+= form_for [@list, @listing], html: { class: 'form-horizontal' } do |f|
+  = f.hidden_field :item_list_id, value: @list.id
 
-  .control-group
-    = f.label :movie_id, 'Movie'
-    .controls
+  .form-group
+    = f.label :movie_id, 'Movie', class: 'control-label col-sm-3 col-lg-2'
+
+    .col-sm-9.col-lg-10
       - @movies = Movie.select([:id, :title]).order(:sort_title)
-      = collection_select :listing, :movie_id, @movies, :id, :title,
-        { :include_blank => true },
-        { :class => 'span4' }
+      = collection_select :listing, :movie_id, @movies, :id, :title, { include_blank: true }, { class: 'form-control' }
 
-  .form-actions
-    = f.submit 'Submit',
-      :class => 'btn btn-primary loading',
-      :data => { :'loading-text' => 'Submitting...' }
+  %hr
+
+  .form-group
+    .col-sm-offset-3.col-lg-offset-2.col-sm-9.col-lg-10
+      = f.submit 'Submit', class: 'btn btn-primary btn-lg', disable_with: 'Submitting...'

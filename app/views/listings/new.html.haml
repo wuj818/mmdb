@@ -3,9 +3,13 @@
 .page-header
   %h1
     = link_to 'Lists', item_lists_path
+
     %span.divider /
+
     = link_to @list.name, @list
+
     %span.divider /
+
     Add Movie
 
 = render 'form'
