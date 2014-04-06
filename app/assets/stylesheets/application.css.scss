@@ -9,6 +9,13 @@ body {
   padding: 50px 0 20px 0;
 }
 
+footer {
+  color: #888;
+  border-top: 1px solid #eee;
+  font-family: 'Verdana';
+  padding-top: 12px;
+}
+
 #content {
   padding-top: 25px;
 }
@@ -64,14 +71,6 @@ body {
 //
 //.clear {
 //  clear: both; }
-//
-//#footer {
-//  margin: 18px 0;
-//  color: #888;
-//  border-top: 1px solid #eee;
-//  font-family: 'Verdana';
-//  padding-top: 12px;
-//  text-align: right; }
 //
 //#flashes {
 //  margin-top: 18px; }
