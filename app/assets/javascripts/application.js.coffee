@@ -25,3 +25,15 @@ $ ->
 
   $('#login-modal').on 'shown.bs.modal', ->
     $('#Password').focus()
+
+  $('.percentage-popover').popover
+    animation: false
+    html: true
+    placement: 'top'
+    trigger: 'hover'
+    content: ->
+      fraction = $(@).data 'fraction'
+      fraction = "#{fraction} Movies"
+      percentage = $(@).data 'percentage'
+      percentage = "<span class='text-primary'>(#{percentage})</span>"
+      "<strong>#{fraction} #{percentage}</strong>"
