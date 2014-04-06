@@ -14,7 +14,7 @@ describe 'People' do
 
       visit people_path
       fill_in 'q', with: 'paul'
-      click_button 'Search'
+      click_button 'nav-search-button'
 
       should_see_link 'Paul Thomas Anderson'
       should_not_see_link 'David Fincher'

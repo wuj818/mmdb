@@ -46,6 +46,7 @@ footer {
 }
 
 .admin-controls {
+  display: none;
   float: right;
 
   .btn:not(:last-child) {

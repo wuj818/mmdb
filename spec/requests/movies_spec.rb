@@ -14,7 +14,7 @@ describe 'Movies' do
 
       visit movies_path
       fill_in 'q', with: 'boogie'
-      click_button 'Search'
+      click_button 'nav-search-button'
 
       should_see_link 'Boogie Nights'
       should_not_see_link 'Oldboy'

@@ -14,7 +14,6 @@ describe 'Sessions', js: true do
         should_see 'Logged in successfully.'
 
         link('Login').should_not be_visible
-        link('Logout').should be_visible
       end
     end
 
@@ -37,7 +36,6 @@ describe 'Sessions', js: true do
       integration_login
 
       link('Login').should_not be_visible
-      link('Logout').should be_visible
 
       click_link 'Logout'
 
@@ -45,7 +43,6 @@ describe 'Sessions', js: true do
       should_see 'Logged out successfully.'
 
       link('Login').should be_visible
-      link('Logout').should_not be_visible
     end
   end
 end
