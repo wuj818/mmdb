@@ -1,9 +1,8 @@
 .page-entries-info
-  %span
-    = page_entries_info results, entry_name: type
+  = page_entries_info results, entry_name: type
 
-    - unless params[:q].blank?
-      for query:
+  - unless params[:q].blank?
+    for query:
 
-      %em.highlight
-        = params[:q]
+    %em.highlight
+      = params[:q]
