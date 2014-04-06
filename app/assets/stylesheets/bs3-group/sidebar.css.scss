@@ -1,0 +1,35 @@
+#sidebar-navigation.affix {
+  position: static;
+}
+
+@media (min-width: 768px) {
+  #sidebar-navigation {
+    &.affix {
+      position: fixed;
+    }
+
+    &.affix-bottom {
+      position: absolute;
+    }
+
+    &.affix, &.affix-bottom {
+      width: 95px;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  #sidebar-navigation {
+    &.affix, &.affix-bottom {
+      width: 131.65625px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  #sidebar-navigation {
+    &.affix, &.affix-bottom {
+      width: 165px;
+    }
+  }
+}
