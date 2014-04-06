@@ -17,7 +17,7 @@ footer {
 }
 
 #content {
-  padding-top: 25px;
+  padding-top: 15px;
 }
 
 .green-rating {
@@ -46,6 +46,12 @@ footer {
 
   .btn:not(:last-child) {
     margin-right: 6px;
+  }
+}
+
+@media (min-width: 768px) {
+  #content > .row > .col-sm-10 {
+    padding-left: 0;
   }
 }
 
