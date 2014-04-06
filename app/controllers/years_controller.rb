@@ -1,5 +1,5 @@
 class YearsController < ApplicationController
-  before_filter :get_year, :only => :show
+  before_filter :get_year, only: [:show]
 
   def index
     @title = 'Years'
@@ -21,7 +21,7 @@ class YearsController < ApplicationController
     @title = "Years - #{@year}"
 
     @movies = Movie.order(movie_order)
-    @movies = @movies.where(:year => @year)
+    @movies = @movies.where(year: @year)
     @movies = @movies.page(page).per(per_page)
   end
 

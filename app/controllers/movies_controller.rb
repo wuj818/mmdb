@@ -1,9 +1,8 @@
 class MoviesController < ApplicationController
-  before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy, :scrape_info]
-  before_filter :get_movie, :only => [:edit, :update, :destroy]
+  before_filter :authorize, only: [:new, :create, :edit, :update, :destroy, :scrape_info]
+  before_filter :get_movie, only: [:edit, :update, :destroy]
 
-  caches_action :show, :keywords, :perfect,
-    :expires_in => 2.weeks
+  caches_action :show, :keywords, :perfect, expires_in: 2.weeks
 
   def index
     @title = 'Movies'
@@ -68,9 +67,9 @@ class MoviesController < ApplicationController
     @title = 'New Movie'
     if params[:imdb_url].blank?
       flash[:error] = 'You must supply an IMDb url.'
-      redirect_to new_movie_path(:from_imdb => true)
+      redirect_to new_movie_path(from_imdb: true)
     else
-      @movie = Movie.new :imdb_url => params[:imdb_url]
+      @movie = Movie.new imdb_url: params[:imdb_url]
       @movie.get_preliminary_info
       flash.now[:info] = %(Scrape results for "#{params[:imdb_url]}".)
       render :new
@@ -87,7 +86,7 @@ class MoviesController < ApplicationController
   def perfect
     @title = 'Perfect Movies'
 
-    @movies = Movie.where(:rating => 10).order('year DESC, sort_title DESC')
+    @movies = Movie.where(rating: 10).order('year DESC, sort_title DESC')
   end
 
   private

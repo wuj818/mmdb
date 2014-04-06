@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   before_filter :get_type
-  before_filter :get_tag, :only => :show
+  before_filter :get_tag, only: [:show]
 
   TYPES = %w(countries genres keywords languages)
 
@@ -28,7 +28,7 @@ class TagsController < ApplicationController
 
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
-    @movies = @movies.send "tagged_with", @tag, :on => @type
+    @movies = @movies.send "tagged_with", @tag, on: @type
     @movies = @movies.page(page).per(per_page)
 
     respond_to do |format|
@@ -48,7 +48,7 @@ class TagsController < ApplicationController
   def get_type
     @type = params[:type]
     unless TYPES.include? @type
-      render 'public/404.html', :layout => false
+      render 'public/404.html', layout: false
       return
     end
   end
