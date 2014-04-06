@@ -1,10 +1,12 @@
-- content_for :search do
-  = render 'shared/search_form', :target => search_decades_path, :type => 'decades'
+- if false
+  - content_for :search do
+    = render 'shared/search_form', target: search_decades_path, type: 'decades'
 
 .page-header
-  %h1= link_to 'Decades', decades_path
+  %h1
+    = link_to 'Decades', decades_path
 
-= render 'shared/search_filters', :target => search_decades_path, :type => 'decades'
+=# render 'shared/search_filters', target: search_decades_path, type: 'decades'
 
 #decades-container
   = render 'list'
