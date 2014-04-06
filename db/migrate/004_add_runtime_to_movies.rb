@@ -1,6 +1,6 @@
 class AddRuntimeToMovies < ActiveRecord::Migration
   def self.up
-    add_column :movies, :runtime, :integer, :default => 0
+    add_column :movies, :runtime, :integer, default: 0
   end
 
   def self.down

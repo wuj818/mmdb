@@ -3,7 +3,7 @@ class CreateListings < ActiveRecord::Migration
     create_table :listings do |t|
       t.references :item_list
       t.references :movie
-      t.integer :position, :default => 0
+      t.integer :position, default: 0
 
       t.timestamps
     end
