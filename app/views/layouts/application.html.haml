@@ -32,38 +32,10 @@
         .col-sm-10#main-content
           = render 'shared/flashes'
 
-          = yield.squish.html_safe
+          = yield
 
       = render 'layouts/footer'
 
     = render 'shared/admin_controls_loader'
 
     = render 'shared/login_modal'
-
-- if false
-  !!! 5
-  %html
-    %head
-      %meta{name: 'robots', content: 'noindex,nofollow'}
-      %title= @title.blank? ? 'MMDb' : "MMDb - #{@title}"
-      = stylesheet_link_tag :application
-      = javascript_include_tag :application
-      = csrf_meta_tag
-      = favicon_link_tag
-      - if Rails.env.production?
-        = render('shared/google_analytics').squish.html_safe
-    %body
-      #env{:class => Rails.env}
-
-      = render('layouts/navigation').squish.html_safe
-
-      .container
-        = render('shared/flashes').squish.html_safe
-
-        = (yield).squish.html_safe
-
-        = render('shared/admin_controls_loader').squish.html_safe
-
-        = render('layouts/footer').squish.html_safe
-
-        = render('shared/login_modal').squish.html_safe
