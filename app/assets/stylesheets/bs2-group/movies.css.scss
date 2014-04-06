@@ -23,20 +23,3 @@
     font-family: 'Georgia';
     line-height: 24px;
     text-align: justify; } }
-
-#full-keywords {
-  -webkit-column-count: 4;
-  -webkit-column-rule: 1px solid #e4e4e4;
-  -webkit-column-gap: 20px;
-  -moz-column-count: 4;
-  -moz-column-rule: 1px solid #e4e4e4;
-  -moz-column-gap: 20px;
-  ul {
-    list-style-type: square; } }
-
-#genre-checkboxes {
-  td {
-    padding-right: 20px;
-    span {
-      cursor: pointer;
-      font-weight: normal; } } }
