@@ -50,6 +50,7 @@ module ApplicationHelper
 
   def colorized_average(obj)
     average = obj.average
+
     color = if average <= 5
       'red'
     elsif average <= 6
@@ -57,7 +58,8 @@ module ApplicationHelper
     else
       'green'
     end
-    content_tag :span, format('%.2f', average), :class => "colorized #{color}"
+
+    content_tag :strong, format('%.2f', average), class: "#{color}-rating"
   end
 
   def colorized_credit_average(average)
