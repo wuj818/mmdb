@@ -2,22 +2,22 @@ class Person < ActiveRecord::Base
   include CreditScopesAndCounts
 
   validates :name,
-    :presence => true
+    presence: true
 
   validates :imdb_url,
-    :presence => true,
-    :uniqueness => true
+    presence: true,
+    uniqueness: true
 
   validates :permalink,
-    :uniqueness => true
+    uniqueness: true
 
   before_save :create_permalink
 
   before_save :create_sort_name
 
-  has_many :credits, :include => :movie, :dependent => :destroy
+  has_many :credits, include: 'movie', dependent: :destroy
 
-  has_one :counter, :as => :countable, :dependent => :destroy
+  has_one :counter, as: 'countable', dependent: :destroy
 
   RATING_WEIGHTS = {
     0 => 16,
@@ -109,7 +109,7 @@ class Person < ActiveRecord::Base
     return unless self.permalink.blank?
     return if self.name.blank?
     result = self.name.to_permalink
-    dup_count = Person.where(:name => self.name).count
+    dup_count = Person.where(name: self.name).count
     result << "-#{dup_count+1}" unless dup_count == 0
     self.permalink = result
   end

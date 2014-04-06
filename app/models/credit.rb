@@ -1,9 +1,9 @@
 class Credit < ActiveRecord::Base
-  belongs_to :person, :counter_cache => true
-  belongs_to :movie, :counter_cache => true
+  belongs_to :person, counter_cache: true
+  belongs_to :movie, counter_cache: true
 
-  validates :person, :presence => true
-  validates :movie, :presence => true
+  validates :person, presence: true
+  validates :movie, presence: true
 
   JOBS = {
     'Director' => 'directing',
@@ -14,10 +14,10 @@ class Credit < ActiveRecord::Base
     'Actor' => 'acting' }
 
   validates :job,
-    :presence => true,
-    :inclusion => { :in => JOBS.keys, :message => 'is invalid' },
-    :uniqueness => {
-      :scope => [:person_id, :movie_id],
-      :message => 'type credit already exists for this person/movie combination.'
+    presence: true,
+    inclusion: { in: JOBS.keys, message: 'is invalid' },
+    uniqueness: {
+      scope: [:person_id, :movie_id],
+      message: 'type credit already exists for this person/movie combination.'
     }
 end

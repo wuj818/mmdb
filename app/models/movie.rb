@@ -6,57 +6,57 @@ class Movie < ActiveRecord::Base
   acts_as_taggable_on :genres, :keywords, :languages, :countries
 
   validates :title,
-    :presence => true,
-    :uniqueness => {
-      :scope => :year,
-      :message => 'or Title/Year combination has already been taken' }
+    presence: true,
+    uniqueness: {
+      scope: 'year',
+      message: 'or Title/Year combination has already been taken' }
 
   validates :imdb_url,
-    :presence => true,
-    :uniqueness => true
+    presence: true,
+    uniqueness: true
 
   validates :year,
-    :presence => true,
-    :numericality => {
-      :greater_than_or_equal_to => 1890,
-      :less_than_or_equal_to => 3000 }
+    presence: true,
+    numericality: {
+      greater_than_or_equal_to: 1890,
+      less_than_or_equal_to: 3000 }
 
   validates :rating,
-    :inclusion => { :in => 0..10, :message => 'is invalid' }
+    inclusion: { in: 0..10, message: 'is invalid' }
 
   validates :runtime,
-    :presence => true,
-    :numericality => {
-      :greater_than_or_equal_to => 0,
-      :less_than_or_equal_to => 300 }
+    presence: true,
+    numericality: {
+      greater_than_or_equal_to: 0,
+      less_than_or_equal_to: 300 }
 
-  validates :permalink, :uniqueness => true
+  validates :permalink, uniqueness: true
 
-  validates_presence_of :poster_url, :if => :poster_url_provided?, :message => 'is invalid or inaccessible'
+  validates_presence_of :poster_url, if: :poster_url_provided?, message: 'is invalid or inaccessible'
 
   before_save :create_permalink
 
   before_save :create_sort_title
 
-  before_validation :save_downloaded_poster, :if => :poster_url_provided?
+  before_validation :save_downloaded_poster, if: :poster_url_provided?
 
-  before_validation :clear_downloaded_poster, :unless => :poster_url_provided?
+  before_validation :clear_downloaded_poster, unless: :poster_url_provided?
 
-  has_many :credits, :include => :person, :dependent => :destroy
+  has_many :credits, include: 'person', dependent: :destroy
 
-  has_one :counter, :as => :countable, :dependent => :destroy
+  has_one :counter, as: 'countable', dependent: :destroy
 
-  has_many :listings, :include => :item_list, :dependent => :destroy
+  has_many :listings, include: :item_list, dependent: :destroy
 
   has_attached_file :poster,
-    :styles => { :large => '300x420!', :medium => '150x210!', :tiny => '20x28!' },
-    :default_url => '/assets/posters/:style-poster.gif',
-    :storage => :s3,
-    :path => '/posters/:style/:id/:filename',
-    :s3_credentials => S3_CREDENTIALS,
-    :s3_headers => S3_HEADERS,
-    :s3_host_alias => S3_HOST_ALIAS,
-    :url => S3_URL
+    styles: { large: '300x420!', medium: '150x210!', tiny: '20x28!' },
+    default_url: '/assets/posters/:style-poster.gif',
+    storage: 's3',
+    path: '/posters/:style/:id/:filename',
+    s3_credentials: S3_CREDENTIALS,
+    s3_headers: S3_HEADERS,
+    s3_host_alias: S3_HOST_ALIAS,
+    url: S3_URL
 
   before_post_process :shorten_filename
 
@@ -89,14 +89,14 @@ class Movie < ActiveRecord::Base
     define_method "add_#{tag_type}" do |*tags|
       self.send("#{tag_type}_list") << tags
       self.send("#{tag_type}_list").flatten!
-      save :validate => false
+      save validate: false
     end
 
     define_method "remove_#{tag_type}" do |*tags|
       return if tags.empty?
       original_tags = self.send "#{tag_type}_list"
       self.send("#{tag_type}_list=", original_tags - tags)
-      save :validate => false
+      save validate: false
     end
   end
 
@@ -121,7 +121,7 @@ class Movie < ActiveRecord::Base
   def related_movies
     keywords = self.relevant_keywords(25).map(&:name)
     movies = self.find_related_genres.where('rating >= 7')
-    movies = movies.tagged_with(keywords, :on => :keywords, :any => true).limit(25) rescue []
+    movies = movies.tagged_with(keywords, on: :keywords, any: true).limit(25) rescue []
   end
 
   def self.[](title)
@@ -134,7 +134,7 @@ class Movie < ActiveRecord::Base
     return unless self.permalink.blank?
     return if self.title.blank? || self.year.blank?
     result = self.title.to_permalink
-    unless Movie.where(:title => self.title).empty?
+    unless Movie.where(title: self.title).empty?
       result << "-#{self.year}"
       self.title << " (#{self.year})"
     end
