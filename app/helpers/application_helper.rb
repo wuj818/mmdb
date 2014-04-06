@@ -1,20 +1,24 @@
 module ApplicationHelper
+  def icon(name)
+    content_tag :span, nil, class: "glyphicon glyphicon-#{name.to_s.parameterize}"
+  end
+
   def sort_link(column)
     column = column.to_s
     new_order = (column == params[:sort] && params[:order] == 'asc') ? 'desc' : 'asc'
     url_options = {
-      :sort => column,
-      :order => new_order,
-      :minimum => params[:minimum],
-      :page => params[:page],
-      :q => params[:q]
+      sort: column,
+      order: new_order,
+      minimum: params[:minimum],
+      page: params[:page],
+      q: params[:q]
     }
 
-    link = link_to column.titleize, url_for(url_options), :remote => true
+    link = link_to column.titleize, url_for(url_options), remote: true
 
     if column == params[:sort]
       direction = params[:order] == 'asc' ? 'up' : 'down'
-      arrow = content_tag :i, nil, :class => "icon-arrow-#{direction}"
+      arrow = icon "arrow-#{direction}"
       "#{link} #{arrow}".html_safe
     else
       link

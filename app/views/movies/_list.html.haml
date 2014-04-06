@@ -1,27 +1,47 @@
 - smart_cache do
-  = render 'shared/page_entries_info', :results => @movies, :type => 'movie'
+  = render 'shared/page_entries_info', results: @movies, type: 'movie'
 
   - unless @movies.total_count.zero?
-    = paginate @movies, :remote => true
+    %hr
 
-    %table.table.table-striped.table-bordered
-      %thead
-        %tr
-          %th{:style => 'width: 15px;'} #
-          %th= sort_link :title
-          %th{:style => 'width: 50px;'}= sort_link :year
-          %th{:style => 'width: 70px;'}= sort_link :runtime
-          %th{:style => 'width: 70px;'}= sort_link :rating
+    = paginate @movies, remote: true
 
-      %tbody
-        - @movies.each_with_index do |movie, i|
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
           %tr
-            %td= row_number i
-            %td
-              = tiny_movie_poster_link movie
-              = link_to movie.title, movie, :class => 'movie-link'
-            %td= movie.year
-            %td= movie.runtime
-            %td= colorized_rating movie
+            %th.text-right{style: 'width: 40px;'}
+              %strong #
 
-    = paginate @movies, :remote => true
+            %th
+              = sort_link :title
+
+            %th{style: 'width: 65px;'}
+              = sort_link :year
+
+            %th{style: 'width: 95px;'}
+              = sort_link :runtime
+
+            %th{style: 'width: 80px;'}
+              = sort_link :rating
+
+        %tbody
+          - @movies.each_with_index do |movie, i|
+            %tr
+              %td.text-right
+                = row_number i
+
+              %td
+                = tiny_movie_poster_link movie
+                = link_to movie.title, movie, class: 'movie-link'
+
+              %td
+                = movie.year
+
+              %td
+                = movie.runtime
+
+              %td
+                = colorized_rating movie
+
+    = paginate @movies, remote: true

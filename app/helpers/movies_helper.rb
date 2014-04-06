@@ -9,7 +9,7 @@ module MoviesHelper
   end
 
   def colorized_rating(movie)
-    content_tag :span, movie.rating, :class => movie_rating_class(movie)
+    content_tag :strong, movie.rating, class: movie_rating_class(movie)
   end
 
   def movie_rating_class(movie)
@@ -18,23 +18,22 @@ module MoviesHelper
       when 5..7 then 'orange'
       when 8..10 then 'green'
     end
-    "colorized #{color}"
+
+    "#{color}-rating"
   end
 
   def tiny_movie_poster(movie)
     image_tag movie.poster.url(:tiny),
-      :class => 'tiny-poster',
-      :width => 20,
-      :height => 28
+      class: 'tiny-poster'
   end
 
   def tiny_movie_poster_link(movie, job = nil)
     rel = job.blank? ? 'gallery' : "#{job.downcase}-gallery"
     title = job.blank? ? movie.full_title : "#{movie.full_title} - #{job}"
     link_to tiny_movie_poster(movie), movie.poster.url(:original),
-      :class => 'tiny-poster-link',
-      :rel => rel,
-      :title => title,
-      :'data-movie-url' => movie_path(movie)
+      class: 'tiny-poster-link',
+      rel: rel,
+      title: title,
+      data: { movie_url: movie_path(movie) }
   end
 end

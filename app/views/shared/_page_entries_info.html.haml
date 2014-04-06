@@ -1,5 +1,9 @@
 .page-entries-info
-  = page_entries_info results, :entry_name => type
-  - unless params[:q].blank?
-    for query:
-    %em.highlight= params[:q]
+  %span
+    = page_entries_info results, entry_name: type
+
+    - unless params[:q].blank?
+      for query:
+
+      %em.highlight
+        = params[:q]

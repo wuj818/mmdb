@@ -1,0 +1,19 @@
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.nav-tabs {
+  margin-bottom: 15px;
+}
+
+.page-header {
+  margin-top: 0;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  .btn:not(:last-child) {
+    margin-right: 6px;
+  }
+}
