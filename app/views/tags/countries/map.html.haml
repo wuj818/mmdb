@@ -3,7 +3,9 @@
 .page-header
   %h1
     = link_to 'Countries', countries_path
+
     %span.divider /
+
     Map
 
 - @countries = Tag.select('name, COUNT(*) AS total, AVG(rating) AS average')
@@ -12,5 +14,5 @@
 
 #countries
 
-- cache 'countries_map', :expires_in => 2.weeks do
+- cache 'countries_map', expires_in: 2.weeks do
   = render 'tags/countries/map_graph'
