@@ -16,26 +16,26 @@
             %th
               = sort_link :name
 
-            %th
+            %th{style: 'width: 85px;'}
               = sort_link :credits
 
-            %th
-              = sort_link :directing
+            %th{style: 'width: 50px;'}
+              = sort_link :directing, :bullhorn
 
-            %th
-              = sort_link :writing
+            %th{style: 'width: 50px;'}
+              = sort_link :writing, :pencil
 
-            %th
-              = sort_link :composing
+            %th{style: 'width: 50px;'}
+              = sort_link :composing, :music
 
-            %th
-              = sort_link :editing
+            %th{style: 'width: 50px;'}
+              = sort_link :editing, :cut
 
-            %th
-              = sort_link :cinematography
+            %th{style: 'width: 50px;'}
+              = sort_link :cinematography, 'video-camera'
 
-            %th
-              = sort_link :acting
+            %th{style: 'width: 50px;'}
+              = sort_link :acting, :user
 
         %tbody
           - @people.each_with_index do |person, i|

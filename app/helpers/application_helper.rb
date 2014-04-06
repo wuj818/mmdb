@@ -12,7 +12,7 @@ module ApplicationHelper
     safe_join (options.delete(:text_first) ? result.reverse : result), ' '
   end
 
-  def sort_link(column)
+  def sort_link(column, icon_name = nil)
     column = column.to_s
     new_order = (column == params[:sort] && params[:order] == 'asc') ? 'desc' : 'asc'
     url_options = {
@@ -23,7 +23,13 @@ module ApplicationHelper
       q: params[:q]
     }
 
-    link = link_to column.titleize, url_for(url_options), remote: true
+    text = column.titleize
+
+    if icon_name.present?
+      link = link_to icon(icon_name), url_for(url_options), remote: true, class: 'tip', title: text
+    else
+      link = link_to text, url_for(url_options), remote: true
+    end
 
     if column == params[:sort]
       direction = params[:order] == 'asc' ? 'up' : 'down'
