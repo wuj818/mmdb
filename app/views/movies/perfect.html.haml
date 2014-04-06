@@ -1,19 +1,21 @@
 - content_for :search do
-  = render 'shared/search_form', :target => search_movies_path, :type => 'movie'
+  = render 'shared/search_form', target: search_movies_path, type: 'movie'
 
 = render 'tabs'
 
 .page-header
   %h1
     = link_to 'Movies', movies_path
+
     %span.divider /
+
     Perfect Movies
 
 #perfect-movies
   - @movies.each do |movie|
-    .item
-      = link_to movie, :class => 'perfect-movie-link' do
-        = image_tag movie.poster.url(:medium), :width => 150, :height => 210
+    .perfect-movie
+      = link_to movie do
+        = image_tag movie.poster.url(:medium), width: 158, height: 218, class: 'img-thumbnail'
+
       .caption
-        %h4
-          = link_to movie.full_title, movie
+        = link_to movie.full_title, movie

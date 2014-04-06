@@ -24,7 +24,9 @@ module MoviesHelper
 
   def tiny_movie_poster(movie)
     image_tag movie.poster.url(:tiny),
-      class: 'tiny-poster'
+      class: 'tiny-poster',
+      width: 22,
+      height: 30
   end
 
   def tiny_movie_poster_link(movie, job = nil)

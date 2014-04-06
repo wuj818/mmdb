@@ -40,28 +40,3 @@
     span {
       cursor: pointer;
       font-weight: normal; } } }
-
-#perfect-movies {
-  margin-left: 3px;
-  .item {
-    border: 1px solid #ddd;
-    display: inline-block;
-    position: relative;
-    width: 150px;
-    height: 210px;
-    &:hover {
-      border: 1px solid #333;
-      .caption {
-        display: block; } }
-    .caption {
-      display: none;
-      padding: 4px 7px;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #333;
-      background: rgba(0, 0, 0, 0.75);
-      a {
-        color: white;
-        font-weight: normal; } } } }
