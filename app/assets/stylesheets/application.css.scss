@@ -54,31 +54,21 @@ footer {
   }
 }
 
+.credit-rating {
+  text-align: right;
+  width: 50px;
+}
+
+.delete-cell {
+  width: 40px;
+}
+
 @media (min-width: 768px) {
   #main-content {
     padding-left: 0;
   }
 }
 
-//.wide-cell {
-//  width: 50%; }
-//
-//.ellipsis-cell {
-//  width: 12px; }
-//
-//.no-border {
-//  border-left: none !important;
-//  border-right: none !important; }
-//
-//.delete-cell {
-//  width: 60px; }
-//
-//.more {
-//  color: #468847;
-//  font-style: italic;
-//  &:hover {
-//    color: #468847; } }
-//
 //#keyword-cloud {
 //  font-family: 'Tekton Pro', 'Comic Sans MS';
 //  letter-spacing: 1px;
@@ -120,7 +110,3 @@ footer {
 //  width: 940px;
 //  p {
 //    font-size: 16px; } }
-//
-//.credit-rating {
-//  text-align: right !important;
-//  width: 35px; }

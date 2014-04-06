@@ -3,13 +3,22 @@
 .page-header
   %h1
     = link_to 'Movies', movies_path
+
     %span.divider /
+
     = @movie.full_title
+
     - unless @movie.aka.blank?
-      %small.aka aka #{@movie.aka}
+      %small.aka
+        aka
+        = @movie.aka
 
 = render 'movies/show/header'
 
+%hr
+
 = render 'movies/show/keywords'
+
+%hr
 
 = render 'movies/show/credits'

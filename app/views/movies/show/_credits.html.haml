@@ -2,4 +2,4 @@
   - Credit::JOBS.each do |job, credit_type|
     - count = @movie.send "number_of_#{credit_type}_credits"
     - unless count == 0
-      = render 'movies/show/credit_listing', :job => job, :credit_type => credit_type, :count => count
+      = render 'movies/show/credit_listing', job: job, credit_type: credit_type, count: count

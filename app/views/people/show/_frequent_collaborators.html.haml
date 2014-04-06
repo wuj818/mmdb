@@ -1,21 +1,17 @@
 - total = @person.movies.length
 - last = @person.frequent_collaborators.length - 1
 
-%table.table.table-striped.table-bordered
-  %thead
-    %tr
-      %th
-        %h3 Frequent Collaborators
-  %tbody
-    %tr
-      %td
-        - @person.frequent_collaborators.each_with_index do |person, i|
-          - fraction = "#{person.count}/#{total}"
-          - percentage = format('%.2f%', person.count / total.to_f * 100)
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Frequent Collaborators
 
-          = link_to person.name, person,
-            :class => 'percentage-popover',
-            :data => { :fraction => fraction, :percentage => percentage }
+  .panel-body
+    - @person.frequent_collaborators.each_with_index do |person, i|
+      - fraction = "#{person.count}/#{total}"
+      - percentage = format('%.2f%', person.count / total.to_f * 100)
 
-          - unless i == last
-            |
+      = link_to person.name, person, class: 'percentage-popover', data: { fraction: fraction, percentage: percentage }
+
+      - unless i == last
+        |

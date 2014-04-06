@@ -3,13 +3,21 @@
 .page-header
   %h1
     = link_to 'People', people_path
+
     %span.divider /
+
     = @person.name
 
 = render 'people/show/header'
 
+%hr
+
 = render 'people/show/tags'
 
+%hr
+
 = render 'people/show/credits'
+
+%hr
 
 = render 'people/show/frequent_collaborators'

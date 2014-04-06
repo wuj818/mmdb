@@ -85,7 +85,8 @@ module ApplicationHelper
     else
       'green'
     end
-    content_tag :span, format('%.2f', average), class: "colorized #{color}"
+
+    content_tag :strong, format('%.2f', average), class: "#{color}-rating"
   end
 
   def tag_link(tag, type, options = {})
