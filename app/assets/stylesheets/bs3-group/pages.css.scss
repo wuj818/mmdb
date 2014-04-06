@@ -1,0 +1,35 @@
+#main-stats {
+  font-size: 24px;
+  margin-bottom: 20px;
+
+  a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+  }
+
+  li {
+    padding: 0;
+
+    &:hover {
+      background: #fff8bb;
+    }
+  }
+
+  span {
+    color: black;
+    font-variant: small-caps;
+  }
+
+  .col-xs-4 {
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  #main-stats {
+    .col-sm-4 {
+      padding-right: 0;
+    }
+  }
+}

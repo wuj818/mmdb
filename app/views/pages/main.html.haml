@@ -1,59 +1,51 @@
-#main-stats
-  = image_tag 'psh.jpg',
-    :id => 'psh',
-    :alt => "I'm a fuckin' idiot...",
-    :title => "I'm a fuckin' idiot...",
-    :width => 330,
-    :height => 600
+#main-stats.row
+  .col-sm-8.col-sm-push-4
+    - cache 'main_stats', expires_in: 2.weeks do
+      %ul.list-group
+        %li.list-group-item
+          = link_to movies_path do
+            = number_with_delimiter Movie.count
+            %span movies
 
-  - cache 'main_stats', :expires_in => 2.weeks do
-    %h2
-      = link_to movies_path do
-        = number_with_delimiter Movie.count
-        %span.black movies
+        %li.list-group-item
+          = link_to movies_path do
+            = number_with_delimiter (Movie.sum(:runtime) / 60.0).ceil
+            %span hours
 
-    %h2
-      = link_to movies_path do
-        = number_with_delimiter (Movie.sum(:runtime) / 60.0).ceil
-        %span.black hours
+        %li.list-group-item
+          = link_to people_path do
+            = number_with_delimiter Person.count
+            %span people
 
-    %h2
-      = link_to people_path do
-        = number_with_delimiter Person.count
-        %span.black people
+        %li.list-group-item
+          = link_to genres_path do
+            = number_with_delimiter Tagging.select('DISTINCT tag_id').where(context: 'genres').count
+            %span genres
 
-    %br
+        %li.list-group-item
+          = link_to keywords_path do
+            = number_with_delimiter Tagging.select('DISTINCT tag_id').where(context: 'keywords').count
+            %span keywords
 
-    %h2
-      = link_to genres_path do
-        = number_with_delimiter Tagging.select('DISTINCT tag_id').where(:context => :genres).count
-        %span.black genres
+        %li.list-group-item
+          = link_to languages_path do
+            = number_with_delimiter Tagging.select('DISTINCT tag_id').where(context: 'languages').count
+            %span languages
 
-    %h2
-      = link_to keywords_path do
-        = number_with_delimiter Tagging.select('DISTINCT tag_id').where(:context => :keywords).count
-        %span.black keywords
+        %li.list-group-item
+          = link_to countries_path do
+            = number_with_delimiter Tagging.select('DISTINCT tag_id').where(context: 'countries').count
+            %span countries
 
-    %h2
-      = link_to languages_path do
-        = number_with_delimiter Tagging.select('DISTINCT tag_id').where(:context => :languages).count
-        %span.black languages
+        %li.list-group-item
+          = link_to decades_path do
+            = number_with_delimiter Movie.select('(year / 10) || "0" AS decade').group(:decade).length
+            %span decades
 
-    %h2
-      = link_to countries_path do
-        = number_with_delimiter Tagging.select('DISTINCT tag_id').where(:context => :countries).count
-        %span.black countries
+        %li.list-group-item
+          = link_to years_path do
+            = number_with_delimiter Movie.select('year').uniq.length
+            %span years
 
-    %br
-
-    %h2
-      = link_to decades_path do
-        = number_with_delimiter Movie.select('(year / 10) || "0" AS decade').group(:decade).length
-        %span.black decades
-
-    %h2
-      = link_to years_path do
-        = number_with_delimiter Movie.select('year').uniq.length
-        %span.black years
-
-.clear
+  .col-sm-4.col-sm-pull-8
+    = image_tag 'psh.jpg', id: 'psh', class: 'img-thumbnail', alt: "I'm a fuckin' idiot...", title: "I'm a fuckin' idiot..."
