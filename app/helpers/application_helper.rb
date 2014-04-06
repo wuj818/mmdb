@@ -1,6 +1,6 @@
 module ApplicationHelper
   def icon(name)
-    content_tag :span, nil, class: "glyphicon glyphicon-#{name.to_s.parameterize}"
+    content_tag :span, nil, class: "glyphicon glyphicon-#{name.to_s.dasherize}"
   end
 
   def sort_link(column)

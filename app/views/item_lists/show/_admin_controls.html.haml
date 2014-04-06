@@ -1,13 +1,12 @@
 .admin-controls
-  = link_to new_item_list_listing_path(@list), class: 'btn btn-success', rel: 'nofollow' do
-    %i.icon-plus-sign.icon-white
-    Add Listing
+  = link_to item_lists_path, class: 'btn btn-default btn-lg', rel: 'nofollow' do
+    = icon :arrow_left
 
-  = link_to [:edit, @list], class: 'btn btn-info' do
-    %i.icon-edit.icon-white
-    Edit
+  = link_to new_item_list_listing_path(@list), class: 'btn btn-success btn-lg', rel: 'nofollow' do
+    = icon :plus_sign
 
-  = link_to @list, class: 'btn btn-danger', rel: 'nofollow',
-    method: 'delete', data: { confirm: CONFIRM } do
-    %i.icon-trash.icon-white
-    Delete
+  = link_to [:edit, @list], class: 'btn btn-info btn-lg' do
+    = icon :edit
+
+  = link_to @list, class: 'btn btn-danger btn-lg', rel: 'nofollow', method: 'delete', data: { confirm: CONFIRM } do
+    = icon :trash

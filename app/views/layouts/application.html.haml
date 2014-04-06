@@ -32,7 +32,7 @@
         .col-sm-10
           = render 'shared/flashes'
 
-          = yield
+          = yield.squish.html_safe
 
       = render 'layouts/footer'
 

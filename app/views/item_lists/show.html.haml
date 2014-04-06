@@ -3,7 +3,9 @@
 .page-header
   %h1
     = link_to 'Lists', item_lists_path
+
     %span.divider /
+
     = @list.name
 
 - if @list.listings.empty?

@@ -1,9 +1,11 @@
 .page-header
-  %h1= link_to 'Lists', item_lists_path
+  %h1
+    = link_to 'Lists', item_lists_path
 
 - if @lists.empty?
   %p There are no lists.
 - else
-  %ul
+  %ul.list-group
     - @lists.each do |list|
-      %li= link_to list.name, list
+      %li.list-group-item
+        = link_to list.name, list

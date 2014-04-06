@@ -41,6 +41,14 @@ footer {
   margin: 0 0 15px 0;
 }
 
+.admin-controls {
+  float: right;
+
+  .btn:not(:last-child) {
+    margin-right: 6px;
+  }
+}
+
 //body {
 //  padding-top: 40px; }
 //
