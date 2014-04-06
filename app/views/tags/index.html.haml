@@ -8,7 +8,7 @@
   %h1
     = link_to @type.titleize, send("#{@type}_path")
 
-=# render 'shared/search_filters', target: search_tags_path, type: @type
+= render 'shared/search_filters', target: search_tags_path, type: @type
 
 %div{id: "#{@type}-container"}
   = render 'list'
