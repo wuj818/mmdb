@@ -1,9 +1,6 @@
 .admin-controls
-  = link_to [:edit, @movie], class: 'btn btn-info', rel: 'nofollow' do
-    %i.icon-edit.icon-white
-    Edit
+  = link_to [:edit, @movie], class: 'btn btn-info btn-lg', title: 'Edit', rel: 'nofollow' do
+    = icon :edit
 
-  = link_to @movie, class: 'btn btn-danger', rel: 'nofollow',
-    method: 'delete', data: { confirm: CONFIRM } do
-    %i.icon-trash.icon-white
-    Delete
+  = link_to @movie, class: 'btn btn-danger btn-lg', title: 'Delete', rel: 'nofollow', method: 'delete', data: { confirm: CONFIRM } do
+    = icon 'trash-o'
