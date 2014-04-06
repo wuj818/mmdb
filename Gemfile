@@ -18,6 +18,7 @@ gem 'dalli', '2.6.4'
 gem 'quiet_assets', '1.0.2'
 gem 'therubyracer', '0.11.4'
 gem 'figaro', '0.7.0'
+gem 'font-awesome-rails', '4.0.3.1'
 
 group :development do
   gem 'mongrel', '1.2.0.pre2'

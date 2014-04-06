@@ -1,6 +1,15 @@
 module ApplicationHelper
-  def icon(name)
-    content_tag :span, nil, class: "glyphicon glyphicon-#{name.to_s.dasherize}"
+  def icon(names = 'flag', options = {})
+    classes = [:fa].concat names.to_s.split.map { |name| "fa-#{name}" }
+
+    classes << options.delete(:class)
+    text = options.delete :text
+    icon = content_tag :i, nil, options.merge(class: classes.compact)
+
+    return icon if text.blank?
+
+    result = [icon, ERB::Util.html_escape(text)]
+    safe_join (options.delete(:text_first) ? result.reverse : result), ' '
   end
 
   def sort_link(column)
