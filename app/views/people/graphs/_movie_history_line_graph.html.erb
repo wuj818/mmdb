@@ -7,7 +7,7 @@
       <% all_years = ((@person.movie_history.first.year)..(@person.movie_history.last.year)).to_a %>
       <% year_data = {} %>
       <% @person.movie_history.each do |data| %>
-        <% year_data[data.year] = {:average => format('%.2f', data.average), :total => data.total} %>
+        <% year_data[data.year] = { average: format('%.2f', data.average), total: data.total } %>
       <% end %>
       data.addRows(<%= all_years.length %>);
       data.addColumn('string', 'Year');
