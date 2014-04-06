@@ -90,16 +90,16 @@ describe Movie do
   describe 'Callbacks' do
     describe 'Permalink creation' do
       it 'automatically creates a permalink from the title' do
-        @movie = Movie.make(:title => 'Boogie Nights')
+        @movie = Movie.make(title: 'Boogie Nights')
         @movie.permalink.should be_blank
         @movie.save
         @movie.permalink.should == 'boogie-nights'
       end
 
       it 'resolves duplicates by appending the year to the permalink and the title' do
-        @movie1 = Movie.make!(:title => 'The Fly', :year => 1958)
+        @movie1 = Movie.make!(title: 'The Fly', year: 1958)
         @movie1.permalink.should == 'the-fly'
-        @movie2 = Movie.make!(:title => 'The Fly', :year => 1986)
+        @movie2 = Movie.make!(title: 'The Fly', year: 1986)
         @movie2.title.should == 'The Fly (1986)'
         @movie2.permalink.should == 'the-fly-1986'
       end
@@ -120,10 +120,10 @@ describe Movie do
 
     describe '#get_preliminary_info' do
       it 'scrapes IMDB for general information about the movie (title, year, etc)' do
-        DirkDiggler.stub :new => mock('DirkDiggler', :get => true,
-          :data => {
-            :imdb_url => 'http://www.imdb.com/title/tt0118749/',
-            :title => 'Boogie Nights' })
+        DirkDiggler.stub new: mock('DirkDiggler', get: true,
+          data: {
+            imdb_url: 'http://www.imdb.com/title/tt0118749/',
+            title: 'Boogie Nights' })
 
         @movie.get_preliminary_info
         @movie.save

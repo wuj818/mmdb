@@ -9,11 +9,11 @@ describe 'Movies' do
     end
 
     it 'filters results based on the search parameter' do
-      Movie.make! :title => 'Boogie Nights'
-      Movie.make! :title => 'Oldboy'
+      Movie.make! title: 'Boogie Nights'
+      Movie.make! title: 'Oldboy'
 
       visit movies_path
-      fill_in 'q', :with => 'boogie'
+      fill_in 'q', with: 'boogie'
       click_button 'Search'
 
       should_see_link 'Boogie Nights'
@@ -21,12 +21,12 @@ describe 'Movies' do
     end
 
     it 'has customizable sorting options' do
-      Movie.make! :title => 'The Big Lebowski',
-        :year => 1998, :runtime => 117, :rating => 3, :sort_title => 'Big Lebowski, The'
-      Movie.make! :title => 'Boogie Nights',
-        :year => 1997, :runtime => 155, :rating => 2
-      Movie.make! :title => 'Dumb and Dumber',
-        :year => 1994, :runtime => 107, :rating => 1
+      Movie.make! title: 'The Big Lebowski',
+        year: 1998, runtime: 117, rating: 3, sort_title: 'Big Lebowski, The'
+      Movie.make! title: 'Boogie Nights',
+        year: 1997, runtime: 155, rating: 2
+      Movie.make! title: 'Dumb and Dumber',
+        year: 1994, runtime: 107, rating: 1
 
       # ascending title by default
       visit movies_path
@@ -54,7 +54,7 @@ describe 'Movies' do
       should_see 'No movies found'
 
       @movies = Movie.make! 2
-      visit movies_path :per_page => 1
+      visit movies_path per_page: 1
 
       should_see 'Displaying'
       should_see_link '2'
@@ -92,11 +92,11 @@ describe 'Movies' do
       field('Title').value.should == @movie.title
       field('IMDb').value.should == @movie.imdb_url
 
-      fill_in 'Title', :with => 'Boogie Nights'
-      fill_in 'IMDb', :with => 'http://www.imdb.com/title/tt0118749/'
-      fill_in 'Year', :with => '1997'
-      fill_in 'Runtime', :with => '155'
-      select '10', :from => 'Rating'
+      fill_in 'Title', with: 'Boogie Nights'
+      fill_in 'IMDb', with: 'http://www.imdb.com/title/tt0118749/'
+      fill_in 'Year', with: '1997'
+      fill_in 'Runtime', with: '155'
+      select '10', from: 'Rating'
       check 'movie_genre_drama'
       click_button 'Submit'
 
@@ -125,16 +125,16 @@ describe 'Movies' do
 
   describe 'Add new movie' do
     it 'renders the new movie form with info scraped from IMDB' do
-      DirkDiggler.stub :new => mock('DirkDiggler', :get => true,
-        :data => {
-          :imdb_url => 'http://www.imdb.com/title/tt0118749/',
-          :title => 'Boogie Nights',
-          :year => 1997 })
+      DirkDiggler.stub new: mock('DirkDiggler', get: true,
+        data: {
+          imdb_url: 'http://www.imdb.com/title/tt0118749/',
+          title: 'Boogie Nights',
+          year: 1997 })
 
       integration_login
       click_link 'Add Movie'
 
-      fill_in 'IMDb', :with => 'http://www.imdb.com/title/tt0118749/'
+      fill_in 'IMDb', with: 'http://www.imdb.com/title/tt0118749/'
       click_button 'Submit'
 
       should_see 'Scrape results for "http://www.imdb.com/title/tt0118749/".'

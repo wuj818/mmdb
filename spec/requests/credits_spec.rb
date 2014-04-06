@@ -12,9 +12,9 @@ describe 'Credits' do
       visit person_path @person
       click_link 'Add Credit'
 
-      select @movie.title, :from => 'Movie'
+      select @movie.title, from: 'Movie'
       select 'Director'
-      fill_in 'Details', :with => '(uncredited)'
+      fill_in 'Details', with: '(uncredited)'
       click_button 'Submit'
 
       should_see %(#{@person.name} was successfully added as a director for "#{@movie.title}".)
@@ -23,7 +23,7 @@ describe 'Credits' do
 
   describe 'Delete credit' do
     it 'removes a credit for the specified person/movie combination' do
-      Credit.make! :job => 'Director', :person => @person, :movie => @movie
+      Credit.make! job: 'Director', person: @person, movie: @movie
       visit edit_person_path @person
 
       within '#directing-credits' do

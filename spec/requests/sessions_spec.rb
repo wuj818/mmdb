@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe 'Sessions', :js => true do
+describe 'Sessions', js: true do
   describe 'Login' do
     before { visit root_path }
 
     context 'with valid password' do
       it 'logs in the admin and loads the appropriate content with ajax' do
         click_link 'Login'
-        fill_in 'Password', :with => Figaro.env.mmdb_password
+        fill_in 'Password', with: Figaro.env.mmdb_password
         click_button 'Login'
 
         should_be_on root_path

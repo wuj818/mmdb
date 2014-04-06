@@ -21,7 +21,7 @@ describe SessionsController do
   describe 'POST create (Login)' do
     context 'with valid password' do
       it 'logs in the admin' do
-        post :create, :session => { :password => Figaro.env.mmdb_password }
+        post :create, session: { password: Figaro.env.mmdb_password }
         controller.should be_admin
         response.should redirect_to root_path
       end
@@ -29,7 +29,7 @@ describe SessionsController do
 
     context 'with invalid password' do
       it 're-renders the login form' do
-        post :create, :session => { :password => 'wrong' }
+        post :create, session: { password: 'wrong' }
         controller.should_not be_admin
         response.should_not be_redirect
       end

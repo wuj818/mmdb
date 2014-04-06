@@ -38,7 +38,7 @@ describe ItemList do
   describe 'Callbacks' do
     describe 'Permalink creation' do
       it 'automatically creates a permalink from the title' do
-        @list = ItemList.make(:name => 'Best Movies of 2010')
+        @list = ItemList.make name: 'Best Movies of 2010'
         @list.permalink.should be_blank
         @list.save
         @list.permalink.should == 'best-movies-of-2010'

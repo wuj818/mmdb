@@ -56,4 +56,4 @@ module IntegrationHelper
   end
 end
 
-RSpec.configuration.include IntegrationHelper, :type => :request
+RSpec.configuration.include IntegrationHelper, type: 'request'

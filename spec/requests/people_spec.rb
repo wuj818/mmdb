@@ -9,11 +9,11 @@ describe 'People' do
     end
 
     it 'filters results based on the search parameter' do
-      Person.make! :name => 'Paul Thomas Anderson'
-      Person.make! :name => 'David Fincher'
+      Person.make! name: 'Paul Thomas Anderson'
+      Person.make! name: 'David Fincher'
 
       visit people_path
-      fill_in 'q', :with => 'paul'
+      fill_in 'q', with: 'paul'
       click_button 'Search'
 
       should_see_link 'Paul Thomas Anderson'
@@ -21,9 +21,9 @@ describe 'People' do
     end
 
     it 'has customizable sorting options' do
-      Person.make! :name => 'David Fincher'
-      Person.make! :name => 'David Lynch'
-      Person.make! :name => 'Paul Thomas Anderson'
+      Person.make! name: 'David Fincher'
+      Person.make! name: 'David Lynch'
+      Person.make! name: 'Paul Thomas Anderson'
 
       # ascending name by default
       visit people_path
@@ -41,7 +41,7 @@ describe 'People' do
       should_see 'No people found'
 
       @people = Person.make! 2
-      visit people_path :per_page => 1
+      visit people_path per_page: 1
 
       should_see 'Displaying'
       should_see_link '2'
@@ -76,8 +76,8 @@ describe 'People' do
       field('Name').value.should == @person.name
       field('IMDb').value.should == @person.imdb_url
 
-      fill_in 'Name', :with => 'Paul Thomas Anderson'
-      fill_in 'IMDb', :with => 'http://www.imdb.com/name/nm0000759/'
+      fill_in 'Name', with: 'Paul Thomas Anderson'
+      fill_in 'IMDb', with: 'http://www.imdb.com/name/nm0000759/'
       click_button 'Submit'
 
       @person.reload

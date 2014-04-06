@@ -44,16 +44,16 @@ describe Person do
   describe 'Callbacks' do
     describe 'Permalink creation' do
       it 'automatically creates a permalink from the name' do
-        @person = Person.make(:name => 'Paul Thomas Anderson')
+        @person = Person.make(name: 'Paul Thomas Anderson')
         @person.permalink.should be_blank
         @person.save
         @person.permalink.should == 'paul-thomas-anderson'
       end
 
       it 'resolves duplicates by appending an integer to the permalink' do
-        @person1 = Person.make!(:name => 'Paul Thomas Anderson')
+        @person1 = Person.make!(name: 'Paul Thomas Anderson')
         @person1.permalink.should == 'paul-thomas-anderson'
-        @person2 = Person.make!(:name => 'Paul Thomas Anderson')
+        @person2 = Person.make!(name: 'Paul Thomas Anderson')
         @person2.permalink.should == 'paul-thomas-anderson-2'
       end
     end

@@ -27,7 +27,7 @@ describe 'Lists' do
       should_be_on edit_item_list_path @list
       field('Name').value.should == @list.name
 
-      fill_in 'Name', :with => 'Best Movies of 2010'
+      fill_in 'Name', with: 'Best Movies of 2010'
       click_button 'Submit'
 
       @list.reload
@@ -56,7 +56,7 @@ describe 'Lists' do
       integration_login
       click_link 'Add List'
 
-      fill_in 'Name', :with => 'Best Movies of 2010'
+      fill_in 'Name', with: 'Best Movies of 2010'
       click_button 'Submit'
 
       should_not_have_css '#error_explanation'

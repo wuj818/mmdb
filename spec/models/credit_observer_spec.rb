@@ -8,7 +8,7 @@ describe CreditObserver do
     @movie = Movie.make!
     @movie.counter.directing_credits_count.should == 0
 
-    @countable.directing_credits.create :movie => @movie, :job => 'Director'
+    @countable.directing_credits.create movie: @movie, job: 'Director'
     @countable.reload
     @movie.reload
     @countable.counter.directing_credits_count.should == 1
@@ -19,7 +19,7 @@ describe CreditObserver do
     @countable = Person.make!
     @movie = Movie.make!
 
-    @countable.directing_credits.create :movie => @movie, :job => 'Director'
+    @countable.directing_credits.create movie: @movie, job: 'Director'
     @countable.directing_credits.first.destroy
     @countable.reload
     @movie.reload
