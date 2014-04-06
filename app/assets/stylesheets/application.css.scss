@@ -20,6 +20,10 @@ footer {
   padding-top: 15px;
 }
 
+#main-content {
+  margin-bottom: 20px;
+}
+
 .green-rating {
   color: #468847;
 }
@@ -50,7 +54,7 @@ footer {
 }
 
 @media (min-width: 768px) {
-  #content > .row > .col-sm-10 {
+  #main-content {
     padding-left: 0;
   }
 }

@@ -3,9 +3,13 @@
 .page-header
   %h1
     = link_to 'Movies', movies_path
+
     %span.divider /
+
     = link_to @movie.full_title, @movie
+
     %span.divider /
+
     Edit
 
 = render 'movies/edit/form'

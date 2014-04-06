@@ -26,10 +26,10 @@
 
     #content.container
       .row
-        .col-sm-2
+        .col-sm-2#sidebar
           = render 'layouts/sidebar_navigation'
 
-        .col-sm-10
+        .col-sm-10#main-content
           = render 'shared/flashes'
 
           = yield.squish.html_safe

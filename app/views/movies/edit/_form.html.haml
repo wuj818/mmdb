@@ -1,81 +1,95 @@
-= render 'shared/error_messages', :object => @movie
+= render 'shared/error_messages', obj: @movie
 
-= form_for @movie, :html => { :class => 'form-horizontal' } do |f|
-  .control-group
-    = f.label :title, :class => 'control-label'
-    .controls
-      = f.text_field :title, :class => 'span6', :autofocus => true
+= form_for @movie, html: { class: 'form-horizontal' } do |f|
+  .form-group
+    = f.label :title, class: 'control-label col-sm-3 col-lg-2'
 
-  .control-group
-    = f.label :aka, 'Also Known As', :class => 'control-label'
-    .controls
-      = f.text_field :aka, :class => 'span6'
+    .col-sm-9.col-lg-10
+      = f.text_field :title, class: 'form-control', autofocus: true
+
+  .form-group
+    = f.label :aka, 'Also Known As', class: 'control-label col-sm-3 col-lg-2'
+
+    .col-sm-9.col-lg-10
+      = f.text_field :aka, class: 'form-control'
 
   - unless @movie.new_record?
-    .control-group
-      = f.label :permalink, :class => 'control-label'
-      .controls
-        = f.text_field :permalink, :class => 'span6'
+    .form-group
+      = f.label :permalink, class: 'control-label col-sm-3 col-lg-2'
 
-    .control-group
-      = f.label :sort_title, 'Sort Title', :class => 'control-label'
-      .controls
-        = f.text_field :sort_title, :class => 'span6'
+      .col-sm-9.col-lg-10
+        = f.text_field :permalink, class: 'form-control'
 
-  .control-group
-    = f.label :imdb_url, 'IMDb', :class => 'control-label'
-    .controls
-      = f.text_field :imdb_url, :class => 'span6'
+    .form-group
+      = f.label :sort_title, 'Sort Title', class: 'control-label col-sm-3 col-lg-2'
 
-  .control-group
-    = f.label :year, :class => 'control-label'
-    .controls
-      = f.text_field :year, :class => 'span1'
+      .col-sm-9.col-lg-10
+        = f.text_field :sort_title, class: 'form-control'
 
-  .control-group
-    = f.label :runtime, :class => 'control-label'
-    .controls
-      = f.text_field :runtime, :class => 'span1'
+  .form-group
+    = f.label :imdb_url, 'IMDb', class: 'control-label col-sm-3 col-lg-2'
 
-  .control-group
-    = f.label :rating, :class => 'control-label'
-    .controls
-      = f.select :rating, 0..10, {}, :class => 'span1'
+    .col-sm-9.col-lg-10
+      = f.text_field :imdb_url, class: 'form-control'
 
-  .control-group
-    = f.label :synopsis, :class => 'control-label'
-    .controls
-      = f.text_area :synopsis, :class => 'span6'
+  .form-group
+    = f.label :year, class: 'control-label col-sm-3 col-lg-2'
 
-  .control-group
-    = f.label :rotten_tomatoes_url, 'Rotten Tomatoes', :class => 'control-label'
-    .controls
-      = f.text_field :rotten_tomatoes_url, :class => 'span6'
+    .col-sm-9.col-lg-10
+      = f.text_field :year, class: 'form-control'
 
-  .control-group
-    = f.label :movie_poster_db_url, 'Movie Poster DB', :class => 'control-label'
-    .controls
-      = f.text_field :movie_poster_db_url, :class => 'span6'
+  .form-group
+    = f.label :runtime, class: 'control-label col-sm-3 col-lg-2'
+  
+    .col-sm-9.col-lg-10
+      = f.text_field :runtime, class: 'form-control'
 
-  .control-group
-    = f.label :poster, :class => 'control-label'
-    .controls
-      = f.file_field :poster
+  .form-group
+    = f.label :rating, class: 'control-label col-sm-3 col-lg-2'
 
-  .control-group
-    = f.label :poster_url, 'Upload From URL', :class => 'control-label'
-    .controls
-      = f.text_field :poster_url
+    .col-sm-9.col-lg-10
+      = f.select :rating, 0..10, {}, class: 'form-control'
+
+  .form-group
+    = f.label :synopsis, class: 'control-label col-sm-3 col-lg-2'
+
+    .col-sm-9.col-lg-10
+      = f.text_area :synopsis, class: 'form-control', rows: 10
+
+  .form-group
+    = f.label :rotten_tomatoes_url, 'Rotten Tomatoes', class: 'control-label col-sm-3 col-lg-2'
+
+    .col-sm-9.col-lg-10
+      = f.text_field :rotten_tomatoes_url, class: 'form-control'
+
+  .form-group
+    = f.label :movie_poster_db_url, 'Movie Poster DB', class: 'control-label col-sm-3 col-lg-2'
+
+    .col-sm-9.col-lg-10
+      = f.text_field :movie_poster_db_url, class: 'form-control'
+
+  .form-group
+    = f.label :poster, class: 'control-label col-sm-3 col-lg-2'
+
+    .col-sm-9.col-lg-10
+      = f.file_field :poster, class: 'form-control'
+
+  .form-group
+    = f.label :poster_url, 'Upload From URL', class: 'control-label col-sm-3 col-lg-2'
+
+    .col-sm-9.col-lg-10
+      = f.text_field :poster_url, class: 'form-control'
 
       - if @movie.poster.exists?
         %br
         %br
-        = image_tag @movie.poster.url(:original), :width => 150, :height => 220
+        = image_tag @movie.poster.url(:original), width: 150, height: 220
 
   - unless @movie.new_record?
-    = render 'movies/edit/genre_checkboxes', :movie => @movie
+    = render 'movies/edit/genre_checkboxes', movie: @movie
 
-  .form-actions
-    = f.submit 'Submit',
-      :class => 'btn btn-primary loading',
-      :data => { :'loading-text' => 'Submitting...' }
+  %hr
+
+  .form-group
+    .col-sm-offset-3.col-lg-offset-2.col-sm-9.col-lg-10
+      = f.submit 'Submit', class: 'btn btn-primary btn-lg', disable_with: 'Submitting...'
