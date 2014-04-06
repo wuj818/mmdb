@@ -12,7 +12,7 @@ namespace :scrape do
   end
 
   desc 'Grabs genre lists for movies without genres'
-  task :genres => :environment do
+  task genres: 'environment' do
     Movie.find_each do |movie|
       next unless movie.genre_list.empty?
 
@@ -31,7 +31,7 @@ namespace :scrape do
   end
 
   desc 'Grabs keyword lists for movies'
-  task :keywords => :environment do
+  task keywords: 'environment' do
     log = log_file 'keywords'
     bar = progress_bar 'Keywords'
     diggler = DirkDiggler.new ''
@@ -62,7 +62,7 @@ namespace :scrape do
   end
 
   desc 'Grabs language lists for movies without languages'
-  task :languages => :environment do
+  task languages: 'environment' do
     Movie.find_each do |movie|
       next unless movie.language_list.empty?
 
@@ -81,7 +81,7 @@ namespace :scrape do
   end
 
   desc 'Grabs country lists for movies without countries'
-  task :countries => :environment do
+  task countries: 'environment' do
     Movie.find_each do |movie|
       next unless movie.country_list.empty?
 
@@ -100,7 +100,7 @@ namespace :scrape do
   end
 
   desc 'Grabs directors for movies'
-  task :directors => :environment do
+  task directors: 'environment' do
     log = log_file 'directors'
     bar = progress_bar 'Directors'
     diggler = DirkDiggler.new ''
@@ -121,7 +121,7 @@ namespace :scrape do
         directors.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
           person.update_attribute(:name, info[:name]) if person.name.blank?
-          credit = person.directing_credits.create :movie => movie, :job => 'Director', :details => info[:details]
+          credit = person.directing_credits.create movie: movie, job: 'Director', details: info[:details]
 
           if credit.valid?
             count += 1
@@ -138,7 +138,7 @@ namespace :scrape do
   end
 
   desc 'Grabs writers for movies'
-  task :writers => :environment do
+  task writers: :environment do
     log = log_file 'writers'
     bar = progress_bar 'Writers'
     diggler = DirkDiggler.new ''
@@ -159,7 +159,7 @@ namespace :scrape do
         writers.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
           person.update_attribute(:name, info[:name]) if person.name.blank?
-          credit = person.writing_credits.create :movie => movie, :job => 'Writer', :details => info[:details]
+          credit = person.writing_credits.create movie: movie, job: 'Writer', details: info[:details]
 
           if credit.valid?
             count += 1
@@ -176,7 +176,7 @@ namespace :scrape do
   end
 
   desc 'Grabs composers for movies'
-  task :composers => :environment do
+  task composers: :environment do
     log = log_file 'composers'
     bar = progress_bar 'Composers'
     diggler = DirkDiggler.new ''
@@ -197,7 +197,7 @@ namespace :scrape do
         composers.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
           person.update_attribute(:name, info[:name]) if person.name.blank?
-          credit = person.composing_credits.create :movie => movie, :job => 'Composer', :details => info[:details]
+          credit = person.composing_credits.create movie: movie, job: 'Composer', details: info[:details]
 
           if credit.valid?
             count += 1
@@ -214,7 +214,7 @@ namespace :scrape do
   end
 
   desc 'Grabs editors for movies'
-  task :editors => :environment do
+  task editors: :environment do
     log = log_file 'editors'
     bar = progress_bar 'Editors'
     diggler = DirkDiggler.new ''
@@ -235,7 +235,7 @@ namespace :scrape do
         editors.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
           person.update_attribute(:name, info[:name]) if person.name.blank?
-          credit = person.editing_credits.create :movie => movie, :job => 'Editor', :details => info[:details]
+          credit = person.editing_credits.create movie: movie, job: 'Editor', details: info[:details]
 
           if credit.valid?
             count += 1
@@ -252,7 +252,7 @@ namespace :scrape do
   end
 
   desc 'Grabs cinematographers for movies'
-  task :cinematographers => :environment do
+  task cinematographers: :environment do
     log = log_file 'cinematographers'
     bar = progress_bar 'Cinematographers'
     diggler = DirkDiggler.new ''
@@ -273,7 +273,7 @@ namespace :scrape do
         cinematographers.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
           person.update_attribute(:name, info[:name]) if person.name.blank?
-          credit = person.cinematography_credits.create :movie => movie, :job => 'Cinematographer', :details => info[:details]
+          credit = person.cinematography_credits.create movie: movie, job: 'Cinematographer', details: info[:details]
 
           if credit.valid?
             count += 1
@@ -290,7 +290,7 @@ namespace :scrape do
   end
 
   desc 'Grabs actors for movies'
-  task :actors => :environment do
+  task actors: 'environment' do
     log = log_file 'actors'
     bar = progress_bar 'Actors'
     diggler = DirkDiggler.new ''
@@ -311,7 +311,7 @@ namespace :scrape do
         actors.each do |imdb_url, info|
           person = Person.find_or_create_by_imdb_url imdb_url
           person.update_attribute(:name, info[:name]) if person.name.blank?
-          credit = person.acting_credits.create :movie => movie, :job => 'Actor', :details => info[:details]
+          credit = person.acting_credits.create movie: movie, job: 'Actor', details: info[:details]
 
           if credit.valid?
             count += 1

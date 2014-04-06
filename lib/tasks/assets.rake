@@ -1,6 +1,6 @@
 namespace :assets do
   desc 'Removes old compiled assets'
-  task :cleanup => :environment do
+  task cleanup: 'environment' do
     Dir.chdir Rails.root.join('public', 'assets')
     all_assets = Dir.glob('**/*.*').reject { |asset| asset.match /\.gz$/ }
     all_assets.delete 'manifest.yml'

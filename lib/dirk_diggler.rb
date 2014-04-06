@@ -35,7 +35,7 @@ class DirkDiggler
   end
 
   def data
-    result = { :imdb_url => @target }
+    result = { imdb_url: @target }
     ITEMS.each { |item| result[item] = self.send(item) unless self.send(item).nil? }
     result
   end
@@ -63,16 +63,16 @@ class DirkDiggler
     get_year if year.nil?
 
     page = @agent.get GOOGLE
-    form = page.form_with(:name => 'f')
+    form = page.form_with(name: 'f')
     form.q = "rotten tomatoes #{title} #{year}"
     search_results = form.submit
 
-    url = search_results.link_with(:href => %r(http://www.rottentomatoes.com/m/[\w-]+/));
+    url = search_results.link_with href: %r(http://www.rottentomatoes.com/m/[\w-]+/)
 
     if url.nil?
       form.q = "rotten tomatoes #{title}"
       search_results = form.submit
-      url = search_results.link_with(:href => %r(http://www.rottentomatoes.com/m/[\w-]+/))
+      url = search_results.link_with href: %r(http://www.rottentomatoes.com/m/[\w-]+/)
     end
 
     @rotten_tomatoes_url = url.href.gsub!('/url?q=', '').gsub!(/&.+/, '') rescue nil
