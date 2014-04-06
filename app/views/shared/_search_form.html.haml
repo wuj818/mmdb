@@ -1,7 +1,7 @@
-= form_tag target, :method => :get,
-  :class => 'navbar-search' do
-  = hidden_field_tag 'type', type.pluralize
-  = text_field_tag :q, params[:q].blank? ? nil : params[:q],
-    :placeholder => "Search #{type.pluralize}...",
-    :class => 'search-query span2'
-  = submit_tag 'Search', :class => 'hide btn'
+= form_tag target, method: 'get', class: 'navbar-form navbar-left' do
+  .form-group
+    = hidden_field_tag 'type', type.pluralize
+
+    = text_field_tag :q, params[:q].blank? ? nil : params[:q], placeholder: "Search #{type.pluralize}...", class: 'form-control'
+
+  = submit_tag 'Search', class: 'btn btn-default hidden'
