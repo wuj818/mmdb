@@ -43,14 +43,14 @@ module ApplicationHelper
   def smart_cache(key = '', &block)
     str = CGI::unescape request.path.slice(1..-1)
     str << "/#{key}" unless key.blank?
-    cache(str, :expires_in => 2.weeks, &block)
+    cache str, expires_in: 2.weeks, &block
   end
 
   def random_quote
     quote = QUOTES.sample
     source = quote.scan(/\A(.+?):/).flatten.first
     quote.gsub! "#{source}: ", ''
-    content_tag :div, quote, :class => 'random_quote', :alt => source, :title => source
+    content_tag :div, quote, class: 'random_quote', alt: source, title: source
   end
 
   def active_nav_link?(name)
@@ -85,7 +85,7 @@ module ApplicationHelper
     else
       'green'
     end
-    content_tag :span, format('%.2f', average), :class => "colorized #{color}"
+    content_tag :span, format('%.2f', average), class: "colorized #{color}"
   end
 
   def tag_link(tag, type, options = {})
