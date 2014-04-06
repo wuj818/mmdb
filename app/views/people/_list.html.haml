@@ -1,33 +1,70 @@
 - smart_cache do
-  = render 'shared/page_entries_info', :results => @people, :type => 'person'
+  = render 'shared/page_entries_info', results: @people, type: 'person'
 
   - unless @people.total_count.zero?
-    = paginate @people, :remote => true
+    %hr
 
-    %table.table.table-striped.table-bordered
-      %thead
-        %tr
-          %th{:style => 'width: 15px;'} #
-          %th= sort_link :name
-          %th{:style => 'width: 65px;'}= sort_link :credits
-          %th{:style => 'width: 75px;'}= sort_link :directing
-          %th{:style => 'width: 65px;'}= sort_link :writing
-          %th{:style => 'width: 90px;'}= sort_link :composing
-          %th{:style => 'width: 65px;'}= sort_link :editing
-          %th{:style => 'width: 125px;'}= sort_link :cinematography
-          %th{:style => 'width: 65px;'}= sort_link :acting
+    = paginate @people, remote: true
 
-      %tbody
-        - @people.each_with_index do |person, i|
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
           %tr
-            %td= row_number i
-            %td= link_to person.name, person, :class => 'person-link'
-            %td= person.credits_count
-            %td= person.number_of_directing_credits
-            %td= person.number_of_writing_credits
-            %td= person.number_of_composing_credits
-            %td= person.number_of_editing_credits
-            %td= person.number_of_cinematography_credits
-            %td= person.number_of_acting_credits
+            %th.text-right{style: 'width: 40px;'}
+              %strong #
 
-    = paginate @people, :remote => true
+            %th
+              = sort_link :name
+
+            %th
+              = sort_link :credits
+
+            %th
+              = sort_link :directing
+
+            %th
+              = sort_link :writing
+
+            %th
+              = sort_link :composing
+
+            %th
+              = sort_link :editing
+
+            %th
+              = sort_link :cinematography
+
+            %th
+              = sort_link :acting
+
+        %tbody
+          - @people.each_with_index do |person, i|
+            %tr
+              %td.text-right
+                = row_number i
+
+              %td
+                = link_to person.name, person, class: 'person-link'
+
+              %td
+                = person.credits_count
+
+              %td
+                = person.number_of_directing_credits
+
+              %td
+                = person.number_of_writing_credits
+
+              %td
+                = person.number_of_composing_credits
+
+              %td
+                = person.number_of_editing_credits
+
+              %td
+                = person.number_of_cinematography_credits
+
+              %td
+                = person.number_of_acting_credits
+
+    = paginate @people, remote: true
