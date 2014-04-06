@@ -18,3 +18,10 @@ $ ->
 
       bottom: ->
         @bottom = $('footer').outerHeight()
+
+  $('.login').on 'click', ->
+    $('#login-modal').modal()
+    false
+
+  $('#login-modal').on 'shown.bs.modal', ->
+    $('#Password').focus()

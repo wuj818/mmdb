@@ -1,7 +1,12 @@
-#login-modal.modal.hide
-  .modal-header
-    %a.close{:data => { :dismiss => 'modal' }} &times;
-    %h3 Login
+#login-modal.modal.fade{tabindex: '-1'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{data: { dismiss: 'modal' }}
+          &times;
 
-  .modal-body
-    = render 'sessions/form', :remote => true
+        %h4.modal-title
+          Login
+
+      .modal-body
+        = render 'sessions/form', remote: true
