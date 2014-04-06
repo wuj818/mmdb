@@ -3,9 +3,13 @@
 .page-header
   %h1
     = link_to 'People', people_path
+
     %span.divider /
+
     = link_to @person.name, @person
+
     %span.divider /
+
     Edit
 
 = render 'people/edit/form'
