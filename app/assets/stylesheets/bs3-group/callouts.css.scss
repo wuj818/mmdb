@@ -1,0 +1,51 @@
+.callout {
+  border-left: 3px solid #eee;
+  margin: 20px 0;
+  padding: 20px;
+
+  code {
+    background-color: #fff;
+    border-radius: 3px;
+  }
+
+  h4 {
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
+}
+
+.callout-danger {
+  background-color: #fdf7f7;
+  border-color: #d9534f;
+
+  h4 {
+    color: #d9534f;
+  }
+}
+
+.callout-warning {
+  background-color: #fcf8f2;
+  border-color: #f0ad4e;
+
+  h4 {
+    color: #f0ad4e;
+  }
+}
+
+.callout-info {
+  background-color: #f4f8fa;
+  border-color: #5bc0de;
+
+  h4 {
+    color: #5bc0de;
+  }
+}
