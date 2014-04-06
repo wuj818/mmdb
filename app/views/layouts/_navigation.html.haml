@@ -9,11 +9,9 @@
       = link_to 'MMDb', root_path, class: 'navbar-brand'
 
     #navigation.navbar-collapse.collapse
-      %ul.nav.navbar-nav
+      %ul.nav.navbar-nav.navbar-right
         %li.dropdown.admin-dropdown.hidden
-          = link_to '#',
-            class: 'dropdown-toggle admin-dropdown.hidden',
-            data: { toggle: 'dropdown' } do
+          = link_to '#', class: 'dropdown-toggle admin-dropdown hidden', data: { toggle: 'dropdown' } do
             Admin
             %b.caret
 
@@ -24,20 +22,16 @@
             %li
               = link_to 'Add List', new_item_list_path, rel: 'nofollow'
 
-            %li.divider
+            %li
+              = link_to 'Clear Cache', clear_cache_path, method: 'delete', rel: 'nofollow', data: { confirm: CONFIRM }
 
             %li
-              = link_to 'Clear Cache', clear_cache_path,
-                method: 'delete',
-                class: 'clear-cache',
-                rel: 'nofollow',
-                data: { confirm: CONFIRM }
+              = link_to 'Logout', logout_path, method: 'delete', class: 'logout', rel: 'nofollow'
+
+        %li
+          = link_to 'Login', login_path, class: 'login', rel: 'nofollow'
 
       - if content_for? :search
         = yield :search
       - else
         = render 'shared/search_form', target: search_movies_path, type: 'movie'
-
-      %p.navbar-text.navbar-right
-        = link_to 'Login', login_path, class: 'login', rel: 'nofollow'
-        = link_to 'Logout', logout_path, method: 'delete', class: 'logout hidden', rel: 'nofollow'
