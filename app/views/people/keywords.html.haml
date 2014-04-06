@@ -1,9 +1,13 @@
 .page-header
   %h1
     = link_to 'People', people_path
+
     %span.divider /
+
     = link_to @person.name, @person
+
     %span.divider /
+
     Keywords
 
 - smart_cache do
@@ -18,8 +22,6 @@
         - fraction = "#{keyword.count}/#{total}"
         - percentage = format('%.2f%', keyword.count / total.to_f * 100)
 
-        = tag_link keyword, :keyword,
-          :class => css_class,
-          :data => { :fraction => fraction, :percentage => percentage }
+        = tag_link keyword, :keyword, class: css_class, data: { fraction: fraction, percentage: percentage }
 
         &nbsp;
