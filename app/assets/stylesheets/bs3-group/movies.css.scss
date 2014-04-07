@@ -20,6 +20,22 @@
   }
 }
 
+#original-movie-poster {
+  img {
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    padding-right: 0;
+  }
+
+  @media (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+}
+
 #perfect-movies {
   .perfect-movie {
     display: inline-block;
@@ -45,6 +61,19 @@
       position: absolute;
       right: 5px;
     }
+  }
+}
+
+.rating {
+  font-size: 64px;
+  font-weight: bold;
+  line-height: 46px;
+  float: right;
+}
+
+.synopsis {
+  p {
+    margin-bottom: 0;
   }
 }
 

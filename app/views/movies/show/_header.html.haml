@@ -1,13 +1,11 @@
-.movie-header
-  = link_to @movie.poster.url(:original), :class => 'original-poster-link' do
-    = image_tag @movie.poster.url(:large),
-      :class => 'large-poster',
-      :width => 300,
-      :height => 420
+.row
+  .col-sm-4#original-movie-poster
+    = link_to @movie.poster.url(:original), class: 'original-poster-link' do
+      = image_tag @movie.poster.url(:large), class: 'large-poster img-thumbnail'
 
-  .movie-info
-    .rating.well{:class => movie_rating_class(@movie)}
-      #{@movie.rating}/10
+  .col-sm-8
+    .rating.well{class: movie_rating_class(@movie)}
+      = "#{@movie.rating}/10"
 
     = render 'movies/show/icons'
 
@@ -17,5 +15,3 @@
 
     .synopsis
       = simple_format @movie.synopsis
-
-  .clear
