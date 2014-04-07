@@ -3,7 +3,7 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require plugins
-#= require bs3-group
+#= require_tree .
 
 $ ->
   $('body').tooltip
