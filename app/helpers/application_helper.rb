@@ -15,6 +15,7 @@ module ApplicationHelper
   def sort_link(column, icon_name = nil)
     column = column.to_s
     new_order = (column == params[:sort] && params[:order] == 'asc') ? 'desc' : 'asc'
+
     url_options = {
       sort: column,
       order: new_order,
@@ -43,6 +44,7 @@ module ApplicationHelper
   def smart_cache(key = '', &block)
     str = CGI::unescape request.path.slice(1..-1)
     str << "/#{key}" unless key.blank?
+
     cache str, expires_in: 2.weeks, &block
   end
 
@@ -50,12 +52,14 @@ module ApplicationHelper
     quote = QUOTES.sample
     source = quote.scan(/\A(.+?):/).flatten.first
     quote.gsub! "#{source}: ", ''
+
     content_tag :div, quote, class: 'random_quote', alt: source, title: source
   end
 
   def active_nav_link?(name)
     name = name.to_s
     active = TagsController::TYPES.include?(name) ? @type : controller_name
+
     name == active ? 'active' : nil
   end
 
@@ -91,6 +95,7 @@ module ApplicationHelper
 
   def tag_link(tag, type, options = {})
     type = type.to_s.pluralize
+
     link_to tag.name, "/#{type}/#{CGI::escape tag.name}", options
   end
 end

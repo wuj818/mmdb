@@ -13,12 +13,15 @@ module SessionsHelper
 
   def deny_access
     session[:return_to] = request.fullpath
+
     flash[:danger] = 'You must be logged in to access this page.'
+
     redirect_to login_path
   end
 
   def redirect_back_or_to(default)
-    redirect_to(session[:return_to] || default)
+    redirect_to session[:return_to] || default
+
     session[:return_to] = nil
   end
 

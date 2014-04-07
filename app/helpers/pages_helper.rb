@@ -9,7 +9,9 @@ module PagesHelper
 
   def page_entries_info(collection, options = {})
     collection_size = collection.total_count
+
     total_pages = (collection.total_count / per_page.to_f).ceil
+
     offset = (page.to_i - 1) * per_page.to_i
 
     entry_name = options[:entry_name] || (collection_size.zero? ? 'entry' :
