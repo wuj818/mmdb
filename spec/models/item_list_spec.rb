@@ -23,13 +23,16 @@ describe ItemList do
 
     it 'has a unique name' do
       @empty_list.name = @list.name
+
       @empty_list.save
+
       @empty_list.errors[:name].should include 'has already been taken'
     end
 
     it 'has a valid position (positive integer or zero)' do
       @list.position = -1
       @list.should_not be_valid
+
       @list.position = 1
       @list.should be_valid
     end
@@ -40,7 +43,9 @@ describe ItemList do
       it 'automatically creates a permalink from the title' do
         @list = ItemList.make name: 'Best Movies of 2010'
         @list.permalink.should be_blank
+
         @list.save
+
         @list.permalink.should == 'best-movies-of-2010'
       end
     end

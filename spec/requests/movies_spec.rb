@@ -4,7 +4,9 @@ describe 'Movies' do
   describe 'All movies page' do
     it 'lists all movies' do
       movies = Movie.make! 3
+
       visit movies_path
+
       movies.each { |movie| should_see_link movie.title }
     end
 
@@ -70,7 +72,9 @@ describe 'Movies' do
   describe 'Show movie details' do
     it 'shows the details for a movie' do
       movie = Movie.make!
+
       visit movie_path movie
+
       should_see movie.title
       should_see movie.year.to_s
       should_see "#{movie.rating}/10"
@@ -83,6 +87,7 @@ describe 'Movies' do
     it 'edits a movie and redirects to its page' do
       @movie = Movie.make!
       integration_login
+
       visit movie_path @movie
       click_link 'Edit'
 
@@ -114,10 +119,11 @@ describe 'Movies' do
     it 'deletes the movie and redirects to the movies page' do
       @movie = Movie.make!
       integration_login
-
       title = @movie.title
+
       visit movie_path @movie
       click_link 'Delete'
+
       should_be_on movies_path
       should_see %("#{title}" was successfully deleted.)
     end

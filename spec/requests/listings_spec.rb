@@ -4,6 +4,7 @@ describe 'Listings' do
   before do
     @list = ItemList.make!
     @movie = Movie.make!
+
     integration_login
   end
 

@@ -27,14 +27,17 @@ describe Listing do
 
     it 'has a unique item list/movie combination' do
       @duplicate_listing = Listing.make
+
       @duplicate_listing.item_list = @listing.item_list
       @duplicate_listing.movie = @listing.movie
+
       @duplicate_listing.should_not be_valid
     end
 
     it 'has a valid position (positive integer or zero)' do
       @listing.position = -1
       @listing.should_not be_valid
+
       @listing.position = 1
       @listing.should be_valid
     end
@@ -44,7 +47,9 @@ describe Listing do
     it 'is deleted when the associated item list is deleted' do
       @listing = Listing.make!
       @list = @listing.item_list
+
       @listing.item_list.destroy
+
       lambda { @listing.reload }.should raise_error
       lambda { @list.reload }.should raise_error
     end
@@ -52,7 +57,9 @@ describe Listing do
     it 'is deleted when the associated movie is deleted' do
       @listing = Listing.make!
       @movie = @listing.movie
+
       @listing.movie.destroy
+
       lambda { @listing.reload }.should raise_error
       lambda { @movie.reload }.should raise_error
     end

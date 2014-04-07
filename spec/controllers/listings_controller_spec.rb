@@ -11,7 +11,9 @@ describe ListingsController do
     context 'when not logged in' do
       it 'redirects to the login page' do
         ItemList.stub find_by_permalink: mock_list
+
         get :new, item_list_id: '1'
+
         response.should redirect_to login_path
       end
     end
@@ -21,7 +23,9 @@ describe ListingsController do
     context 'when not logged in' do
       it 'redirects to the login page' do
         ItemList.stub find_by_permalink: mock_list
+
         post :create, item_list_id: 1
+
         response.should redirect_to login_path
       end
     end
@@ -31,7 +35,9 @@ describe ListingsController do
     context 'when not logged in' do
       it 'redirects to the login page' do
         ItemList.stub find_by_permalink: mock_list
+
         delete :destroy, item_list_id: 1, id: '1'
+
         response.should redirect_to login_path
       end
     end

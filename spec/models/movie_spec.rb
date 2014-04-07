@@ -39,20 +39,26 @@ describe Movie do
 
     it 'has a unique title/year combination' do
       @duplicate_movie = Movie.make
+
       @duplicate_movie.title = @movie.title
       @duplicate_movie.year = @movie.year
+
       @duplicate_movie.should_not be_valid
     end
 
     it 'has a unique IMDB url' do
       @empty_movie.imdb_url = @movie.imdb_url
+
       @empty_movie.save
+
       @empty_movie.errors[:imdb_url].should include 'has already been taken'
     end
 
     it 'has a unique permalink' do
       @empty_movie.permalink = @movie.permalink
+
       @empty_movie.save
+
       @empty_movie.errors[:permalink].should include 'has already been taken'
     end
 
@@ -92,13 +98,16 @@ describe Movie do
       it 'automatically creates a permalink from the title' do
         @movie = Movie.make(title: 'Boogie Nights')
         @movie.permalink.should be_blank
+
         @movie.save
+
         @movie.permalink.should == 'boogie-nights'
       end
 
       it 'resolves duplicates by appending the year to the permalink and the title' do
         @movie1 = Movie.make!(title: 'The Fly', year: 1958)
         @movie1.permalink.should == 'the-fly'
+
         @movie2 = Movie.make!(title: 'The Fly', year: 1986)
         @movie2.title.should == 'The Fly (1986)'
         @movie2.permalink.should == 'the-fly-1986'
@@ -109,7 +118,9 @@ describe Movie do
       it 'copies a lowercase transliterated version of the title if the sort title is blank' do
         @person = Person.make
         @person.sort_name.should be_blank
+
         @person.save
+
         @person.sort_name.should == @person.name.to_sort_column
       end
     end
@@ -127,6 +138,7 @@ describe Movie do
 
         @movie.get_preliminary_info
         @movie.save
+
         @movie.imdb_url.should == 'http://www.imdb.com/title/tt0118749/'
         @movie.title.should == 'Boogie Nights'
       end
@@ -176,8 +188,11 @@ describe Movie do
       it "removes the specified genre(s) from a movie's genre list" do
         @movie.add_genre 'Drama', 'Comedy', 'Thriller', 'Sci-Fi'
         @movie.remove_genre 'Sci-Fi'
+
         @movie.genre_list.should_not include 'Sci-Fi'
+
         @movie.remove_genre 'Drama', 'Comedy'
+
         %w(Drama Comedy).each do |genre|
           @movie.genre_list.should_not include genre
         end

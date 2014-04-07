@@ -30,13 +30,17 @@ describe Person do
 
     it 'has a unique IMDB url' do
       @empty_person.imdb_url = @person.imdb_url
+
       @empty_person.save
+
       @empty_person.errors[:imdb_url].should include 'has already been taken'
     end
 
     it 'has a unique permalink' do
       @empty_person.permalink = @person.permalink
+
       @empty_person.save
+
       @empty_person.errors[:permalink].should include 'has already been taken'
     end
   end
@@ -46,13 +50,16 @@ describe Person do
       it 'automatically creates a permalink from the name' do
         @person = Person.make(name: 'Paul Thomas Anderson')
         @person.permalink.should be_blank
+
         @person.save
+
         @person.permalink.should == 'paul-thomas-anderson'
       end
 
       it 'resolves duplicates by appending an integer to the permalink' do
         @person1 = Person.make!(name: 'Paul Thomas Anderson')
         @person1.permalink.should == 'paul-thomas-anderson'
+
         @person2 = Person.make!(name: 'Paul Thomas Anderson')
         @person2.permalink.should == 'paul-thomas-anderson-2'
       end
@@ -62,7 +69,9 @@ describe Person do
       it 'copies a lowercase transliterated version of the name if the sort name is blank' do
         @movie = Movie.make
         @movie.sort_title.should be_blank
+
         @movie.save
+
         @movie.sort_title.should == @movie.title.to_sort_column
       end
     end

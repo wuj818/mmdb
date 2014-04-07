@@ -11,7 +11,9 @@ describe CreditsController do
     context 'when not logged in' do
       it 'redirects to the login page' do
         Person.stub find_by_permalink: mock_person
+
         get :new, person_id: '1'
+
         response.should redirect_to login_path
       end
     end
@@ -21,7 +23,9 @@ describe CreditsController do
     context 'when not logged in' do
       it 'redirects to the login page' do
         Person.stub find_by_permalink: mock_person
+
         post :create, person_id: '1'
+
         response.should redirect_to login_path
       end
     end
@@ -31,7 +35,9 @@ describe CreditsController do
     context 'when not logged in' do
       it 'redirects to the login page' do
         Person.stub find_by_permalink: mock_person
+
         delete :destroy, person_id: '1', id: '1'
+
         response.should redirect_to login_path
       end
     end

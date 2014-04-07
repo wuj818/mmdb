@@ -27,15 +27,18 @@ describe Credit do
 
     it 'has a unique person/movie/type combination' do
       @duplicate_credit = Credit.make
+
       @duplicate_credit.person = @credit.person
       @duplicate_credit.movie = @credit.movie
       @duplicate_credit.job = @credit.job
+
       @duplicate_credit.should_not be_valid
     end
 
     it 'has a valid type' do
       @credit.job = 'not valid'
       @credit.should_not be_valid
+
       @credit.job = Credit::JOBS.keys.first
       @credit.should be_valid
     end
@@ -45,7 +48,9 @@ describe Credit do
     it 'is deleted when the associated person is deleted' do
       @credit = Credit.make!
       @movie = @credit.movie
+
       @credit.person.destroy
+
       lambda { @credit.reload }.should raise_error
       lambda { @movie.reload }.should_not raise_error
     end
@@ -53,7 +58,9 @@ describe Credit do
     it 'is deleted when the associated movie is deleted' do
       @credit = Credit.make!
       @person = @credit.person
+
       @credit.movie.destroy
+
       lambda { @credit.reload }.should raise_error
       lambda { @person.reload }.should_not raise_error
     end

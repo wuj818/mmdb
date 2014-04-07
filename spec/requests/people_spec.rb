@@ -4,7 +4,9 @@ describe 'People' do
   describe 'All people page' do
     it 'lists all people' do
       people = Person.make! 3
+
       visit people_path
+
       people.each { |person| should_see_link person.name }
     end
 
@@ -57,7 +59,9 @@ describe 'People' do
   describe 'Show person details' do
     it 'shows the details for a person' do
       @person = Person.make!
+
       visit person_path @person
+
       should_see @person.name
       find('.imdb')[:href].should == @person.imdb_url
     end
@@ -67,6 +71,7 @@ describe 'People' do
     it 'edits a person and redirects to its page' do
       @person = Person.make!
       integration_login
+
       visit person_path @person
       click_link 'Edit'
 
@@ -94,8 +99,10 @@ describe 'People' do
       @person = Person.make!
       integration_login
       name = @person.name
+
       visit person_path @person
       click_link 'Delete'
+
       should_be_on people_path
       should_see %("#{name}" was successfully deleted.)
     end

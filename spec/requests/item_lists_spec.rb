@@ -4,7 +4,9 @@ describe 'Lists' do
   describe 'All lists page' do
     it 'lists all lists' do
       lists = ItemList.make! 3
+
       visit item_lists_path
+
       lists.each { |list| should_see_link list.name }
     end
   end
@@ -12,7 +14,9 @@ describe 'Lists' do
   describe 'Show list details' do
     it 'shows the details for a list' do
       list = ItemList.make!
+
       visit item_list_path list
+
       should_see list.name
     end
   end
@@ -21,6 +25,7 @@ describe 'Lists' do
     it 'edits a list and redirects to its page' do
       @list = ItemList.make!
       integration_login
+
       visit item_list_path @list
       click_link 'Edit'
 
@@ -41,11 +46,12 @@ describe 'Lists' do
   describe 'Delete List' do
     it 'deletes the list and redirects to the lists page' do
       @list = ItemList.make!
+      title = @list.name
       integration_login
 
-      title = @list.name
       visit item_list_path @list
       click_link 'Delete'
+
       should_be_on item_lists_path
       should_see %("#{title}" was successfully deleted.)
     end
