@@ -99,7 +99,7 @@
           = link_to 'Graphs', graphs_person_path(@person)
 
         %li
-          = link_to @person.imdb_url, rel: 'external', class: 'imdb' do
+          = link_to @person.imdb_url, class: 'imdb', rel: 'external' do
             = image_tag 'icons/imdb-icon-32x32.png', title: 'IMDb', width: 32, height: 32
 
           = link_to 'IMDb', @person.imdb_url

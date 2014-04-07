@@ -36,7 +36,7 @@
             %li.divider
 
             %li
-              = link_to logout_path, method: 'delete', class: 'logout', rel: 'nofollow' do
+              = link_to logout_path, method: 'delete', class: 'logout', rel: 'nofollow', data: { confirm: CONFIRM } do
                 = icon 'sign-out fw', class: 'text-primary'
                 Logout
 
