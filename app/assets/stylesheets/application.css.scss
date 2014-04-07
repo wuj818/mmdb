@@ -64,10 +64,31 @@ footer {
 }
 
 .icons {
+  font-size: 20px;
+
   a {
     text-decoration: none;
   }
+
+  img {
+    margin: 0 4px 4px 0;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
 }
+
+.rating {
+  font-size: 64px;
+  font-weight: bold;
+  line-height: 46px;
+
+  @media (min-width: 768px) {
+    float: right;
+  }
+}
+
 
 @media (min-width: 768px) {
   #main-content {

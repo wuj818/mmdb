@@ -14,7 +14,7 @@ module PeopleHelper
 
   def colorized_approval_percentage(person)
     color = person.approval_percentage >= 60 ? 'green' : 'red'
-    content_tag :span, "#{person.approval_percentage}%", class: "colorized #{color}"
+    content_tag :span, "#{person.approval_percentage}%", class: "#{color}-rating"
   end
 
   def person_rating_class(person)
@@ -25,6 +25,7 @@ module PeopleHelper
     else
       'green'
     end
-    "colorized #{color}"
+
+    "#{color}-rating"
   end
 end
