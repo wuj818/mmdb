@@ -21,18 +21,17 @@
 }
 
 #original-movie-poster {
+  padding-right: 0;
+
   img {
     cursor: -webkit-zoom-in;
     cursor: -moz-zoom-in;
     width: 100%;
   }
 
-  @media (min-width: 768px) {
-    padding-right: 0;
-  }
-
   @media (max-width: 767px) {
     margin-bottom: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -54,7 +53,7 @@
 
     .caption {
       background: rgba(0, 0, 0, 0.75);
-      bottom: 5px;
+      bottom: 6px;
       display: none;
       left: 5px;
       padding: 4px 7px;

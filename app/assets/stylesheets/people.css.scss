@@ -2,12 +2,6 @@
   font-family: 'Tekton Pro', 'Comic Sans MS';
   letter-spacing: 1px;
 
-  a {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
   .cloud1 {
     color: #999999;
     font-size: 12px;
@@ -46,15 +40,14 @@
 }
 
 #person-carousel-wrapper {
+  padding-right: 0;
+
   img {
     width: 100%;
   }
 
-  @media (min-width: 768px) {
-    padding-right: 0;
-  }
-
   @media (max-width: 767px) {
     margin-bottom: 20px;
+    padding-right: 20px;
   }
 }

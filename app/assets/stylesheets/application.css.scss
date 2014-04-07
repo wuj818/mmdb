@@ -22,27 +22,10 @@ footer {
 
 #main-content {
   margin-bottom: 20px;
-}
 
-.green-rating {
-  color: #468847;
-}
-
-.orange-rating {
- color: #F89406;
-}
-
-.red-rating {
- color: #B94A48;
-}
-
-.highlight {
-  background: yellow;
-  padding: 0 6px;
-}
-
-.pagination {
-  margin: 0 0 15px 0;
+  @media (min-width: 768px) {
+    padding-left: 0;
+  }
 }
 
 .admin-controls {
@@ -52,15 +35,6 @@ footer {
   .btn:not(:last-child) {
     margin-right: 6px;
   }
-}
-
-.credit-rating {
-  text-align: right;
-  width: 50px;
-}
-
-.delete-cell {
-  width: 40px;
 }
 
 .icons {
@@ -79,6 +53,10 @@ footer {
   }
 }
 
+.pagination {
+  margin: 0 0 15px 0;
+}
+
 .rating {
   font-size: 64px;
   font-weight: bold;
@@ -86,12 +64,6 @@ footer {
 
   @media (min-width: 768px) {
     float: right;
-  }
-}
-
-
-@media (min-width: 768px) {
-  #main-content {
-    padding-left: 0;
+    margin-left: 10px;
   }
 }

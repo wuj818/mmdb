@@ -21,13 +21,7 @@
     font-variant: small-caps;
   }
 
-  .col-xs-4 {
-    padding-right: 0;
-  }
-}
-
-@media (min-width: 768px) {
-  #main-stats {
+  @media (min-width: 768px) {
     .col-sm-4 {
       padding-right: 0;
     }

@@ -14,22 +14,14 @@
 
     &.affix, &.affix-bottom {
       width: 95px;
-    }
-  }
-}
 
-@media (min-width: 992px) {
-  #sidebar-navigation {
-    &.affix, &.affix-bottom {
-      width: 131.65625px;
-    }
-  }
-}
+      @media (min-width: 992px) {
+        width: 131.65625px;
+      }
 
-@media (min-width: 1200px) {
-  #sidebar-navigation {
-    &.affix, &.affix-bottom {
-      width: 165px;
+      @media (min-width: 1200px) {
+        width: 165px;
+      }
     }
   }
 }
