@@ -11,7 +11,9 @@ class PagesController < ApplicationController
 
   def clear_cache
     Rails.cache.clear
+
     flash[:success] = 'Cache was successfully cleared.'
+
     redirect_to root_path
   end
 end

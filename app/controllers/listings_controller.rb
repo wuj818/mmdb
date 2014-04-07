@@ -4,16 +4,19 @@ class ListingsController < ApplicationController
 
   def new
     @title = %(New Movie for "#{@list.name}")
+
     @listing = Listing.new
   end
 
   def create
     @title = %(New Movie for "#{@list.name}")
+
     @listing = Listing.new params[:listing]
     @listing.position = @listing.item_list.listings.length + 1
 
     if @listing.save
       flash[:success] = %("#{@listing.movie.title}" was successfully added to "#{@list.name}".)
+
       redirect_to @list
     else
       render :new
@@ -32,13 +35,13 @@ class ListingsController < ApplicationController
     end
 
     flash[:success] = %("#{movie}" was successfully removed from "#{list.name}".)
+
     redirect_to @list
   end
 
   private
 
   def get_list
-    @list = ItemList.find_by_permalink params[:item_list_id]
-    raise ActiveRecord::RecordNotFound if @list.blank?
+    @list = ItemList.find_by_permalink! params[:item_list_id]
   end
 end

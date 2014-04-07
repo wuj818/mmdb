@@ -18,8 +18,7 @@ class PeopleController < ApplicationController
   end
 
   def show
-    @person = Person.find_by_permalink params[:id]
-    raise ActiveRecord::RecordNotFound if @person.blank?
+    @person = Person.find_by_permalink! params[:id]
 
     @title = @person.name
   end
@@ -30,8 +29,10 @@ class PeopleController < ApplicationController
 
   def update
     @title = %(Edit "#{@person.name}")
+
     if @person.update_attributes params[:person]
       flash[:success] = %("#{@person.name}" was successfully edited.)
+
       redirect_to @person
     else
       render :edit
@@ -43,19 +44,18 @@ class PeopleController < ApplicationController
     @person.destroy
 
     flash[:success] = %("#{name}" was successfully deleted.)
+
     redirect_to people_path
   end
 
   def graphs
-    @person = Person.find_by_permalink params[:id]
-    raise ActiveRecord::RecordNotFound if @person.blank?
+    @person = Person.find_by_permalink! params[:id]
 
     @title = "#{@person.name} - Graphs"
   end
 
   def keywords
-    @person = Person.find_by_permalink params[:id]
-    raise ActiveRecord::RecordNotFound if @person.blank?
+    @person = Person.find_by_permalink! params[:id]
 
     @title = "#{@person.name} - Keywords"
   end
@@ -64,7 +64,9 @@ class PeopleController < ApplicationController
 
   def order
     params[:sort] ||= 'name'
+
     column = params[:sort] == 'name' ? 'sort_name' : params[:sort]
+
     column = case params[:sort]
     when 'credits' then 'credits_count'
     when 'directing' then 'directing_credits_count'
@@ -77,13 +79,13 @@ class PeopleController < ApplicationController
     end
 
     params[:order] ||= 'asc'
+
     result = "#{column} #{params[:order]}"
     result << ', sort_name asc' unless params[:sort] == 'name'
     result
   end
 
   def get_person
-    @person = Person.find_by_permalink params[:id]
-    raise ActiveRecord::RecordNotFound if @person.blank?
+    @person = Person.find_by_permalink! params[:id]
   end
 end

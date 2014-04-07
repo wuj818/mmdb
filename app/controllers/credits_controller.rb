@@ -13,6 +13,7 @@ class CreditsController < ApplicationController
 
     if @credit.save
       flash[:success] = %(#{@person.name} was successfully added as a #{@credit.job.downcase} for "#{@credit.movie.title}".)
+
       redirect_to @person
     else
       render :new
@@ -27,13 +28,13 @@ class CreditsController < ApplicationController
     @credit.destroy
 
     flash[:success] = %(#{person}'s #{credit_type} credit was successfully removed from "#{movie}".)
+
     redirect_to @person
   end
 
   private
 
   def get_person
-    @person = Person.find_by_permalink params[:person_id]
-    raise ActiveRecord::RecordNotFound if @person.blank?
+    @person = Person.find_by_permalink! params[:person_id]
   end
 end

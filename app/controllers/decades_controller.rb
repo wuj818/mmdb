@@ -36,11 +36,13 @@ class DecadesController < ApplicationController
 
   def get_decade
     @decade = params[:id].to_i
+
     raise ActiveRecord::RecordNotFound unless DECADES.include? @decade
   end
 
   def order
     params[:sort] ||= 'decade'
+
     column = case params[:sort]
     when 'total' then 'COUNT(*)'
     when 'average' then 'AVG(rating)'
@@ -48,6 +50,7 @@ class DecadesController < ApplicationController
     end
 
     params[:order] ||= 'asc'
+
     result = "#{column} #{params[:order]}"
     result << ', COUNT(*) DESC' unless params[:sort] == 'total'
     result

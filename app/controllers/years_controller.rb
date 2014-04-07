@@ -33,6 +33,7 @@ class YearsController < ApplicationController
 
   def order
     params[:sort] ||= 'year'
+
     column = case params[:sort]
     when 'total' then 'COUNT(*)'
     when 'average' then 'AVG(rating)'
@@ -40,6 +41,7 @@ class YearsController < ApplicationController
     end
 
     params[:order] ||= 'asc'
+
     result = "#{column} #{params[:order]}"
     result << ', COUNT(*) DESC' unless params[:sort] == 'total'
     result

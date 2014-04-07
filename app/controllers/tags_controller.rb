@@ -47,19 +47,21 @@ class TagsController < ApplicationController
 
   def get_type
     @type = params[:type]
+
     unless TYPES.include? @type
-      render 'public/404.html', layout: false
-      return
+      render 'public/404.html', layout: false and return
     end
   end
 
   def get_tag
     @tag = CGI::unescape params[:id]
-    raise ActiveRecord::RecordNotFound if Tag.find_by_name(@tag).blank?
+
+    Tag.find_by_name! @tag
   end
 
   def order
     params[:sort] ||= 'name'
+
     column = case params[:sort]
     when 'total' then 'COUNT(*)'
     when 'average' then 'AVG(rating)'
@@ -67,6 +69,7 @@ class TagsController < ApplicationController
     end
 
     params[:order] ||= 'asc'
+
     result = "#{column} #{params[:order]}"
     result << ', COUNT(*) DESC' unless params[:sort] == 'total'
     result
