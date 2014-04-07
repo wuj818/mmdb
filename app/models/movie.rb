@@ -76,8 +76,10 @@ class Movie < ActiveRecord::Base
 
   def get_preliminary_info
     return false unless new_record?
+
     diggler = DirkDiggler.new self.imdb_url
     diggler.get :info
+
     self.attributes = diggler.data
   end
 
@@ -89,13 +91,16 @@ class Movie < ActiveRecord::Base
     define_method "add_#{tag_type}" do |*tags|
       self.send("#{tag_type}_list") << tags
       self.send("#{tag_type}_list").flatten!
+
       save validate: false
     end
 
     define_method "remove_#{tag_type}" do |*tags|
       return if tags.empty?
+
       original_tags = self.send "#{tag_type}_list"
       self.send("#{tag_type}_list=", original_tags - tags)
+
       save validate: false
     end
   end
@@ -132,17 +137,22 @@ class Movie < ActiveRecord::Base
 
   def create_permalink
     return unless self.permalink.blank?
+
     return if self.title.blank? || self.year.blank?
+
     result = self.title.to_permalink
+
     unless Movie.where(title: self.title).empty?
       result << "-#{self.year}"
       self.title << " (#{self.year})"
     end
+
     self.permalink = result
   end
 
   def create_sort_title
     return unless self.sort_title.blank?
+
     self.sort_title = self.title.to_sort_column
   end
 
@@ -152,12 +162,15 @@ class Movie < ActiveRecord::Base
 
   def save_downloaded_poster
     return unless self.poster_url_changed?
+
     self.poster = download_poster
   end
 
   def download_poster
-    io = open(URI.parse(self.poster_url))
+    io = open URI.parse(self.poster_url)
+
     def io.original_filename ; base_uri.path.split('/').last ; end
+
     io.original_filename.blank? ? nil : io
   rescue
   end
@@ -169,6 +182,7 @@ class Movie < ActiveRecord::Base
   def shorten_filename
     short_filename = Digest::SHA2.file(poster.queued_for_write[:original]).hexdigest[0..2]
     extension = File.extname(poster_file_name).downcase
+
     self.poster.instance_write :file_name, "#{short_filename}#{extension}"
   end
 end

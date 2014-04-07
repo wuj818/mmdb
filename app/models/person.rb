@@ -92,6 +92,7 @@ class Person < ActiveRecord::Base
     ratings = self.movies.map(&:rating)
     total = ratings.inject(0) { |sum, n| sum + (n * RATING_WEIGHTS[n]) }
     count = ratings.inject(0) { |sum, n| sum + RATING_WEIGHTS[n] }
+
     format('%.2f', total / count.to_f).to_f
   end
 
@@ -107,15 +108,19 @@ class Person < ActiveRecord::Base
 
   def create_permalink
     return unless self.permalink.blank?
+
     return if self.name.blank?
+
     result = self.name.to_permalink
     dup_count = Person.where(name: self.name).count
     result << "-#{dup_count+1}" unless dup_count == 0
+
     self.permalink = result
   end
 
   def create_sort_name
     return unless self.sort_name.blank?
+
     self.sort_name = self.name.to_sort_column
   end
 end

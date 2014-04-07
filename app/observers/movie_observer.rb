@@ -1,9 +1,11 @@
 class MovieObserver < ActiveRecord::Observer
   def after_create(movie)
     return if Rails.env.test?
+
     @diggler = DirkDiggler.new movie.imdb_url
-    get_tags(movie)
-    get_people(movie)
+
+    get_tags movie
+    get_people movie
   end
 
   private
@@ -15,6 +17,7 @@ class MovieObserver < ActiveRecord::Observer
     movie.keyword_list = @diggler.keywords
     movie.language_list = @diggler.languages
     movie.country_list = @diggler.countries
+
     movie.save
   end
 
