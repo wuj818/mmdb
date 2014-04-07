@@ -44,3 +44,17 @@
     }
   }
 }
+
+#person-carousel-wrapper {
+  img {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    padding-right: 0;
+  }
+
+  @media (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+}
