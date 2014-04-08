@@ -10,6 +10,8 @@
 
     #navigation.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
+        = render 'layouts/navigation_links', header: true
+
         %li.dropdown.admin-dropdown.hidden
           = link_to '#', class: 'dropdown-toggle admin-dropdown hidden', data: { toggle: 'dropdown' } do
             = icon :cog

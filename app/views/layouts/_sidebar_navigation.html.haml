@@ -1,28 +1,3 @@
-#sidebar-navigation
+#sidebar-navigation.hidden-xs
   %ul.nav.nav-pills.nav-stacked
-    %li{class: active_nav_link?(:movies)}
-      = link_to 'Movies', movies_path
-
-    %li{class: active_nav_link?(:people)}
-      = link_to 'People', people_path
-
-    %li{class: active_nav_link?(:genres)}
-      = link_to 'Genres', genres_path
-
-    %li{class: active_nav_link?(:keywords)}
-      = link_to 'Keywords', keywords_path
-
-    %li{class: active_nav_link?(:languages)}
-      = link_to 'Languages', languages_path
-
-    %li.dropdown{class: active_nav_link?(:countries)}
-      = link_to 'Countries', countries_path
-
-    %li{class: active_nav_link?(:decades)}
-      = link_to 'Decades', decades_path
-
-    %li{class: active_nav_link?(:years)}
-      = link_to 'Years', years_path
-
-    %li{class: active_nav_link?(:item_lists)}
-      = link_to 'Lists', item_lists_path
+    = render 'layouts/navigation_links'
