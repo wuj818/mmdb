@@ -1,0 +1,19 @@
+%hr
+
+#quote-carousel.carousel.slide{data: { interval: 10000 }}
+  .carousel-inner
+    - random_quotes.shuffle.each_with_index do |quote, i|
+      .item{class: ('active' if i == 0)}
+        %blockquote
+          %p
+            = quote[:quote]
+
+          %cite
+            %small
+              = link_to quote[:source], movie_path(quote[:permalink])
+
+  = link_to '#quote-carousel', class: 'carousel-control left', data: { slide: 'prev' } do
+    = icon 'chevron-left'
+
+  = link_to '#quote-carousel', class: 'carousel-control right', data: { slide: 'next' } do
+    = icon 'chevron-right'

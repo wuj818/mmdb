@@ -93,6 +93,18 @@ module ApplicationHelper
     content_tag :strong, format('%.2f', average), class: "#{color}-rating"
   end
 
+  def random_quotes
+    all_quotes = []
+
+    QUOTES.each do |permalink, quotes|
+      quotes.each do |quote|
+        all_quotes << quote.merge(permalink: permalink)
+      end
+    end
+
+    all_quotes
+  end
+
   def tag_link(tag, type, options = {})
     type = type.to_s.pluralize
 

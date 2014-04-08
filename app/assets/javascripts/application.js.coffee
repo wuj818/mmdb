@@ -37,3 +37,5 @@ $ ->
       percentage = $(@).data 'percentage'
       percentage = "<span class='text-primary'>(#{percentage})</span>"
       "<strong>#{fraction} #{percentage}</strong>"
+
+  $('.carousel').carousel()

@@ -55,6 +55,10 @@ footer {
 
 .pagination {
   margin: 0 0 15px 0;
+
+  &:last-child {
+    margin: 0;
+  }
 }
 
 .rating {
