@@ -17,27 +17,28 @@
     = favicon_link_tag
 
     - if Rails.env.production?
-      = render 'shared/google_analytics'
+      = render('shared/google_analytics').squish.html_safe
 
   %body
     #env{class: Rails.env}
 
-    = render 'layouts/navigation'
+    = render('layouts/navigation').squish.html_safe
 
     #content.container
       .row
         .col-sm-2#sidebar
-          = render 'layouts/sidebar_navigation'
+          = render('layouts/sidebar_navigation').squish.html_safe
 
         .col-sm-10#main-content
-          = render 'shared/flashes'
+          = render('shared/flashes').squish.html_safe
 
-          = yield
+          = yield.squish.html_safe
 
-          = render 'shared/random_quote_carousel'
+          - unless Rails.env.test?
+            = render('shared/random_quote_carousel').squish.html_safe
 
-      = render 'layouts/footer'
+      = render('layouts/footer').squish.html_safe
 
-    = render 'shared/admin_controls_loader'
+    = render('shared/admin_controls_loader').squish.html_safe
 
-    = render 'shared/login_modal'
+    = render('shared/login_modal').squish.html_safe
