@@ -2,7 +2,7 @@
   = hidden_field_tag 'type', type.pluralize
 
   .input-group
-    = text_field_tag :q, params[:q].blank? ? nil : params[:q], placeholder: "Search #{type.pluralize}...", class: 'form-control'
+    = text_field_tag :q, params[:q].blank? ? nil : params[:q], autofocus: true, placeholder: "Search #{type.pluralize}...", class: 'form-control'
 
     .input-group-btn
       = button_tag icon(:search), id: 'nav-search-button', class: 'btn btn-default'
