@@ -6,3 +6,13 @@
 .delete-cell {
   width: 40px;
 }
+
+.table-bordered > tbody > tr > td {
+  &.no-left-border {
+    border-left: none;
+  }
+
+  &.no-right-border {
+    border-right: none;
+  }
+}

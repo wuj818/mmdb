@@ -13,16 +13,15 @@
       %tbody
         - @person.send("sorted_#{credit_type}_credits").each do |credit|
           %tr
-            %td
+            %td{class: ('no-right-border' if credit.details.blank?)}
               = tiny_movie_poster_link credit.movie, job
 
               = link_to credit.movie.title, credit.movie
 
               = "(#{credit.movie.year})"
 
-            - if credit.details.present?
-              %td
-                = credit.details
+            %td{class: ('no-left-border' if credit.details.blank?)}
+              = credit.details
 
             %td.credit-rating
               %strong
