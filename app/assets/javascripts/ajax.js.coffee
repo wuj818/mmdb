@@ -18,3 +18,11 @@ $ ->
       $.getScript location.href
       if ENV is 'production'
         ga 'send', 'pageview', location.pathname + location.search
+
+  $spinner = $('#spinner')
+
+  $(document).ajaxStart ->
+    $spinner.removeClass 'hidden'
+
+  $(document).ajaxStop ->
+    $spinner.addClass 'hidden'

@@ -1,8 +1,17 @@
-.nav-tabs {
-  margin-bottom: 20px;
+.navbar > .container .navbar-brand {
+  color: lawngreen;
+
+  &:hover {
+    color: white;
+  }
 }
 
 .nav-pills.nav-stacked {
+  margin-bottom: 20px;
+}
+
+
+.nav-tabs {
   margin-bottom: 20px;
 }
 
