@@ -37,12 +37,6 @@ class TagsController < ApplicationController
     end
   end
 
-  def countries_map
-    @title = 'Countries - Map'
-
-    render 'tags/countries/map'
-  end
-
   private
 
   def get_type

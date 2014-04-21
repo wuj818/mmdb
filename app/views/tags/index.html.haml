@@ -1,9 +1,6 @@
 - content_for :search do
   = render 'shared/search_form', target: search_tags_path, type: @type
 
-- if @type == 'countries'
-  = render 'tags/countries/tabs'
-
 .page-header
   %h1
     = link_to @type.titleize, send("#{@type}_path")

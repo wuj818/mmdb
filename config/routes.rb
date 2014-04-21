@@ -77,8 +77,6 @@ Mmdb::Application.routes.draw do
   get ':type(/total-at-least/:minimum)(/query/:q)' => 'tags#index',
     as: 'formatted_search_tags'
 
-  get '/countries/map' => 'tags#countries_map', as: 'countries_map', type: 'countries'
-
   [:genres, :keywords, :languages, :countries].each do |type|
     get ':type' => 'tags#index', as: "#{type}", type: type
     get ':type/:id' => 'tags#show'
