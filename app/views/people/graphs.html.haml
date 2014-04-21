@@ -6,16 +6,13 @@
     %span.divider /
     Graphs
 
-%script{src: 'http://www.google.com/jsapi', type: 'text/javascript'}
-%script{type: 'text/javascript'}
-  google.load('visualization', '1', {'packages': ['corechart']});
-
-#movie-history-line-graph
-
-%hr
-
-#movie-ratings-pie-chart
-
 - smart_cache  do
-  = render 'people/graphs/movie_history_line_graph'
-  = render 'people/graphs/movie_ratings_pie_chart'
+  %h4 Movie History
+
+  = movie_history_line_graph @person
+
+  %hr
+
+  %h4 Ratings History
+
+  = movie_ratings_pie_graph @person
