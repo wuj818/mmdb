@@ -23,8 +23,7 @@ gem 'font-awesome-rails', '4.0.3.1'
 group :development do
   gem 'mongrel', '1.2.0.pre2'
   gem 'rails3-generators'
-  gem 'capistrano', '2.9.0'
-  gem 'rvm-capistrano', '1.2.2'
+  gem 'rvm-capistrano', '1.5.1'
 
   gem 'wirble', '0.1.3'
   gem 'hirb', '0.7.1'
