@@ -1,11 +1,11 @@
-= form_tag target, method: 'get', class: 'form-inline' do
+= form_tag target, method: 'get', id: 'search-filters', class: 'form-inline' do
   = hidden_field_tag 'type', type.pluralize
 
-  .form-group{style: 'width: 250px'}
-    = text_field_tag :q, params[:q].blank? ? nil : params[:q], placeholder: "Search #{type.pluralize}...", class: 'form-control'
+  .form-group
+    = text_field_tag :q, params[:q].blank? ? nil : params[:q], placeholder: "Search #{type.pluralize}...", class: 'form-control', id: 'query-field'
 
   .form-group
-    .input-group{style: 'width: 140px;'}
+    .input-group#minimum-field
       .input-group-addon
         Total >=
 
