@@ -21,11 +21,18 @@ module Mmdb
     end
 
     config.active_record.observers = :countable_observer, :credit_observer, :movie_observer
+
     config.active_record.timestamped_migrations = false
+
     config.autoload_paths += %W(#{config.root}/lib)
+
     config.time_zone = 'Eastern Time (US & Canada)'
+
     config.filter_parameters += [:password]
+
     config.encoding = 'utf-8'
+
+    config.i18n.enforce_available_locales = false
 
     # Enable the asset pipeline
     config.assets.enabled = true
