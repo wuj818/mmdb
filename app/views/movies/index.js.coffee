@@ -1,2 +1,2 @@
-<% movies = j render('movies/list').squish.html_safe %>
+<% movies = j render('movies/list') %>
 $('#movies-container').html "<%= movies %>"

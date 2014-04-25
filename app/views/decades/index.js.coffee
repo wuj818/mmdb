@@ -1,2 +1,2 @@
-<% decades = j render('list').squish.html_safe %>
+<% decades = j render('list') %>
 $("#decades-container").html "<%= decades %>"

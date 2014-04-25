@@ -17,31 +17,31 @@
     = favicon_link_tag
 
     - if Rails.env.production?
-      = render('shared/google_analytics').squish.html_safe
+      = render 'shared/google_analytics'
 
   %body
     #env{class: Rails.env}
 
-    = render('layouts/navigation').squish.html_safe
+    = render 'layouts/navigation'
 
     #content.container
       .row
         .col-sm-2#sidebar
-          = render('layouts/sidebar_navigation').squish.html_safe
+          = render 'layouts/sidebar_navigation'
 
         .col-sm-10#main-content
-          = render('shared/flashes').squish.html_safe
+          = render 'shared/flashes'
 
-          = yield.squish.html_safe
+          = yield
 
           - unless Rails.env.test?
-            = render('shared/random_quote_carousel').squish.html_safe
+            = render 'shared/random_quote_carousel'
 
-      = render('layouts/footer').squish.html_safe
+      = render 'layouts/footer'
 
-    = render('shared/admin_controls_loader').squish.html_safe
+    = render 'shared/admin_controls_loader'
 
-    = render('shared/login_modal').squish.html_safe
+    = render 'shared/login_modal'
 
     #spinner.hidden
       = icon 'spinner spin'

@@ -1,2 +1,2 @@
-<% tags = j render('list').squish.html_safe %>
+<% tags = j render('list') %>
 $("#<%= @type %>-container").html "<%= tags %>"

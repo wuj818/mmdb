@@ -1,2 +1,2 @@
-<% people = j render('list').squish.html_safe %>
+<% people = j render('list') %>
 $('#people-container').html "<%= people %>"

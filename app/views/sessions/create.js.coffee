@@ -1,4 +1,4 @@
-<% flash = j render('shared/flashes').squish.html_safe %>
+<% flash = j render('shared/flashes') %>
 
 <% if admin? %>
   $.get '/admin-controls'
