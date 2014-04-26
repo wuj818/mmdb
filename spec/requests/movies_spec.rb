@@ -140,7 +140,7 @@ describe 'Movies' do
       integration_login
       click_link 'Add Movie'
 
-      fill_in 'IMDb', with: 'http://www.imdb.com/title/tt0118749/'
+      fill_in 'from-imdb-field', with: 'http://www.imdb.com/title/tt0118749/'
       click_button 'Submit'
 
       should_see 'Scrape results for "http://www.imdb.com/title/tt0118749/".'
