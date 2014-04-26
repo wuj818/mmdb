@@ -56,6 +56,8 @@ group :assets do
   gem 'bootstrap-sass', '3.1.1.1'
   gem 'less-rails', '2.5.0'
   gem 'sass-rails', '3.2.6'
+
+  gem 'turbo-sprockets-rails3', '0.3.11'
 end
 
 # for coffeescript views
