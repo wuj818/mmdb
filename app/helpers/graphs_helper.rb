@@ -24,7 +24,6 @@ module GraphsHelper
     history = person.movie_ratings_history
 
     graph_data = history.map { |h| { label: h.rating, value: h.total, percent: 9 } }
-    puts graph_data.inspect
 
     data = {
       'graph-data' => graph_data.to_json,

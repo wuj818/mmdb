@@ -112,6 +112,14 @@ describe Movie do
         @movie2.title.should == 'The Fly (1986)'
         @movie2.permalink.should == 'the-fly-1986'
       end
+
+      it 'is case sensitive' do
+        @movie1 = Movie.make! title: 'Robocop', year: 1987
+        @movie1.permalink.should == 'robocop'
+
+        @movie2 = Movie.make! title: 'RoboCop', year: 2014
+        @movie2.permalink.should == 'robocop-2014'
+      end
     end
 
     describe 'Sort title creation' do

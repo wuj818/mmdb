@@ -142,7 +142,7 @@ class Movie < ActiveRecord::Base
 
     result = self.title.to_permalink
 
-    unless Movie.where(title: self.title).empty?
+    unless Movie.where(permalink: result).empty?
       result << "-#{self.year}"
       self.title << " (#{self.year})"
     end
