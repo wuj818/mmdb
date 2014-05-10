@@ -8,8 +8,8 @@ gem 'haml-rails', '0.4'
 gem 'jquery-rails', '3.1.0'
 gem 'jquery-ui-rails', '4.2.1'
 
-gem 'escape_utils'
-gem 'kaminari', '0.13.0'
+gem 'escape_utils', '1.0.1'
+gem 'kaminari', '0.15.1'
 gem 'acts-as-taggable-on', '2.2.2'
 gem 'mechanize', '2.7.1'
 gem 'paperclip', '2.5.0'
@@ -21,14 +21,14 @@ gem 'figaro', '0.7.0'
 gem 'font-awesome-rails', '4.0.3.1'
 
 group :development do
-  gem 'mongrel', '1.2.0.pre2'
-  gem 'rails3-generators'
+  gem 'webrick', '1.3.1'
+  gem 'rails3-generators', '1.0.0'
   gem 'rvm-capistrano', '1.5.1'
 
   gem 'wirble', '0.1.3'
   gem 'hirb', '0.7.1'
-  gem 'rainbow', '1.1.4'
-  gem 'progressbar'
+  gem 'rainbow', '2.0.0'
+  gem 'progressbar', '0.21.0'
 end
 
 group :test, :development do
@@ -49,7 +49,7 @@ group :test do
 end
 
 group :production do
-  gem 'unicorn'
+  gem 'unicorn', '4.8.3'
 end
 
 group :assets do
