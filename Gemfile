@@ -20,13 +20,14 @@ gem 'therubyracer', '0.12.1'
 gem 'figaro', '0.7.0'
 gem 'font-awesome-rails', '4.0.3.1'
 
+gem 'wirble', '0.1.3'
+gem 'hirb', '0.7.1'
+
 group :development do
   gem 'webrick', '1.3.1'
   gem 'rails3-generators', '1.0.0'
   gem 'rvm-capistrano', '1.5.1'
 
-  gem 'wirble', '0.1.3'
-  gem 'hirb', '0.7.1'
   gem 'rainbow', '2.0.0'
   gem 'progressbar', '0.21.0'
 end
