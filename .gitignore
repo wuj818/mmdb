@@ -10,3 +10,4 @@ config/s3.yml
 config/unicorn.rb
 config/application.yml
 .sass-cache/
+config/deploy/production.rb
