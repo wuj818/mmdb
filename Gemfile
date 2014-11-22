@@ -26,7 +26,9 @@ gem 'hirb', '0.7.1'
 group :development do
   gem 'webrick', '1.3.1'
   gem 'rails3-generators', '1.0.0'
-  gem 'rvm-capistrano', '1.5.1'
+
+  gem 'capistrano-rails', '1.1.2'
+  gem 'capistrano-rvm', '0.1.2'
 
   gem 'rainbow', '2.0.0'
   gem 'progressbar', '0.21.0'
