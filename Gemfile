@@ -63,6 +63,8 @@ group :assets do
   gem 'sass-rails', '3.2.6'
 
   gem 'turbo-sprockets-rails3', '0.3.11'
+
+  gem 'sass', '3.2.19' # older version to prevent "can't dump anonymous class" bug
 end
 
 # for coffeescript views
