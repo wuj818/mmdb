@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source 'http://gemcutter.org'
 
-gem 'rails', '3.2.17'
+gem 'rails', '3.2.21'
 gem 'sqlite3', '1.3.7'
 
 gem 'haml-rails', '0.4'
@@ -59,7 +59,7 @@ end
 
 group :assets do
   gem 'bootstrap-sass', '3.1.1.1'
-  gem 'less-rails', '2.5.0'
+  gem 'less-rails', '2.6.0'
   gem 'sass-rails', '3.2.6'
 
   gem 'turbo-sprockets-rails3', '0.3.11'
