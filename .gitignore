@@ -10,3 +10,4 @@ config/s3.yml
 config/application.yml
 .sass-cache/
 config/deploy/production.rb
+puma.rb

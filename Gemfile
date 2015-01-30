@@ -14,7 +14,8 @@ gem 'acts-as-taggable-on', '2.2.2'
 gem 'mechanize', '2.7.1'
 gem 'paperclip', '2.5.0'
 gem 'aws-sdk', '1.3.2'
-gem 'dalli', '2.6.4'
+gem 'dalli', '2.7.2'
+gem 'connection_pool', '2.1.1'
 gem 'quiet_assets', '1.0.2'
 gem 'therubyracer', '0.12.1'
 gem 'figaro', '0.7.0'
@@ -27,6 +28,7 @@ group :development do
   gem 'webrick', '1.3.1'
   gem 'rails3-generators', '1.0.0'
 
+  gem 'capistrano3-puma', '0.8.5'
   gem 'capistrano-rails', '1.1.2'
   gem 'capistrano-rvm', '0.1.2'
 
@@ -49,6 +51,10 @@ group :test do
   gem 'capybara', '1.1.2'
   gem 'database_cleaner', '0.7.1'
   gem 'capybara-webkit', '0.13.0'
+end
+
+group :production do
+  gem 'puma', '2.11.0'
 end
 
 group :assets do
