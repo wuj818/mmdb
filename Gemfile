@@ -51,10 +51,6 @@ group :test do
   gem 'capybara-webkit', '0.13.0'
 end
 
-group :production do
-  gem 'unicorn', '4.8.3'
-end
-
 group :assets do
   gem 'bootstrap-sass', '3.1.1.1'
   gem 'less-rails', '2.5.0'
