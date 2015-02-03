@@ -24,6 +24,8 @@ gem 'font-awesome-rails', '4.0.3.1'
 gem 'wirble', '0.1.3'
 gem 'hirb', '0.7.1'
 
+gem 'cocaine', '0.3' # to prevent paperclip/imagemagick 'identify' errors
+
 group :development do
   gem 'webrick', '1.3.1'
   gem 'rails3-generators', '1.0.0'
