@@ -51,11 +51,11 @@ class DirkDiggler
   end
 
   def get_year
-    @year = @page.search('.header .nobr a').text.to_i rescue nil
+    @year = @page.search('#titleYear a').text.to_i rescue nil
   end
 
   def get_runtime
-    @runtime = @page.search('time').first.text.strip.to_i rescue nil
+    @runtime = @page.search('time').last.text.strip.to_i rescue nil
   end
 
   def get_rotten_tomatoes_url
