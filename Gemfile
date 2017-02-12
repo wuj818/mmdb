@@ -26,6 +26,8 @@ gem 'hirb', '0.7.1'
 
 gem 'cocaine', '0.3' # to prevent paperclip/imagemagick 'identify' errors
 
+gem 'libv8', '3.16.14.15'
+
 group :development do
   gem 'webrick', '1.3.1'
   gem 'rails3-generators', '1.0.0'
