@@ -212,7 +212,7 @@ class DirkDiggler
   end
 
   def get_info
-    get :title, :aka, :year, :runtime, :rotten_tomatoes_url, :synopsis
+    get :title, :aka, :year, :runtime#, :rotten_tomatoes_url, :synopsis
   end
 
   def get_tags
