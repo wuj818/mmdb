@@ -1,6 +1,8 @@
 require 'open-uri'
 
 class Movie < ActiveRecord::Base
+  include AlgoliaSearch
+
   include CreditScopesAndCounts
 
   acts_as_taggable_on :genres, :keywords, :languages, :countries
@@ -65,6 +67,30 @@ class Movie < ActiveRecord::Base
     Documentary  Drama      Family     Fantasy    Film-Noir  History
     Horror       Music      Musical    Mystery    Romance    Sci-Fi
     Short Sport  Thriller   War        Western )
+
+  algoliasearch index_name: "mmdb-#{Rails.env}-movie", disable_indexing: Rails.env.test? do
+    attribute :title, :aka, :synopsis, :year, :runtime, :rating, :director, :created_at
+
+    attribute :director do
+      credits.where(job: 'Director').includes(:person).map { |credit| credit.person.name }.join ', '
+    end
+
+    attribute :keyword_list do
+      keywords.map(&:name).join ' '
+    end
+
+    attribute :created_at_i do
+      created_at.to_i
+    end
+
+    searchableAttributes [:title, :aka, 'unordered(synopsis)', :director, :keyword_list]
+
+    tags do
+      keywords.map &:name
+    end
+
+    customRanking ['desc(rating)']
+  end
 
   def to_param
     self.permalink
