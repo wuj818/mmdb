@@ -36,7 +36,7 @@ describe DirkDiggler do
     describe 'Shortcuts' do
       describe '#get(:info)' do
         it 'scrapes IMDB for general information about the movie (title, year, etc)' do
-          items = [:title, :aka, :year, :runtime, :rotten_tomatoes_url, :synopsis]
+          items = [:title, :aka, :year, :runtime]
           items.each { |item| @diggler.should_receive("get_#{item.to_s}") { true } }
           @diggler.get :info
         end
