@@ -11,3 +11,4 @@ config/application.yml
 .sass-cache/
 config/deploy/production.rb
 puma.rb
+config/initializers/algolia.rb
