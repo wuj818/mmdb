@@ -83,6 +83,14 @@ class Movie < ActiveRecord::Base
       created_at.to_i
     end
 
+    attribute :thumbnail do
+      poster.url
+    end
+
+    attribute :path do
+      Rails.application.routes.url_helpers.movie_path self
+    end
+
     searchableAttributes [:title, :aka, 'unordered(synopsis)', :director, :keyword_list]
 
     tags do
