@@ -43,7 +43,7 @@ Mmdb::Application.configure do
   config.cache_store = :dalli_store, { pool_size: 2 }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = 'http://mmdb-assets.wuj818.com'
+  # config.action_controller.asset_host = 'http://mmdb-assets.wuj818.com'
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )

@@ -57,6 +57,7 @@ class Movie < ActiveRecord::Base
     path: '/posters/:style/:id/:filename',
     s3_credentials: S3_CREDENTIALS,
     s3_headers: S3_HEADERS,
+    s3_host_name: 's3-us-east-2.amazonaws.com',
     s3_host_alias: S3_HOST_ALIAS,
     url: S3_URL
 

@@ -11,6 +11,6 @@ S3_HEADERS = {
   'Cache-Control' => 'max-age=315360000, public'
 }
 
-S3_HOST_ALIAS = ':cdn.wuj818.com'
+S3_HOST_ALIAS = 'mmdb-bkt.wuj818.com'
 
 S3_URL = Rails.env.production? ? ':s3_alias_url' : ':s3_path_url'
