@@ -80,7 +80,7 @@
     .col-sm-9.col-lg-10
       = f.text_field :poster_url, class: 'form-control'
 
-      - if @movie.poster.exists?
+      - if @movie.poster?
         %br
         %br
         = image_tag @movie.poster.url(:original), width: 150, height: 220
