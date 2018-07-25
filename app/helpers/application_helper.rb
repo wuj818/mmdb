@@ -48,14 +48,6 @@ module ApplicationHelper
     cache str, expires_in: 2.weeks, &block
   end
 
-  def random_quote
-    quote = QUOTES.sample
-    source = quote.scan(/\A(.+?):/).flatten.first
-    quote.gsub! "#{source}: ", ''
-
-    content_tag :div, quote, class: 'random_quote', alt: source, title: source
-  end
-
   def active_nav_link?(name)
     name = name.to_s
     active = TagsController::TYPES.include?(name) ? @type : controller_name
@@ -91,18 +83,6 @@ module ApplicationHelper
     end
 
     content_tag :strong, format('%.2f', average), class: "#{color}-rating"
-  end
-
-  def random_quotes
-    all_quotes = []
-
-    QUOTES.each do |permalink, quotes|
-      quotes.each do |quote|
-        all_quotes << quote.merge(permalink: permalink)
-      end
-    end
-
-    all_quotes
   end
 
   def tag_link(tag, type, options = {})
