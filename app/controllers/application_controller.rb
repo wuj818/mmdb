@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   def block_google
     return if controller_name == 'pages' && action_name == 'main'
 
-    if request.user_agent.match /googlebot/i
+    if request.user_agent.to_s.match /googlebot/i
       render nothing: true, status: 410
     end
   end
