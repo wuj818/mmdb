@@ -21,8 +21,6 @@ gem 'therubyracer', '0.12.1'
 gem 'figaro', '0.7.0'
 gem 'font-awesome-rails', '4.0.3.1'
 
-gem 'algoliasearch-rails', '1.19.1'
-
 gem 'wirble', '0.1.3'
 gem 'hirb', '0.7.1'
 
@@ -47,8 +45,6 @@ group :test, :development do
 end
 
 group :test do
-  gem 'spork-rails', '3.2.0'
-  gem 'launchy', '2.0.5'
   gem 'machinist', '2.0'
   gem 'capybara', '1.1.2'
   gem 'database_cleaner', '0.7.1'
