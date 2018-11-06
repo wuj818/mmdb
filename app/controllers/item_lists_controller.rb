@@ -2,7 +2,7 @@ class ItemListsController < ApplicationController
   before_filter :authorize, only: [:new, :create, :edit, :update, :destroy, :reorder]
   before_filter :get_list, only: [:edit, :update, :destroy]
 
-  caches_action :show, expires_in: 2.weeks
+  # caches_action :show, expires_in: 2.weeks
 
   def index
     @title = 'Lists'

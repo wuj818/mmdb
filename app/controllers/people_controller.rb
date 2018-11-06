@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
   before_filter :authorize, only: [:edit, :update, :destroy]
   before_filter :get_person, only: [:edit, :update, :destroy]
 
-  caches_action :show, :graphs, :keywords, expires_in: 2.weeks
+  # caches_action :show, :graphs, :keywords, expires_in: 2.weeks
 
   def index
     @title = 'People'

@@ -20,7 +20,7 @@
         - css_class = 'top-keyword' if keyword.name == top_keyword
         - css_class = "#{css_class} percentage-popover"
         - fraction = "#{keyword.count}/#{total}"
-        - percentage = format('%.2f%', keyword.count / total.to_f * 100)
+        - percentage = format('%.2f%%', keyword.count / total.to_f * 100)
 
         = tag_link keyword, :keyword, class: css_class, data: { fraction: fraction, percentage: percentage }
 

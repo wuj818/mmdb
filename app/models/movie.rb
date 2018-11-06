@@ -42,11 +42,11 @@ class Movie < ActiveRecord::Base
 
   before_validation :clear_downloaded_poster, unless: :poster_url_provided?
 
-  has_many :credits, include: 'person', dependent: :destroy
+  has_many :credits, dependent: :destroy
 
   has_one :counter, as: 'countable', dependent: :destroy
 
-  has_many :listings, include: :item_list, dependent: :destroy
+  has_many :listings, dependent: :destroy
 
   has_attached_file :poster,
     styles: { large: '300x420!', medium: '150x210!', tiny: '20x28!' },
@@ -104,7 +104,7 @@ class Movie < ActiveRecord::Base
     end
   end
 
-  Credit::JOBS.values.each do |credit_type|
+  %w(directing writing composing editing cinematography acting).each do |credit_type|
     define_method "sorted_#{credit_type}_credits" do
       self.send("#{credit_type}_credits").joins(:person).order('sort_name')
     end

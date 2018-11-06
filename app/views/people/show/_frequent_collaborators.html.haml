@@ -9,7 +9,7 @@
   .panel-body
     - @person.frequent_collaborators.each_with_index do |person, i|
       - fraction = "#{person.count}/#{total}"
-      - percentage = format('%.2f%', person.count / total.to_f * 100)
+      - percentage = format('%.2f%%', person.count / total.to_f * 100)
 
       = link_to person.name, person, class: 'percentage-popover', data: { fraction: fraction, percentage: percentage }
 

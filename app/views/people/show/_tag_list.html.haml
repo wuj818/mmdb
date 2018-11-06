@@ -11,7 +11,7 @@
   %td
     - tags.each_with_index do |tag, i|
       - fraction = "#{tag.count}/#{@total}"
-      - percentage = format('%.2f%', tag.count / @total.to_f * 100)
+      - percentage = format('%.2f%%', tag.count / @total.to_f * 100)
 
       = tag_link tag, type,
         class: 'percentage-popover',

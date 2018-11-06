@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   def create
     @title = 'Login'
 
-    if params[:session][:password] == Figaro.env.mmdb_password
+    if params[:password] == Figaro.env.mmdb_password
       login_admin
 
       flash[:success] = 'Logged in successfully.'

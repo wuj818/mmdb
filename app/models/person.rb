@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
 
   before_save :create_sort_name
 
-  has_many :credits, include: 'movie', dependent: :destroy
+  has_many :credits, dependent: :destroy
 
   has_one :counter, as: 'countable', dependent: :destroy
 
@@ -37,7 +37,7 @@ class Person < ActiveRecord::Base
     self.permalink
   end
 
-  Credit::JOBS.values.each do |credit_type|
+  %w(directing writing composing editing cinematography acting).each do |credit_type|
     define_method "sorted_#{credit_type}_credits" do
       self.send("#{credit_type}_credits").joins(:movie).order('year DESC')
     end

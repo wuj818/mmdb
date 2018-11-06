@@ -11,5 +11,5 @@ class Listing < ActiveRecord::Base
       message: 'is already contained in this list.'
     }
 
-  default_scope order(:position)
+  default_scope -> { order(:position) }
 end

@@ -6,7 +6,7 @@ class ItemList < ActiveRecord::Base
 
   before_save :create_permalink
 
-  has_many :listings, include: 'movie', dependent: :destroy
+  has_many :listings, dependent: :destroy
   has_many :movies, through: :listings
 
   def to_param
