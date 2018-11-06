@@ -856,9 +856,6 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    turbo-sprockets-rails3 (0.2.9)
-      railties (>= 3.1.0)
-      sprockets (>= 2.0.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.19)
@@ -905,7 +902,6 @@ DEPENDENCIES
   sass-rails (= 5.0.7)
   sqlite3 (= 1.3.13)
   therubyracer (= 0.12.3)
-  turbo-sprockets-rails3 (= 0.2.9)
   uglifier (= 4.1.19)
   wirble (= 0.1.3)
 

@@ -49,8 +49,6 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'less-rails', '4.0.0'
 gem 'sass-rails', '5.0.7'
 
-gem 'turbo-sprockets-rails3', '0.2.9'
-
 # for coffeescript views
 gem 'coffee-rails', '4.2.2'
 gem 'uglifier', '4.1.19'
