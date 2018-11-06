@@ -1,4 +1,4 @@
-Mmdb::Application.routes.draw do
+Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   delete '/logout' => 'sessions#destroy'
   get '/integration-login' => 'sessions#integration_login',

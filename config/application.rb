@@ -2,46 +2,25 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require *Rails.groups(assets: %w(development test))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
-end
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
 
 module Mmdb
   class Application < Rails::Application
-    config.generators do |g|
-      g.template_engine :haml
-      g.test_framework :rspec,
-        view_specs: false,
-        routing_specs: false,
-        helpers: false,
-        integration_tool: false
-    end
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
 
-    config.active_record.observers = :countable_observer, :credit_observer, :movie_observer
-
-    config.active_record.timestamped_migrations = false
-
-    config.autoload_paths += %W(#{config.root}/lib)
-
+    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Eastern Time (US & Canada)'
 
-    config.filter_parameters += [:password]
+    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    # config.i18n.default_locale = :de
 
-    config.encoding = 'utf-8'
-
-    config.i18n.enforce_available_locales = false
-
-    # Enable the asset pipeline
-    config.assets.enabled = true
-
-    # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
-
-    config.assets.initialize_on_precompile = false
-
-    config.middleware.use Rack::ContentLength
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end
