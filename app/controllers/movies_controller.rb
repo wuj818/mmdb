@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
-  before_filter :authorize, only: [:new, :create, :edit, :update, :destroy, :scrape_info]
-  before_filter :get_movie, only: [:edit, :update, :destroy]
+  before_action :authorize, only: [:new, :create, :edit, :update, :destroy, :scrape_info]
+  before_action :get_movie, only: [:edit, :update, :destroy]
 
   # caches_action :show, :keywords, :perfect, expires_in: 2.weeks
 

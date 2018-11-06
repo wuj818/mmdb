@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include TagsHelper
   include PagesHelper
 
-  before_filter :block_google
+  before_action :block_google
 
   def search
     values = {}

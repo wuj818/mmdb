@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
-  before_filter :authorize
-  before_filter :get_list
+  before_action :authorize
+  before_action :get_list
 
   def new
     @title = %(New Movie for "#{@list.name}")

@@ -1,6 +1,6 @@
 class CreditsController < ApplicationController
-  before_filter :authorize
-  before_filter :get_person
+  before_action :authorize
+  before_action :get_person
 
   def new
     @title = %(New Credit for "#{@person.name}")

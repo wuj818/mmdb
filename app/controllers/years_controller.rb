@@ -1,5 +1,5 @@
 class YearsController < ApplicationController
-  before_filter :get_year, only: [:show]
+  before_action :get_year, only: [:show]
 
   def index
     @title = 'Years'

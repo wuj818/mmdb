@@ -1,5 +1,5 @@
 class DecadesController < ApplicationController
-  before_filter :get_decade, only: [:show]
+  before_action :get_decade, only: [:show]
 
   DECADES = (1890..2010).step(10)
 

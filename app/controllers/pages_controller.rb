@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :authorize, only: [:clear_cache]
+  before_action :authorize, only: [:clear_cache]
 
   def main
     @title = 'My Movie Database'

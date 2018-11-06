@@ -17,5 +17,7 @@ module Mmdb
     # the framework and any gems in your application.
 
     config.time_zone = 'Eastern Time (US & Canada)'
+
+    config.autoload_paths << Rails.root.join('lib')
   end
 end
