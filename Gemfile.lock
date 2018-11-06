@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actioncable (5.2.1)
       actionpack (= 5.2.1)
@@ -648,6 +648,8 @@ GEM
       aws-sigv4 (~> 1.0)
     aws-sigv2 (1.0.1)
     aws-sigv4 (1.0.3)
+    bootsnap (1.3.2)
+      msgpack (~> 1.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -748,6 +750,10 @@ GEM
       less (~> 2.6.0)
       sprockets (>= 2)
     libv8 (3.16.14.19)
+    listen (3.1.5)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -773,6 +779,7 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
+    msgpack (1.2.4)
     net-http-digest_auth (1.4.1)
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
@@ -841,6 +848,7 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    ruby_dep (1.5.0)
     ruby_parser (3.11.0)
       sexp_processor (~> 4.9)
     sass (3.6.0)
@@ -896,6 +904,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (= 6.0.0)
   aws-sdk (= 3.0.1)
+  bootsnap (= 1.3.2)
   bootstrap-sass (= 3.3.7)
   capistrano-rails (= 1.4.0)
   capistrano-rvm (= 0.1.2)
@@ -913,6 +922,7 @@ DEPENDENCIES
   kaminari (= 1.1.1)
   less-rails (= 4.0.0)
   libv8 (= 3.16.14.19)
+  listen (= 3.1.5)
   machinist (= 2.0)
   mechanize (= 2.7.6)
   paperclip (= 6.1.0)

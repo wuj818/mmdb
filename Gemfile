@@ -1,4 +1,5 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'rails', '5.2.1'
 gem 'sqlite3', '1.3.13'
@@ -50,3 +51,9 @@ gem 'sass-rails', '5.0.7'
 # for coffeescript viewsg
 gem 'coffee-rails', '4.2.2'
 gem 'uglifier', '4.1.19'
+
+gem 'bootsnap', '1.3.2', require: false
+
+group :development do
+  gem 'listen', '3.1.5'
+end
