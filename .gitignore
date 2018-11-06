@@ -12,3 +12,4 @@ config/application.yml
 config/deploy/production.rb
 puma.rb
 config/initializers/algolia.rb
+config/secrets.yml
