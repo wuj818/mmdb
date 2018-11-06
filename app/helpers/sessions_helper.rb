@@ -1,10 +1,10 @@
 module SessionsHelper
   def admin?
-    cookies.signed[:admin] == Figaro.env.mmdb_password
+    cookies.signed[:admin] == Rails.application.secrets.password
   end
 
   def login_admin
-    cookies.permanent.signed[:admin] = Figaro.env.mmdb_password
+    cookies.permanent.signed[:admin] = Rails.application.secrets.password
   end
 
   def logout_admin

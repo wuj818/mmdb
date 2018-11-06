@@ -24,7 +24,7 @@ describe SessionsController do
   describe 'POST create (Login)' do
     context 'with valid password' do
       it 'logs in the admin' do
-        post :create, session: { password: Figaro.env.mmdb_password }
+        post :create, session: { password: Rails.application.secrets.password }
 
         response.should redirect_to root_path
         controller.should be_admin

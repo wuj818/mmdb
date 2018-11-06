@@ -16,7 +16,6 @@ gem 'dalli', '2.7.9'
 gem 'connection_pool', '2.2.2'
 gem 'quiet_assets', '1.1.0'
 gem 'therubyracer', '0.12.3'
-gem 'figaro', '1.1.1'
 gem 'font-awesome-rails', '4.7.0.4'
 
 gem 'wirble', '0.1.3'
