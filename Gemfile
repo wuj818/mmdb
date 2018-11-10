@@ -17,7 +17,6 @@ gem 'paperclip', '6.1.0'
 gem 'aws-sdk', '3.0.1'
 gem 'dalli', '2.7.9'
 gem 'connection_pool', '2.2.2'
-gem 'therubyracer', '0.12.3'
 gem 'font-awesome-rails', '4.7.0.4'
 
 gem 'bootstrap-sass', '3.3.7'
@@ -29,7 +28,7 @@ gem 'rails-observers', '0.1.5'
 
 gem 'bootsnap', '1.3.2', require: false
 
-gem 'libv8', '3.16.14.19'
+gem 'mini_racer', '0.2.4', platforms: :ruby
 
 group :development do
   gem 'capistrano3-puma', '3.1.1'
