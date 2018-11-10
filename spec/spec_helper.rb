@@ -8,9 +8,6 @@ require 'database_cleaner'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  Capybara.save_and_open_page_path = "#{Rails.root}/tmp/capybara"
-  Capybara.default_selector = :css
-  Capybara.javascript_driver = :webkit
   ActiveSupport::Dependencies.clear
 
   config.mock_with :rspec
@@ -22,17 +19,10 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    if example.metadata[:js]
-      DatabaseCleaner.strategy = :truncation
-    end
-    Capybara.reset_sessions!
     DatabaseCleaner.start
   end
 
   config.after(:each) do
-    if example.metadata[:js]
-      DatabaseCleaner.strategy = :transaction
-    end
     DatabaseCleaner.clean
   end
 

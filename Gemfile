@@ -35,9 +35,7 @@ end
 
 group :test do
   gem 'machinist', '2.0'
-  gem 'capybara', '3.10.1'
   gem 'database_cleaner', '1.7.0'
-  # gem 'capybara-webkit', '0.13.0'
 end
 
 group :production do
