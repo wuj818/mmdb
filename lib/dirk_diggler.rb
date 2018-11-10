@@ -43,11 +43,11 @@ class DirkDiggler
   private
 
   def get_title
-    @title = @page.search('title').text.gsub(/ \(\d{4}\) - IMDb/, '') rescue nil
+    @title = @page.search('head title').text.gsub(/ \(\d{4}\) - IMDb/, '') rescue nil
   end
 
   def get_aka
-    @aka = @page.search('.title-extra').text.gsub('(original title)', '').strip rescue nil
+    @aka = @page.search('.originalTitle').text.gsub('(original title)', '').squish rescue nil
   end
 
   def get_year
@@ -55,7 +55,7 @@ class DirkDiggler
   end
 
   def get_runtime
-    @runtime = @page.search('time').last.text.strip.to_i rescue nil
+    @runtime = @page.search('time').last.text.squish.to_i rescue nil
   end
 
   def get_rotten_tomatoes_url
@@ -82,25 +82,25 @@ class DirkDiggler
     get_rotten_tomatoes_url if rotten_tomatoes_url.nil?
     page = @agent.get(rotten_tomatoes_url) rescue return
     result = page.at('#movieSynopsis').text rescue ''
-    result = result.gsub(/\s{2,}/, ' ').gsub(/\/\*.+/m, '').strip
+    result = result.gsub(/\s{2,}/, ' ').gsub(/\/\*.+/m, '').squish
     @synopsis = result
   end
 
   def get_genres
-    @genres = @page.links_with(href: %r(/genre/\w)).map(&:text).map(&:strip).uniq.sort rescue []
+    @genres = @page.links_with(href: %r(genres=)).map(&:text).map(&:squish).uniq.sort rescue []
   end
 
   def get_keywords
     page = @agent.get("#{@target}keywords") rescue return
-    @keywords = page.links_with(href: %r(/keyword/\w)).map(&:text).map(&:strip).uniq.sort rescue []
+    @keywords = page.links_with(href: %r(/keyword/\w)).map(&:text).map(&:squish).uniq.sort rescue []
   end
 
   def get_languages
-    @languages = @page.links_with(href: %r(/language/\w)).map(&:text).map(&:strip).uniq.sort rescue []
+    @languages = @page.links_with(href: %r(primary_language=)).map(&:text).map(&:squish).uniq.sort rescue []
   end
 
   def get_countries
-    @countries = @page.links_with(href: %r(/country/\w)).map(&:text).map(&:strip).sort rescue []
+    @countries = @page.links_with(href: %r(country_of_origin=)).map(&:text).map(&:squish).sort rescue []
   end
 
   def get_directors
@@ -116,8 +116,8 @@ class DirkDiggler
       end
 
       @directors[url] = {}
-      @directors[url][:name] = row.search('.name').text.strip
-      @directors[url][:details] = row.search('.credit').text.strip
+      @directors[url][:name] = row.search('.name').text.squish
+      @directors[url][:details] = row.search('.credit').text.squish
     end
   end
 
@@ -134,8 +134,8 @@ class DirkDiggler
       end
 
       @writers[url] = {}
-      @writers[url][:name] = row.search('.name').text.strip
-      @writers[url][:details] = row.search('.credit').text.strip
+      @writers[url][:name] = row.search('.name').text.squish
+      @writers[url][:details] = row.search('.credit').text.squish
     end
   end
 
@@ -152,8 +152,8 @@ class DirkDiggler
       end
 
       @composers[url] = {}
-      @composers[url][:name] = row.search('.name').text.strip
-      @composers[url][:details] = row.search('.credit').text.strip
+      @composers[url][:name] = row.search('.name').text.squish
+      @composers[url][:details] = row.search('.credit').text.squish
     end
   end
 
@@ -170,8 +170,8 @@ class DirkDiggler
       end
 
       @editors[url] = {}
-      @editors[url][:name] = row.search('.name').text.strip
-      @editors[url][:details] = row.search('.credit').text.strip
+      @editors[url][:name] = row.search('.name').text.squish
+      @editors[url][:details] = row.search('.credit').text.squish
     end
   end
 
@@ -188,8 +188,8 @@ class DirkDiggler
       end
 
       @cinematographers[url] = {}
-      @cinematographers[url][:name] = row.search('.name').text.strip
-      @cinematographers[url][:details] = row.search('.credit').text.strip
+      @cinematographers[url][:name] = row.search('.name').text.squish
+      @cinematographers[url][:details] = row.search('.credit').text.squish
     end
   end
 
@@ -199,15 +199,18 @@ class DirkDiggler
     rows = page.search('.cast_list tr') rescue return
     rows.each do |row|
       begin
-        link = row.search('.itemprop a').first
+        link = row.search('a').first
         url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+
+        name = row.search('td')[1].text.squish
+        details = row.search('.character').text.squish
       rescue
         next
       end
 
       @actors[url] = {}
-      @actors[url][:name] = link.text.strip.gsub /\s+/, ' '
-      @actors[url][:details] = row.search('.character').text.strip.gsub /\s+/, ' '
+      @actors[url][:name] = name
+      @actors[url][:details] = details
     end
   end
 
