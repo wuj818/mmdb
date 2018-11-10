@@ -62,6 +62,14 @@ class PeopleController < ApplicationController
 
   private
 
+  def person_params
+    params.fetch(:person).permit!
+  end
+
+  def get_person
+    @person = Person.find_by_permalink! params[:id]
+  end
+
   def order
     params[:sort] ||= 'name'
 
@@ -83,9 +91,5 @@ class PeopleController < ApplicationController
     result = "#{column} #{params[:order]}"
     result << ', sort_name asc' unless params[:sort] == 'name'
     result
-  end
-
-  def get_person
-    @person = Person.find_by_permalink! params[:id]
   end
 end

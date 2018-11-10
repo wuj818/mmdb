@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ItemListsController do
   def mock_list(stubs={})
@@ -10,8 +10,6 @@ describe ItemListsController do
   describe 'GET new' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        ItemList.stub find_by_permalink: mock_list
-
         get :new
 
         response.should redirect_to login_path
@@ -22,9 +20,7 @@ describe ItemListsController do
   describe 'GET edit' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        ItemList.stub find_by_permalink: mock_list
-
-        get :edit, id: '1'
+        get :edit, params: { id: '1' }
 
         response.should redirect_to login_path
       end
@@ -34,8 +30,6 @@ describe ItemListsController do
   describe 'POST create' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        ItemList.stub find_by_permalink: mock_list
-
         post :create
 
         response.should redirect_to login_path
@@ -46,9 +40,7 @@ describe ItemListsController do
   describe 'PUT update' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        ItemList.stub find_by_permalink: mock_list
-
-        put :update, id: '1'
+        put :update, params: { id: '1' }
 
         response.should redirect_to login_path
       end
@@ -58,9 +50,7 @@ describe ItemListsController do
   describe 'DELETE destroy' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        ItemList.stub find_by_permalink: mock_list
-
-        delete :destroy, id: '1'
+        delete :destroy, params: { id: '1' }
 
         response.should redirect_to login_path
       end
@@ -70,9 +60,7 @@ describe ItemListsController do
   describe 'PUT reorder' do
     context 'when not logged in' do
       it 'redirect_to to the login page' do
-        ItemList.stub find_by_permalink: mock_list
-
-        put :reorder, id: '1'
+        put :reorder, params: { id: '1' }
 
         response.should redirect_to login_path
       end

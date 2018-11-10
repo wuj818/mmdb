@@ -1,16 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PeopleController do
-  def mock_person(stubs={})
-    (@mock_person ||= mock_model(Person).as_null_object).tap do |person|
-      person.stub stubs.merge({ blank?: false })
-    end
-  end
-
   describe 'GET edit' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        get :edit, id: '1'
+        get :edit, params: { id: '1' }
 
         response.should redirect_to login_path
       end
@@ -20,7 +14,7 @@ describe PeopleController do
   describe 'PUT update' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        put :update, id: '1'
+        put :update, params: { id: '1' }
 
         response.should redirect_to login_path
       end
@@ -30,7 +24,7 @@ describe PeopleController do
   describe 'DELETE destroy' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        delete :destroy, id: '1'
+        delete :destroy, params: { id: '1' }
 
         response.should redirect_to login_path
       end
@@ -39,7 +33,7 @@ describe PeopleController do
 
   describe 'GET search' do
     it 'filters the index page by the search parameter' do
-      get :search, q: 'Paul Thomas Anderson'
+      get :search, params: { q: 'Paul Thomas Anderson' }
 
       response.should redirect_to formatted_search_people_path q: 'Paul Thomas Anderson'
     end

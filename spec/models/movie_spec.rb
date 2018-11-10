@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Movie do
   it_behaves_like 'a creditable object' do

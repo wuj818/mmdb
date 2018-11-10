@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DirkDiggler do
   before { Mechanize.stub new: mock('Mechanize', 'user_agent=' => true, get: true) }

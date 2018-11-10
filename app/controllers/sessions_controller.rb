@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       flash[:success] = 'Logged in successfully.'
 
       respond_to do |format|
-        format.html { redirect_back_or_to root_path }
+        format.html { redirect_back fallback_location: root_path }
         format.js
       end
     else
@@ -40,12 +40,6 @@ class SessionsController < ApplicationController
       flash[:warning] = 'You are not logged in.'
     end
 
-    redirect_to :back
-  end
-
-  def integration_login
-    login_admin
-
-    redirect_to root_path
+    redirect_back fallback_location: root_path
   end
 end

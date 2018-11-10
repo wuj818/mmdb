@@ -38,7 +38,7 @@ class MoviesController < ApplicationController
   def create
     @title = 'New Movie'
 
-    @movie = Movie.new params[:movie]
+    @movie = Movie.new movie_params
 
     if @movie.save
       flash[:success] = %("#{@movie.title}" was successfully added.)
@@ -52,7 +52,7 @@ class MoviesController < ApplicationController
   def update
     @title = %(Edit "#{@movie.full_title}")
 
-    if @movie.update_attributes params[:movie]
+    if @movie.update_attributes movie_params
       flash[:success] = %("#{@movie.title}" was successfully edited.)
 
       redirect_to @movie
@@ -101,6 +101,10 @@ class MoviesController < ApplicationController
   end
 
   private
+
+  def movie_params
+    params.fetch(:movie).permit!
+  end
 
   def get_movie
     @movie = Movie.find_by_permalink! params[:id]

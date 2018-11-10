@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CreditObserver do
   it "increments a countable object's credit counts after credit creation" do

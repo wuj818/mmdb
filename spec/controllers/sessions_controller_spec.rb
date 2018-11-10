@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SessionsController do
   describe 'GET new' do
     context 'when logged in' do
       it 'redirects to the home page' do
-        test_login
+        controller.login_admin
 
         get :new
 
@@ -24,7 +24,7 @@ describe SessionsController do
   describe 'POST create (Login)' do
     context 'with valid password' do
       it 'logs in the admin' do
-        post :create, session: { password: Rails.application.secrets.password }
+        post :create, params: { password: Rails.application.secrets.password }
 
         response.should redirect_to root_path
         controller.should be_admin
@@ -33,7 +33,7 @@ describe SessionsController do
 
     context 'with invalid password' do
       it 're-renders the login form' do
-        post :create, session: { password: 'wrong' }
+        post :create, params: { password: 'wrong' }
 
         response.should_not be_redirect
         controller.should_not be_admin
@@ -46,7 +46,7 @@ describe SessionsController do
 
     context 'when logged in' do
       it 'logs out the admin' do
-        test_login
+        controller.login_admin
 
         delete :destroy
 

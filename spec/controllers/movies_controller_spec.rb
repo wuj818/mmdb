@@ -1,18 +1,12 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MoviesController do
-  def mock_movie(stubs={})
-    (@mock_movie ||= mock_model(Movie).as_null_object).tap do |movie|
-      movie.stub(stubs.merge({ blank?: false }))
-    end
-  end
-
   describe 'GET new' do
     context 'when logged in' do
       it 'renders the "from_imdb" template if the param is present' do
-        test_login
+        controller.login_admin
 
-        get :new, from_imdb: true
+        get :new, params: { from_imdb: true }
 
         response.should render_template :from_imdb
       end
@@ -30,7 +24,7 @@ describe MoviesController do
   describe 'GET edit' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        get :edit, id: '1'
+        get :edit, params: { id: '1' }
 
         response.should redirect_to login_path
       end
@@ -50,7 +44,7 @@ describe MoviesController do
   describe 'PUT update' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        put :update, id: '1'
+        put :update, params: { id: '1' }
 
         response.should redirect_to login_path
       end
@@ -60,7 +54,7 @@ describe MoviesController do
   describe 'DELETE destroy' do
     context 'when not logged in' do
       it 'redirects to the login page' do
-        delete :destroy, id: '1'
+        delete :destroy, params: { id: '1' }
 
         response.should redirect_to login_path
       end
@@ -69,13 +63,11 @@ describe MoviesController do
 
   describe 'POST scrape_info' do
     context 'when logged in' do
-      before { test_login }
+      before { controller.login_admin }
 
       describe 'with valid params' do
         it 'renders the "new" template' do
-          Movie.stub(:new) { mock_movie }
-
-          post :scrape_info, imdb_url: 'http://www.imdb.com/title/tt0118749/'
+          post :scrape_info, params: { imdb_url: 'http://www.imdb.com/title/tt0118749/' }
 
           response.should render_template :new
         end
@@ -101,7 +93,7 @@ describe MoviesController do
 
   describe 'GET search' do
     it 'filters the index page by the search parameter' do
-      get :search, q: 'Boogie Nights'
+      get :search, params: { q: 'Boogie Nights' }
 
       response.should redirect_to formatted_search_movies_path q: 'Boogie Nights'
     end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CountableObserver do
   it 'creates a counter for a countable object after creation' do
