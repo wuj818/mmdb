@@ -16,7 +16,6 @@ gem 'mechanize', '2.7.6'
 gem 'paperclip', '6.1.0'
 gem 'aws-sdk', '3.0.1'
 gem 'dalli', '2.7.9'
-gem 'connection_pool', '2.2.2'
 gem 'font-awesome-rails', '4.7.0.4'
 
 gem 'bootstrap-sass', '3.3.7'
