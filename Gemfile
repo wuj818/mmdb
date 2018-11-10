@@ -50,7 +50,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'machinist', '2.0'
+  gem 'factory_bot_rails', '4.11.1'
 end
 
 gem 'wirble', '0.1.3'

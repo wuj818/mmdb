@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe DirkDiggler do
-  before { Mechanize.stub new: mock('Mechanize', 'user_agent=' => true, get: true) }
+  before { Mechanize.stub new: instance_double('Mechanize', 'user_agent=' => true, get: true) }
 
   it 'requires an IMDB url' do
     lambda { DirkDiggler.new }.should raise_error ArgumentError
@@ -21,32 +21,32 @@ describe DirkDiggler do
   end
 
   describe '#get(*items)' do
-    before { @diggler = DirkDiggler.new 'http://www.imdb.com/title/tt0118749/' }
+    let(:diggler) { DirkDiggler.new 'http://www.imdb.com/title/tt0118749/' }
 
     it 'scrapes IMDB for the specified item(s)' do
-      @diggler.should_receive(:get_title) { true }
-      @diggler.get :title
-      @diggler.should respond_to
+      diggler.should_receive(:get_title) { true }
+      diggler.get :title
+      diggler.should respond_to
 
-      @diggler.should_receive(:get_year) { true }
-      @diggler.should_receive(:get_runtime) { true }
-      @diggler.get :year, :runtime
+      diggler.should_receive(:get_year) { true }
+      diggler.should_receive(:get_runtime) { true }
+      diggler.get :year, :runtime
     end
 
     describe 'Shortcuts' do
       describe '#get(:info)' do
         it 'scrapes IMDB for general information about the movie (title, year, etc)' do
           items = [:title, :aka, :year, :runtime]
-          items.each { |item| @diggler.should_receive("get_#{item.to_s}") { true } }
-          @diggler.get :info
+          items.each { |item| diggler.should_receive("get_#{item.to_s}") { true } }
+          diggler.get :info
         end
       end
 
       describe '#get(:tags)' do
         it "scrapes IMDB for a movie's tags (genres, keywords, etc)" do
           items = [:genres, :keywords, :languages, :countries]
-          items.each { |item| @diggler.should_receive("get_#{item.to_s}") { true } }
-          @diggler.get :tags
+          items.each { |item| diggler.should_receive("get_#{item.to_s}") { true } }
+          diggler.get :tags
         end
       end
     end

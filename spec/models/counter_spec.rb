@@ -10,7 +10,7 @@ describe Counter do
 
   describe 'Callbacks' do
     it 'is deleted when the associated countable object is deleted' do
-      @movie = Movie.make!
+      @movie = create :movie
       @counter = @movie.counter
       @movie.destroy
       lambda { @counter.reload }.should raise_error
