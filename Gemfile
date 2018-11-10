@@ -52,6 +52,8 @@ gem 'uglifier', '4.1.19'
 
 gem 'bootsnap', '1.3.2', require: false
 
+gem 'rails-observers', '0.1.5'
+
 group :development do
   gem 'listen', '3.1.5'
 end
