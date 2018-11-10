@@ -37,7 +37,6 @@ end
 
 group :test do
   gem 'machinist', '2.0'
-  gem 'database_cleaner', '1.7.0'
 end
 
 group :production do
