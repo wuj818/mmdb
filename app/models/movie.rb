@@ -57,6 +57,8 @@ class Movie < ActiveRecord::Base
     s3_headers: S3_HEADERS,
     s3_host_name: 's3-us-east-2.amazonaws.com'
 
+  validates_attachment_content_type :poster, content_type: /\Aimage\/.*\z/
+
   before_post_process :shorten_filename
 
   GENRES = %w(
