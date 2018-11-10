@@ -4,7 +4,7 @@ describe Counter do
   describe 'Associations' do
     it 'belongs to Countable (Movie/Person)' do
       @counter = Counter.new
-      @counter.countable.should be_blank
+      expect(@counter.countable).to be_blank
     end
   end
 
@@ -13,7 +13,7 @@ describe Counter do
       @movie = create :movie
       @counter = @movie.counter
       @movie.destroy
-      lambda { @counter.reload }.should raise_error
+      expect { @counter.reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 end

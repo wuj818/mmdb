@@ -13,15 +13,15 @@ describe Movie do
     let(:movie) { Movie.new }
 
     it 'has a default rating of 0' do
-      movie.rating.should == 0
+      expect(movie.rating).to eq 0
     end
 
     it 'has a default runtime of 0' do
-      movie.runtime.should == 0
+      expect(movie.runtime).to eq 0
     end
 
     it 'has a default credits count of 0' do
-      movie.credits_count.should == 0
+      expect(movie.credits_count).to eq 0
     end
   end
 
@@ -31,7 +31,7 @@ describe Movie do
 
     it 'has required attributes' do
       [:title, :imdb_url, :year].each do |attribute|
-        empty_movie.errors[attribute].should include "can't be blank"
+        expect(empty_movie.errors[attribute]).to include "can't be blank"
       end
     end
 
@@ -41,7 +41,7 @@ describe Movie do
       @duplicate_movie.title = movie.title
       @duplicate_movie.year = movie.year
 
-      @duplicate_movie.should_not be_valid
+      expect(@duplicate_movie).not_to be_valid
     end
 
     it 'has a unique IMDB url' do
@@ -49,7 +49,7 @@ describe Movie do
 
       empty_movie.save
 
-      empty_movie.errors[:imdb_url].should include 'has already been taken'
+      expect(empty_movie.errors[:imdb_url]).to include 'has already been taken'
     end
 
     it 'has a unique permalink' do
@@ -57,37 +57,37 @@ describe Movie do
 
       empty_movie.save
 
-      empty_movie.errors[:permalink].should include 'has already been taken'
+      expect(empty_movie.errors[:permalink]).to include 'has already been taken'
     end
 
     it 'has a valid year (1890..3000)' do
       [1889, 3001].each do |year|
         movie.year = year
-        movie.should_not be_valid
+        expect(movie).not_to be_valid
       end
 
       movie.year = 2000
-      movie.should be_valid
+      expect(movie).to be_valid
     end
 
     it 'has a valid rating (0..10)' do
       [-1, 11].each do |rating|
         movie.rating = rating
-        movie.should_not be_valid
+        expect(movie).not_to be_valid
       end
 
       movie.rating = 10
-      movie.should be_valid
+      expect(movie).to be_valid
     end
 
     it 'has a valid runtime (0..300)' do
       [-8, 301].each do |runtime|
         movie.runtime = runtime
-        movie.should_not be_valid
+        expect(movie).not_to be_valid
       end
 
       movie.runtime = 120
-      movie.should be_valid
+      expect(movie).to be_valid
     end
   end
 
@@ -95,39 +95,39 @@ describe Movie do
     describe 'Permalink creation' do
       it 'automatically creates a permalink from the title' do
         @movie = build :movie, title: 'Boogie Nights'
-        @movie.permalink.should be_blank
+        expect(@movie.permalink).to be_blank
 
         @movie.save
 
-        @movie.permalink.should == 'boogie-nights'
+        expect(@movie.permalink).to eq 'boogie-nights'
       end
 
       it 'resolves duplicates by appending the year to the permalink and the title' do
         @movie1 = create :movie, title: 'The Fly', year: 1958
-        @movie1.permalink.should == 'the-fly'
+        expect(@movie1.permalink).to eq 'the-fly'
 
         @movie2 = create :movie, title: 'The Fly', year: 1986
-        @movie2.title.should == 'The Fly (1986)'
-        @movie2.permalink.should == 'the-fly-1986'
+        expect(@movie2.title).to eq 'The Fly (1986)'
+        expect(@movie2.permalink).to eq 'the-fly-1986'
       end
 
       it 'is case sensitive' do
         @movie1 = create :movie, title: 'Robocop', year: 1987
-        @movie1.permalink.should == 'robocop'
+        expect(@movie1.permalink).to eq 'robocop'
 
         @movie2 = create :movie, title: 'RoboCop', year: 2014
-        @movie2.permalink.should == 'robocop-2014'
+        expect(@movie2.permalink).to eq 'robocop-2014'
       end
     end
 
     describe 'Sort title creation' do
       it 'copies a lowercase transliterated version of the title if the sort title is blank' do
         @movie = build :movie
-        @movie.sort_title.should be_blank
+        expect(@movie.sort_title).to be_blank
 
         @movie.save
 
-        @movie.sort_title.should == @movie.title.to_sort_column
+        expect(@movie.sort_title).to eq @movie.title.to_sort_column
       end
     end
   end
@@ -137,7 +137,7 @@ describe Movie do
 
     describe '#get_preliminary_info' do
       it 'scrapes IMDB for general information about the movie (title, year, etc)' do
-        DirkDiggler.stub new: instance_double('DirkDiggler', get: true,
+        allow(DirkDiggler).to receive(:new).and_return instance_double('DirkDiggler', get: true,
           data: {
             imdb_url: 'http://www.imdb.com/title/tt0118749/',
             title: 'Boogie Nights' })
@@ -145,13 +145,13 @@ describe Movie do
         movie.get_preliminary_info
         movie.save
 
-        movie.imdb_url.should == 'http://www.imdb.com/title/tt0118749/'
-        movie.title.should == 'Boogie Nights'
+        expect(movie.imdb_url).to eq 'http://www.imdb.com/title/tt0118749/'
+        expect(movie.title).to eq 'Boogie Nights'
       end
 
       it 'can only be called on new records' do
         movie = create :movie
-        movie.get_preliminary_info.should == false
+        expect(movie.get_preliminary_info).to eq false
       end
     end
   end
@@ -163,23 +163,24 @@ describe Movie do
       it 'updates the rating for a movie' do
         movie.rate 10
         movie.reload
-        movie.rating.should == 10
+        expect(movie.rating).to eq 10
       end
     end
 
     describe 'add_genre(*genres)' do
       before do
         %w(genre keyword language country).each do |tag_type|
-          movie.should respond_to "add_#{tag_type}"
+          expect(movie).to respond_to "add_#{tag_type}"
         end
       end
 
       it "adds the specified genre(s) to a movie's genre list" do
         movie.add_genre 'Drama'
-        movie.genre_list.should include 'Drama'
+        expect(movie.genre_list).to include 'Drama'
+
         movie.add_genre 'Comedy', 'Comedy', 'Thriller'
         %w(Drama Comedy Thriller).each do |genre|
-          movie.genre_list.should include genre
+          expect(movie.genre_list).to include genre
         end
       end
     end
@@ -187,20 +188,18 @@ describe Movie do
     describe 'remove_genre(*genres)' do
       before do
         %w(genre keyword language country).each do |tag_type|
-          movie.should respond_to "remove_#{tag_type}"
+          expect(movie).to respond_to "remove_#{tag_type}"
         end
       end
 
       it "removes the specified genre(s) from a movie's genre list" do
         movie.add_genre 'Drama', 'Comedy', 'Thriller', 'Sci-Fi'
         movie.remove_genre 'Sci-Fi'
-
-        movie.genre_list.should_not include 'Sci-Fi'
+        expect(movie.genre_list).not_to include 'Sci-Fi'
 
         movie.remove_genre 'Drama', 'Comedy'
-
         %w(Drama Comedy).each do |genre|
-          movie.genre_list.should_not include genre
+          expect(movie.genre_list).not_to include genre
         end
       end
     end

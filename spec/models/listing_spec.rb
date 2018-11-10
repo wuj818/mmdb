@@ -5,11 +5,11 @@ describe Listing do
     let(:listing) { Listing.new }
 
     it 'belongs to Item List' do
-      listing.item_list.should be_blank
+      expect(listing).to respond_to :item_list
     end
 
     it 'belongs to Movie' do
-      listing.movie.should be_blank
+      expect(listing).to respond_to :movie
     end
   end
 
@@ -19,7 +19,7 @@ describe Listing do
 
     it 'has required attributes/associations' do
       [:item_list, :movie].each do |attribute|
-        empty_listing.errors[attribute].should include "can't be blank"
+        expect(empty_listing.errors[attribute]).to include "can't be blank"
       end
     end
 
@@ -29,15 +29,15 @@ describe Listing do
       @duplicate_listing.item_list = listing.item_list
       @duplicate_listing.movie = listing.movie
 
-      @duplicate_listing.should_not be_valid
+      expect(@duplicate_listing).not_to be_valid
     end
 
     it 'has a valid position (positive integer or zero)' do
       listing.position = -1
-      listing.should_not be_valid
+      expect(listing).not_to be_valid
 
       listing.position = 1
-      listing.should be_valid
+      expect(listing).to be_valid
     end
   end
 
@@ -49,8 +49,8 @@ describe Listing do
 
       listing.item_list.destroy
 
-      lambda { listing.reload }.should raise_error
-      lambda { @list.reload }.should raise_error
+      expect { listing.reload }.to raise_error ActiveRecord::RecordNotFound
+      expect { @list.reload }.to raise_error ActiveRecord::RecordNotFound
     end
 
     it 'is deleted when the associated movie is deleted' do
@@ -58,8 +58,8 @@ describe Listing do
 
       listing.movie.destroy
 
-      lambda { listing.reload }.should raise_error
-      lambda { @movie.reload }.should raise_error
+      expect { listing.reload }.to raise_error ActiveRecord::RecordNotFound
+      expect { @movie.reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 end

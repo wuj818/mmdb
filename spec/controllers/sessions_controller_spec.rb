@@ -8,7 +8,7 @@ describe SessionsController do
 
         get :new
 
-        response.should redirect_to root_path
+        expect(response).to redirect_to root_path
       end
     end
 
@@ -16,7 +16,7 @@ describe SessionsController do
       it 'renders the login form' do
         get :new
 
-        response.should_not be_redirect
+        expect(response).to_not be_redirect
       end
     end
   end
@@ -26,8 +26,8 @@ describe SessionsController do
       it 'logs in the admin' do
         post :create, params: { password: Rails.application.secrets.password }
 
-        response.should redirect_to root_path
-        controller.should be_admin
+        expect(response).to redirect_to root_path
+        expect(controller).to be_admin
       end
     end
 
@@ -35,8 +35,8 @@ describe SessionsController do
       it 're-renders the login form' do
         post :create, params: { password: 'wrong' }
 
-        response.should_not be_redirect
-        controller.should_not be_admin
+        expect(response).to_not be_redirect
+        expect(controller).to_not be_admin
       end
     end
   end
@@ -50,18 +50,18 @@ describe SessionsController do
 
         delete :destroy
 
-        response.should redirect_to root_path
-        controller.should_not be_admin
+        expect(response).to redirect_to root_path
+        expect(controller).to_not be_admin
       end
     end
 
     context 'when logged out' do
       it 'redirects to the home page' do
-        controller.should_not_receive :logout_admin
+        expect(controller).not_to receive :logout_admin
 
         delete :destroy
 
-        response.should redirect_to root_path
+        expect(response).to redirect_to root_path
       end
     end
   end

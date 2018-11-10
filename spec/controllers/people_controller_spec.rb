@@ -6,7 +6,7 @@ describe PeopleController do
       it 'redirects to the login page' do
         get :edit, params: { id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -16,7 +16,7 @@ describe PeopleController do
       it 'redirects to the login page' do
         put :update, params: { id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -26,7 +26,7 @@ describe PeopleController do
       it 'redirects to the login page' do
         delete :destroy, params: { id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -35,7 +35,7 @@ describe PeopleController do
     it 'filters the index page by the search parameter' do
       get :search, params: { q: 'Paul Thomas Anderson' }
 
-      response.should redirect_to formatted_search_people_path q: 'Paul Thomas Anderson'
+      expect(response).to redirect_to formatted_search_people_path q: 'Paul Thomas Anderson'
     end
   end
 end

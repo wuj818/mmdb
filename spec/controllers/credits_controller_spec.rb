@@ -6,7 +6,7 @@ describe CreditsController do
       it 'redirects to the login page' do
         get :new, params: { person_id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -16,7 +16,7 @@ describe CreditsController do
       it 'redirects to the login page' do
         post :create, params: { person_id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -26,7 +26,7 @@ describe CreditsController do
       it 'redirects to the login page' do
         delete :destroy, params: { person_id: '1', id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end

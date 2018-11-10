@@ -5,11 +5,11 @@ describe Credit do
     let(:credit) { Credit.new }
 
     it 'belongs to Person' do
-      credit.person.should be_blank
+      expect(credit.person).to be_blank
     end
 
     it 'belongs to Movie' do
-      credit.movie.should be_blank
+      expect(credit.movie).to be_blank
     end
   end
 
@@ -19,7 +19,7 @@ describe Credit do
 
     it 'has required attributes/associations' do
       [:person, :movie, :job].each do |attribute|
-        empty_credit.errors[attribute].should include "can't be blank"
+        expect(empty_credit.errors[attribute]).to include "can't be blank"
       end
     end
 
@@ -30,15 +30,15 @@ describe Credit do
       @duplicate_credit.movie = credit.movie
       @duplicate_credit.job = credit.job
 
-      @duplicate_credit.should_not be_valid
+      expect(@duplicate_credit).not_to be_valid
     end
 
     it 'has a valid type' do
       credit.job = 'not valid'
-      credit.should_not be_valid
+      expect(credit).not_to be_valid
 
       credit.job = Credit::JOBS.keys.first
-      credit.should be_valid
+      expect(credit).to be_valid
     end
   end
 
@@ -50,8 +50,8 @@ describe Credit do
 
       credit.person.destroy
 
-      lambda { credit.reload }.should raise_error
-      lambda { @movie.reload }.should_not raise_error
+      expect { credit.reload }.to raise_error ActiveRecord::RecordNotFound
+      expect { @movie.reload }.not_to raise_error
     end
 
     it 'is deleted when the associated movie is deleted' do
@@ -59,8 +59,8 @@ describe Credit do
 
       credit.movie.destroy
 
-      lambda { credit.reload }.should raise_error
-      lambda { @person.reload }.should_not raise_error
+      expect { credit.reload }.to raise_error ActiveRecord::RecordNotFound
+      expect { @person.reload }.not_to raise_error
     end
   end
 end

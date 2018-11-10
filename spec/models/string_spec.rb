@@ -23,7 +23,7 @@ describe String do
     }
 
     it 'returns a nicely formatted permalink with dashes' do
-      movies.each { |title, permalink| title.to_permalink.should == permalink }
+      movies.each { |title, permalink| expect(title.to_permalink).to eq permalink }
     end
   end
 
@@ -35,7 +35,7 @@ describe String do
     }
 
     it 'returns a nicely formatted sort value without unnecessary words' do
-      movies.each { |column, sort_column| column.to_sort_column.should == sort_column }
+      movies.each { |column, sort_column| expect(column.to_sort_column).to eq sort_column }
     end
   end
 end

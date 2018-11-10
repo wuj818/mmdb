@@ -8,7 +8,7 @@ describe MoviesController do
 
         get :new, params: { from_imdb: true }
 
-        response.should render_template :from_imdb
+        expect(response).to render_template :from_imdb
       end
     end
 
@@ -16,7 +16,7 @@ describe MoviesController do
       it 'redirects to the login page' do
         get :new
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -26,7 +26,7 @@ describe MoviesController do
       it 'redirects to the login page' do
         get :edit, params: { id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -36,7 +36,7 @@ describe MoviesController do
       it 'redirects to the login page' do
         post :create
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -46,7 +46,7 @@ describe MoviesController do
       it 'redirects to the login page' do
         put :update, params: { id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -56,7 +56,7 @@ describe MoviesController do
       it 'redirects to the login page' do
         delete :destroy, params: { id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -69,7 +69,7 @@ describe MoviesController do
         it 'renders the "new" template' do
           post :scrape_info, params: { imdb_url: 'http://www.imdb.com/title/tt0118749/' }
 
-          response.should render_template :new
+          expect(response).to render_template :new
         end
       end
 
@@ -77,7 +77,7 @@ describe MoviesController do
         it 'redirects to the new movie from IMDB url page' do
           post :scrape_info 
 
-          response.should redirect_to new_movie_path(from_imdb: true)
+          expect(response).to redirect_to new_movie_path(from_imdb: true)
         end
       end
     end
@@ -86,7 +86,7 @@ describe MoviesController do
       it 'redirects to the login page' do
         post :scrape_info
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -95,7 +95,7 @@ describe MoviesController do
     it 'filters the index page by the search parameter' do
       get :search, params: { q: 'Boogie Nights' }
 
-      response.should redirect_to formatted_search_movies_path q: 'Boogie Nights'
+      expect(response).to redirect_to formatted_search_movies_path q: 'Boogie Nights'
     end
   end
 end

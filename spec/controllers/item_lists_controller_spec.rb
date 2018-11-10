@@ -12,7 +12,7 @@ describe ItemListsController do
       it 'redirects to the login page' do
         get :new
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -22,7 +22,7 @@ describe ItemListsController do
       it 'redirects to the login page' do
         get :edit, params: { id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -32,7 +32,7 @@ describe ItemListsController do
       it 'redirects to the login page' do
         post :create
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -42,7 +42,7 @@ describe ItemListsController do
       it 'redirects to the login page' do
         put :update, params: { id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -52,7 +52,7 @@ describe ItemListsController do
       it 'redirects to the login page' do
         delete :destroy, params: { id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -62,7 +62,7 @@ describe ItemListsController do
       it 'redirect_to to the login page' do
         put :reorder, params: { id: '1' }
 
-        response.should redirect_to login_path
+        expect(response).to redirect_to login_path
       end
     end
   end

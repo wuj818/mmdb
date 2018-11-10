@@ -4,7 +4,7 @@ describe ItemList do
   describe 'Defaults' do
     it 'has a default position of 0' do
       @list = ItemList.new
-      @list.position.should == 0
+      expect(@list.position).to eq 0
     end
   end
 
@@ -14,7 +14,7 @@ describe ItemList do
 
     it 'has required attributes' do
       [:name].each do |attribute|
-        empty_list.errors[attribute].should include "can't be blank"
+        expect(empty_list.errors[attribute]).to include "can't be blank"
       end
     end
 
@@ -23,15 +23,15 @@ describe ItemList do
 
       empty_list.save
 
-      empty_list.errors[:name].should include 'has already been taken'
+      expect(empty_list.errors[:name]).to include 'has already been taken'
     end
 
     it 'has a valid position (positive integer or zero)' do
       list.position = -1
-      list.should_not be_valid
+      expect(list).not_to be_valid
 
       list.position = 1
-      list.should be_valid
+      expect(list).to be_valid
     end
   end
 
@@ -39,11 +39,11 @@ describe ItemList do
     describe 'Permalink creation' do
       it 'automatically creates a permalink from the title' do
         @list = build :item_list, name: 'Best Movies of 2010'
-        @list.permalink.should be_blank
+        expect(@list.permalink).to be_blank
 
         @list.save
 
-        @list.permalink.should == 'best-movies-of-2010'
+        expect(@list.permalink).to eq 'best-movies-of-2010'
       end
     end
   end
