@@ -11,6 +11,8 @@ class Person < ActiveRecord::Base
   validates :permalink,
     uniqueness: true
 
+  after_create :create_counter
+
   before_save :create_permalink
 
   before_save :create_sort_name

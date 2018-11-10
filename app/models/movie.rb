@@ -34,6 +34,8 @@ class Movie < ActiveRecord::Base
 
   validates_presence_of :poster_url, if: :poster_url_provided?, message: 'is invalid or inaccessible'
 
+  after_create :create_counter
+
   before_save :create_permalink
 
   before_save :create_sort_title
