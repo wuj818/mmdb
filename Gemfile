@@ -4,6 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails', '5.2.1'
 gem 'sqlite3', '1.3.13'
 
+gem 'puma', '3.12.0'
+
 gem 'haml-rails', '1.0.0'
 gem 'jquery-rails', '4.3.3'
 gem 'jquery-ui-rails', '6.0.1'
@@ -18,8 +20,14 @@ gem 'connection_pool', '2.2.2'
 gem 'therubyracer', '0.12.3'
 gem 'font-awesome-rails', '4.7.0.4'
 
-gem 'wirble', '0.1.3'
-gem 'hirb', '0.7.3'
+gem 'bootstrap-sass', '3.3.7'
+gem 'coffee-rails', '4.2.2'
+gem 'sass-rails', '5.0.7'
+gem 'uglifier', '4.1.19'
+
+gem 'rails-observers', '0.1.5'
+
+gem 'bootsnap', '1.3.2', require: false
 
 gem 'libv8', '3.16.14.19'
 
@@ -27,6 +35,12 @@ group :development do
   gem 'capistrano3-puma', '3.1.1'
   gem 'capistrano-rails', '1.4.0'
   gem 'capistrano-rvm', '0.1.2'
+
+  gem 'listen', '3.1.5'
+  gem 'spring', '2.0.2'
+  gem 'spring-commands-rspec', '1.0.4'
+  gem 'spring-watcher-listen', '2.0.1'
+  gem 'web-console', '3.7.0'
 end
 
 group :test, :development do
@@ -39,22 +53,5 @@ group :test do
   gem 'machinist', '2.0'
 end
 
-group :production do
-  gem 'puma', '3.12.0'
-end
-
-gem 'bootstrap-sass', '3.3.7'
-gem 'less-rails', '4.0.0'
-gem 'sass-rails', '5.0.7'
-
-# for coffeescript viewsg
-gem 'coffee-rails', '4.2.2'
-gem 'uglifier', '4.1.19'
-
-gem 'bootsnap', '1.3.2', require: false
-
-gem 'rails-observers', '0.1.5'
-
-group :development do
-  gem 'listen', '3.1.5'
-end
+gem 'wirble', '0.1.3'
+gem 'hirb', '0.7.3'
