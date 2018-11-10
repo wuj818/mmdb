@@ -13,4 +13,6 @@ module ActsAsTaggableOn
   end
 end
 
+ActsAsTaggableOn.remove_unused_tags = true
+
 include ActsAsTaggableOn
