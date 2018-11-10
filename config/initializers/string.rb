@@ -1,5 +1,3 @@
-include ActiveSupport::Inflector
-
 class String
   def to_permalink
     # get rid of periods and apostrophes
@@ -9,6 +7,6 @@ class String
 
   def to_sort_column
     # get rid of unnecessary words like 'a', 'an', and 'the'
-    transliterate self.to_permalink.gsub('-', ' ').gsub(/\Aa /, '').gsub(/\Aan /, '').gsub(/\Athe /, '')
+    ActiveSupport::Inflector.transliterate self.to_permalink.gsub('-', ' ').gsub(/\Aa /, '').gsub(/\Aan /, '').gsub(/\Athe /, '')
   end
 end
