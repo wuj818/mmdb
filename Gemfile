@@ -29,9 +29,10 @@ gem 'dalli', '2.7.9'
 gem 'font-awesome-rails', '4.7.0.4'
 
 group :development do
-  gem 'capistrano3-puma', '3.1.1'
+  gem 'capistrano', '3.11.0'
   gem 'capistrano-rails', '1.4.0'
   gem 'capistrano-rvm', '0.1.2'
+  gem 'capistrano3-puma', '3.1.1'
 
   gem 'listen', '3.1.5'
   gem 'spring', '2.0.2'
