@@ -18,8 +18,6 @@ module Mmdb
 
     config.time_zone = 'Eastern Time (US & Canada)'
 
-    config.autoload_paths << Rails.root.join('lib')
-
     config.active_record.sqlite3.represent_boolean_as_integer = true
 
     config.active_record.observers = Dir.glob(Rails.root.join('app', 'observers', '*.rb')).map { |file_path| File.basename(file_path, '.rb') }
