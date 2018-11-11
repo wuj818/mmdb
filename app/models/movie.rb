@@ -47,7 +47,7 @@ class Movie < ActiveRecord::Base
 
   has_attached_file :poster,
     styles: { large: '300x420!', medium: '150x210!', tiny: '20x28!' },
-    default_url: '/assets/posters/:style-poster.gif',
+    default_url: ':asset_default_url',
     path: '/posters/:style/:id/:filename'
 
   validates_attachment_content_type :poster, content_type: /\Aimage\/.*\z/
