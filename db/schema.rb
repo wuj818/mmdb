@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_10_041514) do
+ActiveRecord::Schema.define(version: 2018_11_11_234018) do
 
   create_table "counters", force: :cascade do |t|
     t.integer "countable_id"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2018_11_10_041514) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "year"
-    t.integer "rating", default: 0
+    t.integer "rating", default: 5
     t.integer "runtime", default: 0
     t.string "permalink", limit: 255
     t.string "sort_title", limit: 255
