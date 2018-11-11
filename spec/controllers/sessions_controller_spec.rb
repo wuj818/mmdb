@@ -24,7 +24,7 @@ describe SessionsController do
   describe 'POST create (Login)' do
     context 'with valid password' do
       it 'logs in the admin' do
-        post :create, params: { password: Rails.application.secrets.password }
+        post :create, params: { password: Rails.application.credentials.password[Rails.env.to_sym] }
 
         expect(response).to redirect_to root_path
         expect(controller).to be_admin

@@ -1,10 +1,10 @@
 module SessionsHelper
   def admin?
-    cookies.signed[:admin] == Rails.application.secrets.password
+    cookies.signed[:admin] == Rails.application.credentials.password[Rails.env.to_sym]
   end
 
   def login_admin
-    cookies.permanent.signed[:admin] = Rails.application.secrets.password
+    cookies.permanent.signed[:admin] = Rails.application.credentials.password[Rails.env.to_sym]
   end
 
   def logout_admin

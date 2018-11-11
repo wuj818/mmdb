@@ -32,7 +32,7 @@ module Mmdb
         'Expires' => 20.years.from_now.httpdate,
         'Cache-Control' => 'max-age=315360000, public'
       },
-      bucket: Rails.application.secrets.s3_bucket_name
+      bucket: Rails.application.credentials.s3_bucket[Rails.env.to_sym]
     }
   end
 end

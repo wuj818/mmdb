@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   def create
     @title = 'Login'
 
-    if params[:password] == Rails.application.secrets.password
+    if params[:password] == Rails.application.credentials.password[Rails.env.to_sym]
       login_admin
 
       flash[:success] = 'Logged in successfully.'
