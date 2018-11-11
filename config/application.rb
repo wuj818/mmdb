@@ -23,5 +23,16 @@ module Mmdb
     config.active_record.sqlite3.represent_boolean_as_integer = true
 
     config.active_record.observers = Dir.glob(Rails.root.join('app', 'observers', '*.rb')).map { |file_path| File.basename(file_path, '.rb') }
+
+    config.paperclip_defaults = {
+      storage: 's3',
+      s3_host_name: 's3-us-east-2.amazonaws.com',
+      s3_region: 'us-east-2',
+      s3_headers: {
+        'Expires' => 20.years.from_now.httpdate,
+        'Cache-Control' => 'max-age=315360000, public'
+      },
+      bucket: Rails.application.secrets.s3_bucket_name
+    }
   end
 end

@@ -14,7 +14,7 @@ gem 'kaminari', '1.1.1'
 gem 'acts-as-taggable-on', '6.0.0'
 gem 'mechanize', '2.7.6'
 gem 'paperclip', '6.1.0'
-gem 'aws-sdk', '3.0.1'
+gem 'aws-sdk-s3', '1.23.1'
 gem 'dalli', '2.7.9'
 gem 'font-awesome-rails', '4.7.0.4'
 

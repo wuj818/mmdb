@@ -1,5 +1,3 @@
-require 'open-uri'
-
 class Movie < ActiveRecord::Base
   include CreditScopesAndCounts
 
@@ -32,17 +30,14 @@ class Movie < ActiveRecord::Base
 
   validates :permalink, uniqueness: true
 
-  validates_presence_of :poster_url, if: :poster_url_provided?, message: 'is invalid or inaccessible'
-
   after_create :create_counter
 
   before_save :create_permalink
 
   before_save :create_sort_title
 
-  before_validation :save_downloaded_poster, if: :poster_url_provided?
-
-  before_validation :clear_downloaded_poster, unless: :poster_url_provided?
+  before_validation :save_remote_poster, if: -> { poster_url_changed? && poster_url.present? }
+  before_validation :delete_poster, if: -> { poster_url.blank? }
 
   has_many :credits, dependent: :destroy
 
@@ -53,11 +48,7 @@ class Movie < ActiveRecord::Base
   has_attached_file :poster,
     styles: { large: '300x420!', medium: '150x210!', tiny: '20x28!' },
     default_url: '/assets/posters/:style-poster.gif',
-    storage: 's3',
-    path: '/posters/:style/:id/:filename',
-    s3_credentials: S3_CREDENTIALS,
-    s3_headers: S3_HEADERS,
-    s3_host_name: 's3-us-east-2.amazonaws.com'
+    path: '/posters/:style/:id/:filename'
 
   validates_attachment_content_type :poster, content_type: /\Aimage\/.*\z/
 
@@ -159,31 +150,16 @@ class Movie < ActiveRecord::Base
     self.sort_title = self.title.to_sort_column
   end
 
-  def poster_url_provided?
-    !self.poster_url.blank?
+  def save_remote_poster
+    self.poster = URI.parse poster_url
   end
 
-  def save_downloaded_poster
-    return unless self.poster_url_changed?
-
-    self.poster = download_poster
-  end
-
-  def download_poster
-    io = open URI.parse(self.poster_url)
-
-    def io.original_filename ; base_uri.path.split('/').last ; end
-
-    io.original_filename.blank? ? nil : io
-  rescue
-  end
-
-  def clear_downloaded_poster
+  def delete_poster
     self.poster = nil
   end
 
   def shorten_filename
-    short_filename = Digest::SHA2.file(poster.queued_for_write[:original]).hexdigest[0..2]
+    short_filename = Digest::SHA2.file(poster.queued_for_write[:original].path).hexdigest[0..2]
     extension = File.extname(poster_file_name).downcase
 
     self.poster.instance_write :file_name, "#{short_filename}#{extension}"
