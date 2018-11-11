@@ -6,7 +6,9 @@ class PagesController < ApplicationController
   end
 
   def admin_controls
-    render nothing: true and return unless admin?
+    unless admin?
+      render body: nil, status: 401
+    end
   end
 
   def clear_cache

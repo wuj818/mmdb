@@ -42,9 +42,7 @@ class TagsController < ApplicationController
   def get_type
     @type = params[:type]
 
-    unless TYPES.include? @type
-      render 'public/404.html', layout: false and return
-    end
+    raise ActiveRecord::RecordNotFound unless TYPES.include? @type
   end
 
   def get_tag
