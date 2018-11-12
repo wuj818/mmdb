@@ -76,8 +76,12 @@
 
       - if @movie.poster?
         %br
-        %br
         = image_tag @movie.poster.url(:original), width: 150, height: 220
+
+      - if @movie.new_record? && @movie.poster_url.present?
+        %br
+        = link_to @movie.poster_url, target: '_blank' do
+          = image_tag @movie.poster_url, width: 150, height: 220
 
   - unless @movie.new_record?
     = render 'movies/edit/genre_checkboxes', movie: @movie

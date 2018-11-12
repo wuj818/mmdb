@@ -3,7 +3,7 @@ require 'mechanize'
 class DirkDiggler
   ITEMS = [
     # general info
-    :title, :aka, :year, :runtime, :rotten_tomatoes_url, :synopsis, :movie_poster_db_url,
+    :title, :aka, :year, :runtime, :rotten_tomatoes_url, :synopsis, :movie_poster_db_url, :poster_url,
     # tags
     :genres, :keywords, :languages, :countries,
     # people
@@ -87,6 +87,18 @@ class DirkDiggler
     url = page.link_with href: %r(https://www.cinematerial.com/movies/[\w-]+)
 
     @movie_poster_db_url = url.href.gsub!('/url?q=', '').gsub!(/&.+/, '') rescue nil
+  end
+
+  def get_poster_url
+    get_movie_poster_db_url if movie_poster_db_url.blank?
+
+    page = @agent.get(movie_poster_db_url) rescue return
+    url = page.search('.flag-US').first.parent.parent.search('img').first[:src] rescue return
+
+    url.gsub! '-sm', ''
+    url.gsub! '/136', '/500'
+
+    @poster_url = url
   end
 
   def get_genres
@@ -218,7 +230,7 @@ class DirkDiggler
   end
 
   def get_info
-    get :title, :aka, :year, :runtime, :rotten_tomatoes_url, :synopsis, :movie_poster_db_url
+    get :title, :aka, :year, :runtime, :rotten_tomatoes_url, :synopsis, :movie_poster_db_url, :poster_url
   end
 
   def get_tags
