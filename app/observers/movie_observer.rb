@@ -11,7 +11,7 @@ class MovieObserver < ActiveRecord::Observer
   private
 
   def get_tags(movie)
-    @diggler.get :genres, :keywords, :languages, :countries
+    @diggler.get_tags
 
     movie.genre_list = @diggler.genres
     movie.keyword_list = @diggler.keywords

@@ -3,11 +3,12 @@ require 'mechanize'
 class DirkDiggler
   ITEMS = [
     # general info
-    :title, :aka, :year, :runtime, :rotten_tomatoes_url, :synopsis,
+    :title, :aka, :year, :runtime, :rotten_tomatoes_url, :synopsis, :movie_poster_db_url,
     # tags
     :genres, :keywords, :languages, :countries,
     # people
-    :directors, :writers, :composers, :editors, :cinematographers, :actors ]
+    :directors, :writers, :composers, :editors, :cinematographers, :actors
+  ]
 
   ITEMS.each { |item| attr_accessor item }
   attr_reader :target
@@ -75,6 +76,17 @@ class DirkDiggler
     result = page.search('#movieSynopsis').text.squish rescue ''
 
     @synopsis = result
+  end
+
+  def get_movie_poster_db_url
+    get_title if title.blank?
+    get_year if year.blank?
+
+    query = CGI.escape "cinematerial #{title} #{year}"
+    page = @agent.get("https://www.google.com/search?q=#{query}") rescue return
+    url = page.link_with href: %r(https://www.cinematerial.com/movies/[\w-]+)
+
+    @movie_poster_db_url = url.href.gsub!('/url?q=', '').gsub!(/&.+/, '') rescue nil
   end
 
   def get_genres
@@ -206,7 +218,7 @@ class DirkDiggler
   end
 
   def get_info
-    get :title, :aka, :year, :runtime#, :rotten_tomatoes_url, :synopsis
+    get :title, :aka, :year, :runtime, :rotten_tomatoes_url, :synopsis, :movie_poster_db_url
   end
 
   def get_tags
