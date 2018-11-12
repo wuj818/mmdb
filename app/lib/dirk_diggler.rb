@@ -12,8 +12,7 @@ class DirkDiggler
   ITEMS.each { |item| attr_accessor item }
   attr_reader :target
 
-  IMDB = 'http://www.imdb.com'
-  GOOGLE = 'http://google.com'
+  IMDB = 'https://www.imdb.com'
 
   def initialize(target)
     @target = target
@@ -36,7 +35,7 @@ class DirkDiggler
 
   def data
     result = { imdb_url: @target }
-    ITEMS.each { |item| result[item] = self.send(item) unless self.send(item).nil? }
+    ITEMS.each { |item| result[item] = self.send(item) unless self.send(item).blank? }
     result
   end
 
@@ -59,30 +58,22 @@ class DirkDiggler
   end
 
   def get_rotten_tomatoes_url
-    get_title if title.nil?
-    get_year if year.nil?
+    get_title if title.blank?
+    get_year if year.blank?
 
-    page = @agent.get GOOGLE
-    form = page.form_with(name: 'f')
-    form.q = "rotten tomatoes #{title} #{year}"
-    search_results = form.submit
-
-    url = search_results.link_with href: %r(https://www.rottentomatoes.com/m/[\w-]+/)
-
-    if url.nil?
-      form.q = "rotten tomatoes #{title}"
-      search_results = form.submit
-      url = search_results.link_with href: %r(https://www.rottentomatoes.com/m/[\w-]+/)
-    end
+    query = CGI.escape "rotten tomatoes #{title} #{year}"
+    page = @agent.get("https://www.google.com/search?q=#{query}") rescue return
+    url = page.link_with href: %r(https://www.rottentomatoes.com/m/[\w-]+/)
 
     @rotten_tomatoes_url = url.href.gsub!('/url?q=', '').gsub!(/&.+/, '') rescue nil
   end
 
   def get_synopsis
-    get_rotten_tomatoes_url if rotten_tomatoes_url.nil?
+    get_rotten_tomatoes_url if rotten_tomatoes_url.blank?
+
     page = @agent.get(rotten_tomatoes_url) rescue return
-    result = page.at('#movieSynopsis').text rescue ''
-    result = result.gsub(/\s{2,}/, ' ').gsub(/\/\*.+/m, '').squish
+    result = page.search('#movieSynopsis').text.squish rescue ''
+
     @synopsis = result
   end
 
