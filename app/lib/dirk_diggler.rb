@@ -95,8 +95,8 @@ class DirkDiggler
     page = @agent.get(movie_poster_db_url) rescue return
     url = page.search('.flag-US').first.parent.parent.search('img').first[:src] rescue return
 
-    url.gsub! '-sm', ''
-    url.gsub! '/136', '/500'
+    url.gsub! /-\w+\.jpg/, '.jpg'
+    url.gsub! %r{/\d+x/}, '/500x/'
 
     @poster_url = url
   end
