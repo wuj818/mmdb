@@ -1,9 +1,9 @@
 //= require_self
-//= require bootstrap-overrides
 //= require plugins
 //= require_tree .
 
-@import 'bootstrap-custom';
+@import 'bootstrap';
+@import 'font-awesome';
 
 body {
   padding: 50px 0 20px 0;

@@ -1,6 +1,7 @@
 #= require rails-ujs
 #= require jquery3
 #= require jquery-ui
+#= require popper
 #= require bootstrap
 #= require plugins
 #= require_tree .
@@ -9,15 +10,15 @@ $ ->
   $('body').tooltip
     selector: '.tip'
 
-  $sidebar = $('#sidebar-navigation')
-
-  $sidebar.affix
-    offset:
-      top: ->
-        @top = $sidebar.offset().top - $('.navbar-fixed-top').height()
-
-      bottom: ->
-        @bottom = $('footer').outerHeight()
+  # $sidebar = $('#sidebar-navigation')
+  #
+  # $sidebar.affix
+  #   offset:
+  #     top: ->
+  #       @top = $sidebar.offset().top - $('.navbar-fixed-top').height()
+  #
+  #     bottom: ->
+  #       @bottom = $('footer').outerHeight()
 
   $('.login').on 'click', ->
     $('#login-modal').modal()
