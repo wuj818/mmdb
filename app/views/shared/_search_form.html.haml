@@ -1,8 +1,8 @@
-= form_tag target, method: 'get', class: 'navbar-form' do
+= form_tag target, method: 'get', class: 'form-inline mr-auto' do
   = hidden_field_tag 'type', type.pluralize
 
-  .input-group#query-group
+  .input-group
     = text_field_tag :q, params[:q].blank? ? nil : params[:q], autofocus: true, placeholder: "Search #{type.pluralize}...", class: 'form-control'
 
-    .input-group-btn
-      = button_tag icon(:search), id: 'nav-search-button', class: 'btn btn-default'
+    .input-group-append
+      = button_tag icon(:search), class: 'btn btn-secondary'

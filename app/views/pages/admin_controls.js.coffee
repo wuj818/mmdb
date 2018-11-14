@@ -1,5 +1,5 @@
 $('.admin-controls').show()
-$('.admin-dropdown').removeClass 'hidden'
+$('#admin-dropdown').removeClass 'd-none'
 
 $('.login').hide()
 $('.logout').removeClass 'hidden'

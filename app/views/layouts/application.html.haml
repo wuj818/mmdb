@@ -22,15 +22,10 @@
 
     = render 'layouts/navigation'
 
-    #content.container
-      .row
-        .col-sm-2#sidebar
-          = render 'layouts/sidebar_navigation'
+    .container
+      = render 'shared/flashes'
 
-        .col-sm-10#main-content
-          = render 'shared/flashes'
-
-          = yield
+      = yield
 
       = render 'layouts/footer'
 

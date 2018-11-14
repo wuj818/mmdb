@@ -6,7 +6,8 @@
 @import 'font-awesome';
 
 body {
-  padding: 50px 0 20px 0;
+  padding-top: 5rem;
+  padding-bottom: 1rem;
 }
 
 footer {
@@ -16,25 +17,8 @@ footer {
   padding-top: 12px;
 }
 
-#content {
-  padding-top: 15px;
-}
-
-#main-content {
-  margin-bottom: 20px;
-
-  @media (min-width: 768px) {
-    padding-left: 0;
-  }
-}
-
 .admin-controls {
   display: none;
-  float: right;
-
-  .btn:not(:last-child) {
-    margin-right: 6px;
-  }
 }
 
 .icons {
@@ -70,4 +54,8 @@ footer {
     float: right;
     margin-left: 10px;
   }
+}
+
+.navbar-brand {
+  color: yellowgreen !important;
 }

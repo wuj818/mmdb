@@ -1,51 +1,70 @@
-.navbar.navbar-inverse.navbar-fixed-top
-  .container
-    .navbar-header
-      %button.navbar-toggle{type: 'button', data: { toggle: 'collapse', target: '#navigation' }}
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-
+%header
+  %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+    .container
       = link_to 'MMDb', root_path, class: 'navbar-brand'
 
-    #navigation.navbar-collapse.collapse
-      %ul.nav.navbar-nav.navbar-right
-        = render 'layouts/navigation_links', header: true
+      %button.navbar-toggler{type: 'button', data: { toggle: 'collapse', target: '#navbarSupportedContent' }}
+        %span.navbar-toggler-icon
 
-        %li.dropdown.admin-dropdown.hidden
-          = link_to '#', class: 'dropdown-toggle admin-dropdown hidden', data: { toggle: 'dropdown' } do
-            = icon :cog
-            %b.caret
+      #navbarSupportedContent.navbar-collapse.collapse
+        %ul.navbar-nav.mr-auto
+          %li.nav-item{class: active_nav_link?(:movies)}
+            = link_to 'Movies', movies_path, class: 'nav-link'
 
-          %ul.dropdown-menu
-            %li
-              = link_to new_movie_from_imdb_path, rel: 'nofollow' do
+          %li.nav-item{class: active_nav_link?(:people)}
+            = link_to 'People', people_path, class: 'nav-link'
+
+          %li.nav-item{class: active_nav_link?(:genres)}
+            = link_to 'Genres', genres_path, class: 'nav-link'
+
+          %li.nav-item{class: active_nav_link?(:keywords)}
+            = link_to 'Keywords', keywords_path, class: 'nav-link'
+
+          %li.nav-item{class: active_nav_link?(:languages)}
+            = link_to 'Languages', languages_path, class: 'nav-link'
+
+          %li.nav-item{class: active_nav_link?(:countries)}
+            = link_to 'Countries', countries_path, class: 'nav-link'
+
+          %li.nav-item{class: active_nav_link?(:decades)}
+            = link_to 'Decades', decades_path, class: 'nav-link'
+
+          %li.nav-item{class: active_nav_link?(:years)}
+            = link_to 'Years', years_path, class: 'nav-link'
+
+          %li.nav-item{class: active_nav_link?(:item_lists)}
+            = link_to 'Lists', item_lists_path, class: 'nav-link'
+
+        / - if content_for? :search
+        /   = yield :search
+        / - else
+        /   = render 'shared/search_form', target: search_movies_path, type: 'movie'
+
+        %ul#admin-dropdown.navbar-nav.d-none
+          %li.nav-item.dropdown
+            = link_to '#', class: 'nav-link dropdown-toggle admin-dropdown hidden', data: { toggle: 'dropdown' } do
+              = icon :cog
+              %b.caret
+
+            .dropdown-menu
+              = link_to new_movie_from_imdb_path, class: 'dropdown-item', rel: 'nofollow' do
                 = icon 'plus-circle fw', class: 'text-success'
                 Add Movie
 
-            %li
-              = link_to new_item_list_path, rel: 'nofollow' do
+              = link_to new_item_list_path, class: 'dropdown-item', rel: 'nofollow' do
                 = icon 'plus-circle fw', class: 'text-success'
                 Add List
 
-            %li.divider
+              .dropdown-divider
 
-            %li
-              = link_to clear_cache_path, method: 'delete', rel: 'nofollow', data: { confirm: CONFIRM } do
+              = link_to clear_cache_path, class: 'dropdown-item', method: 'delete', rel: 'nofollow', data: { confirm: CONFIRM } do
                 = icon 'bolt fw', class: 'text-danger'
                 Clear Cache
 
-            %li.divider
+              .dropdown-divider
 
-            %li
-              = link_to logout_path, method: 'delete', class: 'logout', rel: 'nofollow', data: { confirm: CONFIRM } do
+              = link_to logout_path, class: 'dropdown-item logout', method: 'delete', rel: 'nofollow', data: { confirm: CONFIRM } do
                 = icon 'sign-out fw', class: 'text-primary'
                 Logout
 
-        %li
-          = link_to 'Login', login_path, class: 'login', rel: 'nofollow'
-
-      - if content_for? :search
-        = yield :search
-      - else
-        = render 'shared/search_form', target: search_movies_path, type: 'movie'
+        = link_to 'Login', login_path, class: 'nav-link btn btn-primary btn-sm login', rel: 'nofollow'

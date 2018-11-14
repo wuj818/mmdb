@@ -10,16 +10,6 @@ $ ->
   $('body').tooltip
     selector: '.tip'
 
-  # $sidebar = $('#sidebar-navigation')
-  #
-  # $sidebar.affix
-  #   offset:
-  #     top: ->
-  #       @top = $sidebar.offset().top - $('.navbar-fixed-top').height()
-  #
-  #     bottom: ->
-  #       @bottom = $('footer').outerHeight()
-
   $('.login').on 'click', ->
     $('#login-modal').modal()
     false
