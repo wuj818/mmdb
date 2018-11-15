@@ -1,32 +1,32 @@
 = render 'shared/error_messages', obj: @person
 
-= form_for @person, html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :name, class: 'control-label col-sm-3 col-lg-2'
+= form_with model: @person do |f|
+  .form-group.row
+    = f.label :name, class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :name, class: 'form-control', autofocus: true
 
-  .form-group
-    = f.label :permalink, class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :permalink, class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :permalink, class: 'form-control'
 
-  .form-group
-    = f.label :sort_name, 'Sort Name', class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :sort_name, 'Sort Name', class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :sort_name, class: 'form-control'
 
-  .form-group
-    = f.label :imdb_url, 'IMDb', class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :imdb_url, 'IMDb', class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :imdb_url, class: 'form-control'
 
   %hr
 
-  .form-group
-    .col-sm-offset-3.col-lg-offset-2.col-sm-9.col-lg-10
+  .form-group.row
+    .offset-sm-2.col-sm-10
       = f.submit 'Submit', class: 'btn btn-primary btn-lg', disable_with: 'Submitting...'

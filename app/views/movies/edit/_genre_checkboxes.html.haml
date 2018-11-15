@@ -1,9 +1,9 @@
-.form-group
+.form-group.row
   = hidden_field_tag 'movie[genre_list][]', nil, id: 'movie_genre_list_blank'
 
-  = label_tag 'Genres', 'Genres', class: 'control-label col-sm-3 col-lg-2'
+  = label_tag 'Genres', 'Genres', class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-  .col-sm-9.col-lg-10
+  .col-sm-10
     - Movie::GENRES.in_groups_of(4) do |genres|
       .row
         - genres.each do |genre|

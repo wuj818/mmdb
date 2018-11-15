@@ -1,77 +1,77 @@
 = render 'shared/error_messages', obj: @movie
 
-= form_for @movie, html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :title, class: 'control-label col-sm-3 col-lg-2'
+= form_with model: @movie do |f|
+  .form-group.row
+    = f.label :title, class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :title, class: 'form-control', autofocus: true
 
-  .form-group
-    = f.label :aka, 'Also Known As', class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :aka, 'Also Known As', class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :aka, class: 'form-control'
 
   - unless @movie.new_record?
-    .form-group
-      = f.label :permalink, class: 'control-label col-sm-3 col-lg-2'
+    .form-group.row
+      = f.label :permalink, class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-      .col-sm-9.col-lg-10
+      .col-sm-10
         = f.text_field :permalink, class: 'form-control'
 
-    .form-group
-      = f.label :sort_title, 'Sort Title', class: 'control-label col-sm-3 col-lg-2'
+    .form-group.row
+      = f.label :sort_title, 'Sort Title', class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-      .col-sm-9.col-lg-10
+      .col-sm-10
         = f.text_field :sort_title, class: 'form-control'
 
-  .form-group
-    = f.label :imdb_url, 'IMDb', class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :imdb_url, 'IMDb', class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :imdb_url, class: 'form-control'
 
-  .form-group
-    = f.label :year, class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :year, class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :year, class: 'form-control'
 
-  .form-group
-    = f.label :runtime, class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :runtime, class: 'col-form-label font-weight-bold text-right col-sm-2'
   
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :runtime, class: 'form-control'
 
-  .form-group
-    = f.label :rating, class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :rating, class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.select :rating, 0..10, {}, class: 'form-control'
 
-  .form-group
-    = f.label :synopsis, class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :synopsis, class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_area :synopsis, class: 'form-control', rows: 10
 
-  .form-group
-    = f.label :rotten_tomatoes_url, 'Rotten Tomatoes', class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :rotten_tomatoes_url, 'Rotten Tomatoes', class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :rotten_tomatoes_url, class: 'form-control'
 
-  .form-group
-    = f.label :movie_poster_db_url, 'Movie Poster DB', class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :movie_poster_db_url, 'Movie Poster DB', class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :movie_poster_db_url, class: 'form-control'
 
-  .form-group
-    = f.label :poster_url, 'Poster URL', class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :poster_url, 'Poster URL', class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :poster_url, class: 'form-control'
 
       - if @movie.poster?
@@ -88,6 +88,6 @@
 
   %hr
 
-  .form-group
-    .col-sm-offset-3.col-lg-offset-2.col-sm-9.col-lg-10
+  .form-group.row
+    .offset-sm-2.col-sm-10
       = f.submit 'Submit', class: 'btn btn-primary btn-lg', disable_with: 'Submitting...'

@@ -1,4 +1,4 @@
-= form_tag target, method: 'get', class: 'form-inline mx-auto flex-fill mt-2 mt-md-0 ' do
+= form_with url: target, method: 'get', class: 'form-inline mx-auto flex-fill mt-2 mt-md-0 ' do
   = hidden_field_tag 'type', type.pluralize
 
   .input-group.w-100

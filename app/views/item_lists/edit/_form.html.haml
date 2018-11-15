@@ -1,14 +1,14 @@
 = render 'shared/error_messages', obj: @list
 
-= form_for @list, html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :name, class: 'control-label col-sm-3 col-lg-2'
+= form_with model: @list do |f|
+  .form-group.row
+    = f.label :name, class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :name, autofocus: true, class: 'form-control'
 
   %hr
 
-  .form-group
-    .col-sm-offset-3.col-lg-offset-2.col-sm-9.col-lg-10
+  .form-group.row
+    .offset-sm-2.col-sm-10
       = f.submit 'Submit', class: 'btn btn-primary btn-lg', disable_with: 'Submitting...'

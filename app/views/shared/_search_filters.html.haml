@@ -1,16 +1,15 @@
-= form_tag target, method: 'get', id: 'search-filters', class: 'form-inline' do
+= form_with url: target, method: 'get', id: 'search-filters', class: 'form-inline' do
   = hidden_field_tag 'type', type.pluralize
 
-  .form-group
-    = text_field_tag :q, params[:q].blank? ? nil : params[:q], placeholder: "Search #{type.pluralize}...", class: 'form-control', id: 'query-field'
+  = text_field_tag :q, params[:q].blank? ? nil : params[:q], placeholder: "Search #{type.pluralize}...", class: 'form-control'
 
-  .form-group
-    .input-group#minimum-field
-      .input-group-addon
+  .input-group.mx-0.mx-sm-2.mt-2.mt-sm-0.mb-2.mb-sm-0
+    .input-group-prepend
+      .input-group-text
         Total >=
 
-      = text_field_tag :minimum, params[:minimum], placeholder: '0', id: 'minimum_total', class: 'form-control'
+    = text_field_tag :minimum, params[:minimum], placeholder: '0', class: 'form-control'
 
-  = submit_tag 'Filter', class: 'btn btn-default', disable_with: 'Filtering...'
+  = submit_tag 'Filter', class: 'btn btn-secondary', disable_with: 'Filtering...'
 
 %hr

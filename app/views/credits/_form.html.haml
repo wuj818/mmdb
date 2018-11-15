@@ -1,29 +1,29 @@
 = render 'shared/error_messages', obj: @credit
 
-= form_for [@person, @credit], html: { class: 'form-horizontal' } do |f|
+= form_with model: [@person, @credit] do |f|
   = f.hidden_field :person_id, value: @person.id
 
-  .form-group
-    = f.label :movie_id, 'Movie', class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :movie_id, 'Movie', class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       - @movies = Movie.select([:id, :title]).order(:sort_title)
       = collection_select :credit, :movie_id, @movies, :id, :title, { include_blank: true }, { class: 'form-control' }
 
-  .form-group
-    = f.label :job, class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :job, class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.select :job, Credit::JOBS.keys, { include_blank: true }, { class: 'form-control' }
 
-  .form-group
-    = f.label :details, class: 'control-label col-sm-3 col-lg-2'
+  .form-group.row
+    = f.label :details, class: 'col-form-label font-weight-bold text-right col-sm-2'
 
-    .col-sm-9.col-lg-10
+    .col-sm-10
       = f.text_field :details, class: 'form-control'
 
   %hr
 
-  .form-group
-    .col-sm-offset-3.col-lg-offset-2.col-sm-9.col-lg-10
+  .form-group.row
+    .offset-sm-2.col-sm-10
       = f.submit 'Submit', class: 'btn btn-primary btn-lg', disable_with: 'Submitting...'
