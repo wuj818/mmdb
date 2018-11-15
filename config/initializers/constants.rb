@@ -1,1 +1,1 @@
-# STARTUP_TIMESTAMP = Time.now.localtime unless Rails.env.production?
+STARTUP_TIMESTAMP = Time.now.to_i unless Rails.env.production?

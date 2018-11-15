@@ -1,21 +1,22 @@
-# module Paperclip
-#   class Attachment
-#     def url(style_name = default_style, options = {})
-#       default_options = { timestamp: false, escape: true }
-#       result = @url_generator.for(style_name, default_options.merge(options))
-#       return result if Rails.env.production?
-#       result.gsub!('-development', '') unless instance.created_at.localtime > STARTUP_TIMESTAMP
-#       result
-#     end
-#   end
-# end
+module Paperclip
+  # use production images in development when available
+  class UrlGenerator
+    def timestamp_as_needed(url, options)
+      if @attachment.present? && @attachment.updated_at < STARTUP_TIMESTAMP
+        url.gsub '-development', ''
+      else
+        url
+      end
+    end
+  end
+end
 
 Paperclip::UriAdapter.register
 Paperclip::HttpUrlProxyAdapter.register
 
-Paperclip::Attachment.default_options.update({
+Paperclip::Attachment.default_options.update(
   use_timestamp: false
-})
+)
 
 Paperclip.interpolates :asset_default_url do |attachment, style|
   if Rails.env.production?
