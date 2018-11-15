@@ -1,7 +1,7 @@
-= form_tag target, method: 'get', class: 'form-inline mr-auto' do
+= form_tag target, method: 'get', class: 'form-inline mx-auto flex-fill mt-2 mt-md-0 ' do
   = hidden_field_tag 'type', type.pluralize
 
-  .input-group
+  .input-group.w-100
     = text_field_tag :q, params[:q].blank? ? nil : params[:q], autofocus: true, placeholder: "Search #{type.pluralize}...", class: 'form-control'
 
     .input-group-append

@@ -35,12 +35,12 @@
           %li.nav-item{class: active_nav_link?(:item_lists)}
             = link_to 'Lists', item_lists_path, class: 'nav-link'
 
-        / - if content_for? :search
-        /   = yield :search
-        / - else
-        /   = render 'shared/search_form', target: search_movies_path, type: 'movie'
+        - if content_for? :search
+          = yield :search
+        - else
+          = render 'shared/search_form', target: search_movies_path, type: 'movie'
 
-        %ul#admin-dropdown.navbar-nav.d-none.ml-auto
+        %ul#admin-dropdown.navbar-nav.d-none.ml-md-5.mt-2.mt-md-0.mb-2.mb-md-0
           %li.nav-item.dropdown
             = link_to '#', class: 'nav-link dropdown-toggle admin-dropdown hidden', data: { toggle: 'dropdown' } do
               = icon :cog
@@ -67,4 +67,4 @@
                 = icon 'sign-out fw', class: 'text-primary'
                 Logout
 
-        = link_to 'Login', login_path, class: 'nav-link btn btn-primary btn-sm ml-auto login mt-3 mt-md-0', rel: 'nofollow'
+        = link_to 'Login', login_path, class: 'nav-link btn btn-primary btn-sm ml-auto login mt-3 mt-md-0 ml-md-5 mb-md-0 mb-2 mb-md-0', rel: 'nofollow'
