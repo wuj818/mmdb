@@ -10,19 +10,19 @@
       %table.table.table-striped.table-bordered.table-hover
         %thead
           %tr
-            %th.text-right{style: 'width: 40px;'}
+            %th.text-right
               %strong #
 
-            %th
+            %th.w-100
               = sort_link :title
 
-            %th{style: 'width: 65px;'}
+            %th.text-nowrap
               = sort_link :year
 
-            %th{style: 'width: 95px;'}
+            %th.text-nowrap
               = sort_link :runtime
 
-            %th{style: 'width: 80px;'}
+            %th.text-nowrap
               = sort_link :rating
 
         %tbody

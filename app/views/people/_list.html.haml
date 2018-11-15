@@ -10,31 +10,31 @@
       %table.table.table-striped.table-bordered.table-hover
         %thead
           %tr
-            %th.text-right{style: 'width: 40px;'}
+            %th.text-right
               %strong #
 
-            %th
+            %th.w-100
               = sort_link :name
 
-            %th{style: 'width: 85px;'}
+            %th.text-nowrap
               = sort_link :credits
 
-            %th{style: 'width: 50px;'}
+            %th.text-nowrap
               = sort_link :directing, :bullhorn
 
-            %th{style: 'width: 50px;'}
+            %th.text-nowrap
               = sort_link :writing, :pencil
 
-            %th{style: 'width: 50px;'}
+            %th.text-nowrap
               = sort_link :composing, :music
 
-            %th{style: 'width: 50px;'}
+            %th.text-nowrap
               = sort_link :editing, :cut
 
-            %th{style: 'width: 50px;'}
+            %th.text-nowrap
               = sort_link :cinematography, 'video-camera'
 
-            %th{style: 'width: 50px;'}
+            %th.text-nowrap
               = sort_link :acting, :user
 
         %tbody

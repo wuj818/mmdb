@@ -10,16 +10,16 @@
       %table.table.table-striped.table-bordered.table-hover
         %thead
           %tr
-            %th{style: 'width: 15px;'}
+            %th
               %strong #
 
-            %th
+            %th.w-100
               = sort_link :name
 
-            %th{style: 'width: 70px;'}
+            %th.text-nowrap
               = sort_link :total
 
-            %th{style: 'width: 90px;'}
+            %th.text-nowrap
               = sort_link :average
 
         %tbody
@@ -32,7 +32,7 @@
                 = tag_link tag, @type
 
               %td
-                = tag.total
+                = number_with_delimiter tag.total
 
               %td
                 = colorized_average tag
