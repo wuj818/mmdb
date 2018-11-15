@@ -24,6 +24,7 @@ module Mmdb
       storage: 's3',
       s3_host_name: 's3-us-east-2.amazonaws.com',
       s3_region: 'us-east-2',
+      s3_protocol: 'https',
       s3_headers: {
         'Expires' => 20.years.from_now.httpdate,
         'Cache-Control' => 'max-age=315360000, public'
