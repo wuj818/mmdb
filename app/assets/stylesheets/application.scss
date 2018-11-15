@@ -19,6 +19,10 @@ footer {
 
 #sidebar-links {
   top: 5rem;
+
+  a:NOT(.active):hover {
+    background: $light;
+  }
 }
 
 .admin-controls {
