@@ -2,5 +2,5 @@
   = link_to [:edit, @movie], class: 'btn btn-info btn-lg mr-1', title: 'Edit', rel: 'nofollow' do
     = icon :edit
 
-  = link_to @movie, class: 'btn btn-danger btn-lg mr-1', title: 'Delete', rel: 'nofollow', method: 'delete', data: { confirm: CONFIRM } do
+  = link_to @movie, class: 'btn btn-danger btn-lg mr-1', title: 'Delete', rel: 'nofollow', method: 'delete', data: { confirm: t(:confirm) } do
     = icon 'trash-o'

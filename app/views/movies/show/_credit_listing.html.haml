@@ -17,5 +17,5 @@
 
             - if action_name == 'edit'
               %td.delete-cell
-                = link_to [credit.person, credit], class: 'btn btn-danger btn-xs', title: 'Delete', method: 'delete', data: { confirm: CONFIRM } do
+                = link_to [credit.person, credit], class: 'btn btn-danger btn-xs', title: 'Delete', method: 'delete', data: { confirm: t(:confirm) } do
                   = icon 'trash-o'

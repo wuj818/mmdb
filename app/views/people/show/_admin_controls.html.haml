@@ -5,5 +5,5 @@
   = link_to [:edit, @person], class: 'btn btn-info btn-lg mr-1', title: 'Edit', rel: 'nofollow' do
     = icon :edit
 
-  = link_to @person, class: 'btn btn-danger btn-lg', title: 'Delete', rel: 'nofollow', method: 'delete', data: { confirm: CONFIRM } do
+  = link_to @person, class: 'btn btn-danger btn-lg', title: 'Delete', rel: 'nofollow', method: 'delete', data: { confirm: t(:confirm) } do
     = icon 'trash-o'

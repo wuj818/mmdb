@@ -13,7 +13,7 @@
 
         = link_to listing.movie.title, listing.movie
 
-        = link_to 'Delete', [@list, listing], method: 'delete', class: 'text-danger', data: { confirm: CONFIRM }
+        = link_to 'Delete', [@list, listing], method: 'delete', class: 'text-danger', data: { confirm: t(:confirm) }
 
   = link_to 'Reorder!', reorder_item_list_path, id: 'reorder-link', class: 'btn btn-success'
 - else

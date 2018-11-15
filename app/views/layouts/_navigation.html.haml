@@ -57,13 +57,13 @@
 
               .dropdown-divider
 
-              = link_to clear_cache_path, class: 'dropdown-item', method: 'delete', rel: 'nofollow', data: { confirm: CONFIRM } do
+              = link_to clear_cache_path, class: 'dropdown-item', method: 'delete', rel: 'nofollow', data: { confirm: t(:confirm) } do
                 = icon 'bolt fw', class: 'text-danger'
                 Clear Cache
 
               .dropdown-divider
 
-              = link_to logout_path, class: 'dropdown-item logout', method: 'delete', rel: 'nofollow', data: { confirm: CONFIRM } do
+              = link_to logout_path, class: 'dropdown-item logout', method: 'delete', rel: 'nofollow', data: { confirm: t(:confirm) } do
                 = icon 'sign-out fw', class: 'text-primary'
                 Logout
 

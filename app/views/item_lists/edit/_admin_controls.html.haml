@@ -2,5 +2,5 @@
   = link_to @list, class: 'btn btn-secondary btn-lg mr-1', rel: 'nofollow' do
     = icon 'arrow-left'
 
-  = link_to @list, class: 'btn btn-danger btn-lg mr-1', rel: 'nofollow', method: 'delete', data: { confirm: CONFIRM } do
+  = link_to @list, class: 'btn btn-danger btn-lg mr-1', rel: 'nofollow', method: 'delete', data: { confirm: t(:confirm) } do
     = icon 'trash-o'

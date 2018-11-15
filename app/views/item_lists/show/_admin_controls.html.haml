@@ -8,5 +8,5 @@
   = link_to [:edit, @list], class: 'btn btn-info btn-lg mr-1', title: 'Edit' do
     = icon :edit
 
-  = link_to @list, class: 'btn btn-danger btn-lg mr-1', title: 'Delete', rel: 'nofollow', method: 'delete', data: { confirm: CONFIRM } do
+  = link_to @list, class: 'btn btn-danger btn-lg mr-1', title: 'Delete', rel: 'nofollow', method: 'delete', data: { confirm: t(:confirm) } do
     = icon 'trash-o'
