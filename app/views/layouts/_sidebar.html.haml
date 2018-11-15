@@ -1,0 +1,27 @@
+%ul#sidebar-links.nav.nav-pills.flex-column.sticky-top
+  %li.nav-item
+    = link_to 'Movies', movies_path, class: ['nav-link', active_nav_link?(:movies)]
+
+  %li.nav-item
+    = link_to 'People', people_path, class: ['nav-link', active_nav_link?(:people)]
+
+  %li.nav-item
+    = link_to 'Genres', genres_path, class: ['nav-link', active_nav_link?(:genres)]
+
+  %li.nav-item
+    = link_to 'Keywords', keywords_path, class: ['nav-link', active_nav_link?(:keywords)]
+
+  %li.nav-item
+    = link_to 'Languages', languages_path, class: ['nav-link', active_nav_link?(:languages)]
+
+  %li.nav-item
+    = link_to 'Countries', countries_path, class: ['nav-link', active_nav_link?(:countries)]
+
+  %li.nav-item
+    = link_to 'Decades', decades_path, class: ['nav-link', active_nav_link?(:decades)]
+
+  %li.nav-item
+    = link_to 'Years', years_path, class: ['nav-link', active_nav_link?(:years)]
+
+  %li.nav-item
+    = link_to 'Lists', item_lists_path, class: ['nav-link', active_nav_link?(:item_lists)]

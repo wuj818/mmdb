@@ -23,9 +23,14 @@
     = render 'layouts/navigation'
 
     .container
-      = render 'shared/flashes'
+      .row
+        #sidebar.col-md-2.d-none.d-md-block
+          = render 'layouts/sidebar'
 
-      = yield
+        #content.col-md-10
+          = render 'shared/flashes'
+
+          = yield
 
       = render 'layouts/footer'
 
