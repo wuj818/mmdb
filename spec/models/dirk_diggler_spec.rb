@@ -35,8 +35,8 @@ describe DirkDiggler do
     describe 'Shortcuts' do
       describe '#get(:info)' do
         it 'scrapes IMDB for general information about the movie (title, year, etc)' do
-          items = [:title, :aka, :year, :runtime]
-          items.each { |item| expect(diggler).to receive("get_#{item.to_s}").and_return true }
+          items = [:title, :aka, :year, :runtime, :rotten_tomatoes_url, :synopsis, :movie_poster_db_url, :poster_url]
+          items.each { |item| expect(diggler).to receive("get_#{item.to_s}").and_return item.to_s }
           diggler.get :info
         end
       end
@@ -44,7 +44,7 @@ describe DirkDiggler do
       describe '#get(:tags)' do
         it "scrapes IMDB for a movie's tags (genres, keywords, etc)" do
           items = [:genres, :keywords, :languages, :countries]
-          items.each { |item| expect(diggler).to receive("get_#{item.to_s}").and_return true }
+          items.each { |item| expect(diggler).to receive("get_#{item.to_s}").and_return item.to_s }
           diggler.get :tags
         end
       end
