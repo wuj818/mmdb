@@ -1,7 +1,7 @@
 - content_for :search do
   = render 'shared/search_form', target: search_decades_path, type: 'decades'
 
-.page-header
+= page_header do
   %h1
     = link_to 'Decades', decades_path
 

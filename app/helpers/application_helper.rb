@@ -90,4 +90,10 @@ module ApplicationHelper
 
     link_to tag.name, "/#{type}/#{CGI::escape tag.name}", options
   end
+
+  def page_header
+    content_tag :div, class: 'pb-2 mb-4 border-bottom' do
+      yield
+    end
+  end
 end

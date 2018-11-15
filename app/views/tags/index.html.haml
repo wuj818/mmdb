@@ -1,7 +1,7 @@
 - content_for :search do
   = render 'shared/search_form', target: search_tags_path, type: @type
 
-.page-header
+= page_header do
   %h1
     = link_to @type.titleize, send("#{@type}_path")
 

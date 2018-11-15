@@ -1,8 +1,8 @@
 .admin-controls
-  = link_to new_person_credit_path(@person), class: 'btn btn-success btn-lg', title: 'Add Credit', rel: :nofollow do
+  = link_to new_person_credit_path(@person), class: 'btn btn-success btn-lg mr-1', title: 'Add Credit', rel: :nofollow do
     = icon 'plus-circle'
 
-  = link_to [:edit, @person], class: 'btn btn-info btn-lg', title: 'Edit', rel: 'nofollow' do
+  = link_to [:edit, @person], class: 'btn btn-info btn-lg mr-1', title: 'Edit', rel: 'nofollow' do
     = icon :edit
 
   = link_to @person, class: 'btn btn-danger btn-lg', title: 'Delete', rel: 'nofollow', method: 'delete', data: { confirm: CONFIRM } do
