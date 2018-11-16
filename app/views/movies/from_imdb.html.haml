@@ -2,7 +2,6 @@
   %h1 Add New Movie
 
 = form_with url: scrape_info_path, class: 'form-inline' do
-  .form-group.row
-    = text_field_tag :imdb_url, nil, id: 'from-imdb-field', class: 'form-control', placeholder: 'IMDb url', autofocus: true
+  = text_field_tag :imdb_url, nil, class: 'form-control flex-fill mr-sm-2 mb-2 mb-sm-0', placeholder: 'IMDb url', autofocus: true, required: true
 
-  = submit_tag 'Submit', class: 'btn btn-primary loading', disable_with: 'Submitting...'
+  = submit_tag 'Submit', class: 'btn btn-primary'
