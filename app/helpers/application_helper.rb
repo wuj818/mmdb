@@ -96,4 +96,20 @@ module ApplicationHelper
       yield
     end
   end
+
+  def no_index?
+    return true if action_name == 'show'
+    return true if page.to_i > 1
+    return true if params[:q].present?
+
+    if params[:sort].present?
+      return true unless %w(decade name title year).include? params[:sort]
+    end
+
+    if params[:order].present?
+      return true unless params[:order] == 'asc'
+    end
+
+    false
+  end
 end
