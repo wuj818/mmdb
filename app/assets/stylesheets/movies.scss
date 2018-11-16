@@ -1,22 +1,7 @@
 #full-keywords {
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
-
-  -moz-column-rule: 1px solid #e4e4e4;
-  -webkit-column-rule: 1px solid #e4e4e4;
-
-  ul {
-    list-style-type: square;
-  }
-
   @media (min-width: 768px) {
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
-  }
-
-  @media (min-width: 992px) {
-    -moz-column-count: 4;
-    -webkit-column-count: 4;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
   }
 }
 

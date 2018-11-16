@@ -8,6 +8,8 @@
 
 - smart_cache do
   #full-keywords
-    %ul
+    %ul.list-unstyled
       - @movie.sorted_keywords.each do |keyword|
-        %li= tag_link keyword, :keyword
+        %li
+          - path = "/keywords/#{CGI::escape keyword.name}"
+          = link_to keyword.name, path, class: 'badge badge-primary'

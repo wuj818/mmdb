@@ -8,7 +8,7 @@
     = plural.capitalize
 
   %td.w-100
-    - tags.each_with_index do |tag, i|
+    - tags.each do |tag|
       - fraction = "#{tag.count}/#{@total}"
       - percentage = format('%.2f%%', tag.count / @total.to_f * 100)
 
