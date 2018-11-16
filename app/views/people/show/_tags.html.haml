@@ -1,17 +1,12 @@
 - @total = @person.movies.length
 
-.panel.panel-default
-  .panel-heading
-    %h3.panel-title
-      Tags
+.table-responsive
+  %table.table.table-bordered
+    %tbody
+      = render 'people/show/tag_list', type: 'genre'
 
-  .table-responsive
-    %table.table.table-bordered
-      %tbody
-        = render 'people/show/tag_list', type: 'genre'
+      = render 'people/show/tag_list', type: 'language'
 
-        = render 'people/show/tag_list', type: 'language'
+      = render 'people/show/tag_list', type: 'country'
 
-        = render 'people/show/tag_list', type: 'country'
-
-        = render 'people/show/tag_list', type: 'keyword'
+      = render 'people/show/tag_list', type: 'keyword'

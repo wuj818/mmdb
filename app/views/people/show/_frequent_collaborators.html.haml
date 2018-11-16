@@ -1,17 +1,17 @@
 - total = @person.movies.length
-- last = @person.frequent_collaborators.length - 1
 
-.panel.panel-default
-  .panel-heading
-    %h3.panel-title
-      Frequent Collaborators
+.table-responsive
+  %table.table.table-bordered
+    %thead.thead-light
+      %tr
+        %th
+          Frequent Collaborators
 
-  .panel-body
-    - @person.frequent_collaborators.each_with_index do |person, i|
-      - fraction = "#{person.count}/#{total}"
-      - percentage = format('%.2f%%', person.count / total.to_f * 100)
+    %tbody
+      %tr
+        %td
+          - @person.frequent_collaborators.each_with_index do |person, i|
+            - fraction = "#{person.count}/#{total}"
+            - percentage = format('%.2f%%', person.count / total.to_f * 100)
 
-      = link_to person.name, person, class: 'percentage-popover', data: { fraction: fraction, percentage: percentage }
-
-      - unless i == last
-        |
+            = link_to person.name, person, class: 'percentage-popover badge badge-primary', data: { fraction: fraction, percentage: percentage }

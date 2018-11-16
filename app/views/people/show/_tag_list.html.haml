@@ -4,24 +4,15 @@
 - type = type.to_sym
 
 %tr
-  %td
-    %strong
-      = plural.capitalize
+  %td.font-weight-bold
+    = plural.capitalize
 
-  %td
+  %td.w-100
     - tags.each_with_index do |tag, i|
       - fraction = "#{tag.count}/#{@total}"
       - percentage = format('%.2f%%', tag.count / @total.to_f * 100)
 
-      = tag_link tag, type,
-        class: 'percentage-popover',
-        data: { fraction: fraction, percentage: percentage }
-
-      - unless i == last
-        |
+      = tag_link tag, type, class: 'percentage-popover badge badge-primary', data: { fraction: fraction, percentage: percentage }
 
     - if type == :keyword
-      = ' | '
-
-      %em
-        = link_to 'More Keywords &raquo;'.html_safe, keywords_person_path(@person), class: 'text-success'
+      = link_to 'More Keywords &raquo;'.html_safe, keywords_person_path(@person), class: 'badge badge-light font-italic text-success'

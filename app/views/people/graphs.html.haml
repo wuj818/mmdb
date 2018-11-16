@@ -7,12 +7,14 @@
     Graphs
 
 - smart_cache  do
-  %h4 Movie History
+  = page_header do
+    %h4 Movie History
 
   = movie_history_line_graph @person
 
-  %hr
+  %br
 
-  %h4 Ratings History
+  = page_header do
+    %h4 Ratings History
 
   = movie_ratings_pie_graph @person
