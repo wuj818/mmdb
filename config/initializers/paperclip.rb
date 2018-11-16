@@ -1,11 +1,13 @@
-module Paperclip
-  # use production images in development when available
-  class UrlGenerator
-    def timestamp_as_needed(url, options)
-      if @attachment.present? && @attachment.updated_at < STARTUP_TIMESTAMP
-        url.gsub '-development', ''
-      else
-        url
+if Rails.env.development?
+  module Paperclip
+    # use production images in development when available
+    class UrlGenerator
+      def timestamp_as_needed(url, options)
+        if @attachment.present? && @attachment.updated_at < STARTUP_TIMESTAMP
+          url.gsub '-development', ''
+        else
+          url
+        end
       end
     end
   end
