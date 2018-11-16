@@ -1,21 +1,27 @@
-.panel.panel-default
-  .panel-heading
-    %h3.panel-title
-      = job.pluralize.capitalize
-      = "(#{count})"
+.table-responsive
+  %table.table.table-bordered
+    %thead.thead-light
+      %tr
+        %th.w-50
+          = job.pluralize
+          = "(#{count})"
 
-  .table-responsive
-    %table.table.table-bordered
-      %tbody
-        - @movie.send("sorted_#{credit_type}_credits").each do |credit|
-          %tr
-            %td{class: ('no-right-border' if credit.details.blank?)}
-              = link_to credit.person.name, credit.person
+        %th.w-50
+          Credit
 
-            %td{class: ('no-left-border' if credit.details.blank?)}
-              = credit.details
+        - if action_name == 'edit'
+          %th
 
-            - if action_name == 'edit'
-              %td.delete-cell
-                = link_to [credit.person, credit], class: 'btn btn-danger btn-xs', title: 'Delete', method: 'delete', data: { confirm: t(:confirm) } do
-                  = icon 'trash-o'
+    %tbody
+      - @movie.send("sorted_#{credit_type}_credits").each do |credit|
+        %tr
+          %td
+            = link_to credit.person.name, credit.person
+
+          %td
+            = credit.details.blank? ? '...' : credit.details
+
+          - if action_name == 'edit'
+            %td
+              = link_to [credit.person, credit], class: 'btn btn-danger btn-sm', title: 'Delete', method: 'delete', data: { confirm: t(:confirm) } do
+                = icon 'trash-o'

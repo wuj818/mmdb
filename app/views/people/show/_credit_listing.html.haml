@@ -1,33 +1,40 @@
-.panel.panel-default{id: "#{credit_type}-credits"}
-  .panel-heading
-    %h3.panel-title
-      - average = @person.send("#{credit_type}_credits").joins(:movie).average(:rating)
-      = job
-      = "(#{count})"
+.table-responsive
+  %table.table.table-bordered
+    %thead.thead-light
+      %tr
+        - average = @person.send("#{credit_type}_credits").joins(:movie).average(:rating)
 
-      %strong.pull-right
-        = "#{colorized_credit_average average}/10".html_safe
+        %th.w-50
+          = job
+          = "(#{count})"
 
-  .table-responsive
-    %table.table.table-bordered
-      %tbody
-        - @person.send("sorted_#{credit_type}_credits").each do |credit|
-          %tr
-            %td{class: ('no-right-border' if credit.details.blank?)}
-              = tiny_movie_poster_link credit.movie, job
+        %th.w-50
+          Credit
 
-              = link_to credit.movie.title, credit.movie
+        %th
+          .text-weight-bold
+            = "#{colorized_credit_average average}/10".html_safe
 
-              = "(#{credit.movie.year})"
+        - if action_name == 'edit'
+          %th
 
-            %td{class: ('no-left-border' if credit.details.blank?)}
-              = credit.details
+    %tbody
+      - @person.send("sorted_#{credit_type}_credits").each do |credit|
+        %tr
+          %td
+            = tiny_movie_poster_link credit.movie, job
 
-            %td.credit-rating
-              %strong
-                = "#{colorized_rating credit.movie}/10".html_safe
+            = link_to credit.movie.title, credit.movie
 
-            - if action_name == 'edit'
-              %td.delete-cell
-                = link_to [@person, credit], class: 'btn btn-danger btn-xs', title: 'Delete', method: 'delete', data: { confirm: t(:confirm) } do
-                  = icon 'trash-o'
+            = "(#{credit.movie.year})"
+
+          %td
+            = credit.details.blank? ? '...' : credit.details
+
+          %td.text-right.font-weight-bold
+            = "#{colorized_rating credit.movie}/10".html_safe
+
+          - if action_name == 'edit'
+            %td
+              = link_to [@person, credit], class: 'btn btn-danger btn-sm', title: 'Delete', method: 'delete', data: { confirm: t(:confirm) } do
+                = icon 'trash-o'
