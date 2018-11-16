@@ -4,37 +4,26 @@
 
   .cloud1 {
     color: #999999;
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 0.75em;
   }
 
   .cloud2 {
     color: #111111;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1em;
   }
 
   .cloud3 {
     color: #3A87AD;
-    font-size: 22px;
-    line-height: 31px;
+    font-size: 1.5em;
   }
 
   .cloud4 {
     color: #468847;
-    font-size: 30px;
-    line-height: 45px;
+    font-size: 2.25em;
   }
 
   .top-keyword {
     color: #B94A48;
-    font-size: 40px;
-    line-height: 60px;
-    text-shadow: black 1px 1px 1px;
-
-    &:hover {
-      color: red;
-      text-decoration: none;
-    }
+    font-size: 3.25em;
   }
 }
