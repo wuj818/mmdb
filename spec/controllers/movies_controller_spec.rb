@@ -67,6 +67,10 @@ describe MoviesController do
 
       describe 'with valid params' do
         it 'renders the "new" template' do
+          @movie = Movie.new
+          expect(Movie).to receive(:new).and_return @movie
+          expect(@movie).to receive(:get_preliminary_info).and_return true
+
           post :scrape_info, params: { imdb_url: 'http://www.imdb.com/title/tt0118749/' }
 
           expect(response).to render_template :new
