@@ -1,6 +1,6 @@
-%ul.nav.nav-tabs
-  %li{class: active_tab_link?(:index)}
-    = link_to 'All Movies', :movies
+%ul.nav.nav-tabs.mb-3
+  %li.nav-item
+    = link_to 'All Movies', :movies, class: ['nav-link', active_tab_link?(:index)]
 
-  %li{class: active_tab_link?(:perfect)}
-    = link_to 'Perfect Movies', :perfect_movies
+  %li.nav-item
+    = link_to 'Perfect Movies', :perfect_movies, class: ['nav-link', active_tab_link?(:perfect)]
