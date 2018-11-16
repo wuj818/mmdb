@@ -10,11 +10,6 @@ class PeopleController < ApplicationController
     @people = @people.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @people = @people.joins(:counter).includes(:counter)
     @people = @people.page(page).per(per_page)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def show

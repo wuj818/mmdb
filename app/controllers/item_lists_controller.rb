@@ -70,10 +70,6 @@ class ItemListsController < ApplicationController
     params[:listing].each_with_index do |listing, i|
       Listing.find(listing).update_attribute(:position, i+1)
     end
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   private

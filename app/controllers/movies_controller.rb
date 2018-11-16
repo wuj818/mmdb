@@ -10,11 +10,6 @@ class MoviesController < ApplicationController
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @movies = @movies.page(page).per(per_page)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def show

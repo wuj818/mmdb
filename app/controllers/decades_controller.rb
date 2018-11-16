@@ -12,11 +12,6 @@ class DecadesController < ApplicationController
     @decades = @decades.having(minimum)
     @decades = @decades.where('((year / 10) || "0") LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @decades = @decades.page(page).per(per_page)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def show
@@ -25,11 +20,6 @@ class DecadesController < ApplicationController
     @movies = Movie.order(movie_order)
     @movies = @movies.where('year >= ? AND year < ?', @decade, @decade + 10)
     @movies = @movies.page(page).per(per_page)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   private

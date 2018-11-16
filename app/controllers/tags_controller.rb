@@ -16,11 +16,6 @@ class TagsController < ApplicationController
     @tags = @tags.having(minimum)
     @tags = @tags.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @tags = @tags.page(page).per(per_page)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def show
@@ -30,11 +25,6 @@ class TagsController < ApplicationController
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
     @movies = @movies.send "tagged_with", @tag, on: @type
     @movies = @movies.page(page).per(per_page)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   private
