@@ -5,12 +5,16 @@ class ItemListsController < ApplicationController
   caches_action :show, expires_in: 2.weeks
 
   def index
+    raise ActiveRecord::RecordNotFound if Rails.env.production?
+
     @title = 'Lists'
 
     @lists = ItemList.order(:position)
   end
 
   def show
+    raise ActiveRecord::RecordNotFound if Rails.env.production?
+
     @list = ItemList.find_by_permalink! params[:id]
 
     @title = "Lists - #{@list.name}"
