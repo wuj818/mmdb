@@ -3,12 +3,12 @@
 #person-carousel.carousel.slide
   .carousel-inner
     - movies.each_with_index do |movie, i|
-      .item{class: i == 0 ? 'active' : nil}
+      .carousel-item{class: (:active if i.zero?)}
         = image_tag movie.poster.url(:large), class: 'img-thumbnail'
 
-  - if movies.length > 1
-    = link_to '#person-carousel', class: 'carousel-control left', data: { slide: 'prev' } do
-      = icon 'chevron-left'
+  - unless movies.length.zero?
+    = link_to '#person-carousel', class: 'carousel-control-prev', data: { slide: 'prev' } do
+      %span.carousel-control-prev-icon
 
-    = link_to '#person-carousel', class: 'carousel-control right', data: { slide: 'next' } do
-      = icon 'chevron-right'
+    = link_to '#person-carousel', class: 'carousel-control-next', data: { slide: 'next' } do
+      %span.carousel-control-next-icon

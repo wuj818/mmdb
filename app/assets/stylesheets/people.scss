@@ -38,16 +38,3 @@
     }
   }
 }
-
-#person-carousel-wrapper {
-  padding-right: 0;
-
-  img {
-    width: 100%;
-  }
-
-  @media (max-width: 767px) {
-    margin-bottom: 20px;
-    padding-right: 20px;
-  }
-}
