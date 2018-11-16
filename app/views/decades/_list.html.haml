@@ -4,7 +4,7 @@
   - unless @decades.total_count.zero?
     %hr
 
-    = paginate @decades, remote: true
+    = paginate @decades
 
     .table-responsive
       %table.table.table-bordered.table-hover
@@ -37,4 +37,4 @@
               %td
                 = colorized_average decade
 
-    = paginate @decades, remote: true
+    = paginate @decades

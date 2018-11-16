@@ -4,7 +4,7 @@
   - unless @movies.total_count.zero?
     %hr
 
-    = paginate @movies, remote: true
+    = paginate @movies
 
     .table-responsive
       %table.table.table-bordered.table-hover
@@ -44,4 +44,4 @@
               %td
                 = colorized_rating movie
 
-    = paginate @movies, remote: true
+    = paginate @movies

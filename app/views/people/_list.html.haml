@@ -4,7 +4,7 @@
   - unless @people.total_count.zero?
     %hr
 
-    = paginate @people, remote: true
+    = paginate @people
 
     .table-responsive
       %table.table.table-bordered.table-hover
@@ -67,4 +67,4 @@
               %td
                 = person.number_of_acting_credits
 
-    = paginate @people, remote: true
+    = paginate @people

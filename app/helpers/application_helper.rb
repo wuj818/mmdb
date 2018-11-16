@@ -27,9 +27,9 @@ module ApplicationHelper
     text = column.titleize
 
     if icon_name.present?
-      link = link_to icon(icon_name), url_for(url_options), remote: true, class: 'tip', title: text
+      link = link_to icon(icon_name), url_for(url_options), class: 'tip', title: text
     else
-      link = link_to text, url_for(url_options), remote: true
+      link = link_to text, url_for(url_options)
     end
 
     if column == params[:sort]

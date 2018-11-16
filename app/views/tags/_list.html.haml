@@ -4,7 +4,7 @@
   - unless @tags.total_count.zero?
     %hr
 
-    = paginate @tags, remote: true
+    = paginate @tags
 
     .table-responsive
       %table.table.table-bordered.table-hover
@@ -37,4 +37,4 @@
               %td
                 = colorized_average tag
 
-    = paginate @tags, remote: true
+    = paginate @tags
