@@ -1,5 +1,4 @@
 = form_with url: sessions_path, class: 'form-inline' do
-  .form-group.row
-    = password_field_tag :password, nil, id: 'Password', class: 'form-control', autofocus: true
+  = password_field_tag :password, nil, id: 'Password', class: 'form-control flex-fill mr-0 mr-sm-2 mb-2 mb-sm-0', autofocus: true, required: true
 
   = submit_tag 'Login', id: 'login-button', class: 'btn btn-primary'

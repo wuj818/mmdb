@@ -2,11 +2,11 @@
   .modal-dialog
     .modal-content
       .modal-header
+        %h5.modal-title
+          Login
+
         %a.close{data: { dismiss: 'modal' }}
           &times;
-
-        %h4.modal-title
-          Login
 
       .modal-body
         = render 'sessions/form'

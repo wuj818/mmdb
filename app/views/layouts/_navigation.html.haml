@@ -69,4 +69,5 @@
                 = icon 'sign-out fw', class: 'text-primary'
                 Logout
 
-        = link_to 'Login', login_path, class: 'nav-link btn btn-primary btn-sm ml-auto login mt-3 mt-md-0 ml-md-5 mb-2 mb-md-0', rel: 'nofollow'
+        - unless controller_name == 'sessions'
+          = link_to 'Login', login_path, class: 'nav-link btn btn-primary btn-sm ml-auto login mt-3 mt-md-0 ml-md-5 mb-2 mb-md-0', rel: 'nofollow', data: { toggle: 'modal', target: '#login-modal' }

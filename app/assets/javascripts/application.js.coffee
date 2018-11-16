@@ -10,10 +10,6 @@ $ ->
   $('body').tooltip
     selector: '.tip'
 
-  $('.login').on 'click', ->
-    $('#login-modal').modal()
-    false
-
   $('#login-modal').on 'shown.bs.modal', ->
     $('#Password').focus()
 

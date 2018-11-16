@@ -9,5 +9,4 @@
 %li.page-item{class: current_page.first? ? 'disabled' : nil}
   = link_to raw(t 'views.pagination.previous'), "#{current_page.first? ? 'javascript:;' : url}",
     class: 'page-link',
-    remote: current_page.first? ? nil : remote,
     rel: 'prev'

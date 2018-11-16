@@ -17,17 +17,11 @@ class SessionsController < ApplicationController
 
       flash[:success] = 'Logged in successfully.'
 
-      respond_to do |format|
-        format.html { redirect_to root_path }
-        format.js
-      end
+      redirect_to root_path
     else
       flash.now[:danger] = 'Incorrect password.'
 
-      respond_to do |format|
-        format.html { render :new }
-        format.js
-      end
+      render :new
     end
   end
 
