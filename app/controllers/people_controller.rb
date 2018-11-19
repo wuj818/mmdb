@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
   before_action :authorize, only: [:edit, :update, :destroy]
   before_action :get_person, only: [:edit, :update, :destroy]
 
-  caches_action :show, :graphs, :keywords, expires_in: 2.weeks
+  caches_action :show, :charts, :keywords, expires_in: 2.weeks
 
   def index
     @title = 'People'
@@ -43,10 +43,10 @@ class PeopleController < ApplicationController
     redirect_to people_path
   end
 
-  def graphs
+  def charts
     @person = Person.find_by_permalink! params[:id]
 
-    @title = "#{@person.name} - Graphs"
+    @title = "#{@person.name} - Charts"
   end
 
   def keywords

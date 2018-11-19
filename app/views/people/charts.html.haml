@@ -4,17 +4,17 @@
     %span.divider /
     = link_to @person.name, @person
     %span.divider /
-    Graphs
+    Charts
 
 - smart_cache  do
   = page_header do
     %h4 Movie History
 
-  = movie_history_line_graph @person
+  = line_chart @person.movie_history
 
   %br
 
   = page_header do
     %h4 Ratings History
 
-  = movie_ratings_pie_graph @person
+  = pie_chart @person.movie_ratings_history

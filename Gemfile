@@ -29,6 +29,9 @@ gem 'paperclip', '6.1.0'
 gem 'aws-sdk-s3', '1.23.1'
 gem 'font-awesome-rails', '4.7.0.4'
 
+gem 'chartkick', '3.0.1'
+gem 'highcharts-rails', '6.0.3'
+
 group :development do
   gem 'capistrano', '3.11.0'
   gem 'capistrano-rails', '1.4.0'

@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   
     member do
       get :keywords
-      get :graphs
+      get :charts
     end
   end
   

@@ -54,11 +54,22 @@ class Person < ActiveRecord::Base
   end
 
   def movie_history
-    Movie.where('id IN (?)', self.movie_ids).select('year, AVG(rating) AS average, COUNT(*) AS total').group(:year).order(:year)
+    averages = { name: 'Average Rating', data: [] }
+    totals = { name: 'Total Movies', data: [] }
+
+    Movie.where('id IN (?)', self.movie_ids).select('year, AVG(rating) AS average, COUNT(*) AS total').group(:year).order(:year).each do |row|
+      averages[:data] << [row.year, row.average.round(2)]
+      totals[:data] << [row.year, row.total]
+    end
+
+    [averages, totals]
   end
 
   def movie_ratings_history
-    Movie.where('id IN (?)', self.movie_ids).select('rating, COUNT(*) AS total').group(:rating)
+    Movie.where('id IN (?)', self.movie_ids).select('rating, COUNT(*) AS total').group(:rating).inject({}) do |hash, row|
+      hash[row.rating] = row.total
+      hash
+    end
   end
 
   def relevant_genres(limit = 5)

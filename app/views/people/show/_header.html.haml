@@ -93,10 +93,10 @@
 
       %ul.list-unstyled
         %li
-          = link_to graphs_person_path(@person) do
-            = image_tag 'icons/chart-curve-32x32.png', title: 'Graphs', width: 32, height: 32
+          = link_to charts_person_path(@person) do
+            = image_tag 'icons/chart-curve-32x32.png', title: 'Charts', width: 32, height: 32
 
-          = link_to 'Graphs', graphs_person_path(@person)
+          = link_to 'Charts', charts_person_path(@person)
 
         %li
           = link_to @person.imdb_url, class: 'imdb', rel: 'external' do

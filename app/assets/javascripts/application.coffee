@@ -3,6 +3,10 @@
 #= require jquery-ui
 #= require popper
 #= require bootstrap
+#= require highcharts
+#= require highcharts/highcharts-more
+#= require highcharts/themes/grid-light
+#= require chartkick
 #= require plugins
 #= require_tree .
 
