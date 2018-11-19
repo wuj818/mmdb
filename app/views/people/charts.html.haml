@@ -10,7 +10,7 @@
   = page_header do
     %h4 Movie History
 
-  = line_chart @person.movie_history
+  = line_chart @person.movie_history, library: { tooltip: { shared: true }, chart: { zoomType: 'x' } }
 
   %br
 
