@@ -296,17 +296,6 @@ Rails/ActiveRecordAliases:
     - 'app/controllers/movies_controller.rb'
     - 'app/controllers/people_controller.rb'
 
-# Offense count: 6
-# Cop supports --auto-correct.
-Rails/ApplicationRecord:
-  Exclude:
-    - 'app/models/counter.rb'
-    - 'app/models/credit.rb'
-    - 'app/models/item_list.rb'
-    - 'app/models/listing.rb'
-    - 'app/models/movie.rb'
-    - 'app/models/person.rb'
-
 # Offense count: 14
 # Cop supports --auto-correct.
 # Configuration parameters: Whitelist.

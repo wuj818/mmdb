@@ -1,4 +1,4 @@
-class Listing < ActiveRecord::Base
+class Listing < ApplicationRecord
   belongs_to :item_list, touch: true
   belongs_to :movie
 

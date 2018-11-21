@@ -1,4 +1,4 @@
-class Credit < ActiveRecord::Base
+class Credit < ApplicationRecord
   belongs_to :person, counter_cache: true
   belongs_to :movie, counter_cache: true
 

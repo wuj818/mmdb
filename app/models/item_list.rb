@@ -1,4 +1,4 @@
-class ItemList < ActiveRecord::Base
+class ItemList < ApplicationRecord
   validates :name,
     presence: true,
     uniqueness: true

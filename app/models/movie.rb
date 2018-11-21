@@ -1,4 +1,4 @@
-class Movie < ActiveRecord::Base
+class Movie < ApplicationRecord
   include CreditScopesAndCounts
 
   acts_as_taggable_on :genres, :keywords, :languages, :countries
