@@ -69,7 +69,7 @@ class Movie < ApplicationRecord
   end
 
   def full_title
-    title.match(/\(\d{4}\)\z/) ? title : "#{title} (#{year})"
+    title.match?(/\(\d{4}\)\z/) ? title : "#{title} (#{year})"
   end
 
   def get_preliminary_info
