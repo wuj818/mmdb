@@ -43,6 +43,9 @@ group :development do
   gem 'spring-commands-rspec', '1.0.4'
   gem 'spring-watcher-listen', '2.0.1'
   gem 'web-console', '3.7.0'
+
+  gem 'rubocop', '0.60.0', require: false
+  gem 'spring-commands-rubocop', '0.2.0'
 end
 
 group :test, :development do
