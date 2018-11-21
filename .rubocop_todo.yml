@@ -114,12 +114,6 @@ Lint/ParenthesesAsGroupedExpression:
 
 # Offense count: 2
 # Cop supports --auto-correct.
-Lint/StringConversionInInterpolation:
-  Exclude:
-    - 'spec/models/dirk_diggler_spec.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
 # Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
 Lint/UnusedBlockArgument:
   Exclude:
