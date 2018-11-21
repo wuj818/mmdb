@@ -178,12 +178,6 @@ Lint/ParenthesesAsGroupedExpression:
   Exclude:
     - 'app/helpers/pages_helper.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Lint/ScriptPermission:
-  Exclude:
-    - 'puma.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Lint/StringConversionInInterpolation:
