@@ -493,19 +493,6 @@ Style/RescueStandardError:
   Exclude:
     - 'app/lib/dirk_diggler.rb'
 
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'app/controllers/tags_controller.rb'
-    - 'autotest/discover.rb'
-    - 'config/environments/production.rb'
-    - 'puma.rb'
-    - 'spec/controllers/sessions_controller_spec.rb'
-    - 'spec/rails_helper.rb'
-
 # Offense count: 21
 # Cop supports --auto-correct.
 # Configuration parameters: MinSize.

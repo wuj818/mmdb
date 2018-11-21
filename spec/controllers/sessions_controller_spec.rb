@@ -42,7 +42,7 @@ describe SessionsController do
   end
 
   describe 'DELETE destroy (Logout)' do
-    before { request.env["HTTP_REFERER"] = root_path }
+    before { request.env['HTTP_REFERER'] = root_path }
 
     context 'when logged in' do
       it 'logs out the admin' do
