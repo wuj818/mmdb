@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy'
-  get '/integration-login', to: 'sessions#integration_login',
-    as: 'integration_login' if Rails.env.test?
 
   resources :sessions, only: %i[new create destroy]
 

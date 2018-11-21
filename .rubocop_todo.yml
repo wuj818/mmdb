@@ -270,12 +270,6 @@ Style/MixinUsage:
     - 'config/initializers/acts_as_taggable_on.rb'
 
 # Offense count: 1
-# Cop supports --auto-correct.
-Style/MultilineIfModifier:
-  Exclude:
-    - 'config/routes.rb'
-
-# Offense count: 1
 Style/MultilineTernaryOperator:
   Exclude:
     - 'app/helpers/pages_helper.rb'
