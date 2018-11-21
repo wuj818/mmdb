@@ -102,11 +102,6 @@ Lint/AmbiguousBlockAssociation:
     - 'app/helpers/application_helper.rb'
     - 'config/initializers/acts_as_taggable_on.rb'
 
-# Offense count: 8
-Lint/AmbiguousRegexpLiteral:
-  Exclude:
-    - 'app/lib/dirk_diggler.rb'
-
 # Offense count: 1
 Lint/ParenthesesAsGroupedExpression:
   Exclude:

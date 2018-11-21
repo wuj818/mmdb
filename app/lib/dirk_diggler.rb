@@ -17,7 +17,7 @@ class DirkDiggler
 
   def initialize(target)
     @target = target
-    @target.gsub! /\?.*/, ''
+    @target.gsub!(/\?.*/, '')
     @target << '/' unless @target[-1] == '/'
     @agent = Mechanize.new
     @agent.user_agent = 'Dirk Diggler'
@@ -95,7 +95,7 @@ class DirkDiggler
     page = @agent.get(movie_poster_db_url) rescue return
     url = page.search('.flag-US').first.parent.parent.search('img').first[:src] rescue return
 
-    url.gsub! /-\w+\.jpg/, '.jpg'
+    url.gsub!(/-\w+\.jpg/, '.jpg')
     url.gsub! %r{/\d+x/}, '/500x/'
 
     @poster_url = url
@@ -125,7 +125,7 @@ class DirkDiggler
     rows.each do |row|
       begin
         link = row.search('a').first
-        url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+        url = "#{IMDB}#{link[:href].gsub(/\?.*/, '')}"
       rescue
         next
       end
@@ -143,7 +143,7 @@ class DirkDiggler
     rows.each do |row|
       begin
         link = row.search('a').first
-        url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+        url = "#{IMDB}#{link[:href].gsub(/\?.*/, '')}"
       rescue
         next
       end
@@ -161,7 +161,7 @@ class DirkDiggler
     rows.each do |row|
       begin
         link = row.search('a').first
-        url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+        url = "#{IMDB}#{link[:href].gsub(/\?.*/, '')}"
       rescue
         next
       end
@@ -179,7 +179,7 @@ class DirkDiggler
     rows.each do |row|
       begin
         link = row.search('a').first
-        url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+        url = "#{IMDB}#{link[:href].gsub(/\?.*/, '')}"
       rescue
         next
       end
@@ -197,7 +197,7 @@ class DirkDiggler
     rows.each do |row|
       begin
         link = row.search('a').first
-        url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+        url = "#{IMDB}#{link[:href].gsub(/\?.*/, '')}"
       rescue
         next
       end
@@ -215,7 +215,7 @@ class DirkDiggler
     rows.each do |row|
       begin
         link = row.search('a').first
-        url = "#{IMDB}#{link[:href].gsub /\?.*/, ''}"
+        url = "#{IMDB}#{link[:href].gsub(/\?.*/, '')}"
 
         name = row.search('td')[1].text.squish
         details = row.search('.character').text.squish
