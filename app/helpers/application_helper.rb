@@ -14,7 +14,7 @@ module ApplicationHelper
 
   def sort_link(column, icon_name = nil)
     column = column.to_s
-    new_order = (column == params[:sort] && params[:order] == 'asc') ? 'desc' : 'asc'
+    new_order = column == params[:sort] && params[:order] == 'asc' ? 'desc' : 'asc'
 
     url_options = {
       sort: column,
