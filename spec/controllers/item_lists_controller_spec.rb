@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ItemListsController do
-  def mock_list(stubs={})
+  def mock_list(stubs = {})
     (@mock_list ||= mock_model(ItemList).as_null_object).tap do |list|
       list.stub stubs.merge(blank?: false)
     end

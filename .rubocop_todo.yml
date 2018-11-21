@@ -82,14 +82,6 @@ Layout/MultilineArrayBraceLayout:
   Exclude:
     - 'app/models/movie.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: space, no_space
-Layout/SpaceAroundEqualsInParameterDefault:
-  Exclude:
-    - 'spec/controllers/item_lists_controller_spec.rb'
-
 # Offense count: 18
 # Cop supports --auto-correct.
 Layout/SpaceInsideArrayPercentLiteral:
