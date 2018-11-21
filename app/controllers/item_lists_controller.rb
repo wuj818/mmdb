@@ -68,7 +68,7 @@ class ItemListsController < ApplicationController
 
   def reorder
     params[:listing].each_with_index do |listing, i|
-      Listing.find(listing).update_attribute(:position, i+1)
+      Listing.find(listing).update_attribute(:position, i + 1)
     end
   end
 

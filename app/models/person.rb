@@ -126,7 +126,7 @@ class Person < ApplicationRecord
 
     result = name.to_permalink
     dup_count = Person.where(name: name).count
-    result << "-#{dup_count+1}" unless dup_count == 0
+    result << "-#{dup_count + 1}" unless dup_count == 0
 
     self.permalink = result
   end

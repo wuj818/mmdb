@@ -100,14 +100,6 @@ Layout/SpaceAroundEqualsInParameterDefault:
   Exclude:
     - 'spec/controllers/item_lists_controller_spec.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment.
-Layout/SpaceAroundOperators:
-  Exclude:
-    - 'app/controllers/item_lists_controller.rb'
-    - 'app/models/person.rb'
-
 # Offense count: 18
 # Cop supports --auto-correct.
 Layout/SpaceInsideArrayPercentLiteral:
