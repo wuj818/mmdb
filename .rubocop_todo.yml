@@ -115,14 +115,6 @@ Layout/SpaceInsideBlockBraces:
   Exclude:
     - 'config/initializers/acts_as_taggable_on.rb'
 
-# Offense count: 21
-# Cop supports --auto-correct.
-# Configuration parameters: AllowInHeredoc.
-Layout/TrailingWhitespace:
-  Exclude:
-    - 'config/routes.rb'
-    - 'spec/controllers/movies_controller_spec.rb'
-
 # Offense count: 2
 Lint/AmbiguousBlockAssociation:
   Exclude:

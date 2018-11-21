@@ -79,7 +79,7 @@ describe MoviesController do
 
       describe 'with invalid params' do
         it 'redirects to the new movie from IMDB url page' do
-          post :scrape_info 
+          post :scrape_info
 
           expect(response).to redirect_to new_movie_path(from_imdb: true)
         end
