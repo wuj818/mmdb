@@ -18,7 +18,7 @@ describe Credit do
     let(:credit) { create :credit }
 
     it 'has required attributes/associations' do
-      [:person, :movie, :job].each do |attribute|
+      %i[person movie job].each do |attribute|
         expect(empty_credit.errors[attribute]).to include "can't be blank"
       end
     end

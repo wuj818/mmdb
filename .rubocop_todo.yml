@@ -350,13 +350,6 @@ Style/RescueStandardError:
   Exclude:
     - 'app/lib/dirk_diggler.rb'
 
-# Offense count: 21
-# Cop supports --auto-correct.
-# Configuration parameters: MinSize.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/WhenThen:

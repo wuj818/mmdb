@@ -21,7 +21,7 @@ describe Person do
     let(:person) { create :person }
 
     it 'has required attributes' do
-      [:name, :imdb_url].each do |attribute|
+      %i[name imdb_url].each do |attribute|
         expect(empty_person.errors[attribute]).to include "can't be blank"
       end
     end

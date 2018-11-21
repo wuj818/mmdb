@@ -18,7 +18,7 @@ class Credit < ApplicationRecord
     presence: true,
     inclusion: { in: JOBS.keys, message: 'is invalid' },
     uniqueness: {
-      scope: [:person_id, :movie_id],
+      scope: %i[person_id movie_id],
       message: 'type credit already exists for this person/movie combination.'
     }
 end

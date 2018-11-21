@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
-  before_action :authorize, only: [:edit, :update, :destroy]
-  before_action :get_person, only: [:edit, :update, :destroy]
+  before_action :authorize, only: %i[edit update destroy]
+  before_action :get_person, only: %i[edit update destroy]
 
   caches_action :show, :charts, :keywords, expires_in: 2.weeks
 

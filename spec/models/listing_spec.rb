@@ -18,7 +18,7 @@ describe Listing do
     let(:listing) { create :listing }
 
     it 'has required attributes/associations' do
-      [:item_list, :movie].each do |attribute|
+      %i[item_list movie].each do |attribute|
         expect(empty_listing.errors[attribute]).to include "can't be blank"
       end
     end

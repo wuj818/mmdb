@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/integration-login', to: 'sessions#integration_login',
     as: 'integration_login' if Rails.env.test?
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: %i[new create destroy]
 
   get '/admin-controls', to: 'pages#admin_controls',
     as: 'admin_controls_path'
@@ -39,8 +39,8 @@ Rails.application.routes.draw do
   get 'people(/query/:q)', to: 'people#index',
     as: 'formatted_search_people'
 
-  resources :people, except: [:new, :create] do
-    resources :credits, only: [:new, :create, :destroy]
+  resources :people, except: %i[new create] do
+    resources :credits, only: %i[new create destroy]
 
     collection do
       get :search
@@ -52,13 +52,13 @@ Rails.application.routes.draw do
     end
   end
 
-  [:decades, :years].each do |type|
+  %i[decades years].each do |type|
     get "#{type}/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)", to: "#{type}#index"
     get "#{type}/:id/sort/:sort/order/:order(/page/:page)(/query/:q)", to: "#{type}#show"
     get "#{type}(/total-at-least/:minimum)(/query/:q)", to: "#{type}#index",
       as: "formatted_search_#{type}"
 
-    resources type, only: [:index, :show] do
+    resources type, only: %i[index show] do
       collection do
         get :search
       end
@@ -70,7 +70,7 @@ Rails.application.routes.draw do
       put :reorder
     end
 
-    resources :listings, only: [:new, :create, :destroy]
+    resources :listings, only: %i[new create destroy]
   end
 
   get 'tags/search', to: 'tags#search'
@@ -79,12 +79,12 @@ Rails.application.routes.draw do
   get ':type(/total-at-least/:minimum)(/query/:q)', to: 'tags#index',
     as: 'formatted_search_tags'
 
-  [:genres, :keywords, :languages, :countries].each do |type|
+  %i[genres keywords languages countries].each do |type|
     get ':type', to: 'tags#index', as: type.to_s, type: type
     get ':type/:id', to: 'tags#show'
   end
 
-  resources :tags, only: [:index, :show] do
+  resources :tags, only: %i[index show] do
     collection do
       get :search
     end

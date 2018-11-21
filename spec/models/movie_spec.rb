@@ -30,7 +30,7 @@ describe Movie do
     let(:movie) { create :movie }
 
     it 'has required attributes' do
-      [:title, :imdb_url, :year].each do |attribute|
+      %i[title imdb_url year].each do |attribute|
         expect(empty_movie.errors[attribute]).to include "can't be blank"
       end
     end
