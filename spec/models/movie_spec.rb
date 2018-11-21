@@ -140,7 +140,8 @@ describe Movie do
         allow(DirkDiggler).to receive(:new).and_return instance_double('DirkDiggler', get: true,
           data: {
             imdb_url: 'http://www.imdb.com/title/tt0118749/',
-            title: 'Boogie Nights' })
+            title: 'Boogie Nights'
+          })
 
         movie.get_preliminary_info
         movie.save

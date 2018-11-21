@@ -11,7 +11,8 @@ class Credit < ApplicationRecord
     'Composer' => 'composing',
     'Editor' => 'editing',
     'Cinematographer' => 'cinematography',
-    'Actor' => 'acting' }
+    'Actor' => 'acting'
+  }
 
   validates :job,
     presence: true,

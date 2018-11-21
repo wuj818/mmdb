@@ -7,7 +7,8 @@ class Movie < ApplicationRecord
     presence: true,
     uniqueness: {
       scope: 'year',
-      message: 'or Title/Year combination has already been taken' }
+      message: 'or Title/Year combination has already been taken'
+    }
 
   validates :imdb_url,
     presence: true,
@@ -17,7 +18,8 @@ class Movie < ApplicationRecord
     presence: true,
     numericality: {
       greater_than_or_equal_to: 1890,
-      less_than_or_equal_to: 3000 }
+      less_than_or_equal_to: 3000
+    }
 
   validates :rating,
     inclusion: { in: 0..10, message: 'is invalid' }
@@ -26,7 +28,8 @@ class Movie < ApplicationRecord
     presence: true,
     numericality: {
       greater_than_or_equal_to: 0,
-      less_than_or_equal_to: 300 }
+      less_than_or_equal_to: 300
+    }
 
   validates :permalink, uniqueness: true
 
