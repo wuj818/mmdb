@@ -10,12 +10,12 @@ class ItemList < ApplicationRecord
   has_many :movies, through: :listings
 
   def to_param
-    self.permalink
+    permalink
   end
 
   private
 
   def create_permalink
-    self.permalink = self.name.to_permalink
+    self.permalink = name.to_permalink
   end
 end

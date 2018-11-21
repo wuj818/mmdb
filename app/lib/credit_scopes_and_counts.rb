@@ -28,26 +28,26 @@ module CreditScopesAndCounts
   # counts
 
   def number_of_directing_credits
-    self.counter.directing_credits_count
+    counter.directing_credits_count
   end
 
   def number_of_writing_credits
-    self.counter.writing_credits_count
+    counter.writing_credits_count
   end
 
   def number_of_composing_credits
-    self.counter.composing_credits_count
+    counter.composing_credits_count
   end
 
   def number_of_editing_credits
-    self.counter.editing_credits_count
+    counter.editing_credits_count
   end
 
   def number_of_cinematography_credits
-    self.counter.cinematography_credits_count
+    counter.cinematography_credits_count
   end
 
   def number_of_acting_credits
-    self.counter.acting_credits_count
+    counter.acting_credits_count
   end
 end

@@ -468,17 +468,6 @@ Style/Proc:
     - 'config/initializers/acts_as_taggable_on.rb'
     - 'config/initializers/field_with_errors.rb'
 
-# Offense count: 62
-# Cop supports --auto-correct.
-Style/RedundantSelf:
-  Exclude:
-    - 'app/lib/credit_scopes_and_counts.rb'
-    - 'app/lib/dirk_diggler.rb'
-    - 'app/models/item_list.rb'
-    - 'app/models/movie.rb'
-    - 'app/models/person.rb'
-    - 'config/initializers/string.rb'
-
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, AllowInnerSlashes.

@@ -36,28 +36,28 @@ class Person < ApplicationRecord
   }
 
   def to_param
-    self.permalink
+    permalink
   end
 
   %w(directing writing composing editing cinematography acting).each do |credit_type|
     define_method "sorted_#{credit_type}_credits" do
-      self.send("#{credit_type}_credits").joins(:movie).order('year DESC')
+      send("#{credit_type}_credits").joins(:movie).order('year DESC')
     end
   end
 
   def movies
-    Movie.joins(:credits).where('credits.person_id = ?', self.id).group('movie_id')
+    Movie.joins(:credits).where('credits.person_id = ?', id).group('movie_id')
   end
 
   def movie_ids
-    self.movies.map(&:id)
+    movies.map(&:id)
   end
 
   def movie_history
     averages = { name: 'Average Rating', data: [] }
     totals = { name: 'Total Movies', data: [] }
 
-    Movie.where('id IN (?)', self.movie_ids).select('year, AVG(rating) AS average, COUNT(*) AS total').group(:year).order(:year).each do |row|
+    Movie.where('id IN (?)', movie_ids).select('year, AVG(rating) AS average, COUNT(*) AS total').group(:year).order(:year).each do |row|
       averages[:data] << [row.year, row.average.round(2)]
       totals[:data] << [row.year, row.total]
     end
@@ -66,43 +66,43 @@ class Person < ApplicationRecord
   end
 
   def movie_ratings_history
-    Movie.where('id IN (?)', self.movie_ids).select('rating, COUNT(*) AS total').group(:rating).inject({}) do |hash, row|
+    Movie.where('id IN (?)', movie_ids).select('rating, COUNT(*) AS total').group(:rating).inject({}) do |hash, row|
       hash[row.rating] = row.total
       hash
     end
   end
 
   def relevant_genres(limit = 5)
-    self.movies.genre_counts.order('count DESC').limit(limit)
+    movies.genre_counts.order('count DESC').limit(limit)
   end
 
   def relevant_languages(limit = 5)
-    self.movies.language_counts.order('count DESC').limit(limit)
+    movies.language_counts.order('count DESC').limit(limit)
   end
 
   def relevant_countries(limit = 5)
-    self.movies.country_counts.order('count DESC').limit(limit)
+    movies.country_counts.order('count DESC').limit(limit)
   end
 
   def keywords
-    self.movies.keyword_counts
+    movies.keyword_counts
   end
 
   def relevant_keywords(limit = 10)
-    self.keywords.order('count DESC').limit(limit)
+    keywords.order('count DESC').limit(limit)
   end
 
   def frequent_collaborators(limit = 25)
     people = Person.select('people.id, name, permalink, COUNT(DISTINCT(movie_id)) AS count')
     people = people.joins(:credits)
-    people = people.where('movie_id IN (?) AND person_id <> ?', self.movies.map(&:id), self.id)
+    people = people.where('movie_id IN (?) AND person_id <> ?', movies.map(&:id), id)
     people = people.group(:person_id)
     people = people.order('COUNT(DISTINCT(movie_id)) DESC')
     people = people.limit(limit)
   end
 
   def score
-    ratings = self.movies.map(&:rating)
+    ratings = movies.map(&:rating)
     total = ratings.inject(0) { |sum, n| sum + (n * RATING_WEIGHTS[n]) }
     count = ratings.inject(0) { |sum, n| sum + RATING_WEIGHTS[n] }
 
@@ -110,30 +110,30 @@ class Person < ApplicationRecord
   end
 
   def approval_percentage
-    (self.movies.where('rating >= 6').length / self.movies.length.to_f * 100).ceil rescue 0
+    (movies.where('rating >= 6').length / movies.length.to_f * 100).ceil rescue 0
   end
 
   def self.[](name)
-    self.find_by_name name
+    find_by_name name
   end
 
   private
 
   def create_permalink
-    return unless self.permalink.blank?
+    return unless permalink.blank?
 
-    return if self.name.blank?
+    return if name.blank?
 
-    result = self.name.to_permalink
-    dup_count = Person.where(name: self.name).count
+    result = name.to_permalink
+    dup_count = Person.where(name: name).count
     result << "-#{dup_count+1}" unless dup_count == 0
 
     self.permalink = result
   end
 
   def create_sort_name
-    return unless self.sort_name.blank?
+    return unless sort_name.blank?
 
-    self.sort_name = self.name.to_sort_column
+    self.sort_name = name.to_sort_column
   end
 end

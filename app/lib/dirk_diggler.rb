@@ -31,12 +31,12 @@ class DirkDiggler
 
   def get(*items)
     items = ITEMS if items.first == :all
-    items.each { |item| self.send "get_#{item}" }
+    items.each { |item| send "get_#{item}" }
   end
 
   def data
     result = { imdb_url: @target }
-    ITEMS.each { |item| result[item] = self.send(item) unless self.send(item).blank? }
+    ITEMS.each { |item| result[item] = send(item) unless send(item).blank? }
     result
   end
 

@@ -61,17 +61,17 @@ class Movie < ApplicationRecord
     Short Sport  Thriller   War        Western )
 
   def to_param
-    self.permalink
+    permalink
   end
 
   def full_title
-    self.title.match(/\(\d{4}\)\z/) ? self.title : "#{self.title} (#{self.year})"
+    title.match(/\(\d{4}\)\z/) ? title : "#{title} (#{year})"
   end
 
   def get_preliminary_info
     return false unless new_record?
 
-    diggler = DirkDiggler.new self.imdb_url
+    diggler = DirkDiggler.new imdb_url
     diggler.get :info
 
     self.attributes = diggler.data
@@ -83,8 +83,8 @@ class Movie < ApplicationRecord
 
   %w(genre keyword language country).each do |tag_type|
     define_method "add_#{tag_type}" do |*tags|
-      self.send("#{tag_type}_list") << tags
-      self.send("#{tag_type}_list").flatten!
+      send("#{tag_type}_list") << tags
+      send("#{tag_type}_list").flatten!
 
       save validate: false
     end
@@ -92,8 +92,8 @@ class Movie < ApplicationRecord
     define_method "remove_#{tag_type}" do |*tags|
       return if tags.empty?
 
-      original_tags = self.send "#{tag_type}_list"
-      self.send("#{tag_type}_list=", original_tags - tags)
+      original_tags = send "#{tag_type}_list"
+      send("#{tag_type}_list=", original_tags - tags)
 
       save validate: false
     end
@@ -101,53 +101,53 @@ class Movie < ApplicationRecord
 
   %w(directing writing composing editing cinematography acting).each do |credit_type|
     define_method "sorted_#{credit_type}_credits" do
-      self.send("#{credit_type}_credits").joins(:person).order('sort_name')
+      send("#{credit_type}_credits").joins(:person).order('sort_name')
     end
   end
 
   def sorted_keywords
-    self.keywords.order(:name)
+    keywords.order(:name)
   end
 
   def relevant_keywords(limit = 10)
     keywords = Tagging.select('name, COUNT(*), AVG(rating)')
     keywords = keywords.joins(:tag).joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
-    keywords = keywords.where('name IN (?)', self.keyword_list)
+    keywords = keywords.where('name IN (?)', keyword_list)
     keywords = keywords.group(:name).having('COUNT(*) >= 5')
     keywords = keywords.order('AVG(rating) DESC').limit(limit)
   end
 
   def related_movies
-    keywords = self.relevant_keywords(25).map(&:name)
-    movies = self.find_related_genres.where('rating >= 7')
+    keywords = relevant_keywords(25).map(&:name)
+    movies = find_related_genres.where('rating >= 7')
     movies = movies.tagged_with(keywords, on: :keywords, any: true).limit(25) rescue []
   end
 
   def self.[](title)
-    self.find_by_title title
+    find_by_title title
   end
 
   private
 
   def create_permalink
-    return unless self.permalink.blank?
+    return unless permalink.blank?
 
-    return if self.title.blank? || self.year.blank?
+    return if title.blank? || year.blank?
 
-    result = self.title.to_permalink
+    result = title.to_permalink
 
     unless Movie.where(permalink: result).empty?
-      result << "-#{self.year}"
-      self.title << " (#{self.year})"
+      result << "-#{year}"
+      title << " (#{year})"
     end
 
     self.permalink = result
   end
 
   def create_sort_title
-    return unless self.sort_title.blank?
+    return unless sort_title.blank?
 
-    self.sort_title = self.title.to_sort_column
+    self.sort_title = title.to_sort_column
   end
 
   def save_remote_poster
@@ -162,6 +162,6 @@ class Movie < ApplicationRecord
     short_filename = Digest::SHA2.file(poster.queued_for_write[:original].path).hexdigest[0..2]
     extension = File.extname(poster_file_name).downcase
 
-    self.poster.instance_write :file_name, "#{short_filename}#{extension}"
+    poster.instance_write :file_name, "#{short_filename}#{extension}"
   end
 end
