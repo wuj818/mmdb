@@ -1,26 +1,26 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/login' => 'sessions#new'
-  delete '/logout' => 'sessions#destroy'
-  get '/integration-login' => 'sessions#integration_login',
+  get '/login', to: 'sessions#new'
+  delete '/logout', to: 'sessions#destroy'
+  get '/integration-login', to: 'sessions#integration_login',
     as: 'integration_login' if Rails.env.test?
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  get '/admin-controls' => 'pages#admin_controls',
+  get '/admin-controls', to: 'pages#admin_controls',
     as: 'admin_controls_path'
 
-  delete '/clear-cache' => 'pages#clear_cache',
+  delete '/clear-cache', to: 'pages#clear_cache',
     as: 'clear_cache'
 
-  get '/movies/new-from-imdb' => 'movies#new',
+  get '/movies/new-from-imdb', to: 'movies#new',
     from_imdb: true, as: 'new_movie_from_imdb'
 
-  post '/movies/scrape-info' => 'movies#scrape_info', as: 'scrape_info'
+  post '/movies/scrape-info', to: 'movies#scrape_info', as: 'scrape_info'
 
-  get 'movies/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'movies#index'
-  get 'movies(/query/:q)' => 'movies#index',
+  get 'movies/sort/:sort/order/:order(/page/:page)(/query/:q)', to: 'movies#index'
+  get 'movies(/query/:q)', to: 'movies#index',
     as: 'formatted_search_movies'
 
   resources :movies do
@@ -35,8 +35,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'people/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'people#index'
-  get 'people(/query/:q)' => 'people#index',
+  get 'people/sort/:sort/order/:order(/page/:page)(/query/:q)', to: 'people#index'
+  get 'people(/query/:q)', to: 'people#index',
     as: 'formatted_search_people'
 
   resources :people, except: [:new, :create] do
@@ -53,9 +53,9 @@ Rails.application.routes.draw do
   end
 
   [:decades, :years].each do |type|
-    get "#{type}/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)" => "#{type}#index"
-    get "#{type}/:id/sort/:sort/order/:order(/page/:page)(/query/:q)" => "#{type}#show"
-    get "#{type}(/total-at-least/:minimum)(/query/:q)" => "#{type}#index",
+    get "#{type}/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)", to: "#{type}#index"
+    get "#{type}/:id/sort/:sort/order/:order(/page/:page)(/query/:q)", to: "#{type}#show"
+    get "#{type}(/total-at-least/:minimum)(/query/:q)", to: "#{type}#index",
       as: "formatted_search_#{type}"
 
     resources type, only: [:index, :show] do
@@ -73,15 +73,15 @@ Rails.application.routes.draw do
     resources :listings, only: [:new, :create, :destroy]
   end
 
-  get 'tags/search' => 'tags#search'
-  get ':type/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)' => 'tags#index'
-  get ':type/:id/sort/:sort/order/:order(/page/:page)(/query/:q)' => 'tags#show'
-  get ':type(/total-at-least/:minimum)(/query/:q)' => 'tags#index',
+  get 'tags/search', to: 'tags#search'
+  get ':type/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)', to: 'tags#index'
+  get ':type/:id/sort/:sort/order/:order(/page/:page)(/query/:q)', to: 'tags#show'
+  get ':type(/total-at-least/:minimum)(/query/:q)', to: 'tags#index',
     as: 'formatted_search_tags'
 
   [:genres, :keywords, :languages, :countries].each do |type|
-    get ':type' => 'tags#index', as: type.to_s, type: type
-    get ':type/:id' => 'tags#show'
+    get ':type', to: 'tags#index', as: type.to_s, type: type
+    get ':type/:id', to: 'tags#show'
   end
 
   resources :tags, only: [:index, :show] do
