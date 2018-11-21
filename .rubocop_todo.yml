@@ -202,14 +202,6 @@ Performance/RegexpMatch:
   Exclude:
     - 'app/models/movie.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Rails/ActiveRecordAliases:
-  Exclude:
-    - 'app/controllers/item_lists_controller.rb'
-    - 'app/controllers/movies_controller.rb'
-    - 'app/controllers/people_controller.rb'
-
 # Offense count: 14
 # Cop supports --auto-correct.
 # Configuration parameters: Whitelist.

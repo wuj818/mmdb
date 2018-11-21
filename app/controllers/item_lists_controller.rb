@@ -47,7 +47,7 @@ class ItemListsController < ApplicationController
   def update
     @title = %(Edit "#{@list.name}")
 
-    if @list.update_attributes params[:item_list]
+    if @list.update params[:item_list]
       flash[:success] = %("#{@list.name}" was successfully edited.)
 
       redirect_to @list

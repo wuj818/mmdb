@@ -47,7 +47,7 @@ class MoviesController < ApplicationController
   def update
     @title = %(Edit "#{@movie.full_title}")
 
-    if @movie.update_attributes movie_params
+    if @movie.update movie_params
       flash[:success] = %("#{@movie.title}" was successfully edited.)
 
       redirect_to @movie
