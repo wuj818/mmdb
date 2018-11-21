@@ -14,7 +14,7 @@ class TagsController < ApplicationController
     @tags = @tags.where('context = ?', @type)
     @tags = @tags.group(:name)
     @tags = @tags.having(minimum)
-    @tags = @tags.where('name LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
+    @tags = @tags.where('name LIKE ?', "%#{params[:q]}%") if params[:q].present?
     @tags = @tags.page(page).per(per_page)
   end
 
@@ -22,7 +22,7 @@ class TagsController < ApplicationController
     @title = "#{@type.capitalize} - #{@tag}"
 
     @movies = Movie.order(movie_order)
-    @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
+    @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") if params[:q].present?
     @movies = @movies.send 'tagged_with', @tag, on: @type
     @movies = @movies.page(page).per(per_page)
   end

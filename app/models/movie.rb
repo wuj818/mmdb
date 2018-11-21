@@ -134,7 +134,7 @@ class Movie < ApplicationRecord
   private
 
   def create_permalink
-    return unless permalink.blank?
+    return if permalink.present?
 
     return if title.blank? || year.blank?
 
@@ -149,7 +149,7 @@ class Movie < ApplicationRecord
   end
 
   def create_sort_title
-    return unless sort_title.blank?
+    return if sort_title.present?
 
     self.sort_title = title.to_sort_column
   end

@@ -7,12 +7,12 @@ class ApplicationController < ActionController::Base
   def search
     values = {}
 
-    unless params[:minimum].blank?
+    if params[:minimum].present?
       params[:minimum] = params[:minimum].to_i
       values = { minimum: params[:minimum] }
     end
 
-    values[:q] = params[:q].sub('.', '') unless params[:q].blank?
+    values[:q] = params[:q].sub('.', '') if params[:q].present?
     values[:type] = params[:type] if controller_name == 'tags'
 
     redirect_to send("formatted_search_#{controller_name}_path", values)

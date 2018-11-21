@@ -211,22 +211,6 @@ Rails/OutputSafety:
     - 'app/helpers/application_helper.rb'
     - 'app/helpers/pages_helper.rb'
 
-# Offense count: 14
-# Cop supports --auto-correct.
-# Configuration parameters: NotNilAndNotEmpty, NotBlank, UnlessBlank.
-Rails/Present:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/decades_controller.rb'
-    - 'app/controllers/movies_controller.rb'
-    - 'app/controllers/people_controller.rb'
-    - 'app/controllers/tags_controller.rb'
-    - 'app/controllers/years_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/lib/dirk_diggler.rb'
-    - 'app/models/movie.rb'
-    - 'app/models/person.rb'
-
 # Offense count: 13
 # Configuration parameters: Blacklist, Whitelist.
 # Blacklist: decrement!, decrement_counter, increment!, increment_counter, toggle!, touch, update_all, update_attribute, update_column, update_columns, update_counters

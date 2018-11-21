@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
     @title = 'Movies'
 
     @movies = Movie.order(movie_order)
-    @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
+    @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") if params[:q].present?
     @movies = @movies.page(page).per(per_page)
   end
 

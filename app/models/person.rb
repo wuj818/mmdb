@@ -120,7 +120,7 @@ class Person < ApplicationRecord
   private
 
   def create_permalink
-    return unless permalink.blank?
+    return if permalink.present?
 
     return if name.blank?
 
@@ -132,7 +132,7 @@ class Person < ApplicationRecord
   end
 
   def create_sort_name
-    return unless sort_name.blank?
+    return if sort_name.present?
 
     self.sort_name = name.to_sort_column
   end

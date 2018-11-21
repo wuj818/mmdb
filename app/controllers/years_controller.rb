@@ -8,7 +8,7 @@ class YearsController < ApplicationController
     @years = @years.select('year, COUNT(*) AS total, AVG(rating) AS average')
     @years = @years.group(:year)
     @years = @years.having(minimum)
-    @years = @years.where('year LIKE ?', "%#{params[:q]}%") unless params[:q].blank?
+    @years = @years.where('year LIKE ?', "%#{params[:q]}%") if params[:q].present?
     @years = @years.page(page).per(per_page)
   end
 

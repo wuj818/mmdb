@@ -43,7 +43,7 @@ module ApplicationHelper
 
   def smart_cache(key = '', &block)
     str = CGI::unescape request.path.slice(1..-1)
-    str << "/#{key}" unless key.blank?
+    str << "/#{key}" if key.present?
 
     cache str, expires_in: 2.weeks, &block
   end

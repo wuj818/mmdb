@@ -36,7 +36,7 @@ class DirkDiggler
 
   def data
     result = { imdb_url: @target }
-    ITEMS.each { |item| result[item] = send(item) unless send(item).blank? }
+    ITEMS.each { |item| result[item] = send(item) if send(item).present? }
     result
   end
 
