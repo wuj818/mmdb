@@ -36,7 +36,7 @@ class TagsController < ApplicationController
   end
 
   def get_tag
-    @tag = CGI::unescape params[:id]
+    @tag = CGI.unescape params[:id]
 
     Tag.find_by_name! @tag
   end

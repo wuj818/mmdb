@@ -42,7 +42,7 @@ module ApplicationHelper
   end
 
   def smart_cache(key = '', &block)
-    str = CGI::unescape request.path.slice(1..-1)
+    str = CGI.unescape request.path.slice(1..-1)
     str << "/#{key}" if key.present?
 
     cache str, expires_in: 2.weeks, &block
@@ -88,7 +88,7 @@ module ApplicationHelper
   def tag_link(tag, type, options = {})
     type = type.to_s.pluralize
 
-    link_to tag.name, "/#{type}/#{CGI::escape tag.name}", options
+    link_to tag.name, "/#{type}/#{CGI.escape tag.name}", options
   end
 
   def page_header
