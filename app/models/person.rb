@@ -66,9 +66,8 @@ class Person < ApplicationRecord
   end
 
   def movie_ratings_history
-    Movie.where('id IN (?)', movie_ids).select('rating, COUNT(*) AS total').group(:rating).inject({}) do |hash, row|
+    Movie.where('id IN (?)', movie_ids).select('rating, COUNT(*) AS total').group(:rating).each_with_object({}) do |row, hash|
       hash[row.rating] = row.total
-      hash
     end
   end
 
