@@ -7,6 +7,6 @@ class String
 
   def to_sort_column
     # get rid of unnecessary words like 'a', 'an', and 'the'
-    ActiveSupport::Inflector.transliterate to_permalink.gsub('-', ' ').gsub(/\Aa /, '').gsub(/\Aan /, '').gsub(/\Athe /, '')
+    ActiveSupport::Inflector.transliterate to_permalink.tr('-', ' ').gsub(/\Aa /, '').gsub(/\Aan /, '').gsub(/\Athe /, '')
   end
 end

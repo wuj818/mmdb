@@ -15,7 +15,7 @@ module PagesHelper
     offset = (page.to_i - 1) * per_page.to_i
 
     entry_name = options[:entry_name] || (collection_size.zero? ? 'entry' :
-                 collection.first.class.name.underscore.gsub('_', ' '))
+                 collection.first.class.name.underscore.tr('_', ' '))
 
     plural_name = if options[:plural_name]
       options[:plural_name]

@@ -202,13 +202,6 @@ Performance/RegexpMatch:
   Exclude:
     - 'app/models/movie.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Performance/StringReplacement:
-  Exclude:
-    - 'app/helpers/pages_helper.rb'
-    - 'config/initializers/string.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 Rails/ActiveRecordAliases:
