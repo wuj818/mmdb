@@ -205,14 +205,6 @@ Rails/DynamicFindBy:
     - 'app/models/movie.rb'
     - 'app/models/person.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: numeric, symbolic
-Rails/HttpStatus:
-  Exclude:
-    - 'app/controllers/pages_controller.rb'
-
 # Offense count: 2
 Rails/OutputSafety:
   Exclude:

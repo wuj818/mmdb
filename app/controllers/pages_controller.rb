@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
   def admin_controls
     unless admin?
-      render body: nil, status: 401
+      render body: nil, status: :unauthorized
     end
   end
 
