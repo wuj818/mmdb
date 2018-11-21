@@ -50,12 +50,6 @@ Layout/ElseAlignment:
     - 'app/helpers/pages_helper.rb'
     - 'app/helpers/people_helper.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Layout/EmptyLineAfterMagicComment:
-  Exclude:
-    - 'spec/models/string_spec.rb'
-
 # Offense count: 10
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleAlignWith, AutoCorrect, Severity.
