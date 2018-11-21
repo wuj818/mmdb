@@ -96,15 +96,6 @@ Layout/SpaceInsideArrayPercentLiteral:
   Exclude:
     - 'app/models/movie.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
-# SupportedStyles: space, no_space
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideBlockBraces:
-  Exclude:
-    - 'config/initializers/acts_as_taggable_on.rb'
-
 # Offense count: 2
 Lint/AmbiguousBlockAssociation:
   Exclude:
