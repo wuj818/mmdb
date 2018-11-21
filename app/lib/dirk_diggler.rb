@@ -64,7 +64,7 @@ class DirkDiggler
 
     query = CGI.escape "rotten tomatoes #{title} #{year}"
     page = @agent.get("https://www.google.com/search?q=#{query}") rescue return
-    url = page.link_with href: %r(https://www.rottentomatoes.com/m/[\w-]+/)
+    url = page.link_with href: %r{https://www.rottentomatoes.com/m/[\w-]+/}
 
     @rotten_tomatoes_url = url.href.gsub!('/url?q=', '').gsub!(/&.+/, '') rescue nil
   end
@@ -84,7 +84,7 @@ class DirkDiggler
 
     query = CGI.escape "cinematerial #{title} #{year}"
     page = @agent.get("https://www.google.com/search?q=#{query}") rescue return
-    url = page.link_with href: %r(https://www.cinematerial.com/movies/[\w-]+)
+    url = page.link_with href: %r{https://www.cinematerial.com/movies/[\w-]+}
 
     @movie_poster_db_url = url.href.gsub!('/url?q=', '').gsub!(/&.+/, '') rescue nil
   end
@@ -102,20 +102,20 @@ class DirkDiggler
   end
 
   def get_genres
-    @genres = @page.links_with(href: %r(genres=)).map(&:text).map(&:squish).uniq.sort rescue []
+    @genres = @page.links_with(href: %r{genres=}).map(&:text).map(&:squish).uniq.sort rescue []
   end
 
   def get_keywords
     page = @agent.get("#{@target}keywords") rescue return
-    @keywords = page.links_with(href: %r(/keyword/\w)).map(&:text).map(&:squish).uniq.sort rescue []
+    @keywords = page.links_with(href: %r{/keyword/\w}).map(&:text).map(&:squish).uniq.sort rescue []
   end
 
   def get_languages
-    @languages = @page.links_with(href: %r(primary_language=)).map(&:text).map(&:squish).uniq.sort rescue []
+    @languages = @page.links_with(href: %r{primary_language=}).map(&:text).map(&:squish).uniq.sort rescue []
   end
 
   def get_countries
-    @countries = @page.links_with(href: %r(country_of_origin=)).map(&:text).map(&:squish).sort rescue []
+    @countries = @page.links_with(href: %r{country_of_origin=}).map(&:text).map(&:squish).sort rescue []
   end
 
   def get_directors

@@ -38,7 +38,7 @@ module PagesHelper
       else; "Displaying #{b}all #{number_with_delimiter collection_size}#{eb} #{plural_name}"
       end
     else
-      info = %{Displaying #{plural_name} #{b}%d#{sp}-#{sp}%d#{eb} of #{b}%s#{eb} in total} % [
+      info = %(Displaying #{plural_name} #{b}%d#{sp}-#{sp}%d#{eb} of #{b}%s#{eb} in total) % [
         offset + 1,
         offset + collection.length,
         number_with_delimiter(collection_size)

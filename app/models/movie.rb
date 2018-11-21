@@ -54,11 +54,12 @@ class Movie < ApplicationRecord
 
   before_post_process :shorten_filename
 
-  GENRES = %w(
+  GENRES = %w[
     Action       Adventure  Animation  Biography  Comedy     Crime
     Documentary  Drama      Family     Fantasy    Film-Noir  History
     Horror       Music      Musical    Mystery    Romance    Sci-Fi
-    Short Sport  Thriller   War        Western )
+    Short Sport  Thriller   War        Western
+  ]
 
   def to_param
     permalink
@@ -81,7 +82,7 @@ class Movie < ApplicationRecord
     update_attribute :rating, rating
   end
 
-  %w(genre keyword language country).each do |tag_type|
+  %w[genre keyword language country].each do |tag_type|
     define_method "add_#{tag_type}" do |*tags|
       send("#{tag_type}_list") << tags
       send("#{tag_type}_list").flatten!
@@ -99,7 +100,7 @@ class Movie < ApplicationRecord
     end
   end
 
-  %w(directing writing composing editing cinematography acting).each do |credit_type|
+  %w[directing writing composing editing cinematography acting].each do |credit_type|
     define_method "sorted_#{credit_type}_credits" do
       send("#{credit_type}_credits").joins(:person).order('sort_name')
     end

@@ -39,7 +39,7 @@ class Person < ApplicationRecord
     permalink
   end
 
-  %w(directing writing composing editing cinematography acting).each do |credit_type|
+  %w[directing writing composing editing cinematography acting].each do |credit_type|
     define_method "sorted_#{credit_type}_credits" do
       send("#{credit_type}_credits").joins(:movie).order('year DESC')
     end

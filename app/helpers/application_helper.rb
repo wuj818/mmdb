@@ -103,7 +103,7 @@ module ApplicationHelper
     return true if params[:q].present?
 
     if params[:sort].present?
-      return true unless %w(decade name title year).include? params[:sort]
+      return true unless %w[decade name title year].include? params[:sort]
     end
 
     if params[:order].present?

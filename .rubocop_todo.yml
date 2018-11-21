@@ -447,20 +447,6 @@ Style/NumericPredicate:
     - 'spec/**/*'
     - 'app/models/person.rb'
 
-# Offense count: 18
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'app/controllers/tags_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/pages_helper.rb'
-    - 'app/lib/dirk_diggler.rb'
-    - 'app/models/movie.rb'
-    - 'app/models/person.rb'
-    - 'config/deploy/production.rb'
-    - 'spec/models/movie_spec.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/Proc:

@@ -169,7 +169,7 @@ describe Movie do
 
     describe 'add_genre(*genres)' do
       before do
-        %w(genre keyword language country).each do |tag_type|
+        %w[genre keyword language country].each do |tag_type|
           expect(movie).to respond_to "add_#{tag_type}"
         end
       end
@@ -179,7 +179,7 @@ describe Movie do
         expect(movie.genre_list).to include 'Drama'
 
         movie.add_genre 'Comedy', 'Comedy', 'Thriller'
-        %w(Drama Comedy Thriller).each do |genre|
+        %w[Drama Comedy Thriller].each do |genre|
           expect(movie.genre_list).to include genre
         end
       end
@@ -187,7 +187,7 @@ describe Movie do
 
     describe 'remove_genre(*genres)' do
       before do
-        %w(genre keyword language country).each do |tag_type|
+        %w[genre keyword language country].each do |tag_type|
           expect(movie).to respond_to "remove_#{tag_type}"
         end
       end
@@ -198,7 +198,7 @@ describe Movie do
         expect(movie.genre_list).not_to include 'Sci-Fi'
 
         movie.remove_genre 'Drama', 'Comedy'
-        %w(Drama Comedy).each do |genre|
+        %w[Drama Comedy].each do |genre|
           expect(movie.genre_list).not_to include genre
         end
       end

@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   before_action :get_type
   before_action :get_tag, only: [:show]
 
-  TYPES = %w(countries genres keywords languages)
+  TYPES = %w[countries genres keywords languages]
 
   def index
     @title = @type.capitalize
