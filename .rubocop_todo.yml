@@ -357,12 +357,6 @@ Style/RescueStandardError:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/UnneededInterpolation:
-  Exclude:
-    - 'config/routes.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/WhenThen:

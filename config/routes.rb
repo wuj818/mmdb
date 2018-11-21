@@ -80,7 +80,7 @@ Rails.application.routes.draw do
     as: 'formatted_search_tags'
 
   [:genres, :keywords, :languages, :countries].each do |type|
-    get ':type' => 'tags#index', as: "#{type}", type: type
+    get ':type' => 'tags#index', as: type.to_s, type: type
     get ':type/:id' => 'tags#show'
   end
 
