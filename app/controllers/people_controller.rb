@@ -25,7 +25,7 @@ class PeopleController < ApplicationController
   def update
     @title = %(Edit "#{@person.name}")
 
-    if @person.update params[:person]
+    if @person.update person_params
       flash[:success] = %("#{@person.name}" was successfully edited.)
 
       redirect_to @person
