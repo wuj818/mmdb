@@ -45,7 +45,7 @@ module PagesHelper
       ]
     end
 
-    content_tag :span, info.html_safe
+    tag.span info.html_safe
   end
 
   def row_number(i)

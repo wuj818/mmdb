@@ -4,7 +4,7 @@ module ApplicationHelper
 
     classes << options.delete(:class)
     text = options.delete :text
-    icon = content_tag :i, nil, options.merge(class: classes.compact)
+    icon = tag.i nil, options.merge(class: classes.compact)
 
     return icon if text.blank?
 
@@ -70,7 +70,7 @@ module ApplicationHelper
       'green'
     end
 
-    content_tag :strong, format('%.2f', average), class: "#{color}-rating"
+    tag.strong format('%.2f', average), class: "#{color}-rating"
   end
 
   def colorized_credit_average(average)
@@ -82,7 +82,7 @@ module ApplicationHelper
       'green'
     end
 
-    content_tag :strong, format('%.2f', average), class: "#{color}-rating"
+    tag.strong format('%.2f', average), class: "#{color}-rating"
   end
 
   def tag_link(tag, type, options = {})
@@ -92,7 +92,7 @@ module ApplicationHelper
   end
 
   def page_header
-    content_tag :div, class: 'pb-2 mb-4 border-bottom' do
+    tag.div class: 'pb-2 mb-4 border-bottom' do
       yield
     end
   end

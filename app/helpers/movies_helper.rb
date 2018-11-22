@@ -12,7 +12,7 @@ module MoviesHelper
   end
 
   def colorized_rating(movie)
-    content_tag :strong, movie.rating, class: movie_rating_class(movie)
+    tag.strong movie.rating, class: movie_rating_class(movie)
   end
 
   def movie_rating_class(movie)

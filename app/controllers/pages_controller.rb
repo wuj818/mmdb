@@ -6,9 +6,7 @@ class PagesController < ApplicationController
   end
 
   def admin_controls
-    unless admin?
-      render body: nil, status: :unauthorized
-    end
+    head :unauthorized unless admin?
   end
 
   def clear_cache

@@ -1,6 +1,6 @@
 #flashes
   - flash.each do |kind, msg|
-    = content_tag :div, class: "alert alert-#{kind} alert-dismissable" do
+    = tag.div class: "alert alert-#{kind} alert-dismissable" do
       = msg
 
       %a.close{data: { dismiss: 'alert' }}
