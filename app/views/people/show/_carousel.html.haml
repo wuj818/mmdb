@@ -4,7 +4,7 @@
   .carousel-inner
     - movies.each_with_index do |movie, i|
       .carousel-item{class: (:active if i.zero?)}
-        = image_tag movie.poster.url(:large), class: 'img-thumbnail'
+        = image_tag movie.poster.url(:large), class: 'img-thumbnail w-100'
 
   - unless movies.length.zero?
     = link_to '#person-carousel', class: 'carousel-control-prev', data: { slide: 'prev' } do
