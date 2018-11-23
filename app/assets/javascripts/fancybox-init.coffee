@@ -7,3 +7,4 @@ $(document).on 'turbolinks:load', ->
       title: null
     loop: true
     padding: 0
+    parent: '#content'
