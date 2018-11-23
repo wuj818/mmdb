@@ -1,6 +1,7 @@
 #= require rails-ujs
 #= require jquery3
 #= require jquery-ui
+#= require turbolinks
 #= require popper
 #= require bootstrap
 #= require highcharts
@@ -10,7 +11,7 @@
 #= require plugins
 #= require_tree .
 
-$ ->
+$(document).on 'turbolinks:load', ->
   $('body').tooltip
     selector: '.tip'
 

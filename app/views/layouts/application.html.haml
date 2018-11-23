@@ -11,8 +11,8 @@
     %title
       = @title.blank? ? 'MMDb' : "MMDb - #{@title}"
 
-    = stylesheet_link_tag :application, media: 'all'
-    = javascript_include_tag :application
+    = stylesheet_link_tag :application, media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag :application, 'data-turbolinks-track': 'reload'
 
     = csrf_meta_tags
     = favicon_link_tag
@@ -21,7 +21,8 @@
       = render 'shared/google_analytics'
 
   %body
-    #env{class: Rails.env}
+    - if Rails.env.production?
+      #google-analytics{data: { property_id: ga_property_id }}
 
     = render 'layouts/navigation'
 

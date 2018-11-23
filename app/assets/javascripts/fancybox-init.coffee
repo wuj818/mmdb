@@ -1,4 +1,4 @@
-$ ->
+$(document).on 'turbolinks:load', ->
   $('.tiny-poster-link').fancybox
     helpers:
       overlay:
