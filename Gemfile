@@ -53,6 +53,8 @@ group :test, :development do
   gem 'rails-controller-testing', '1.0.2'
   gem 'rspec-activemodel-mocks', '1.1.0'
   gem 'rspec-rails', '3.8.1'
+
+  gem 'fuubar', '2.3.2'
 end
 
 group :test do
