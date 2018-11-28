@@ -13,7 +13,7 @@
           %th
 
     %tbody
-      - @movie.send("sorted_#{credit_type}_credits").each do |credit|
+      - @movie.send("sorted_#{credit_type}_credits").includes(:person).each do |credit|
         %tr
           %td
             = link_to credit.person.name, credit.person

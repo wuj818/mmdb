@@ -19,7 +19,7 @@
           %th
 
     %tbody
-      - @person.send("sorted_#{credit_type}_credits").each do |credit|
+      - @person.send("sorted_#{credit_type}_credits").includes(:movie).each do |credit|
         %tr
           %td
             = tiny_movie_poster_link credit.movie, job
