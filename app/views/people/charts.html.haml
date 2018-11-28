@@ -7,14 +7,8 @@
     Charts
 
 - smart_cache  do
-  = page_header do
-    %h4 Movie History
+  = movie_credits_column_chart @person
 
-  = line_chart @person.movie_history, library: { tooltip: { shared: true }, chart: { zoomType: 'x' } }
+  %hr
 
-  %br
-
-  = page_header do
-    %h4 Ratings History
-
-  = pie_chart @person.movie_ratings_history
+  = movie_ratings_pie_chart @person

@@ -23,15 +23,14 @@ gem 'coffee-rails', '4.2.2'
 gem 'sass-rails', '5.0.7'
 gem 'uglifier', '4.1.19'
 
+gem 'font-awesome-rails', '4.7.0.4'
+gem 'highcharts-rails', '6.0.3'
+
 gem 'acts-as-taggable-on', '6.0.0'
 gem 'aws-sdk-s3', '1.23.1'
-gem 'font-awesome-rails', '4.7.0.4'
 gem 'kaminari', '1.1.1'
 gem 'mechanize', '2.7.6'
 gem 'paperclip', '6.1.0'
-
-gem 'chartkick', '3.0.1'
-gem 'highcharts-rails', '6.0.3'
 
 group :development do
   gem 'capistrano', '3.11.0'

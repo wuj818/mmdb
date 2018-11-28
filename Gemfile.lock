@@ -93,7 +93,6 @@ GEM
       capistrano (~> 3.7)
       capistrano-bundler
       puma (~> 3.4)
-    chartkick (3.0.1)
     climate_control (0.2.0)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -364,7 +363,6 @@ DEPENDENCIES
   capistrano-rails (= 1.4.0)
   capistrano-rvm (= 0.1.2)
   capistrano3-puma (= 3.1.1)
-  chartkick (= 3.0.1)
   coffee-rails (= 4.2.2)
   dalli (= 2.7.9)
   factory_bot_rails (= 4.11.1)

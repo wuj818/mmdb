@@ -53,21 +53,46 @@ class Person < ApplicationRecord
     movies.map(&:id)
   end
 
-  def movie_history
-    averages = { name: 'Average Rating', data: [] }
-    totals = { name: 'Total Movies', data: [] }
+  # def movie_history
+  #   averages = { name: 'Average Rating', data: [] }
+  #   totals = { name: 'Total Movies', data: [] }
 
-    Movie.where('id IN (?)', movie_ids).select('year, AVG(rating) AS average, COUNT(*) AS total').group(:year).order(:year).each do |row|
-      averages[:data] << [row.year, row.average.round(2)]
-      totals[:data] << [row.year, row.total]
+  #   Movie.where('id IN (?)', movie_ids).select('year, AVG(rating) AS average, COUNT(*) AS total').group(:year).order(:year).each do |row|
+  #     averages[:data] << [row.year, row.average.round(2)]
+  #     totals[:data] << [row.year, row.total]
+  #   end
+
+  #   [averages, totals]
+  # end
+
+  # def movie_ratings_history
+  #   Movie.where('id IN (?)', movie_ids).select('rating, COUNT(*) AS total').group(:rating).each_with_object({}) do |row, hash|
+  #     hash[row.rating] = row.total
+  #   end
+  # end
+
+  def movie_credits_column_chart_data
+    years = movies.pluck(:year).each_with_object(Hash.new(0)) do |year, hash|
+      hash[year] += 1
     end
 
-    [averages, totals]
+    empty_years = (years.keys.first..years.keys.last).each_with_object({}) do |year, hash|
+      hash[year] = 0
+    end
+
+    empty_years.merge(years).sort
   end
 
-  def movie_ratings_history
-    Movie.where('id IN (?)', movie_ids).select('rating, COUNT(*) AS total').group(:rating).each_with_object({}) do |row, hash|
-      hash[row.rating] = row.total
+  def movie_ratings_pie_chart_data
+    ratings = movies.pluck(:rating).each_with_object(Hash.new(0)) do |rating, hash|
+      hash[rating] += 1
+    end
+
+    data = ratings.each_with_object([]) do |rating, array|
+      array << {
+        name: rating.first,
+        y: rating.last
+      }
     end
   end
 
