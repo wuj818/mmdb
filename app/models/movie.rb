@@ -79,28 +79,6 @@ class Movie < ApplicationRecord
     self.attributes = diggler.data
   end
 
-  def rate(rating)
-    update_attribute :rating, rating
-  end
-
-  %w[genre keyword language country].each do |tag_type|
-    define_method "add_#{tag_type}" do |*tags|
-      send("#{tag_type}_list") << tags
-      send("#{tag_type}_list").flatten!
-
-      save validate: false
-    end
-
-    define_method "remove_#{tag_type}" do |*tags|
-      return if tags.empty?
-
-      original_tags = send "#{tag_type}_list"
-      send("#{tag_type}_list=", original_tags - tags)
-
-      save validate: false
-    end
-  end
-
   %w[directing writing composing editing cinematography acting].each do |credit_type|
     define_method "sorted_#{credit_type}_credits" do
       send("#{credit_type}_credits").joins(:person).order('sort_name')
@@ -123,10 +101,6 @@ class Movie < ApplicationRecord
     keywords = relevant_keywords(25).pluck :name
     movies = find_related_genres.where('rating >= 7')
     movies = movies.tagged_with(keywords, on: :keywords, any: true).limit(25) rescue []
-  end
-
-  def self.[](title)
-    find_by_title title
   end
 
   private

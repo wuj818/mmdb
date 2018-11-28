@@ -1,6 +1,5 @@
 - plural = type.to_s.pluralize
-- tags = @person.send("relevant_#{plural}")
-- last = tags.length - 1
+- tags = @person.send "relevant_#{plural}"
 - type = type.to_sym
 
 %tr
