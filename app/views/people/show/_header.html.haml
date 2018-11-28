@@ -19,9 +19,9 @@
           = image_tag 'icons/film-32x32.png', title: 'Movies', width: 32, height: 32
 
           %span
-            = pluralize(@person.movies.length, 'movie')
+            = pluralize(@person.movies.count, 'movie')
 
-        - perfect_count = @person.movies.where(rating: 10).length
+        - perfect_count = @person.movies.where(rating: 10).count
         - if perfect_count > 0
           %li
             = image_tag 'icons/medal-gold-32x32.png', title: 'Perfect Movies (Rated 10)', width: 32, height: 32
@@ -29,7 +29,7 @@
             %span
               = pluralize perfect_count, 'perfect movie'
 
-        - excellent_count = @person.movies.where(rating: 9).length
+        - excellent_count = @person.movies.where(rating: 9).count
         - if excellent_count > 0
           %li
             = image_tag 'icons/medal-silver-32x32.png', title: 'Excellent Movies (Rated 9)', width: 32, height: 32
@@ -37,7 +37,7 @@
             %span
               = pluralize excellent_count, 'excellent movie'
 
-        - great_count = @person.movies.where(rating: 8).length
+        - great_count = @person.movies.where(rating: 8).count
         - if great_count > 0
           %li
             = image_tag 'icons/medal-bronze-32x32.png', title: 'Perfect Movies (Rated 8)', width: 32, height: 32
@@ -45,7 +45,7 @@
             %span
               = pluralize great_count, 'great movie'
 
-        - terrible_count = @person.movies.where('rating < 5').length
+        - terrible_count = @person.movies.where('rating < 5').count
         - if terrible_count > 0
           %li
             = image_tag 'icons/exclamation-32x32.png', title: 'Terrible Movies (Rated 4 or lower)', width: 32, height: 32

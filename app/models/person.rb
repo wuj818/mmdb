@@ -19,6 +19,8 @@ class Person < ApplicationRecord
 
   has_many :credits, dependent: :destroy
 
+  has_many :movies, -> { distinct }, through: 'credits'
+
   has_one :counter, as: 'countable', dependent: :destroy
 
   RATING_WEIGHTS = {
@@ -43,10 +45,6 @@ class Person < ApplicationRecord
     define_method "sorted_#{credit_type}_credits" do
       send("#{credit_type}_credits").joins(:movie).order('year DESC')
     end
-  end
-
-  def movies
-    Movie.joins(:credits).where('credits.person_id = ?', id).group('movie_id')
   end
 
   def movie_ids
@@ -134,7 +132,7 @@ class Person < ApplicationRecord
   end
 
   def approval_percentage
-    (movies.where('rating >= 6').length / movies.length.to_f * 100).ceil rescue 0
+    (movies.where('rating >= 6').count / movies.count.to_f * 100).ceil rescue 0
   end
 
   def self.[](name)
