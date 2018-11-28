@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_28_034829) do
+ActiveRecord::Schema.define(version: 2018_11_28_051357) do
 
   create_table "counters", force: :cascade do |t|
     t.integer "countable_id"
@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(version: 2018_11_28_034829) do
     t.integer "poster_file_size"
     t.datetime "poster_updated_at"
     t.string "movie_poster_db_url", limit: 255
+    t.string "cached_country_list"
+    t.string "cached_genre_list"
+    t.string "cached_language_list"
     t.index ["permalink"], name: "index_movies_on_permalink"
     t.index ["sort_title"], name: "index_movies_on_sort_title"
   end

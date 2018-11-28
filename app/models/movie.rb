@@ -1,7 +1,7 @@
 class Movie < ApplicationRecord
   include CreditScopesAndCounts
 
-  acts_as_taggable_on :genres, :keywords, :languages, :countries
+  acts_as_taggable_on :countries, :genres, :keywords, :languages
 
   validates :title,
     presence: true,
