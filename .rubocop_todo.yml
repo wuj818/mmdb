@@ -24,8 +24,6 @@ Layout/AlignHash:
 Layout/AlignParameters:
   Exclude:
     - 'app/models/credit.rb'
-    - 'app/models/item_list.rb'
-    - 'app/models/listing.rb'
     - 'app/models/movie.rb'
     - 'app/models/person.rb'
 
@@ -155,8 +153,6 @@ Naming/AccessorMethodName:
   Exclude:
     - 'app/controllers/credits_controller.rb'
     - 'app/controllers/decades_controller.rb'
-    - 'app/controllers/item_lists_controller.rb'
-    - 'app/controllers/listings_controller.rb'
     - 'app/controllers/movies_controller.rb'
     - 'app/controllers/people_controller.rb'
     - 'app/controllers/tags_controller.rb'
@@ -178,8 +174,6 @@ Naming/UncommunicativeMethodParamName:
 Rails/DynamicFindBy:
   Exclude:
     - 'app/controllers/credits_controller.rb'
-    - 'app/controllers/item_lists_controller.rb'
-    - 'app/controllers/listings_controller.rb'
     - 'app/controllers/movies_controller.rb'
     - 'app/controllers/people_controller.rb'
     - 'app/controllers/tags_controller.rb'
@@ -197,8 +191,6 @@ Rails/OutputSafety:
 # Blacklist: decrement!, decrement_counter, increment!, increment_counter, toggle!, touch, update_all, update_attribute, update_column, update_columns, update_counters
 Rails/SkipsModelValidations:
   Exclude:
-    - 'app/controllers/item_lists_controller.rb'
-    - 'app/controllers/listings_controller.rb'
     - 'app/models/movie.rb'
     - 'app/observers/credit_observer.rb'
     - 'app/observers/movie_observer.rb'

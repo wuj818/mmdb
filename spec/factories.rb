@@ -34,15 +34,4 @@ FactoryBot.define do
     cinematography_credits_count { 0 }
     acting_credits_count { 0 }
   end
-
-  factory :item_list do
-    sequence(:name) { |n| "Best Movies of #{n}" }
-    position { 0 }
-  end
-
-  factory :listing do
-    position { 0 }
-    item_list
-    movie
-  end
 end

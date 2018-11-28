@@ -32,10 +32,6 @@
           %li.nav-item{class: active_nav_link?(:years)}
             = link_to 'Years', years_path, class: 'nav-link'
 
-          - if false
-            %li.nav-item{class: active_nav_link?(:item_lists)}
-              = link_to 'Lists', item_lists_path, class: 'nav-link'
-
         - if content_for? :search
           = yield :search
         - else
@@ -51,11 +47,6 @@
               = link_to new_movie_from_imdb_path, class: 'dropdown-item', rel: 'nofollow' do
                 = icon 'plus-circle fw', class: 'text-success'
                 Add Movie
-
-              - if false
-                = link_to new_item_list_path, class: 'dropdown-item', rel: 'nofollow' do
-                  = icon 'plus-circle fw', class: 'text-success'
-                  Add List
 
               .dropdown-divider
 

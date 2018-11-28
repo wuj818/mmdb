@@ -46,8 +46,6 @@ class Movie < ApplicationRecord
 
   has_one :counter, as: 'countable', dependent: :destroy
 
-  has_many :listings, dependent: :destroy
-
   has_attached_file :poster,
     styles: { large: '300x420!', medium: '150x210!', tiny: '20x28!' },
     default_url: ':asset_default_url',

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_11_234018) do
+ActiveRecord::Schema.define(version: 2018_11_28_034829) do
 
   create_table "counters", force: :cascade do |t|
     t.integer "countable_id"
@@ -35,23 +35,6 @@ ActiveRecord::Schema.define(version: 2018_11_11_234018) do
     t.datetime "updated_at"
     t.index ["movie_id"], name: "index_credits_on_movie_id"
     t.index ["person_id"], name: "index_credits_on_person_id"
-  end
-
-  create_table "item_lists", force: :cascade do |t|
-    t.string "name", limit: 255
-    t.string "permalink", limit: 255
-    t.integer "position", default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["permalink"], name: "index_item_lists_on_permalink"
-  end
-
-  create_table "listings", force: :cascade do |t|
-    t.integer "item_list_id"
-    t.integer "movie_id"
-    t.integer "position", default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "movies", force: :cascade do |t|

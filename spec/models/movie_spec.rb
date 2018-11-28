@@ -12,8 +12,8 @@ describe Movie do
   describe 'Defaults' do
     let(:movie) { Movie.new }
 
-    it 'has a default rating of 0' do
-      expect(movie.rating).to eq 0
+    it 'has a default rating of 5' do
+      expect(movie.rating).to eq 5
     end
 
     it 'has a default runtime of 0' do

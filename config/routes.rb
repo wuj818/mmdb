@@ -63,14 +63,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :item_lists, path: 'lists' do
-    member do
-      put :reorder
-    end
-
-    resources :listings, only: %i[new create destroy]
-  end
-
   get 'tags/search', to: 'tags#search'
   get ':type/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)', to: 'tags#index'
   get ':type/:id/sort/:sort/order/:order(/page/:page)(/query/:q)', to: 'tags#show'
