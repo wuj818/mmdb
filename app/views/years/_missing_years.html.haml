@@ -1,6 +1,6 @@
 - cache 'missing_years', expires_in: 2.weeks do
-  - all_years = (Movie.minimum(:year)..Movie.maximum(2010)).to_a
-  - movie_years = Movie.select(:year).uniq.map &:year
+  - all_years = (Movie.minimum(:year)..Time.zone.now.year).to_a
+  - movie_years = Movie.distinct.pluck :year
   - missing_years = (all_years - movie_years).sort
 
   - unless missing_years.empty?

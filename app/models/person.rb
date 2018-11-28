@@ -117,14 +117,14 @@ class Person < ApplicationRecord
   def frequent_collaborators(limit = 25)
     people = Person.select('people.id, name, permalink, COUNT(DISTINCT(movie_id)) AS count')
     people = people.joins(:credits)
-    people = people.where('movie_id IN (?) AND person_id <> ?', movies.map(&:id), id)
+    people = people.where('movie_id IN (?) AND person_id <> ?', movies.pluck(:id), id)
     people = people.group(:person_id)
     people = people.order('COUNT(DISTINCT(movie_id)) DESC')
     people = people.limit(limit)
   end
 
   def score
-    ratings = movies.map(&:rating)
+    ratings = movies.pluck :rating
     total = ratings.inject(0) { |sum, n| sum + (n * RATING_WEIGHTS[n]) }
     count = ratings.inject(0) { |sum, n| sum + RATING_WEIGHTS[n] }
 

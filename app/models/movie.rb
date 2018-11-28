@@ -120,7 +120,7 @@ class Movie < ApplicationRecord
   end
 
   def related_movies
-    keywords = relevant_keywords(25).map(&:name)
+    keywords = relevant_keywords(25).pluck :name
     movies = find_related_genres.where('rating >= 7')
     movies = movies.tagged_with(keywords, on: :keywords, any: true).limit(25) rescue []
   end
