@@ -8,7 +8,7 @@ class TagsController < ApplicationController
     @title = @type.capitalize
 
     @tags = Tag.order(order)
-    @tags = @tags.select('name, COUNT(*) AS total, AVG(rating) AS average')
+    @tags = @tags.select('name, AVG(rating) AS average, taggings_count')
     @tags = @tags.joins(:taggings)
     @tags = @tags.joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
     @tags = @tags.where('context = ?', @type)
@@ -45,7 +45,7 @@ class TagsController < ApplicationController
     params[:sort] ||= 'name'
 
     column = case params[:sort]
-    when 'total' then 'COUNT(*)'
+    when 'total' then :taggings_count
     when 'average' then 'AVG(rating)'
     else 'name'
     end
@@ -53,11 +53,11 @@ class TagsController < ApplicationController
     params[:order] ||= 'asc'
 
     result = "#{column} #{params[:order]}"
-    result << ', COUNT(*) DESC' unless params[:sort] == 'total'
+    result << ', taggings_count DESC' unless params[:sort] == 'total'
     result
   end
 
   def minimum
-    "COUNT(*) >= #{params[:minimum].to_i}"
+    "taggings_count >= #{params[:minimum].to_i}"
   end
 end
