@@ -10,7 +10,7 @@
       %table.table.table-bordered.table-hover
         %thead.thead-light
           %tr
-            %th
+            %th.text-right
               %strong #
 
             %th.w-100
@@ -25,7 +25,7 @@
         %tbody
           - @tags.each_with_index do |tag, i|
             %tr
-              %td
+              %td.text-right
                 = row_number i
 
               %td
