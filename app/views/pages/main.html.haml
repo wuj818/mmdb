@@ -7,11 +7,12 @@
       - class_names = 'list-group-item list-group-item-action text-primary'
 
       .list-group
-        = link_to movies_path, class: class_names do
-          = number_with_delimiter Movie.count
+        - %w[movies people].each do |type|
+          = link_to send("#{type}_path"), class: class_names do
+            = number_with_delimiter type.singularize.capitalize.constantize.count
 
-          %span.text-dark
-            movies
+            %span.text-dark
+              = type
 
         = link_to movies_path, class: class_names do
           = number_with_delimiter (Movie.sum(:runtime) / 60.0).ceil
@@ -19,35 +20,12 @@
           %span.text-dark
             hours
 
-        = link_to people_path, class: class_names do
-          = number_with_delimiter Person.count
+        - %w[genres keywords languages countries].each do |type|
+          = link_to send("#{type}_path"), class: class_names do
+            = number_with_delimiter Tagging.where(context: type).distinct.count :tag_id
 
-          %span.text-dark
-            people
-
-        = link_to genres_path, class: class_names do
-          = number_with_delimiter Tagging.select('DISTINCT tag_id').where(context: 'genres').count
-
-          %span.text-dark
-            genres
-
-        = link_to keywords_path, class: class_names do
-          = number_with_delimiter Tagging.select('DISTINCT tag_id').where(context: 'keywords').count
-
-          %span.text-dark
-            keywords
-
-        = link_to languages_path, class: class_names do
-          = number_with_delimiter Tagging.select('DISTINCT tag_id').where(context: 'languages').count
-
-          %span.text-dark
-            languages
-
-        = link_to countries_path, class: class_names do
-          = number_with_delimiter Tagging.select('DISTINCT tag_id').where(context: 'countries').count
-
-          %span.text-dark
-            countries
+            %span.text-dark
+              = type
 
         = link_to decades_path, class: class_names do
           = number_with_delimiter Movie.select('(year / 10) || "0" AS decade').group(:decade).length
@@ -56,7 +34,7 @@
             decades
 
         = link_to years_path, class: class_names do
-          = number_with_delimiter Movie.select('year').uniq.length
+          = number_with_delimiter Movie.distinct.count(:year)
 
           %span.text-dark
             years
