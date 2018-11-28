@@ -2,14 +2,10 @@
   %strong Runtime:
   #{@movie.runtime} min
 
-%p
-  %strong Genres:
-  = raw @movie.genres.order(:name).map { |genre| tag_link genre, :genre }.join ' | '
+- %w[genres languages countries].each do |type|
+  %p
+    %strong
+      = "#{type.capitalize}:"
 
-%p
-  %strong Languages:
-  = raw @movie.languages.order(:name).map { |language| tag_link language, :language }.join ' | '
-
-%p
-  %strong Countries:
-  = raw @movie.countries.order(:name).map { |country| tag_link country, :country }.join ' | '
+    - @movie.send(type).order(:name).each do |tag|
+      = tag_link tag, type.singularize, class: 'badge badge-primary'
