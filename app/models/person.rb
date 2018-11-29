@@ -72,7 +72,7 @@ class Person < ApplicationRecord
   # end
 
   def movie_credits_column_chart_data
-    years = movies.pluck(:year).each_with_object(Hash.new(0)) do |year, hash|
+    years = movies.order(:year).pluck(:year).each_with_object(Hash.new(0)) do |year, hash|
       hash[year] += 1
     end
 
