@@ -50,4 +50,24 @@ module ChartsHelper
 
     chart 'movie-ratings-pie-chart', options
   end
+
+  def movie_genres_bar_chart(person)
+    data = person.movie_genres_bar_chart_data
+    return no_chart_data if data.blank?
+
+    options = {
+      title: { text: 'Genres' },
+      chart: { type: 'bar' },
+      legend: { enabled: false },
+      xAxis: { categories: data.map(&:first) },
+      series: [
+        {
+          name: 'Movies',
+          data: data.map(&:last)
+        }
+      ]
+    }
+
+    chart 'movie-genres-bar-chart', options
+  end
 end

@@ -96,6 +96,14 @@ class Person < ApplicationRecord
     end
   end
 
+  def movie_genres_bar_chart_data
+    genres = movies.pluck(:cached_genre_list).join(', ').split ', '
+    counts = genres.each_with_object(Hash.new(0)) do |genre, hash|
+      hash[genre] += 1
+    end
+    counts.sort_by { |genre, count| -count }
+  end
+
   def relevant_genres(limit = 5)
     movies.genre_counts.order('count DESC').limit(limit)
   end
