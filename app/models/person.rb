@@ -19,8 +19,6 @@ class Person < ApplicationRecord
 
   has_many :credits, dependent: :destroy
 
-  has_many :movies, -> { distinct }, through: 'credits'
-
   has_one :counter, as: 'countable', dependent: :destroy
 
   RATING_WEIGHTS = {
@@ -47,9 +45,13 @@ class Person < ApplicationRecord
     end
   end
 
-  def movie_ids
-    movies.map(&:id)
+  def movies
+    Movie.joins(:credits).where('credits.person_id = ?', id).group('movie_id')
   end
+
+  # def movie_ids
+  #   movies.map(&:id)
+  # end
 
   # def movie_history
   #   averages = { name: 'Average Rating', data: [] }
