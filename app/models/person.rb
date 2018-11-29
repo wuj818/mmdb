@@ -90,7 +90,7 @@ class Person < ApplicationRecord
 
     data = ratings.each_with_object([]) do |rating, array|
       array << {
-        name: rating.first,
+        name: "#{rating.first}/10",
         y: rating.last
       }
     end

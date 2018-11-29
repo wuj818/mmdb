@@ -33,6 +33,13 @@ module ChartsHelper
     options = {
       title: { text: 'Ratings Breakdown' },
       chart: { type: 'pie' },
+      plotOptions: {
+        series: {
+          dataLabels: {
+            format: '{point.name} ({point.percentage:,.2f}%)'
+          }
+        }
+      },
       series: [
         {
           name: 'Movies',
