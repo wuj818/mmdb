@@ -142,7 +142,7 @@ class Person < ApplicationRecord
   end
 
   def approval_percentage
-    (movies.where('rating >= 6').count / movies.count.to_f * 100).ceil rescue 0
+    (movies.where('rating >= 6').length / movies.length.to_f * 100).ceil rescue 0
   end
 
   def self.[](name)
