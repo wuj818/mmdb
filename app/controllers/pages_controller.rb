@@ -1,6 +1,10 @@
 class PagesController < ApplicationController
   before_action :authorize, only: [:clear_cache]
 
+  caches_action :main,
+    cache_path: -> { request.path },
+    expires_in: 2.weeks
+
   def main
     @title = 'My Movie Database'
   end

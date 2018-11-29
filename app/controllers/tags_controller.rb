@@ -1,6 +1,9 @@
 class TagsController < ApplicationController
   before_action :get_type
-  before_action :get_tag, only: [:show]
+
+  caches_action :index, :show,
+    cache_path: -> { request.path },
+    expires_in: 2.weeks
 
   TYPES = %w[countries genres keywords languages]
 
@@ -19,6 +22,10 @@ class TagsController < ApplicationController
   end
 
   def show
+    @tag = CGI.unescape params[:id]
+
+    Tag.find_by_name! @tag
+
     @title = "#{@type.capitalize} - #{@tag}"
 
     @movies = Movie.order(movie_order)
@@ -33,12 +40,6 @@ class TagsController < ApplicationController
     @type = params[:type]
 
     raise ActiveRecord::RecordNotFound unless TYPES.include? @type
-  end
-
-  def get_tag
-    @tag = CGI.unescape params[:id]
-
-    Tag.find_by_name! @tag
   end
 
   def order

@@ -1,6 +1,10 @@
 class YearsController < ApplicationController
   before_action :get_year, only: [:show]
 
+  caches_action :index, :show,
+    cache_path: -> { request.path },
+    expires_in: 2.weeks
+
   def index
     @title = 'Years'
 
