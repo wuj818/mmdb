@@ -70,11 +70,6 @@ linters:
     exclude:
       - "app/views/layouts/_navigation.html.haml"
 
-  # Offense count: 1
-  TrailingWhitespace:
-    exclude:
-      - "app/views/movies/edit/_form.html.haml"
-
   # Offense count: 2
   UnnecessaryStringOutput:
     exclude:
