@@ -7,7 +7,7 @@
 -#    per_page:      number of items to fetch per page
 -#    remote:        data-remote
 
-%li.page-item{class: "#{'active' if page.current?}"}
+%li.page-item{ class: "#{'active' if page.current?}" }
   = link_to page, "#{page.current? ? 'javascript:;' : url}",
     class: 'page-link',
     remote: page.current? ? nil : remote,

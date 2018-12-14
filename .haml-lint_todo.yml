@@ -38,22 +38,6 @@ linters:
       - "app/views/kaminari/_paginator.html.haml"
       - "app/views/kaminari/_prev_page.html.haml"
 
-  # Offense count: 52
-  SpaceInsideHashAttributes:
-    exclude:
-      - "app/views/kaminari/_next_page.html.haml"
-      - "app/views/kaminari/_page.html.haml"
-      - "app/views/kaminari/_prev_page.html.haml"
-      - "app/views/layouts/_navigation.html.haml"
-      - "app/views/layouts/application.html.haml"
-      - "app/views/movies/show/_header.html.haml"
-      - "app/views/people/show/_carousel.html.haml"
-      - "app/views/people/show/_header.html.haml"
-      - "app/views/shared/_flashes.html.haml"
-      - "app/views/shared/_login_modal.html.haml"
-      - "app/views/tags/index.html.haml"
-      - "app/views/years/_missing_years.html.haml"
-
   # Offense count: 4
   ConsecutiveSilentScripts:
     exclude:

@@ -6,7 +6,7 @@
 -#    per_page:      number of items to fetch per page
 -#    remote:        data-remote
 
-%li.page-item{class: current_page.first? ? 'disabled' : nil}
+%li.page-item{ class: current_page.first? ? 'disabled' : nil }
   = link_to raw(t 'views.pagination.previous'), "#{current_page.first? ? 'javascript:;' : url}",
     class: 'page-link',
     rel: 'prev'

@@ -4,7 +4,7 @@
       = image_tag @movie.poster.url(:large), class: 'large-poster img-thumbnail'
 
   .col-sm-8
-    .rating.well{class: movie_rating_class(@movie)}
+    .rating.well{ class: movie_rating_class(@movie) }
       #{@movie.rating}/10
 
     = render 'movies/show/icons'

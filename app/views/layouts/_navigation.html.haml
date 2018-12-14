@@ -3,33 +3,33 @@
     .container
       = link_to 'MMDb', root_path, class: 'navbar-brand'
 
-      %button.navbar-toggler{type: 'button', data: { toggle: 'collapse', target: '#navbar-supported-content' }}
+      %button.navbar-toggler{ type: 'button', data: { toggle: 'collapse', target: '#navbar-supported-content' } }
         %span.navbar-toggler-icon
 
       .navbar-collapse.collapse#navbar-supported-content
         %ul.navbar-nav.mr-auto.d-block.d-md-none
-          %li.nav-item{class: active_nav_link?(:movies)}
+          %li.nav-item{ class: active_nav_link?(:movies) }
             = link_to 'Movies', movies_path, class: 'nav-link'
 
-          %li.nav-item{class: active_nav_link?(:people)}
+          %li.nav-item{ class: active_nav_link?(:people) }
             = link_to 'People', people_path, class: 'nav-link'
 
-          %li.nav-item{class: active_nav_link?(:genres)}
+          %li.nav-item{ class: active_nav_link?(:genres) }
             = link_to 'Genres', genres_path, class: 'nav-link'
 
-          %li.nav-item{class: active_nav_link?(:keywords)}
+          %li.nav-item{ class: active_nav_link?(:keywords) }
             = link_to 'Keywords', keywords_path, class: 'nav-link'
 
-          %li.nav-item{class: active_nav_link?(:languages)}
+          %li.nav-item{ class: active_nav_link?(:languages) }
             = link_to 'Languages', languages_path, class: 'nav-link'
 
-          %li.nav-item{class: active_nav_link?(:countries)}
+          %li.nav-item{ class: active_nav_link?(:countries) }
             = link_to 'Countries', countries_path, class: 'nav-link'
 
-          %li.nav-item{class: active_nav_link?(:decades)}
+          %li.nav-item{ class: active_nav_link?(:decades) }
             = link_to 'Decades', decades_path, class: 'nav-link'
 
-          %li.nav-item{class: active_nav_link?(:years)}
+          %li.nav-item{ class: active_nav_link?(:years) }
             = link_to 'Years', years_path, class: 'nav-link'
 
         - if content_for? :search

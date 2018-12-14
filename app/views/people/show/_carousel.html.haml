@@ -3,7 +3,7 @@
 .carousel.slide#person-carousel
   .carousel-inner
     - movies.each_with_index do |movie, i|
-      .carousel-item{class: (:active if i.zero?)}
+      .carousel-item{ class: (:active if i.zero?) }
         = image_tag movie.poster.url(:large), class: 'img-thumbnail w-100'
 
   - unless movies.length.zero?
