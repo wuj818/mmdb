@@ -68,13 +68,7 @@ linters:
   # Offense count: 1
   IdNames:
     exclude:
-      - "app/views/layouts/_navigation.html.haml"
-
-  # Offense count: 2
-  UnnecessaryStringOutput:
-    exclude:
-      - "app/views/movies/show/_header.html.haml"
-      - "app/views/movies/show/_info.html.haml"
+    - "app/views/layouts/_navigation.html.haml"
 
   # Offense count: 4
   ConsecutiveSilentScripts:

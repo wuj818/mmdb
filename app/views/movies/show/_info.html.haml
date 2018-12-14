@@ -5,7 +5,7 @@
 - %w[genres languages countries].each do |type|
   %p
     %strong
-      = "#{type.capitalize}:"
+      #{type.capitalize}:
 
     - @movie.send(type).order(:name).each do |tag|
       = tag_link tag, type.singularize, class: 'badge badge-primary'
