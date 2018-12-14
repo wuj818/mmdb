@@ -54,17 +54,6 @@ linters:
       - "app/views/tags/index.html.haml"
       - "app/views/years/_missing_years.html.haml"
 
-  # Offense count: 9
-  ClassesBeforeIds:
-    exclude:
-      - "app/views/layouts/_navigation.html.haml"
-      - "app/views/layouts/_sidebar.html.haml"
-      - "app/views/layouts/application.html.haml"
-      - "app/views/pages/main.html.haml"
-      - "app/views/people/show/_carousel.html.haml"
-      - "app/views/people/show/_header.html.haml"
-      - "app/views/shared/_login_modal.html.haml"
-
   # Offense count: 4
   ConsecutiveSilentScripts:
     exclude:

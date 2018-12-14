@@ -1,6 +1,6 @@
 - movies = @person.movies.order('year DESC, sort_title DESC')
 
-#person-carousel.carousel.slide
+.carousel.slide#person-carousel
   .carousel-inner
     - movies.each_with_index do |movie, i|
       .carousel-item{class: (:active if i.zero?)}

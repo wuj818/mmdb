@@ -6,7 +6,7 @@
       %button.navbar-toggler{type: 'button', data: { toggle: 'collapse', target: '#navbar-supported-content' }}
         %span.navbar-toggler-icon
 
-      #navbar-supported-content.navbar-collapse.collapse
+      .navbar-collapse.collapse#navbar-supported-content
         %ul.navbar-nav.mr-auto.d-block.d-md-none
           %li.nav-item{class: active_nav_link?(:movies)}
             = link_to 'Movies', movies_path, class: 'nav-link'
@@ -37,7 +37,7 @@
         - else
           = render 'shared/search_form', target: search_movies_path, type: 'movie'
 
-        %ul#admin-dropdown.navbar-nav.d-none.ml-md-5.mt-2.mt-md-0.mb-2.mb-md-0
+        %ul.navbar-nav.d-none.ml-md-5.mt-2.mt-md-0.mb-2.mb-md-0#admin-dropdown
           %li.nav-item.dropdown
             = link_to '#', class: 'nav-link dropdown-toggle admin-dropdown hidden', data: { toggle: 'dropdown' } do
               = icon :cog

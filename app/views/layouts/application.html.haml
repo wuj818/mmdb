@@ -28,10 +28,10 @@
 
     .container
       .row
-        #sidebar.col-md-2.d-none.d-md-block
+        .col-md-2.d-none.d-md-block#sidebar
           = render 'layouts/sidebar'
 
-        #content.col-md-10
+        .col-md-10#content
           = render 'shared/flashes'
 
           = yield
