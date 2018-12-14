@@ -44,6 +44,7 @@ group :development do
   gem 'spring-watcher-listen', '2.0.1'
   gem 'web-console', '3.7.0'
 
+  gem 'haml_lint', '0.28.0', require: false
   gem 'rubocop', '0.60.0', require: false
   gem 'spring-commands-rubocop', '0.2.0'
 end
