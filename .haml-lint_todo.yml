@@ -20,24 +20,6 @@ linters:
   InstanceVariables:
     enabled: false
 
-  # Offense count: 5
-  ConsecutiveComments:
-    exclude:
-      - "app/views/kaminari/_gap.html.haml"
-      - "app/views/kaminari/_next_page.html.haml"
-      - "app/views/kaminari/_page.html.haml"
-      - "app/views/kaminari/_paginator.html.haml"
-      - "app/views/kaminari/_prev_page.html.haml"
-
-  # Offense count: 10
-  LeadingCommentSpace:
-    exclude:
-      - "app/views/kaminari/_gap.html.haml"
-      - "app/views/kaminari/_next_page.html.haml"
-      - "app/views/kaminari/_page.html.haml"
-      - "app/views/kaminari/_paginator.html.haml"
-      - "app/views/kaminari/_prev_page.html.haml"
-
   # Offense count: 4
   ConsecutiveSilentScripts:
     exclude:
