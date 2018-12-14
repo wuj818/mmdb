@@ -65,11 +65,6 @@ linters:
       - "app/views/people/show/_header.html.haml"
       - "app/views/shared/_login_modal.html.haml"
 
-  # Offense count: 1
-  IdNames:
-    exclude:
-    - "app/views/layouts/_navigation.html.haml"
-
   # Offense count: 4
   ConsecutiveSilentScripts:
     exclude:

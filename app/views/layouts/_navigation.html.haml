@@ -3,10 +3,10 @@
     .container
       = link_to 'MMDb', root_path, class: 'navbar-brand'
 
-      %button.navbar-toggler{type: 'button', data: { toggle: 'collapse', target: '#navbarSupportedContent' }}
+      %button.navbar-toggler{type: 'button', data: { toggle: 'collapse', target: '#navbar-supported-content' }}
         %span.navbar-toggler-icon
 
-      #navbarSupportedContent.navbar-collapse.collapse
+      #navbar-supported-content.navbar-collapse.collapse
         %ul.navbar-nav.mr-auto.d-block.d-md-none
           %li.nav-item{class: active_nav_link?(:movies)}
             = link_to 'Movies', movies_path, class: 'nav-link'
