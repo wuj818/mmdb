@@ -107,7 +107,7 @@ class DirkDiggler
 
   def get_keywords
     page = @agent.get("#{@target}keywords") rescue return
-    @keywords = page.links_with(href: %r{/keyword/\w}).map(&:text).map(&:squish).uniq.sort rescue []
+    @keywords = page.links_with(href: %r{/keyword\?}).map(&:text).map(&:squish).uniq.sort rescue []
   end
 
   def get_languages
