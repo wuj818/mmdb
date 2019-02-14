@@ -64,7 +64,7 @@ class DirkDiggler
 
     query = CGI.escape "rotten tomatoes #{title} #{year}"
     page = @agent.get("https://www.google.com/search?q=#{query}") rescue return
-    url = page.link_with href: %r{https://www.rottentomatoes.com/m/[\w-]+/}
+    url = page.link_with href: %r{https://www.rottentomatoes.com/m/[\w-]+}
 
     @rotten_tomatoes_url = url.href.gsub!('/url?q=', '').gsub!(/&.+/, '') rescue nil
   end
