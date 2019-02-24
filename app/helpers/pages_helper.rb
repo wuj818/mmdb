@@ -49,6 +49,6 @@ module PagesHelper
   end
 
   def row_number(i)
-    number_with_delimiter (page.to_i - 1) * per_page.to_i + i + 1
+    number_with_delimiter((page.to_i - 1) * per_page.to_i + i + 1)
   end
 end

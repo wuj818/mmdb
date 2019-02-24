@@ -92,11 +92,6 @@ Lint/AmbiguousBlockAssociation:
     - 'app/helpers/application_helper.rb'
     - 'config/initializers/acts_as_taggable_on.rb'
 
-# Offense count: 1
-Lint/ParenthesesAsGroupedExpression:
-  Exclude:
-    - 'app/helpers/pages_helper.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
