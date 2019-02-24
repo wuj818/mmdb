@@ -46,7 +46,7 @@ group :development do
   gem 'spring-commands-rubocop', '~> 0.2.0'
 
   gem 'mina', '~> 1.2.3', require: false
-  gem 'mina-puma', require: false, github: 'untitledkingdom/mina-puma'
+  gem 'mina-puma', '~> 1.1.0', require: false
 end
 
 group :test, :development do
