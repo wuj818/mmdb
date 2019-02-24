@@ -15,7 +15,7 @@ class PeopleController < ApplicationController
   end
 
   def show
-    @person = Person.find_by_permalink! params[:id]
+    @person = Person.find_by!(permalink: params[:id])
 
     @title = @person.name
   end
@@ -46,13 +46,13 @@ class PeopleController < ApplicationController
   end
 
   def charts
-    @person = Person.find_by_permalink! params[:id]
+    @person = Person.find_by!(permalink: params[:id])
 
     @title = "#{@person.name} - Charts"
   end
 
   def keywords
-    @person = Person.find_by_permalink! params[:id]
+    @person = Person.find_by!(permalink: params[:id])
 
     @title = "#{@person.name} - Keywords"
   end
@@ -64,7 +64,7 @@ class PeopleController < ApplicationController
   end
 
   def get_person
-    @person = Person.find_by_permalink! params[:id]
+    @person = Person.find_by!(permalink: params[:id])
   end
 
   def order

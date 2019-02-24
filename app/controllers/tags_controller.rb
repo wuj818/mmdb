@@ -24,7 +24,7 @@ class TagsController < ApplicationController
   def show
     @tag = CGI.unescape params[:id]
 
-    Tag.find_by_name! @tag
+    Tag.find_by!(name: @tag)
 
     @title = "#{@type.capitalize} - #{@tag}"
 

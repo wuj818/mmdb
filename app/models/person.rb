@@ -146,7 +146,7 @@ class Person < ApplicationRecord
   end
 
   def self.[](name)
-    find_by_name name
+    find_by name: name
   end
 
   private

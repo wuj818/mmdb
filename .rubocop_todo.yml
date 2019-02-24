@@ -154,19 +154,6 @@ Naming/UncommunicativeMethodParamName:
   Exclude:
     - 'app/helpers/pages_helper.rb'
 
-# Offense count: 14
-# Cop supports --auto-correct.
-# Configuration parameters: Whitelist.
-# Whitelist: find_by_sql
-Rails/DynamicFindBy:
-  Exclude:
-    - 'app/controllers/credits_controller.rb'
-    - 'app/controllers/movies_controller.rb'
-    - 'app/controllers/people_controller.rb'
-    - 'app/controllers/tags_controller.rb'
-    - 'app/models/movie.rb'
-    - 'app/models/person.rb'
-
 # Offense count: 2
 Rails/OutputSafety:
   Exclude:

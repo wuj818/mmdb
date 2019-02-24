@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find_by_permalink! params[:id]
+    @movie = Movie.find_by!(permalink: params[:id])
 
     @title = @movie.full_title
   end
@@ -86,7 +86,7 @@ class MoviesController < ApplicationController
   end
 
   def keywords
-    @movie = Movie.find_by_permalink! params[:id]
+    @movie = Movie.find_by!(permalink: params[:id])
 
     @title = "#{@movie.full_title} - Keywords"
   end
@@ -104,6 +104,6 @@ class MoviesController < ApplicationController
   end
 
   def get_movie
-    @movie = Movie.find_by_permalink! params[:id]
+    @movie = Movie.find_by!(permalink: params[:id])
   end
 end

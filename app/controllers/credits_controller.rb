@@ -21,7 +21,7 @@ class CreditsController < ApplicationController
   end
 
   def destroy
-    @credit = Credit.find params[:id]
+    @credit = Credit.find(params[:id])
     person = @credit.person.name
     credit_type = Credit::JOBS[@credit.job]
     movie = @credit.movie.title
@@ -35,6 +35,6 @@ class CreditsController < ApplicationController
   private
 
   def get_person
-    @person = Person.find_by_permalink! params[:person_id]
+    @person = Person.find_by!(permalink: params[:person_id])
   end
 end
