@@ -44,6 +44,9 @@ group :development do
   gem 'haml_lint', '~> 0.28.0', require: false
   gem 'rubocop', '~> 0.60.0', require: false
   gem 'spring-commands-rubocop', '~> 0.2.0'
+
+  gem 'mina', '~> 1.2.3', require: false
+  gem 'mina-puma', require: false, github: 'untitledkingdom/mina-puma'
 end
 
 group :test, :development do
