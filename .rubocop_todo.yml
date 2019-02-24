@@ -217,12 +217,6 @@ Style/GuardClause:
     - 'app/controllers/sessions_controller.rb'
 
 # Offense count: 1
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'app/controllers/pages_controller.rb'
-
-# Offense count: 1
 Style/MixinUsage:
   Exclude:
     - 'config/initializers/acts_as_taggable_on.rb'
