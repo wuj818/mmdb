@@ -101,7 +101,7 @@ class Person < ApplicationRecord
     counts = genres.each_with_object(Hash.new(0)) do |genre, hash|
       hash[genre] += 1
     end
-    counts.sort_by { |genre, count| -count }
+    counts.sort_by { |_genre, count| -count }
   end
 
   def relevant_genres(limit = 5)

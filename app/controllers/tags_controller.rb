@@ -2,8 +2,8 @@ class TagsController < ApplicationController
   before_action :get_type
 
   caches_action :index, :show,
-    cache_path: -> { request.path },
-    expires_in: 2.weeks
+                cache_path: -> { request.path },
+                expires_in: 2.weeks
 
   TYPES = %w[countries genres keywords languages]
 

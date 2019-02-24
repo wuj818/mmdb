@@ -2,8 +2,8 @@ class DecadesController < ApplicationController
   before_action :get_decade, only: [:show]
 
   caches_action :index, :show,
-    cache_path: -> { request.path },
-    expires_in: 2.weeks
+                cache_path: -> { request.path },
+                expires_in: 2.weeks
 
   DECADES = (1890..Time.zone.now.year).step 10
 

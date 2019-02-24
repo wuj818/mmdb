@@ -3,8 +3,8 @@ class MoviesController < ApplicationController
   before_action :get_movie, only: %i[edit update destroy]
 
   caches_action :index, :show, :keywords, :perfect,
-    cache_path: -> { request.path },
-    expires_in: 2.weeks
+                cache_path: -> { request.path },
+                expires_in: 2.weeks
 
   def index
     @title = 'Movies'
