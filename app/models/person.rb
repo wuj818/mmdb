@@ -88,7 +88,7 @@ class Person < ApplicationRecord
       hash[rating] += 1
     end
 
-    data = ratings.each_with_object([]) do |rating, array|
+    ratings.each_with_object([]) do |rating, array|
       array << {
         name: "#{rating.first}/10",
         y: rating.last
@@ -130,7 +130,7 @@ class Person < ApplicationRecord
     people = people.where('movie_id IN (?) AND person_id <> ?', movies.pluck(:id), id)
     people = people.group(:person_id)
     people = people.order('COUNT(DISTINCT(movie_id)) DESC')
-    people = people.limit(limit)
+    people.limit(limit)
   end
 
   def score

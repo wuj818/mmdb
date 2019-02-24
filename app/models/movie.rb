@@ -94,13 +94,13 @@ class Movie < ApplicationRecord
     keywords = keywords.joins(:tag).joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
     keywords = keywords.where('name IN (?)', keyword_list)
     keywords = keywords.group(:name).having('COUNT(*) >= 5')
-    keywords = keywords.order('AVG(rating) DESC').limit(limit)
+    keywords.order('AVG(rating) DESC').limit(limit)
   end
 
   def related_movies
     keywords = relevant_keywords(25).pluck :name
     movies = find_related_genres.where('rating >= 7')
-    movies = movies.tagged_with(keywords, on: :keywords, any: true).limit(25) rescue []
+    movies.tagged_with(keywords, on: :keywords, any: true).limit(25) rescue []
   end
 
   private

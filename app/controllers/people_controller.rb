@@ -70,8 +70,6 @@ class PeopleController < ApplicationController
   def order
     params[:sort] ||= 'name'
 
-    column = params[:sort] == 'name' ? 'sort_name' : params[:sort]
-
     column = case params[:sort]
     when 'credits' then 'credits_count'
     when 'directing' then 'directing_credits_count'

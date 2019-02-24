@@ -107,14 +107,6 @@ Lint/UnusedMethodArgument:
   Exclude:
     - 'config/initializers/paperclip.rb'
 
-# Offense count: 6
-Lint/UselessAssignment:
-  Exclude:
-    - 'app/controllers/people_controller.rb'
-    - 'app/helpers/pages_helper.rb'
-    - 'app/models/movie.rb'
-    - 'app/models/person.rb'
-
 # Offense count: 24
 Metrics/AbcSize:
   Max: 62

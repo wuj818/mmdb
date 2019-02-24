@@ -20,9 +20,9 @@ module PagesHelper
     plural_name = if options[:plural_name]
       options[:plural_name]
     elsif entry_name == 'entry'
-      plural_name = 'entries'
-    elsif entry_name.respond_to? :pluralize
-      plural_name = entry_name.pluralize
+      'entries'
+    elsif entry_name.respond_to?(:pluralize)
+      entry_name.pluralize
     else
       entry_name + 's'
     end
