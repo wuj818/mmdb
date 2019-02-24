@@ -64,4 +64,4 @@ group :test do
 end
 
 gem 'hirb', '0.7.3'
-gem 'wirble', '0.1.3'
+gem 'pry-rails', '~> 0.3.9'
