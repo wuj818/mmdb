@@ -1,7 +1,7 @@
 require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
-require 'mina/rvm'    # for rvm support. (https://rvm.io)
+require 'mina/rvm' # for rvm support. (https://rvm.io)
 require 'mina/puma'
 
 # Basic settings:
@@ -60,7 +60,7 @@ task :deploy do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    invoke(:'rails:db_migrate') if !!ENV['migrate']
+    invoke(:'rails:db_migrate') unless ENV['migrate'].nil?
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
