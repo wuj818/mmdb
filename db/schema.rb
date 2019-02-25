@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_28_051357) do
+ActiveRecord::Schema.define(version: 2019_02_25_070656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_051357) do
     t.bigint "acting_credits_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["countable_id", "countable_type"], name: "idx_35390_index_counters_on_countable_id_and_countable_type"
+    t.index ["countable_id", "countable_type"], name: "index_counters_on_countable_id_and_countable_type", unique: true
   end
 
   create_table "credits", force: :cascade do |t|
