@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: mmdb_production
-  username: mmdb
-  password: <%= ENV['MMDB_DATABASE_PASSWORD'] %>
+  username: deploy
+  password: <%= Rails.application.credentials.production_db_password %>
