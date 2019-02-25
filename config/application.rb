@@ -35,5 +35,7 @@ module Mmdb
       },
       bucket: Rails.application.credentials.s3_bucket[Rails.env.to_sym]
     }
+
+    config.action_view.field_error_proc = proc { |html_tag, _instance| html_tag }
   end
 end
