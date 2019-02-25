@@ -11,10 +11,10 @@ class DecadesController < ApplicationController
     @title = 'Decades'
 
     @decades = Movie.order(order)
-    @decades = @decades.select('(year / 10) || "0" AS decade, COUNT(*) AS total, AVG(rating) AS average')
-    @decades = @decades.group('(year / 10) || "0"')
+    @decades = @decades.select('(year / 10 * 10) AS decade, COUNT(*) AS total, AVG(rating) AS average')
+    @decades = @decades.group('year / 10 * 10')
     @decades = @decades.having(minimum)
-    @decades = @decades.where('((year / 10) || "0") LIKE ?', "%#{params[:q]}%") if params[:q].present?
+    @decades = @decades.where('(year / 10 * 10) LIKE ?', "%#{params[:q]}%") if params[:q].present?
     @decades = @decades.page(page).per(per_page)
   end
 
@@ -40,7 +40,7 @@ class DecadesController < ApplicationController
     column = case params[:sort]
     when 'total' then 'COUNT(*)'
     when 'average' then 'AVG(rating)'
-    else '(year / 10) || "0"'
+    else '(year / 10 * 10)'
     end
 
     params[:order] ||= 'asc'

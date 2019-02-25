@@ -5,19 +5,11 @@ FactoryBot.define do
     year { 2000 }
     rating { 8 }
     runtime { 155 }
-
-    after :create do |movie|
-      create :counter, countable: movie
-    end
   end
 
   factory :person do
     sequence(:name) { |n| "Person #{n}" }
     sequence(:imdb_url) { |n| "http://www.imdb.com/name/#{n}/" }
-
-    after :create do |person|
-      create :counter, countable: person
-    end
   end
 
   factory :credit do

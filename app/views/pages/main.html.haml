@@ -28,7 +28,7 @@
               = type
 
         = link_to decades_path, class: class_names do
-          = number_with_delimiter Movie.select('(year / 10) || "0" AS decade').group(:decade).length
+          = number_with_delimiter Movie.select('(year / 10 * 10) AS decade').group(:decade).length
 
           %span.text-dark
             decades

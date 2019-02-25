@@ -1,4 +1,4 @@
-class AddRatingToMovies < ActiveRecord::Migration
+class AddRatingToMovies < ActiveRecord::Migration[5.2]
   def self.up
     add_column :movies, :rating, :integer, default: 0
   end

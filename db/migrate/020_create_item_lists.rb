@@ -1,4 +1,4 @@
-class CreateItemLists < ActiveRecord::Migration
+class CreateItemLists < ActiveRecord::Migration[5.2]
   def self.up
     create_table :item_lists do |t|
       t.string :name

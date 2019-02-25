@@ -1,4 +1,4 @@
-class CreateListings < ActiveRecord::Migration
+class CreateListings < ActiveRecord::Migration[5.2]
   def self.up
     create_table :listings do |t|
       t.references :item_list

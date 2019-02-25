@@ -1,4 +1,4 @@
-class AddPermalinkToMovies < ActiveRecord::Migration
+class AddPermalinkToMovies < ActiveRecord::Migration[5.2]
   def self.up
     add_column :movies, :permalink, :string
   end

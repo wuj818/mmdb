@@ -1,4 +1,4 @@
-class RenameColumnsForCounters < ActiveRecord::Migration
+class RenameColumnsForCounters < ActiveRecord::Migration[5.2]
   def self.up
     change_table :counters do |t|
       t.rename :directing_credits, :directing_credits_count

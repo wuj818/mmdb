@@ -1,4 +1,4 @@
-class AddSortTitleToMovies < ActiveRecord::Migration
+class AddSortTitleToMovies < ActiveRecord::Migration[5.2]
   def self.up
     add_column :movies, :sort_title, :string
   end

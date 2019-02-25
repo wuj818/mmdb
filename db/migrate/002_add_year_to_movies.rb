@@ -1,4 +1,4 @@
-class AddYearToMovies < ActiveRecord::Migration
+class AddYearToMovies < ActiveRecord::Migration[5.2]
   def self.up
     add_column :movies, :year, :integer
   end

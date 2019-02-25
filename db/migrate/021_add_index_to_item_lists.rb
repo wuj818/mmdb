@@ -1,4 +1,4 @@
-class AddIndexToItemLists < ActiveRecord::Migration
+class AddIndexToItemLists < ActiveRecord::Migration[5.2]
   def self.up
     add_index :item_lists, :permalink
   end

@@ -1,4 +1,4 @@
-class AddSortNameToPeople < ActiveRecord::Migration
+class AddSortNameToPeople < ActiveRecord::Migration[5.2]
   def self.up
     add_column :people, :sort_name, :string
   end

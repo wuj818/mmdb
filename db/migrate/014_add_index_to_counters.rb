@@ -1,4 +1,4 @@
-class AddIndexToCounters < ActiveRecord::Migration
+class AddIndexToCounters < ActiveRecord::Migration[5.2]
   def self.up
     add_index :counters, [:countable_id, :countable_type]
   end

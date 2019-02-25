@@ -1,4 +1,4 @@
-class AddPermalinkIndexesToMoviesAndPeople < ActiveRecord::Migration
+class AddPermalinkIndexesToMoviesAndPeople < ActiveRecord::Migration[5.2]
   def self.up
     add_index :movies, :permalink
     add_index :people, :permalink

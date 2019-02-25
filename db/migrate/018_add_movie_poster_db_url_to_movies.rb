@@ -1,4 +1,4 @@
-class AddMoviePosterDbUrlToMovies < ActiveRecord::Migration
+class AddMoviePosterDbUrlToMovies < ActiveRecord::Migration[5.2]
   def self.up
     add_column :movies, :movie_poster_db_url, :string
   end

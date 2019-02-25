@@ -1,4 +1,4 @@
-class CreateCredits < ActiveRecord::Migration
+class CreateCredits < ActiveRecord::Migration[5.2]
   def self.up
     create_table :credits do |t|
       t.references :person
@@ -8,9 +8,6 @@ class CreateCredits < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_index :credits, :person_id
-    add_index :credits, :movie_id
   end
 
   def self.down

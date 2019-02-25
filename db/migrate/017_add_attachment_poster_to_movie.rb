@@ -1,4 +1,4 @@
-class AddAttachmentPosterToMovie < ActiveRecord::Migration
+class AddAttachmentPosterToMovie < ActiveRecord::Migration[5.2]
   def self.up
     add_column :movies, :poster_file_name, :string
     add_column :movies, :poster_url, :string

@@ -4,7 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.1'
 
 gem 'rails', '5.2.2'
-gem 'sqlite3', '~> 1.3.13'
+
+gem 'pg', '~> 1.1.4'
 
 gem 'bootsnap', '~> 1.3.2', require: false
 gem 'mini_racer', '~> 0.2.4', platforms: :ruby
