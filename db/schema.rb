@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(version: 2019_02_25_070656) do
     t.text "details"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["movie_id"], name: "idx_35381_index_credits_on_movie_id"
-    t.index ["person_id"], name: "idx_35381_index_credits_on_person_id"
+    t.index ["movie_id"], name: "idx_37794_index_credits_on_movie_id"
+    t.index ["person_id"], name: "idx_37794_index_credits_on_person_id"
   end
 
-  create_table "movies", id: :bigint, default: nil, force: :cascade do |t|
+  create_table "movies", force: :cascade do |t|
     t.text "title"
     t.text "imdb_url"
     t.datetime "created_at"
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 2019_02_25_070656) do
     t.text "cached_country_list"
     t.text "cached_genre_list"
     t.text "cached_language_list"
-    t.index ["permalink"], name: "idx_35419_index_movies_on_permalink"
-    t.index ["sort_title"], name: "idx_35419_index_movies_on_sort_title"
+    t.index ["permalink"], name: "idx_37834_index_movies_on_permalink"
+    t.index ["sort_title"], name: "idx_37834_index_movies_on_sort_title"
   end
 
   create_table "people", force: :cascade do |t|
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 2019_02_25_070656) do
     t.datetime "updated_at"
     t.bigint "credits_count", default: 0
     t.text "sort_name"
-    t.index ["permalink"], name: "idx_35405_index_people_on_permalink"
-    t.index ["sort_name"], name: "idx_35405_index_people_on_sort_name"
+    t.index ["permalink"], name: "idx_37818_index_people_on_permalink"
+    t.index ["sort_name"], name: "idx_37818_index_people_on_sort_name"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -87,21 +87,21 @@ ActiveRecord::Schema.define(version: 2019_02_25_070656) do
     t.text "tagger_type"
     t.text "context"
     t.datetime "created_at"
-    t.index ["context"], name: "idx_35372_index_taggings_on_context"
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "idx_35372_taggings_idx", unique: true
-    t.index ["tag_id"], name: "idx_35372_index_taggings_on_tag_id"
-    t.index ["taggable_id", "taggable_type", "context"], name: "idx_35372_index_taggings_on_taggable_id_and_taggable_type_and_c"
-    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "idx_35372_taggings_idy"
-    t.index ["taggable_id"], name: "idx_35372_index_taggings_on_taggable_id"
-    t.index ["taggable_type"], name: "idx_35372_index_taggings_on_taggable_type"
-    t.index ["tagger_id", "tagger_type"], name: "idx_35372_index_taggings_on_tagger_id_and_tagger_type"
-    t.index ["tagger_id"], name: "idx_35372_index_taggings_on_tagger_id"
+    t.index ["context"], name: "idx_37785_index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "idx_37785_taggings_idx", unique: true
+    t.index ["tag_id"], name: "idx_37785_index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "idx_37785_index_taggings_on_taggable_id_and_taggable_type_and_c"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "idx_37785_taggings_idy"
+    t.index ["taggable_id"], name: "idx_37785_index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "idx_37785_index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "idx_37785_index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "idx_37785_index_taggings_on_tagger_id"
   end
 
   create_table "tags", force: :cascade do |t|
     t.text "name"
     t.bigint "taggings_count", default: 0
-    t.index ["name"], name: "idx_35362_index_tags_on_name", unique: true
+    t.index ["name"], name: "idx_37775_index_tags_on_name", unique: true
   end
 
 end
