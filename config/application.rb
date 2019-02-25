@@ -29,7 +29,10 @@ module Mmdb
         'Expires' => 20.years.from_now.httpdate,
         'Cache-Control' => 'max-age=315360000, public'
       },
-      s3_credentials: Rails.root.join('config', 'aws.yml'),
+      s3_credentials: {
+        access_key_id: Rails.application.credentials.aws_access_key_id,
+        secret_access_key: Rails.application.credentials.aws_secret_access_key
+      },
       bucket: Rails.application.credentials.s3_bucket[Rails.env.to_sym]
     }
   end

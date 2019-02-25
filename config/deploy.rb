@@ -30,7 +30,7 @@ set :forward_agent, true
 # Some plugins already add folders to shared_dirs like `mina/rails` add `public/assets`, `vendor/bundle` and many more
 # run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
 set :shared_dirs, fetch(:shared_dirs, []).push('tmp/pids', 'tmp/sockets', 'db')
-set :shared_files, fetch(:shared_files, []).push('config/master.key', 'config/aws.yml')
+set :shared_files, fetch(:shared_files, []).push('config/master.key')
 
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
@@ -48,7 +48,6 @@ end
 task :setup do
   # command %{rbenv install 2.3.0 --skip-existing}
   command %(touch "#{fetch(:shared_path)}/config/master.key")
-  command %(touch "#{fetch(:shared_path)}/config/aws.yml")
 end
 
 desc 'Deploys the current version to the server.'
