@@ -11,10 +11,10 @@ class TagsController < ApplicationController
     @title = @type.capitalize
 
     @tags = Tag.order(order)
-    @tags = @tags.select('name, AVG(rating) AS average, taggings_count')
+    @tags = @tags.select('name, COUNT(*) AS total, AVG(rating) AS average')
     @tags = @tags.joins(:taggings)
+    @tags = @tags.where(taggings: { taggable_type: 'Movie', context: @type })
     @tags = @tags.joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
-    @tags = @tags.where('context = ?', @type)
     @tags = @tags.group(:name)
     @tags = @tags.having(minimum)
     @tags = @tags.where('name LIKE ?', "%#{params[:q]}%") if params[:q].present?
@@ -22,7 +22,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tag = CGI.unescape params[:id]
+    @tag = CGI.unescape(params[:id])
 
     Tag.find_by!(name: @tag)
 
@@ -30,7 +30,7 @@ class TagsController < ApplicationController
 
     @movies = Movie.order(movie_order)
     @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") if params[:q].present?
-    @movies = @movies.send 'tagged_with', @tag, on: @type
+    @movies = @movies.send('tagged_with', @tag, on: @type)
     @movies = @movies.page(page).per(per_page)
   end
 
@@ -39,14 +39,14 @@ class TagsController < ApplicationController
   def get_type
     @type = params[:type]
 
-    raise ActiveRecord::RecordNotFound unless TYPES.include? @type
+    raise ActiveRecord::RecordNotFound unless TYPES.include?(@type)
   end
 
   def order
     params[:sort] ||= 'name'
 
     column = case params[:sort]
-    when 'total' then :taggings_count
+    when 'total' then :total
     when 'average' then 'AVG(rating)'
     else 'name'
     end
@@ -54,11 +54,12 @@ class TagsController < ApplicationController
     params[:order] ||= 'asc'
 
     result = "#{column} #{params[:order]}"
-    result << ', taggings_count DESC' unless params[:sort] == 'total'
-    result
+    result << ', total DESC' unless params[:sort] == 'total'
+
+    Arel.sql(result)
   end
 
   def minimum
-    "taggings_count >= #{params[:minimum].to_i}"
+    "COUNT(*) >= #{params[:minimum].to_i}"
   end
 end
