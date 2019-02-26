@@ -48,9 +48,7 @@ class Person < ApplicationRecord
   end
 
   def movie_credits_column_chart_data
-    years = movies.order(:year).pluck(:year).each_with_object(Hash.new(0)) do |year, hash|
-      hash[year] += 1
-    end
+    years = movies.group(:year).order(:year).count
 
     empty_years = (years.keys.first..years.keys.last).each_with_object({}) do |year, hash|
       hash[year] = 0
@@ -60,9 +58,7 @@ class Person < ApplicationRecord
   end
 
   def movie_ratings_pie_chart_data
-    ratings = movies.pluck(:rating).each_with_object(Hash.new(0)) do |rating, hash|
-      hash[rating] += 1
-    end
+    ratings = movies.group(:rating).count
 
     ratings.each_with_object([]) do |rating, array|
       array << {
@@ -73,7 +69,7 @@ class Person < ApplicationRecord
   end
 
   def movie_genres_bar_chart_data
-    genres = movies.pluck(:cached_genre_list).join(', ').split ', '
+    genres = movies.pluck(:cached_genre_list).join(', ').split(', ')
     counts = genres.each_with_object(Hash.new(0)) do |genre, hash|
       hash[genre] += 1
     end
