@@ -16,16 +16,16 @@ gem 'rails-observers', '~> 0.1.5'
 
 gem 'dalli', '~> 2.7.9'
 
-gem 'haml-rails', '~> 1.0.0'
+gem 'coffee-rails', '~> 4.2.2'
+gem 'hamlit', '~> 2.9.2'
+gem 'sass-rails', '~> 5.0.7'
+
 gem 'jquery-rails', '~> 4.3.3'
 gem 'jquery-ui-rails', '~> 6.0.1'
 gem 'turbolinks', '~> 5.2.0'
-
-gem 'bootstrap', '~> 4.1.3'
-gem 'coffee-rails', '~> 4.2.2'
-gem 'sass-rails', '~> 5.0.7'
 gem 'uglifier', '~> 4.1.19'
 
+gem 'bootstrap', '~> 4.1.3'
 gem 'font-awesome-rails', '~> 4.7.0.4'
 gem 'highcharts-rails', '~> 6.0.3'
 
