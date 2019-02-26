@@ -1,4 +1,4 @@
-- total = @person.movies.length
+- count = @person.movies.size
 
 .table-responsive
   %table.table.table-bordered
@@ -11,7 +11,7 @@
       %tr
         %td
           - @person.frequent_collaborators.each do |person|
-            - fraction = "#{person.count}/#{total}"
-            - percentage = format('%.2f%%', person.count / total.to_f * 100)
+            - fraction = "#{person.total}/#{count}"
+            - percentage = format('%.2f%%', person.total / count.to_f * 100)
 
             = link_to person.name, person, class: 'percentage-popover badge badge-primary', data: { fraction: fraction, percentage: percentage }

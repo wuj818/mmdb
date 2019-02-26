@@ -19,6 +19,8 @@ class Person < ApplicationRecord
 
   has_many :credits, dependent: :destroy
 
+  has_many :movies, -> { distinct }, through: 'credits'
+
   has_one :counter, as: 'countable', dependent: :destroy
 
   RATING_WEIGHTS = {
@@ -44,32 +46,6 @@ class Person < ApplicationRecord
       send("#{credit_type}_credits").joins(:movie).order('year DESC')
     end
   end
-
-  def movies
-    Movie.joins(:credits).where('credits.person_id = ?', id).group('movie_id')
-  end
-
-  # def movie_ids
-  #   movies.map(&:id)
-  # end
-
-  # def movie_history
-  #   averages = { name: 'Average Rating', data: [] }
-  #   totals = { name: 'Total Movies', data: [] }
-
-  #   Movie.where('id IN (?)', movie_ids).select('year, AVG(rating) AS average, COUNT(*) AS total').group(:year).order(:year).each do |row|
-  #     averages[:data] << [row.year, row.average.round(2)]
-  #     totals[:data] << [row.year, row.total]
-  #   end
-
-  #   [averages, totals]
-  # end
-
-  # def movie_ratings_history
-  #   Movie.where('id IN (?)', movie_ids).select('rating, COUNT(*) AS total').group(:rating).each_with_object({}) do |row, hash|
-  #     hash[row.rating] = row.total
-  #   end
-  # end
 
   def movie_credits_column_chart_data
     years = movies.order(:year).pluck(:year).each_with_object(Hash.new(0)) do |year, hash|
@@ -125,11 +101,12 @@ class Person < ApplicationRecord
   end
 
   def frequent_collaborators(limit = 25)
-    people = Person.select('people.id, name, permalink, COUNT(DISTINCT(movie_id)) AS count')
+    people = Person.select('people.id, name, permalink, COUNT(DISTINCT(movie_id)) AS total')
     people = people.joins(:credits)
-    people = people.where('movie_id IN (?) AND person_id <> ?', movies.pluck(:id), id)
-    people = people.group(:person_id)
-    people = people.order('COUNT(DISTINCT(movie_id)) DESC')
+    people = people.where(credits: { movie_id: movies.select(:id) })
+    people = people.where.not(credits: { person_id: id })
+    people = people.group(:id)
+    people = people.order('total DESC')
     people.limit(limit)
   end
 
@@ -142,7 +119,7 @@ class Person < ApplicationRecord
   end
 
   def approval_percentage
-    (movies.where('rating >= 6').length / movies.length.to_f * 100).ceil rescue 0
+    (movies.where('rating >= 6').size / movies.size.to_f * 100).ceil rescue 0
   end
 
   def self.[](name)
