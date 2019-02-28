@@ -12,7 +12,7 @@ class Credit < ApplicationRecord
     'Editor' => 'editing',
     'Cinematographer' => 'cinematography',
     'Actor' => 'acting'
-  }
+  }.freeze
 
   validates :job,
             presence: true,

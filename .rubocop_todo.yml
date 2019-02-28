@@ -180,16 +180,6 @@ Style/MultilineTernaryOperator:
   Exclude:
     - 'app/helpers/pages_helper.rb'
 
-# Offense count: 6
-# Cop supports --auto-correct.
-Style/MutableConstant:
-  Exclude:
-    - 'app/controllers/tags_controller.rb'
-    - 'app/lib/dirk_diggler.rb'
-    - 'app/models/credit.rb'
-    - 'app/models/movie.rb'
-    - 'app/models/person.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/Proc:

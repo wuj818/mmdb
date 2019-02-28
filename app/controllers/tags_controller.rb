@@ -5,7 +5,7 @@ class TagsController < ApplicationController
                 cache_path: -> { request.path },
                 expires_in: 2.weeks
 
-  TYPES = %w[countries genres keywords languages]
+  TYPES = %w[countries genres keywords languages].freeze
 
   def index
     @title = @type.capitalize

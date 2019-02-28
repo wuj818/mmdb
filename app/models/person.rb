@@ -35,7 +35,7 @@ class Person < ApplicationRecord
     8 => 2,
     9 => 4,
     10 => 16
-  }
+  }.freeze
 
   def to_param
     permalink

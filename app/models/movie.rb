@@ -60,7 +60,7 @@ class Movie < ApplicationRecord
     Documentary  Drama      Family     Fantasy    Film-Noir  History
     Horror       Music      Musical    Mystery    News       Romance
     Sci-Fi       Short      Sport      Thriller   War        Western
-  ]
+  ].freeze
 
   def to_param
     permalink

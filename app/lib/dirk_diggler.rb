@@ -8,12 +8,12 @@ class DirkDiggler
     :genres, :keywords, :languages, :countries,
     # people
     :directors, :writers, :composers, :editors, :cinematographers, :actors
-  ]
+  ].freeze
 
   ITEMS.each { |item| attr_accessor item }
   attr_reader :target
 
-  IMDB = 'https://www.imdb.com'
+  IMDB = 'https://www.imdb.com'.freeze
 
   def initialize(target)
     @target = target
