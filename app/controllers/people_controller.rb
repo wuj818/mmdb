@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_action :authorize, only: %i[edit update destroy]
-  before_action :get_person, only: %i[edit update destroy]
+  before_action :set_person, only: %i[edit update destroy]
 
   caches_action :index, :show, :charts, :keywords,
                 cache_path: -> { request.path },
@@ -63,7 +63,7 @@ class PeopleController < ApplicationController
     params.fetch(:person).permit!
   end
 
-  def get_person
+  def set_person
     @person = Person.find_by!(permalink: params[:id])
   end
 

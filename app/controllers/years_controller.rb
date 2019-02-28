@@ -1,5 +1,5 @@
 class YearsController < ApplicationController
-  before_action :get_year, only: [:show]
+  before_action :set_year, only: [:show]
 
   caches_action :index, :show,
                 cache_path: -> { request.path },
@@ -26,7 +26,7 @@ class YearsController < ApplicationController
 
   private
 
-  def get_year
+  def set_year
     @year = params[:id].to_i
   end
 

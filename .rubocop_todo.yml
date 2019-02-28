@@ -101,18 +101,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 10
 
-# Offense count: 30
-Naming/AccessorMethodName:
-  Exclude:
-    - 'app/controllers/credits_controller.rb'
-    - 'app/controllers/decades_controller.rb'
-    - 'app/controllers/movies_controller.rb'
-    - 'app/controllers/people_controller.rb'
-    - 'app/controllers/tags_controller.rb'
-    - 'app/controllers/years_controller.rb'
-    - 'app/lib/dirk_diggler.rb'
-    - 'app/models/movie.rb'
-
 # Offense count: 1
 # Configuration parameters: MinNameLength, AllowNamesEndingInNumbers, AllowedNames, ForbiddenNames.
 # AllowedNames: io, id, to, by, on, in, at, ip, db

@@ -1,5 +1,5 @@
 class DecadesController < ApplicationController
-  before_action :get_decade, only: [:show]
+  before_action :set_decade, only: [:show]
 
   caches_action :index, :show,
                 cache_path: -> { request.path },
@@ -28,7 +28,7 @@ class DecadesController < ApplicationController
 
   private
 
-  def get_decade
+  def set_decade
     @decade = params[:id].to_i
 
     raise ActiveRecord::RecordNotFound unless DECADES.include? @decade

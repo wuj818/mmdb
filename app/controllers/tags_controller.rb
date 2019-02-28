@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  before_action :get_type
+  before_action :set_type
 
   caches_action :index, :show,
                 cache_path: -> { request.path },
@@ -36,7 +36,7 @@ class TagsController < ApplicationController
 
   private
 
-  def get_type
+  def set_type
     @type = params[:type]
 
     raise ActiveRecord::RecordNotFound unless TYPES.include?(@type)

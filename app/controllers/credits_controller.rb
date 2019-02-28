@@ -1,6 +1,6 @@
 class CreditsController < ApplicationController
   before_action :authorize
-  before_action :get_person
+  before_action :set_person
 
   def new
     @title = %(New Credit for "#{@person.name}")
@@ -34,7 +34,7 @@ class CreditsController < ApplicationController
 
   private
 
-  def get_person
+  def set_person
     @person = Person.find_by!(permalink: params[:person_id])
   end
 end

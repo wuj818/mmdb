@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_action :authorize, only: %i[new create edit update destroy scrape_info]
-  before_action :get_movie, only: %i[edit update destroy]
+  before_action :set_movie, only: %i[edit update destroy]
 
   caches_action :index, :show, :keywords, :perfect,
                 cache_path: -> { request.path },
@@ -103,7 +103,7 @@ class MoviesController < ApplicationController
     params.fetch(:movie).permit!
   end
 
-  def get_movie
+  def set_movie
     @movie = Movie.find_by!(permalink: params[:id])
   end
 end
