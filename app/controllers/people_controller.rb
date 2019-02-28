@@ -9,7 +9,7 @@ class PeopleController < ApplicationController
   def index
     @title = 'People'
     @people = Person.order(order)
-    @people = @people.where('name LIKE ?', "%#{params[:q]}%") if params[:q].present?
+    @people = @people.where('name ILIKE ?', "%#{params[:q]}%") if params[:q].present?
     @people = @people.joins(:counter).includes(:counter)
     @people = @people.page(page).per(per_page)
   end

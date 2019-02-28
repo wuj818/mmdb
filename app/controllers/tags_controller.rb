@@ -17,7 +17,7 @@ class TagsController < ApplicationController
     @tags = @tags.joins('INNER JOIN movies ON taggings.taggable_id = movies.id')
     @tags = @tags.group(:name)
     @tags = @tags.having(minimum)
-    @tags = @tags.where('name LIKE ?', "%#{params[:q]}%") if params[:q].present?
+    @tags = @tags.where('name ILIKE ?', "%#{params[:q]}%") if params[:q].present?
     @tags = @tags.page(page).per(per_page)
   end
 
@@ -29,7 +29,7 @@ class TagsController < ApplicationController
     @title = "#{@type.capitalize} - #{@tag}"
 
     @movies = Movie.order(movie_order)
-    @movies = @movies.where('title LIKE ?', "%#{params[:q]}%") if params[:q].present?
+    @movies = @movies.where('title ILIKE ?', "%#{params[:q]}%") if params[:q].present?
     @movies = @movies.send('tagged_with', @tag, on: @type)
     @movies = @movies.page(page).per(per_page)
   end

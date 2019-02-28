@@ -14,7 +14,7 @@ class DecadesController < ApplicationController
     @decades = @decades.select('(year / 10 * 10) AS decade, COUNT(*) AS total, AVG(rating) AS average')
     @decades = @decades.group('year / 10 * 10')
     @decades = @decades.having(minimum)
-    @decades = @decades.where('(year / 10 * 10) LIKE ?', "%#{params[:q]}%") if params[:q].present?
+    @decades = @decades.where('(year / 10 * 10) ILIKE ?', "%#{params[:q]}%") if params[:q].present?
     @decades = @decades.page(page).per(per_page)
   end
 
