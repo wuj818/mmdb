@@ -137,22 +137,27 @@ describe Movie do
 
     describe '#get_preliminary_info' do
       it 'scrapes IMDB for general information about the movie (title, year, etc)' do
-        allow(DirkDiggler).to receive(:new).and_return instance_double('DirkDiggler', get: true,
+        fake_diggler = instance_double(
+          DirkDiggler,
+          get: true,
           data: {
             imdb_url: 'http://www.imdb.com/title/tt0118749/',
             title: 'Boogie Nights'
-          })
+          }
+        )
+
+        allow(DirkDiggler).to receive(:new).and_return(fake_diggler)
 
         movie.get_preliminary_info
         movie.save
 
-        expect(movie.imdb_url).to eq 'http://www.imdb.com/title/tt0118749/'
-        expect(movie.title).to eq 'Boogie Nights'
+        expect(movie.imdb_url).to eq('http://www.imdb.com/title/tt0118749/')
+        expect(movie.title).to eq('Boogie Nights')
       end
 
       it 'can only be called on new records' do
-        movie = create :movie
-        expect(movie.get_preliminary_info).to eq false
+        movie = create(:movie)
+        expect(movie.get_preliminary_info).to be(false)
       end
     end
   end

@@ -6,20 +6,16 @@ Rails.application.routes.draw do
 
   resources :sessions, only: %i[new create destroy]
 
-  get '/admin-controls', to: 'pages#admin_controls',
-    as: 'admin_controls_path'
+  get '/admin-controls', to: 'pages#admin_controls', as: 'admin_controls_path'
 
-  delete '/clear-cache', to: 'pages#clear_cache',
-    as: 'clear_cache'
+  delete '/clear-cache', to: 'pages#clear_cache', as: 'clear_cache'
 
-  get '/movies/new-from-imdb', to: 'movies#new',
-    from_imdb: true, as: 'new_movie_from_imdb'
+  get '/movies/new-from-imdb', to: 'movies#new', from_imdb: true, as: 'new_movie_from_imdb'
 
   post '/movies/scrape-info', to: 'movies#scrape_info', as: 'scrape_info'
 
   get 'movies/sort/:sort/order/:order(/page/:page)(/query/:q)', to: 'movies#index'
-  get 'movies(/query/:q)', to: 'movies#index',
-    as: 'formatted_search_movies'
+  get 'movies(/query/:q)', to: 'movies#index', as: 'formatted_search_movies'
 
   resources :movies do
     collection do
@@ -34,8 +30,7 @@ Rails.application.routes.draw do
   end
 
   get 'people/sort/:sort/order/:order(/page/:page)(/query/:q)', to: 'people#index'
-  get 'people(/query/:q)', to: 'people#index',
-    as: 'formatted_search_people'
+  get 'people(/query/:q)', to: 'people#index', as: 'formatted_search_people'
 
   resources :people, except: %i[new create] do
     resources :credits, only: %i[new create destroy]
@@ -53,8 +48,7 @@ Rails.application.routes.draw do
   %i[decades years].each do |type|
     get "#{type}/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)", to: "#{type}#index"
     get "#{type}/:id/sort/:sort/order/:order(/page/:page)(/query/:q)", to: "#{type}#show"
-    get "#{type}(/total-at-least/:minimum)(/query/:q)", to: "#{type}#index",
-      as: "formatted_search_#{type}"
+    get "#{type}(/total-at-least/:minimum)(/query/:q)", to: "#{type}#index", as: "formatted_search_#{type}"
 
     resources type, only: %i[index show] do
       collection do
@@ -66,8 +60,7 @@ Rails.application.routes.draw do
   get 'tags/search', to: 'tags#search'
   get ':type/sort/:sort/order/:order(/total-at-least/:minimum)(/page/:page)(/query/:q)', to: 'tags#index'
   get ':type/:id/sort/:sort/order/:order(/page/:page)(/query/:q)', to: 'tags#show'
-  get ':type(/total-at-least/:minimum)(/query/:q)', to: 'tags#index',
-    as: 'formatted_search_tags'
+  get ':type(/total-at-least/:minimum)(/query/:q)', to: 'tags#index', as: 'formatted_search_tags'
 
   %i[genres keywords languages countries].each do |type|
     get ':type', to: 'tags#index', as: type.to_s, type: type
