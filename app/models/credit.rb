@@ -15,10 +15,10 @@ class Credit < ApplicationRecord
   }
 
   validates :job,
-    presence: true,
-    inclusion: { in: JOBS.keys, message: 'is invalid' },
-    uniqueness: {
-      scope: %i[person_id movie_id],
-      message: 'type credit already exists for this person/movie combination.'
-    }
+            presence: true,
+            inclusion: { in: JOBS.keys, message: 'is invalid' },
+            uniqueness: {
+              scope: %i[person_id movie_id],
+              message: 'type credit already exists for this person/movie combination.'
+            }
 end

@@ -4,32 +4,32 @@ class Movie < ApplicationRecord
   acts_as_taggable_on :countries, :genres, :keywords, :languages
 
   validates :title,
-    presence: true,
-    uniqueness: {
-      scope: 'year',
-      message: 'or Title/Year combination has already been taken'
-    }
+            presence: true,
+            uniqueness: {
+              scope: 'year',
+              message: 'or Title/Year combination has already been taken'
+            }
 
   validates :imdb_url,
-    presence: true,
-    uniqueness: true
+            presence: true,
+            uniqueness: true
 
   validates :year,
-    presence: true,
-    numericality: {
-      greater_than_or_equal_to: 1890,
-      less_than_or_equal_to: 3000
-    }
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 1890,
+              less_than_or_equal_to: 3000
+            }
 
   validates :rating,
-    inclusion: { in: 0..10, message: 'is invalid' }
+            inclusion: { in: 0..10, message: 'is invalid' }
 
   validates :runtime,
-    presence: true,
-    numericality: {
-      greater_than_or_equal_to: 0,
-      less_than_or_equal_to: 300
-    }
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 0,
+              less_than_or_equal_to: 300
+            }
 
   validates :permalink, uniqueness: true
 
@@ -47,9 +47,9 @@ class Movie < ApplicationRecord
   has_one :counter, as: 'countable', dependent: :destroy
 
   has_attached_file :poster,
-    styles: { large: '300x420!', medium: '150x210!', tiny: '20x28!' },
-    default_url: ':asset_default_url',
-    path: '/posters/:style/:id/:filename'
+                    styles: { large: '300x420!', medium: '150x210!', tiny: '20x28!' },
+                    default_url: ':asset_default_url',
+                    path: '/posters/:style/:id/:filename'
 
   validates_attachment_content_type :poster, content_type: /\Aimage\/.*\z/
 

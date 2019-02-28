@@ -2,14 +2,14 @@ class Person < ApplicationRecord
   include CreditScopesAndCounts
 
   validates :name,
-    presence: true
+            presence: true
 
   validates :imdb_url,
-    presence: true,
-    uniqueness: true
+            presence: true,
+            uniqueness: true
 
   validates :permalink,
-    uniqueness: true
+            uniqueness: true
 
   after_create :create_counter
 
