@@ -46,10 +46,10 @@ class TagsController < ApplicationController
     params[:sort] ||= 'name'
 
     column = case params[:sort]
-    when 'total' then :total
-    when 'average' then 'AVG(rating)'
-    else 'name'
-    end
+             when 'total' then :total
+             when 'average' then 'AVG(rating)'
+             else 'name'
+             end
 
     params[:order] ||= 'asc'
 

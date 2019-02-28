@@ -17,10 +17,10 @@ module MoviesHelper
 
   def movie_rating_class(movie)
     color = case movie.rating
-      when 0..4 then 'red'
-      when 5..7 then 'orange'
-      when 8..10 then 'green'
-    end
+            when 0..4 then 'red'
+            when 5..7 then 'orange'
+            when 8..10 then 'green'
+            end
 
     "#{color}-rating"
   end

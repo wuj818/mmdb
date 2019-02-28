@@ -33,10 +33,10 @@ module PagesHelper
 
     if total_pages < 2
       info = case collection_size
-      when 0; "No #{plural_name} found"
-      when 1; "Displaying #{b}1#{eb} #{entry_name}"
-      else; "Displaying #{b}all #{number_with_delimiter collection_size}#{eb} #{plural_name}"
-      end
+             when 0 then "No #{plural_name} found"
+             when 1 then "Displaying #{b}1#{eb} #{entry_name}"
+             else "Displaying #{b}all #{number_with_delimiter collection_size}#{eb} #{plural_name}"
+             end
     else
       info = %(Displaying #{plural_name} #{b}%d#{sp}-#{sp}%d#{eb} of #{b}%s#{eb} in total) % [
         offset + 1,

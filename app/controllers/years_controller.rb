@@ -34,10 +34,10 @@ class YearsController < ApplicationController
     params[:sort] ||= 'year'
 
     column = case params[:sort]
-    when 'total' then 'COUNT(*)'
-    when 'average' then 'AVG(rating)'
-    else 'year'
-    end
+             when 'total' then 'COUNT(*)'
+             when 'average' then 'AVG(rating)'
+             else 'year'
+             end
 
     params[:order] ||= 'asc'
 

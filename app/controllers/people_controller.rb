@@ -71,15 +71,15 @@ class PeopleController < ApplicationController
     params[:sort] ||= 'name'
 
     column = case params[:sort]
-    when 'credits' then 'credits_count'
-    when 'directing' then 'directing_credits_count'
-    when 'writing' then 'writing_credits_count'
-    when 'composing' then 'composing_credits_count'
-    when 'editing' then 'editing_credits_count'
-    when 'cinematography' then 'cinematography_credits_count'
-    when 'acting' then 'acting_credits_count'
-    else 'sort_name'
-    end
+             when 'credits' then 'credits_count'
+             when 'directing' then 'directing_credits_count'
+             when 'writing' then 'writing_credits_count'
+             when 'composing' then 'composing_credits_count'
+             when 'editing' then 'editing_credits_count'
+             when 'cinematography' then 'cinematography_credits_count'
+             when 'acting' then 'acting_credits_count'
+             else 'sort_name'
+             end
 
     params[:order] ||= 'asc'
 

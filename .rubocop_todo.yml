@@ -6,19 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 18
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentOneStep, IndentationWidth.
-# SupportedStyles: case, end
-Layout/CaseIndentation:
-  Exclude:
-    - 'app/controllers/decades_controller.rb'
-    - 'app/controllers/people_controller.rb'
-    - 'app/controllers/tags_controller.rb'
-    - 'app/controllers/years_controller.rb'
-    - 'app/helpers/movies_helper.rb'
-    - 'app/helpers/pages_helper.rb'
-
 # Offense count: 9
 # Cop supports --auto-correct.
 Layout/ElseAlignment:
