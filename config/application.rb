@@ -33,7 +33,8 @@ module Mmdb
         access_key_id: Rails.application.credentials.aws_access_key_id,
         secret_access_key: Rails.application.credentials.aws_secret_access_key
       },
-      bucket: Rails.application.credentials.s3_bucket[Rails.env.to_sym]
+      bucket: Rails.application.credentials.s3_bucket[Rails.env.to_sym],
+      url: ':s3_domain_url'
     }
 
     config.action_view.field_error_proc = proc { |html_tag, _instance| html_tag }
