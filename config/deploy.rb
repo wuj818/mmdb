@@ -23,7 +23,7 @@ set :shared_files, fetch(:shared_files, []).push('config/master.key')
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
 task :remote_environment do
-  invoke :chruby, '2.6.2'
+  invoke :chruby, '2.6.5'
 end
 
 # Put any custom commands you need to run at setup
