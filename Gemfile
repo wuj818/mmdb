@@ -3,12 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
-gem 'rails', '5.2.3'
+gem 'rails', '~> 5.2.0'
 
 gem 'pg', '~> 1.1'
 
 gem 'bootsnap', '~> 1.4', require: false
-gem 'mini_racer', '~> 0.2', platforms: :ruby
 gem 'puma', '~> 3.12'
 
 gem 'actionpack-action_caching', '~> 1.2'
