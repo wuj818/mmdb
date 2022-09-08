@@ -39,7 +39,7 @@ group :development do
   gem 'spring', '~> 2.0'
   gem 'spring-watcher-listen', '~> 2.0'
 
-  gem 'better_errors', '~> 2.5'
+  gem 'better_errors', '~> 2.8'
   gem 'binding_of_caller', '~> 0.8'
   gem 'web-console', '~> 3.7'
 
