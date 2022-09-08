@@ -30,7 +30,7 @@ gem 'highcharts-rails', '~> 6.0'
 
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'aws-sdk-s3', '~> 1.32'
-gem 'kaminari', '~> 1.1'
+gem 'kaminari', '~> 1.2'
 gem 'mechanize', '~> 2.7'
 gem 'paperclip', '~> 6.1'
 
