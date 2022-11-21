@@ -13,7 +13,7 @@ gem 'puma', '~> 3.12'
 gem 'actionpack-action_caching', '~> 1.2'
 gem 'rails-observers', '~> 0.1'
 
-gem 'dalli', '~> 2.7'
+gem 'dalli', '~> 3.2'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'hamlit', '~> 2.9'
